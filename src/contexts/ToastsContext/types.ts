@@ -1,4 +1,4 @@
-import { Toast } from '@pancakeswap/uikit'
+import { Toast } from 'taalswap-uikit'
 
 type ToastSignature = (title: Toast['title'], description?: Toast['description']) => void
 
