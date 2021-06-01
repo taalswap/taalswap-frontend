@@ -11,7 +11,7 @@ import {
   getPancakeRabbitsAddress,
   getBunnyFactoryAddress,
   getBunnySpecialAddress,
-  getCakeAddress,
+  getTaalAddress,
   getLotteryAddress,
   getLotteryTicketAddress,
   getLotteryV2Address,
@@ -84,7 +84,7 @@ export const getPointCenterIfoContract = (web3?: Web3) => {
   return getContract(pointCenterIfo, getPointCenterIfoAddress(), web3)
 }
 export const getCakeContract = (web3?: Web3) => {
-  return getContract(cakeAbi, getCakeAddress(), web3)
+  return getContract(cakeAbi, getTaalAddress(), web3)
 }
 export const getProfileContract = (web3?: Web3) => {
   return getContract(profileABI, getPancakeProfileAddress(), web3)

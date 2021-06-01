@@ -127,12 +127,12 @@ const BetResult: React.FC<BetResultProps> = ({ bet, result }) => {
         </Flex>
         <Flex alignItems="center" justifyContent="space-between" mb="16px">
           <Text>{t('Your position')}</Text>
-          <Text>{`${formatBnb(bet.amount)} BNB`}</Text>
+          <Text>{`${formatBnb(bet.amount)} ETH`}</Text>
         </Flex>
         <Flex alignItems="start" justifyContent="space-between">
           <Text bold>{t('Your Result')}</Text>
           <Box style={{ textAlign: 'right' }}>
-            <Text bold color={getResultColor()}>{`${result === Result.LOSE ? '-' : '+'}${formatBnb(payout)} BNB`}</Text>
+            <Text bold color={getResultColor()}>{`${result === Result.LOSE ? '-' : '+'}${formatBnb(payout)} ETH`}</Text>
             <Text fontSize="12px" color="textSubtle">
               {`~$${formatBnb(bnbBusdPrice.times(payout).toNumber())}`}
             </Text>

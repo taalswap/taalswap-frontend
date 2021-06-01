@@ -65,7 +65,7 @@ const getPercentDisplay = (percentage: number) => {
 
 const getButtonProps = (value: BigNumber, bnbBalance: BigNumber, minBetAmountBalance: number) => {
   if (bnbBalance.eq(0)) {
-    return { key: 'Insufficient BNB balance', disabled: true }
+    return { key: 'Insufficient ETH balance', disabled: true }
   }
 
   if (value.eq(0) || value.isNaN()) {
@@ -156,11 +156,11 @@ const SetPositionCard: React.FC<SetPositionCardProps> = ({ position, togglePosit
     const hasSufficientBalance = bnValue.gt(0) && bnValue.lte(maxBalance)
 
     if (!hasSufficientBalance) {
-      setErrorMessage({ key: 'Insufficient BNB balance' })
+      setErrorMessage({ key: 'Insufficient ETH balance' })
     } else if (bnValue.gt(0) && bnValue.lt(minBetAmountBalance)) {
       setErrorMessage({
         key: 'A minimum amount of %num% %token% is required',
-        data: { num: minBetAmountBalance, token: 'BNB' },
+        data: { num: minBetAmountBalance, token: 'ETH' },
       })
     } else {
       setErrorMessage(null)
@@ -190,7 +190,7 @@ const SetPositionCard: React.FC<SetPositionCardProps> = ({ position, togglePosit
           <Flex alignItems="center">
             <BinanceIcon mr="4px  " />
             <Text bold textTransform="uppercase">
-              BNB
+              ETH
             </Text>
           </Flex>
         </Flex>

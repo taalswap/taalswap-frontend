@@ -51,8 +51,8 @@ export const usePollFarmsData = (includeArchive = false) => {
 
 /**
  * Fetches the "core" farm data used globally
- * 251 = CAKE-BNB LP
- * 252 = BUSD-BNB LP
+ * 251 = TAL-ETH LP
+ * 252 = BUSD-ETH LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
@@ -60,7 +60,7 @@ export const usePollCoreFarmData = () => {
   const web3 = getWeb3NoAccount()
 
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync([251, 252]))
+    dispatch(fetchFarmsPublicDataAsync([1, 2]))   // 251 -> 1, 252 -> 2
   }, [dispatch, fastRefresh, web3])
 }
 
@@ -325,13 +325,17 @@ export const useAchievements = () => {
   return achievements
 }
 
+// TODO : Ethereum에서는 수정 필요
 export const usePriceBnbBusd = (): BigNumber => {
-  const bnbBusdFarm = useFarmFromPid(252)
+  // const bnbBusdFarm = useFarmFromPid(252)
+  const bnbBusdFarm = useFarmFromPid(2)
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 
+// TODO : Ethereum에서는 수정 필요
 export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(251)
+  // const cakeBnbFarm = useFarmFromPid(251)
+  const cakeBnbFarm = useFarmFromPid(1)
   return new BigNumber(cakeBnbFarm.token.busdPrice)
 }
 

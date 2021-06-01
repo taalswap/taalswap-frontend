@@ -31,7 +31,7 @@ const useGetProfileCosts = () => {
           numberCakeToUpdate: new BigNumber(numberCakeToUpdate as string),
         })
       } catch (error) {
-        toastError(t('Error'), t('Could not retrieve CAKE costs for profile'))
+        toastError(t('Error'), t('Could not retrieve TAL costs for profile'))
       }
     }
 

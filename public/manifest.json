@@ -1,7 +1,7 @@
 {
-  "short_name": "PancakeSwap",
-  "name": "PancakeSwap",
-  "description": "Farm CAKE with Pancake LP Tokens",
+  "short_name": "TaalSwap",
+  "name": "TaalSwap",
+  "description": "Farm TAL with Taal LP Tokens",
   "icons": [
     {
       "src": "favicon.ico",

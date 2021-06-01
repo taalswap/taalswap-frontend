@@ -9,9 +9,9 @@ import { getWeb3NoAccount } from 'utils/web3'
 import BigNumber from 'bignumber.js'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
-// BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
-const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
-const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
+// ETH pools use the native ETH token (wrapping ? unwrapping is done at the contract level)
+const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'ETH')
+const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'ETH')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 const web3 = getWeb3NoAccount()
 const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as AbiItem, getMasterChefAddress())
@@ -31,7 +31,7 @@ export const fetchPoolsAllowance = async (account) => {
 }
 
 export const fetchUserBalances = async (account) => {
-  // Non BNB pools
+  // Non ETH pools
   const calls = nonBnbPools.map((p) => ({
     address: getAddress(p.stakingToken.address),
     name: 'balanceOf',
@@ -43,7 +43,7 @@ export const fetchUserBalances = async (account) => {
     {},
   )
 
-  // BNB pools
+  // ETH pools
   const bnbBalance = await web3.eth.getBalance(account)
   const bnbBalances = bnbPools.reduce(
     (acc, pool) => ({ ...acc, [pool.sousId]: new BigNumber(bnbBalance).toJSON() }),
@@ -90,7 +90,7 @@ export const fetchUserPendingRewards = async (account) => {
   )
 
   // Cake / Cake pool
-  const pendingReward = await masterChefContract.methods.pendingCake('0', account).call()
+  const pendingReward = await masterChefContract.methods.pendingTaal('0', account).call()
 
   return { ...pendingRewards, 0: new BigNumber(pendingReward).toJSON() }
 }

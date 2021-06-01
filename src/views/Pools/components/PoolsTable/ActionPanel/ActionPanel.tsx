@@ -218,7 +218,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {(isXs || isSm || isMd) && totalStakedRow}
         {shouldShowBlockCountdown && blocksRow}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
+          <LinkExternal href={`https://taalswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
             {t('Info site')}
           </LinkExternal>
         </Flex>
@@ -249,7 +249,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
       <ActionContainer>
         {showSubtitle && (
           <Text mt="4px" mb="16px" color="textSubtle">
-            {isAutoVault ? t('Automatic restaking') : `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`}
+            {isAutoVault ? t('Automatic restaking') : `${t('Earn')} TAL ${t('Stake').toLocaleLowerCase()} TAL`}
           </Text>
         )}
         <Harvest {...pool} userDataLoaded={userDataLoaded} />

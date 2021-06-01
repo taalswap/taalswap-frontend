@@ -4,7 +4,7 @@ import { Box } from 'taalswap-uikit'
 import Container from '../layout/Container'
 
 const Outer = styled(Box)<{ background?: string }>`
-  background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
+  //background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
 `
 
 const Inner = styled(Container)`
