@@ -32,3 +32,7 @@ yarn-debug.log*
 yarn-error.log*
 debug.log*
 
+/src/config/constants/pancakeswap/tokens.ts.org
+/src/config/constants/pancakeswap/pools.ts.org
+/src/config/constants/pancakeswap/farms.ts.org
+/src/config/constants/pancakeswap/contracts.ts.org
