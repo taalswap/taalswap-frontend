@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getTaalAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 
 const StyledCakeStats = styled(Card)`
@@ -23,7 +23,7 @@ const Row = styled.div`
 const CakeStats = () => {
   const { t } = useTranslation()
   const totalSupply = useTotalSupply()
-  const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()))
+  const burnedBalance = getBalanceNumber(useBurnedBalance(getTaalAddress()))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
   return (
@@ -33,15 +33,15 @@ const CakeStats = () => {
           {t('Cake Stats')}
         </Heading>
         <Row>
-          <Text fontSize="14px">{t('Total CAKE Supply')}</Text>
+          <Text fontSize="14px">{t('Total TAL Supply')}</Text>
           {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} />}
         </Row>
         <Row>
-          <Text fontSize="14px">{t('Total CAKE Burned')}</Text>
+          <Text fontSize="14px">{t('Total TAL Burned')}</Text>
           <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
         </Row>
         <Row>
-          <Text fontSize="14px">{t('New CAKE/block')}</Text>
+          <Text fontSize="14px">{t('New TAL/block')}</Text>
           <CardValue fontSize="14px" decimals={0} value={20} />
         </Row>
       </CardBody>

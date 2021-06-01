@@ -34,13 +34,13 @@ const Collectibles = () => {
   return (
     <>
       <Heading as="h4" scale="md" mb="8px">
-        {t('Pancake Collectibles')}
+        {t('Taal Collectibles')}
       </Heading>
       <Text as="p">
-        {t('Pancake Collectibles are special ERC-721 NFTs that can be used on the PancakeSwap platform.')}
+        {t('Taal Collectibles are special ERC-721 NFTs that can be used on the TaalSwap platform.')}
       </Text>
       <Text as="p">
-        {t('NFTs in this user’s wallet that aren’t approved Pancake Collectibles won’t be shown here.')}
+        {t('NFTs in this user’s wallet that aren’t approved Taal Collectibles won’t be shown here.')}
       </Text>
       {nftsInWallet.length > 0 && (
         <CollectibleList>
@@ -57,7 +57,7 @@ const Collectibles = () => {
         </Flex>
       )}
       <Flex alignItems="center" justifyContent="flex-end">
-        <Link to="/collectibles">{t('See all approved Pancake Collectibles')}</Link>
+        <Link to="/collectibles">{t('See all approved Taal Collectibles')}</Link>
         <ChevronRightIcon />
       </Flex>
     </>

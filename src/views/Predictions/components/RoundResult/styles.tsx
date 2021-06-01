@@ -32,7 +32,7 @@ export const PrizePoolRow: React.FC<PrizePoolRowProps> = ({ totalAmount, ...prop
   return (
     <Row {...props}>
       <Text bold>{t('Prize Pool')}:</Text>
-      <Text bold>{`${getPrizePoolAmount(totalAmount)} BNB`}</Text>
+      <Text bold>{`${getPrizePoolAmount(totalAmount)} ETH`}</Text>
     </Row>
   )
 }
@@ -58,7 +58,7 @@ export const PayoutRow: React.FC<PayoutRowProps> = ({ positionLabel, multiplier,
           {t('%multiplier% Payout', { multiplier: formattedMultiplier })}
         </Text>
         <Text mx="4px">|</Text>
-        <Text fontSize="12px" lineHeight="18px">{`${formatBnb(amount)} BNB`}</Text>
+        <Text fontSize="12px" lineHeight="18px">{`${formatBnb(amount)} ETH`}</Text>
       </Flex>
     </Row>
   )

@@ -8,7 +8,7 @@ import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledFarmStakingCard = styled(Card)`
-  background: linear-gradient(#53dee9, #7645d9);
+  background: linear-gradient(#53dee9, #00ab55);
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -26,10 +26,10 @@ const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
   line-height: 44px;
 `
 
-const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('CAKE'))
+const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('TAL'))
 const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
-// Always include CAKE
-const assets = ['CAKE', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
+// Always include TAL
+const assets = ['TAL', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
 
 const EarnAssetCard = () => {
   const { t } = useTranslation()
@@ -48,7 +48,7 @@ const EarnAssetCard = () => {
             <Heading color="contrast" scale="lg">
               {InPools}
             </Heading>
-            <ArrowForwardIcon mt={30} color="primary" />
+            <ArrowForwardIcon mt={30} color="#fff" />
           </Flex>
         </CardBody>
       </NavLink>

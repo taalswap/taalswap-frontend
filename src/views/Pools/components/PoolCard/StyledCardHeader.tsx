@@ -29,7 +29,7 @@ const StyledCardHeader: React.FC<{
   const poolImageSrc = isAutoVault
     ? `cake-cakevault.svg`
     : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
-  const isCakePool = earningTokenSymbol === 'CAKE' && stakingTokenSymbol === 'CAKE'
+  const isCakePool = earningTokenSymbol === 'TAL' && stakingTokenSymbol === 'TAL'
   const background = isStaking ? 'bubblegum' : 'cardHeader'
 
   const getHeadingPrefix = () => {
@@ -50,16 +50,16 @@ const StyledCardHeader: React.FC<{
       return t('Automatic restaking')
     }
     if (isCakePool) {
-      return t('Earn CAKE, stake CAKE')
+      return t('Earn TAL, stake TAL')
     }
     return t('Stake %symbol%', { symbol: stakingTokenSymbol })
   }
 
   return (
-    <Wrapper isPromotedPool={isPromotedPool} isFinished={isFinished} background={background}>
+    <Wrapper isPromotedPool={isPromotedPool} isFinished={isFinished} background={background} style={{borderRadius: '16px'}}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
-          <Heading color={isFinished ? 'textDisabled' : 'body'} scale="lg">
+          <Heading color={isFinished ? 'textDisabled' : '#00ab55'} scale="lg">
             {`${getHeadingPrefix()} ${earningTokenSymbol}`}
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>

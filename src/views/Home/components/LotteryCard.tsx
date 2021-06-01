@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Button, useModal } from 'taalswap-uikit'
 import { useWeb3React } from '@web3-react/core'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getTaalAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
@@ -54,7 +54,7 @@ const LotteryCard = () => {
   const [onPresentApprove] = useModal(<PurchaseWarningModal />)
   const { claimAmount, setLastUpdated } = useTotalClaim()
   const { onMultiClaim } = useMultiClaimLottery()
-  const cakeBalance = useTokenBalance(getCakeAddress())
+  const cakeBalance = useTokenBalance(getTaalAddress())
   const { handleApprove, requestedApproval } = useApproval(onPresentApprove)
 
   const handleClaim = useCallback(async () => {
@@ -75,7 +75,7 @@ const LotteryCard = () => {
     if (!allowance.toNumber()) {
       return (
         <Button width="100%" disabled={requestedApproval} onClick={handleApprove}>
-          {t('Approve CAKE')}
+          {t('Approve TAL')}
         </Button>
       )
     }
@@ -99,7 +99,7 @@ const LotteryCard = () => {
         </Heading>
         <CardImage src="/images/ticket.svg" alt="cake logo" width={64} height={64} />
         <Block>
-          <Label>{t('CAKE to Collect')}:</Label>
+          <Label>{t('TAL to Collect')}:</Label>
           <CakeWinnings claimAmount={claimAmount} />
         </Block>
         <Block>

@@ -8,8 +8,8 @@ export const getAddress = (address: Address): string => {
   return address[chainId] ? address[chainId] : address[mainNetChainId]
 }
 
-export const getCakeAddress = () => {
-  return getAddress(tokens.cake.address)
+export const getTaalAddress = () => {
+  return getAddress(tokens.taal.address)
 }
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
@@ -17,8 +17,8 @@ export const getMasterChefAddress = () => {
 export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
-export const getWbnbAddress = () => {
-  return getAddress(tokens.wbnb.address)
+export const getWethAddress = () => {
+  return getAddress(tokens.weth.address)
 }
 export const getLotteryAddress = () => {
   return getAddress(addresses.lottery)

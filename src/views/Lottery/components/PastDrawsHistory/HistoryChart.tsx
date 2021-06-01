@@ -105,7 +105,7 @@ const HistoryChart: React.FC<HistoryChartProps> = ({ showLast }) => {
             return `${t('Round #%num%', { num: tooltipItem[0].label })}`
           },
           label: (tooltipItem) => {
-            return ` ${tooltipItem.yLabel.toLocaleString()} CAKE`
+            return ` ${tooltipItem.yLabel.toLocaleString()} TAL`
           },
           labelColor: (tooltipItem, chart) => {
             return {
