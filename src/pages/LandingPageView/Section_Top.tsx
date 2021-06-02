@@ -14,7 +14,7 @@ const Section_Top = () => {
                     <p className='buy_num'>$0,000,000,000</p>
                 </div>
                 <div className='buy_btnwrap'>
-                    <input type="button" value='BUY HBELT' style={{cursor:'pointer'}}/>
+                    <input type="button" value='BUY TAL' style={{cursor:'pointer'}}/>
                 </div>
             </div>
             <div className='input_wrap'>
@@ -82,5 +82,5 @@ const Section_Top = () => {
       </div>
     );
   };
-  
+
   export default Section_Top;
