@@ -12,6 +12,7 @@ import PageLoader from './components/PageLoader'
 import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import history from './routerHistory'
+import LandingPageView from './pages/LandingPageView'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
@@ -40,63 +41,68 @@ const App: React.FC = () => {
   usePollCoreFarmData()
 
   return (
-    <Router history={history}>
-      <ResetCSS />
-      <GlobalStyle />
-      <Menu>
-        <SuspenseWithChunkError fallback={<PageLoader />}>
-          <Switch>
-            <Route path="/" exact>
+    <>
+      <Router history={history}>
+        <ResetCSS />
+        <GlobalStyle />
+        <Switch>
+          <Route exact strict path="/" component={LandingPageView} />
+          <Menu>
+            <SuspenseWithChunkError fallback={<PageLoader />}>
+              <Switch>
+                {/* <Route path="/" exact>
               <Home />
-            </Route>
-            <Route path="/farms">
-              <Farms />
-            </Route>
-            <Route path="/pools">
-              <Pools />
-            </Route>
-            <Route path="/lottery">
-              <Lottery />
-            </Route>
-            <Route path="/ifo">
-              <Ifos />
-            </Route>
-            <Route path="/collectibles">
-              <Collectibles />
-            </Route>
-            <Route exact path="/teams">
-              <Teams />
-            </Route>
-            <Route path="/teams/:id">
-              <Team />
-            </Route>
-            <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="/competition">
-              <TradingCompetition />
-            </Route>
-            <Route path="/prediction">
-              <Predictions />
-            </Route>
-            {/* Redirect */}
-            <Route path="/staking">
-              <Redirect to="/pools" />
-            </Route>
-            <Route path="/syrup">
-              <Redirect to="/pools" />
-            </Route>
-            <Route path="/nft">
-              <Redirect to="/collectibles" />
-            </Route>
-            {/* 404 */}
-            <Route component={NotFound} />
-          </Switch>
-        </SuspenseWithChunkError>
-      </Menu>
-      <EasterEgg iterations={2} />
-      <ToastListener />
-    </Router>
+            </Route> */}
+                <Route path="/farms">
+                  <Farms />
+                </Route>
+                <Route path="/pools">
+                  <Pools />
+                </Route>
+                <Route path="/lottery">
+                  <Lottery />
+                </Route>
+                <Route path="/ifo">
+                  <Ifos />
+                </Route>
+                <Route path="/collectibles">
+                  <Collectibles />
+                </Route>
+                <Route exact path="/teams">
+                  <Teams />
+                </Route>
+                <Route path="/teams/:id">
+                  <Team />
+                </Route>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+                <Route path="/competition">
+                  <TradingCompetition />
+                </Route>
+                <Route path="/prediction">
+                  <Predictions />
+                </Route>
+                {/* Redirect */}
+                <Route path="/staking">
+                  <Redirect to="/pools" />
+                </Route>
+                <Route path="/syrup">
+                  <Redirect to="/pools" />
+                </Route>
+                <Route path="/nft">
+                  <Redirect to="/collectibles" />
+                </Route>
+                {/* 404 */}
+                <Route component={NotFound} />
+              </Switch>
+            </SuspenseWithChunkError>
+          </Menu>
+          <EasterEgg iterations={2} />
+          <ToastListener />
+        </Switch>
+      </Router>
+    </>
   )
 }
 
