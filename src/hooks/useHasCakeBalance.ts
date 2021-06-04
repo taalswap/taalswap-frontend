@@ -6,7 +6,7 @@ import useTokenBalance from './useTokenBalance'
  * A hook to check if a wallet's TAL balance is at least the amount passed in
  */
 const useHasCakeBalance = (minimumBalance: BigNumber) => {
-  const cakeBalance = useTokenBalance(getTaalAddress())
+  const { balance: cakeBalance } = useTokenBalance(getTaalAddress())
   return cakeBalance.gte(minimumBalance)
 }
 
