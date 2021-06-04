@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { ethers } from 'ethers'
-// import { Pair, TokenAmount, Token } from 'taalswap-sdk'
+import { Pair, TokenAmount, Token } from 'taalswap-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
 import farms from 'config/constants/farms'
 import { getAddress, getTaalAddress } from 'utils/addressHelpers'
@@ -132,41 +132,41 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
 }
 
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-const cakeBnbPid = 251
+const cakeBnbPid = 1  // 251 -> 1
 const cakeBnbFarm = farms.find((farm) => farm.pid === cakeBnbPid)
 
-// const CAKE_TOKEN = new Token(chainId, getTaalAddress(), 18)
-// const WBNB_TOKEN = new Token(chainId, tokens.wbnb.address[chainId], 18)
-// const CAKE_BNB_TOKEN = new Token(chainId, getAddress(cakeBnbFarm.lpAddresses), 18)
+const CAKE_TOKEN = new Token(chainId, getTaalAddress(), 18)
+const WBNB_TOKEN = new Token(chainId, tokens.weth.address[chainId], 18)
+const CAKE_BNB_TOKEN = new Token(chainId, getAddress(cakeBnbFarm.lpAddresses), 18)
 
 /*
  * Returns the total CAKE staked in the CAKE-BNB LP
  */
-// export const getUserStakeInCakeBnbLp = async (account: string, block?: number) => {
-//   try {
-//     const masterContract = getMasterchefContract()
-//     const cakeBnbContract = getLpContract(getAddress(cakeBnbFarm.lpAddresses))
-//     const totalSupplyLP = await cakeBnbContract.methods.totalSupply().call(undefined, block)
-//     const reservesLP = await cakeBnbContract.methods.getReserves().call(undefined, block)
-//     const cakeBnbBalance = await masterContract.methods.userInfo(cakeBnbPid, account).call(undefined, block)
-//
-//     const pair: Pair = new Pair(
-//       new TokenAmount(CAKE_TOKEN, reservesLP._reserve0.toString()),
-//       new TokenAmount(WBNB_TOKEN, reservesLP._reserve1.toString()),
-//     )
-//     const cakeLPBalance = pair.getLiquidityValue(
-//       pair.token0,
-//       new TokenAmount(CAKE_BNB_TOKEN, totalSupplyLP.toString()),
-//       new TokenAmount(CAKE_BNB_TOKEN, cakeBnbBalance.amount.toString()),
-//       false,
-//     )
-//
-//     return cakeLPBalance.toSignificant(18)
-//   } catch (error) {
-//     console.error(`CAKE-BNB LP error: ${error}`)
-//     return 0
-//   }
-// }
+export const getUserStakeInCakeBnbLp = async (account: string, block?: number) => {
+  try {
+    const masterContract = getMasterchefContract()
+    const cakeBnbContract = getLpContract(getAddress(cakeBnbFarm.lpAddresses))
+    const totalSupplyLP = await cakeBnbContract.methods.totalSupply().call(undefined, block)
+    const reservesLP = await cakeBnbContract.methods.getReserves().call(undefined, block)
+    const cakeBnbBalance = await masterContract.methods.userInfo(cakeBnbPid, account).call(undefined, block)
+
+    const pair: Pair = new Pair(
+      new TokenAmount(CAKE_TOKEN, reservesLP._reserve0.toString()),
+      new TokenAmount(WBNB_TOKEN, reservesLP._reserve1.toString()),
+    )
+    const cakeLPBalance = pair.getLiquidityValue(
+      pair.token0,
+      new TokenAmount(CAKE_BNB_TOKEN, totalSupplyLP.toString()),
+      new TokenAmount(CAKE_BNB_TOKEN, cakeBnbBalance.amount.toString()),
+      false,
+    )
+
+    return cakeLPBalance.toSignificant(18)
+  } catch (error) {
+    console.error(`CAKE-BNB LP error: ${error}`)
+    return 0
+  }
+}
 
 /**
  * Gets the cake staked in the main pool
