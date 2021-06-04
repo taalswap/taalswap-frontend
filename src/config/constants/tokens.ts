@@ -228,6 +228,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://swirgepay.com/',
   },
+  swg: {
+    symbol: 'SWG',
+    address: {
+      56: '0xe792f64c582698b8572aaf765bdc426ac3aefb6b',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://swirgepay.com/',
+  },
   sfp: {
     symbol: 'SFP',
     address: {
@@ -1433,6 +1442,51 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://venus.io/',
+  },
+  tusd: {
+    symbol: 'TUSD',
+    address: {
+      56: '0x14016e85a25aeb13065688cafb43044c2ef86784',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://www.trueusd.com/',
+  },
+  mtrg: {
+    symbol: 'MTRG',
+    address: {
+      56: '0xbd2949f67dcdc549c6ebe98696449fa79d988a9f',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://www.meter.io/',
+  },
+  ktn: {
+    symbol: 'KTN',
+    address: {
+      56: '0xdae6c2a48bfaa66b43815c5548b10800919c993e',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://kattana.io/',
+  },
+  qkc: {
+    symbol: 'QKC',
+    address: {
+      56: '0xa1434f1fc3f437fa33f7a781e041961c0205b5da',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://quarkchain.io/',
+  },
+  bcfx: {
+    symbol: 'bCFX',
+    address: {
+      56: '0x045c4324039dA91c52C55DF5D785385Aab073DcF',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://www.confluxnetwork.org/ ',
   },
 }
 
