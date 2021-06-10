@@ -85,7 +85,6 @@ const fetchFarmsPrices = async (farms) => {
     return { ...farm, token, quoteToken }
   })
 
-  console.info('farmsWithPrices :', farmsWithPrices)
   return farmsWithPrices
 }
 
