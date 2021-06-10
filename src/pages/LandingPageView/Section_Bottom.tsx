@@ -11,7 +11,7 @@ const Section_Bottom = () => {
             <p>Initial Taal Swap Offering</p>
             <div>
               <p>
-                Fire up yourproject with <span style={{ color: '#00ab55' }}>TaalSwap IDO</span>!
+                Fire up your project with <span style={{ color: '#00ab55' }}>TaalSwap IDO</span>
               </p>
               <Link href="https://taalswap.finance/" target="_blank">
                 <input type="button" value="GO NOW" style={{ cursor: 'pointer' }} />
