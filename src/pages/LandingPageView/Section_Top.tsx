@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'taalswap-uikit'
+// import { Link } from 'taalswap-uikit'
 import { useGetStats } from 'hooks/api'
 import { usePriceCakeBusd } from 'state/hooks'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getTaalAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
-import AnimatedNumber from 'react-animated-number'
+// import AnimatedNumber from 'react-animated-number'
 import CardValue from '../../views/Home/components/CardValue'
 
 const Section_Top = () => {
