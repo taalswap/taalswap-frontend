@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from 'taalswap-uikit'
+import { useTable, Button, ChevronUpIcon, ColumnType, useMatchBreakpoints } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CellLayout from './CellLayout'
 import Row, { RowProps } from './Row'
@@ -70,6 +70,7 @@ const ScrollButtonContainer = styled.div`
 `
 
 const FarmTable: React.FC<ITableProps> = (props) => {
+  const { isXl } = useMatchBreakpoints()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const { data, columns, userDataReady } = props
@@ -115,16 +116,21 @@ const FarmTable: React.FC<ITableProps> = (props) => {
                     <CellLayout>APR</CellLayout>
                   </CellInner>
                 </th>
-                <th>
-                  <CellInner>
-                    <CellLayout>Liquidity</CellLayout>
-                  </CellInner>
-                </th>
-                <th>
-                  <CellInner>
-                    <CellLayout>Multiplier</CellLayout>
-                  </CellInner>
-                </th>
+                {isXl && (
+                  <>
+                    <th>
+                      <CellInner>
+                        <CellLayout>Liquidity</CellLayout>
+                      </CellInner>
+                    </th>
+                    <th>
+                      <CellInner>
+                        <CellLayout>Multiplier</CellLayout>
+                      </CellInner>
+                    </th>
+                  </>
+                )}
+
                 <th style={{ borderRadius: '0 8px 8px 0' }}>
                   <CellInner>
                     <CellLayout>Details View</CellLayout>

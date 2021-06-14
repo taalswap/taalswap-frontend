@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { Text, Button, ChevronUpIcon } from 'taalswap-uikit'
+import { Text, Button, ChevronUpIcon, useMatchBreakpoints } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { Pool } from 'state/types'
 import PoolRow from './PoolRow'
@@ -43,6 +43,7 @@ const StyledCell = styled(BaseCell)`
   flex-direction: row;
 `
 const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {
+  const { isLg, isXl } = useMatchBreakpoints()
   const { t } = useTranslation()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const scrollToTop = (): void => {
@@ -75,20 +76,27 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
               </Text>
             </CellContent>
           </StyledCell>
-          <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
-            <CellContent>
-              <Text fontSize="14px" color="textSubtle">
-                {t('Total Staked')}
-              </Text>
-            </CellContent>
-          </StyledCell>
-          <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
-            <CellContent>
-              <Text fontSize="14px" color="textSubtle">
-                {t('Ends in')}
-              </Text>
-            </CellContent>
-          </StyledCell>
+
+          {(isLg || isXl) && (
+            <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
+              <CellContent>
+                <Text fontSize="14px" color="textSubtle">
+                  {t('Total Staked')}
+                </Text>
+              </CellContent>
+            </StyledCell>
+          )}
+
+          {isXl && (
+            <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
+              <CellContent>
+                <Text fontSize="14px" color="textSubtle">
+                  {t('Ends in')}
+                </Text>
+              </CellContent>
+            </StyledCell>
+          )}
+
           <StyledCell role="cell" style={{ flex: '0 0 120px' }}>
             <CellContent>
               <Text fontSize="14px" color="textSubtle">
