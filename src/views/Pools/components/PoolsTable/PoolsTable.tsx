@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { Text, Button, ChevronUpIcon, useMatchBreakpoints } from 'taalswap-uikit'
+import { Text, Button, ChevronUpIcon,useMatchBreakpoints } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { Pool } from 'state/types'
 import PoolRow from './PoolRow'
@@ -23,7 +23,6 @@ const StyledTableBorder = styled.div`
   border-radius: 16px;
   filter: ${({ theme }) => theme.card.dropShadow};
   background: ${({ theme }) => theme.card.background};
-  padding: 30px;
   background-size: 400% 400%;
 `
 
@@ -54,15 +53,15 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
   return (
     <StyledTableBorder>
       <StyledTable role="table" ref={tableWrapperEl}>
-        <StyledRow role="row" style={{ borderRadius: '8px', position: 'sticky', top: 0, zIndex: 1000 }}>
-          <StyledCell role="cell" style={{ flex: '1 0 150px', paddingLeft: '20px' }}>
+        <StyledRow role="row" style={{ borderRadius: "8px 8px 0 0", position: 'sticky', top: 0, zIndex: 1000 }}>
+          <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
             <CellContent>
               <Text fontSize="14px" color="textSubtle">
                 {t('Pair')}
               </Text>
             </CellContent>
           </StyledCell>
-          <StyledCell role="cell" style={{ flex: '1 0 120px' }}>
+          <StyledCell role="cell" style={{ flex: '1 0 100px' }}>
             <CellContent>
               <Text fontSize="14px" color="textSubtle">
                 {t('Earned')}
@@ -89,7 +88,7 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
 
           {isXl && (
             <>
-              <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
+              <StyledCell role="cell" style={{ flex: '2 0 80px' }}>
                 <CellContent>
                   <Text fontSize="14px" color="textSubtle">
                     {t('Ends in')}
