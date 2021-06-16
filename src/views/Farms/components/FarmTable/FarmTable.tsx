@@ -18,7 +18,6 @@ const Container = styled.div`
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   margin: 16px 0px;
-  padding: 30px;
 `
 
 const TableWrapper = styled.div`
@@ -91,7 +90,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
     padding-right: 8px;
 
     ${({ theme }) => theme.mediaQueries.xl} {
-      padding-right: 32px;
+      padding-right: 18px;
     }
   `
   return (
@@ -101,7 +100,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           <StyledTable>
             <TableBody>
               <tr style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
-                <th style={{ borderRadius: '8px 0 0 8px', paddingLeft: '20px' }}>
+                <th style={{ borderRadius: '8px 0 0 0', paddingLeft: '20px' }}>
                   <CellInner>
                     <CellLayout>Pair</CellLayout>
                   </CellInner>
@@ -131,13 +130,13 @@ const FarmTable: React.FC<ITableProps> = (props) => {
                   </>
                 )}
                 {isSm || isMd ? (
-                  <th style={{ borderRadius: '0 8px 8px 0' }}>
+                  <th style={{ borderRadius: '0 8px 0 0' }}>
                     <CellInner>
                       <CellLayout> </CellLayout>
                     </CellInner>
                   </th>
                 ) : (
-                  <th style={{ borderRadius: '0 8px 8px 0' }}>
+                  <th style={{ borderRadius: '0 8px 0 0' }}>
                     <CellInner>
                       <CellLayout>Details View</CellLayout>
                     </CellInner>

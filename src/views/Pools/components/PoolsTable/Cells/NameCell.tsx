@@ -16,8 +16,9 @@ const StyledCell = styled(BaseCell)`
   flex: 5;
   flex-direction: row;
   padding-left: 12px;
+  word-break: break-word;
   ${({ theme }) => theme.mediaQueries.sm} {
-    flex: 1 0 150px;
+    flex: 1 0 130px;
   }
 `
 
