@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const BaseCell = styled.div`
   color: black;
 
-  padding: 24px 8px;
+  padding: 24px 8px 24px 0;
 
   display: flex;
   flex-direction: column;
