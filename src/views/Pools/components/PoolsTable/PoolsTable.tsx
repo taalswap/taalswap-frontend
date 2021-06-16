@@ -88,22 +88,23 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
           )}
 
           {isXl && (
-            <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
-              <CellContent>
-                <Text fontSize="14px" color="textSubtle">
-                  {t('Ends in')}
-                </Text>
-              </CellContent>
-            </StyledCell>
+            <>
+              <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
+                <CellContent>
+                  <Text fontSize="14px" color="textSubtle">
+                    {t('Ends in')}
+                  </Text>
+                </CellContent>
+              </StyledCell>
+              <StyledCell role="cell" style={{ flex: '0 0 120px' }}>
+                <CellContent>
+                  <Text fontSize="14px" color="textSubtle">
+                    {t('Details View')}
+                  </Text>
+                </CellContent>
+              </StyledCell>
+            </>
           )}
-
-          <StyledCell role="cell" style={{ flex: '0 0 120px' }}>
-            <CellContent>
-              <Text fontSize="14px" color="textSubtle">
-                {t('Details View')}
-              </Text>
-            </CellContent>
-          </StyledCell>
         </StyledRow>
 
         {pools.map((pool) => (

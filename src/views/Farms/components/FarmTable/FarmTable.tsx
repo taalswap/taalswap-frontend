@@ -70,7 +70,7 @@ const ScrollButtonContainer = styled.div`
 `
 
 const FarmTable: React.FC<ITableProps> = (props) => {
-  const { isXl } = useMatchBreakpoints()
+  const { isXl, isSm, isMd, isLg } = useMatchBreakpoints()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const { data, columns, userDataReady } = props
@@ -130,12 +130,19 @@ const FarmTable: React.FC<ITableProps> = (props) => {
                     </th>
                   </>
                 )}
-
-                <th style={{ borderRadius: '0 8px 8px 0' }}>
-                  <CellInner>
-                    <CellLayout>Details View</CellLayout>
-                  </CellInner>
-                </th>
+                {isSm || isMd ? (
+                  <th style={{ borderRadius: '0 8px 8px 0' }}>
+                    <CellInner>
+                      <CellLayout> </CellLayout>
+                    </CellInner>
+                  </th>
+                ) : (
+                  <th style={{ borderRadius: '0 8px 8px 0' }}>
+                    <CellInner>
+                      <CellLayout>Details View</CellLayout>
+                    </CellInner>
+                  </th>
+                )}
               </tr>
               {rows.map((row) => {
                 return <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
