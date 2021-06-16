@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Target } from 'react-feather'
 import { Link } from 'taalswap-uikit'
 import Topmenu from './topmenu'
-import logo_img from './images/TAAL_Logo.png'
+import logo_img from './images/TAAL_Logo_A_bg.png'
 
 const TopBar = () => {
   const { account } = useWeb3React()
@@ -18,28 +18,33 @@ const TopBar = () => {
       </div>
       <div className="top_menu">
         <div>
-          <Link href="/" style={{ color: '#212b36', textDecoration: 'none' }}>
+          <Link href="/" style={{ color: '#fff', textDecoration: 'none' }}>
             Home
           </Link>
         </div>
         <div style={{ marginLeft: '30px' }}>
-          <Link href="http://localhost:3000/#/swap" style={{ color: '#212b36', textDecoration: 'none' }}>
+          <Link href="http://localhost:3000/#/swap" style={{ color: '#fff', textDecoration: 'none' }}>
             Swap
           </Link>
         </div>
         <div style={{ marginLeft: '30px' }}>
-          <Link href="http://localhost:3000/#/pool" style={{ color: '#212b36', textDecoration: 'none' }}>
+          <Link href="http://localhost:3000/#/pool" style={{ color: '#fff', textDecoration: 'none' }}>
             Liquidity
           </Link>
         </div>
         <div style={{ marginLeft: '30px' }}>
-          <Link href="/farms" style={{ color: '#212b36', textDecoration: 'none' }}>
+          <Link href="/farms" style={{ color: '#fff', textDecoration: 'none' }}>
             Farms
           </Link>
         </div>
         <div style={{ marginLeft: '30px' }}>
-          <Link href="/pools" style={{ color: '#212b36', textDecoration: 'none' }}>
-            Pools
+          <Link href="/pools" style={{ color: '#fff', textDecoration: 'none' }}>
+            Staking
+          </Link>
+        </div>
+        <div style={{ marginLeft: '30px' }}>
+          <Link href="/" style={{ color: '#fff', textDecoration: 'none' }}>
+            IDO
           </Link>
         </div>
         <div>

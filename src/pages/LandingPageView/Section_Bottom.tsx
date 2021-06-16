@@ -6,7 +6,7 @@ import ido_img from './images/ido_img.png';
 const Section_Bottom = () => {
     return (
         <div className='bottom_wrap'>
-            <div className='cont'>
+            <div className='cont bottom_cont'>
                 <div className='taal_idobox'>
                     <div className='ido_textwrap'>
                         <p>Initial Taal Swap Offering</p>
@@ -18,9 +18,6 @@ const Section_Bottom = () => {
                     <div className='ido_imgwrap'>
                         <img src={ido_img} alt="ido_img" className='ido_img'/>
                     </div>
-                </div>
-                <div className='none'>
-                    ??
                 </div>
             </div>
         </div>
