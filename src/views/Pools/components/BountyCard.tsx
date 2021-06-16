@@ -83,7 +83,7 @@ const BountyCard = () => {
       <StyledCard style={{boxShadow:"none",minWidth:"initial",borderRadius:"0"}}>
         <CardBody style={{display:"flex",padding:"0",width:"100%"}}>
           <HelpButton />
-          <Flex flexDirection="row" mr="10px">
+          <Flex flexDirection="row" mr="10px" mt="10px">
             <Flex alignItems="center">
               <Text fontSize="14px" bold color="textSubtle" mr="4px">
                 {t('Auto TAL Bounty')}

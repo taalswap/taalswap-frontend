@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="footer_cont">
         <div className="footer_left">
           <img src={footerlogo_img} alt="logo_img" className="footer_logo" />
-          <p>&copy; All rights reserved. Made by TaalSwap. [Audited by HAECHI AUDIT]</p>
+          <p>&copy; All rights reserved. Made by TaalSwap. <Link href="/" style={{color:"#00ab55",display:"inline-block",textDecoration:"underline",fontSize:"13px"}}>Audited by HAECHI AUDIT</Link></p>
         </div>
         <div className="footer_menu">
           <div>
