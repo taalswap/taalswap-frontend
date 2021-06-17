@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Target } from 'react-feather';
 import { Link } from 'taalswap-uikit';
 
 const Search = () => {
-    const [showResults, setShowResults] = React.useState(false)
-    const onClick = () => setShowResults(true)
-    return (
-      <div>
-        <input type="button" onClick={onClick} className='mobilenav_icon'/>
-        { showResults ? <Results /> : null }
-      </div>
-    )
+  const [show, toggleShow] = React.useState(true);
+  return (
+    <div>
+      <input type="button" className='mobilenav_icon'
+        onClick={() => toggleShow(!show)}
+      />{ show ? null : <Results /> } 
+      {show && Results}
+    </div>
+  )
   }
   
   const Results = () => (
