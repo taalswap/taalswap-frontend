@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from 'taalswap-uikit'
+import { useTable, Button, ChevronUpIcon, ColumnType, useMatchBreakpoints } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CellLayout from './CellLayout'
 import Row, { RowProps } from './Row'
@@ -18,7 +18,6 @@ const Container = styled.div`
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   margin: 16px 0px;
-  padding:30px;
 `
 
 const TableWrapper = styled.div`
@@ -43,18 +42,18 @@ const TableBody = styled.tbody`
     td {
       font-size: 16px;
       vertical-align: middle;
-      border-bottom: 2px solid rgba(133,133,133,0.1);
+      border-bottom: 2px solid rgba(133, 133, 133, 0.1);
     }
   }
-  & tr{
-    th{
-      text-align:left;
+  & tr {
+    th {
+      text-align: left;
       background: ${({ theme }) => theme.colors.tertiary};
       color: ${({ theme }) => theme.colors.textSubtle};
     }
   }
-  &tr{
-    padding:0 20px;
+  &tr {
+    padding: 0 20px;
   }
 `
 
@@ -70,6 +69,7 @@ const ScrollButtonContainer = styled.div`
 `
 
 const FarmTable: React.FC<ITableProps> = (props) => {
+  const { isXl, isSm, isMd, isLg } = useMatchBreakpoints()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const { data, columns, userDataReady } = props
@@ -83,24 +83,24 @@ const FarmTable: React.FC<ITableProps> = (props) => {
   }
 
   const CellInner = styled.div`
-  padding: 24px 0px;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  padding-right: 8px;
+    padding: 24px 0px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding-right: 8px;
 
-  ${({ theme }) => theme.mediaQueries.xl} {
-    padding-right: 32px;
-  }
-`
+    ${({ theme }) => theme.mediaQueries.xl} {
+      padding-right: 18px;
+    }
+  `
   return (
     <Container>
       <TableContainer>
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
             <TableBody>
-              <tr>
-                <th style={{borderRadius:"8px 0 0 8px",paddingLeft:"20px"}}>
+              <tr style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
+                <th style={{ borderRadius: '8px 0 0 0', paddingLeft: '20px' }}>
                   <CellInner>
                     <CellLayout>Pair</CellLayout>
                   </CellInner>
@@ -115,15 +115,33 @@ const FarmTable: React.FC<ITableProps> = (props) => {
                     <CellLayout>APR</CellLayout>
                   </CellInner>
                 </th>
-                <th><CellInner>
-                  <CellLayout>Liquidity</CellLayout>
-                </CellInner></th>
-                <th><CellInner>
-                  <CellLayout>Multiplier</CellLayout>
-                </CellInner></th>
-                <th style={{borderRadius:"0 8px 8px 0"}}><CellInner>
-                  <CellLayout>Details View</CellLayout>
-                </CellInner></th>
+                {isXl && (
+                  <>
+                    <th>
+                      <CellInner>
+                        <CellLayout>Liquidity</CellLayout>
+                      </CellInner>
+                    </th>
+                    <th>
+                      <CellInner>
+                        <CellLayout>Multiplier</CellLayout>
+                      </CellInner>
+                    </th>
+                  </>
+                )}
+                {isSm || isMd ? (
+                  <th style={{ borderRadius: '0 8px 0 0' }}>
+                    <CellInner>
+                      <CellLayout> </CellLayout>
+                    </CellInner>
+                  </th>
+                ) : (
+                  <th style={{ borderRadius: '0 8px 0 0' }}>
+                    <CellInner>
+                      <CellLayout>Details View</CellLayout>
+                    </CellInner>
+                  </th>
+                )}
               </tr>
               {rows.map((row) => {
                 return <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
