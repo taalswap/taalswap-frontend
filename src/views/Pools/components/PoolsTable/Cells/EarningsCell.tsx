@@ -22,7 +22,7 @@ interface EarningsCellProps {
 const StyledCell = styled(BaseCell)`
   flex: 4.5;
   ${({ theme }) => theme.mediaQueries.sm} {
-    flex: 1 0 120px;
+    flex: 1 0 100px;
   }
 `
 
@@ -98,9 +98,6 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
-          {labelText}
-        </Text>
         {!userDataLoaded && account ? (
           <Skeleton width="80px" height="16px" />
         ) : (

@@ -15,6 +15,7 @@ interface TotalStakedCellProps {
 
 const StyledCell = styled(BaseCell)`
   flex: 2 0 100px;
+  word-break: break-word;
 `
 
 const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
@@ -38,9 +39,6 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
-          {t('Total staked')}
-        </Text>
         {totalStakedBalance ? (
           <Flex height="100%" alignItems="center">
             <Balance fontSize="16px" value={totalStakedBalance} decimals={0} unit={` ${stakingToken.symbol}`} />

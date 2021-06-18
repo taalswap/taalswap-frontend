@@ -9,7 +9,7 @@ const StyledInput = styled(Input)`
   margin-left: auto;
   box-sizing:borderbox;
   padding:0 0 0 30px;
-  height:50px;
+  height:40px;
   border:1px solid rgb(74 74 104 / 10%);
 `
 

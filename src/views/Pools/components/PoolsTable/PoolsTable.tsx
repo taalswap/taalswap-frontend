@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { Text, Button, ChevronUpIcon } from 'taalswap-uikit'
+import { Text, Button, ChevronUpIcon,useMatchBreakpoints } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { Pool } from 'state/types'
 import PoolRow from './PoolRow'
@@ -15,7 +15,7 @@ interface PoolsTableProps {
 const StyledTable = styled.div`
   border-radius: 16px;
   > div:not(:last-child) {
-    border-bottom: 2px solid rgba(133,133,133,0.1)
+    border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   }
 `
 
@@ -23,7 +23,6 @@ const StyledTableBorder = styled.div`
   border-radius: 16px;
   filter: ${({ theme }) => theme.card.dropShadow};
   background: ${({ theme }) => theme.card.background};
-  padding: 30px;
   background-size: 400% 400%;
 `
 
@@ -37,12 +36,13 @@ const StyledRow = styled.div`
   background: ${({ theme }) => theme.colors.tertiary};
   display: flex;
   cursor: pointer;
-  border-bottom:none !important;
+  border-bottom: none !important;
 `
 const StyledCell = styled(BaseCell)`
   flex-direction: row;
 `
 const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {
+  const { isLg, isXl } = useMatchBreakpoints()
   const { t } = useTranslation()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const scrollToTop = (): void => {
@@ -53,49 +53,57 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
   return (
     <StyledTableBorder>
       <StyledTable role="table" ref={tableWrapperEl}>
-        <StyledRow role="row" style={{borderRadius:"8px"}}>
-          <StyledCell role="cell" style={{flex:'1 0 150px',paddingLeft:'20px'}} >
+        <StyledRow role="row" style={{ borderRadius: "8px 8px 0 0", position: 'sticky', top: 0, zIndex: 1000 }}>
+          <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
             <CellContent>
               <Text fontSize="14px" color="textSubtle">
                 {t('Pair')}
               </Text>
             </CellContent>
           </StyledCell>
-          <StyledCell role="cell" style={{flex:'1 0 120px'}}>
+          <StyledCell role="cell" style={{ flex: '1 0 100px' }}>
             <CellContent>
               <Text fontSize="14px" color="textSubtle">
                 {t('Earned')}
               </Text>
             </CellContent>
           </StyledCell>
-          <StyledCell role="cell" style={{flex:'0 0 120px'}}>
+          <StyledCell role="cell" style={{ flex: '0 0 120px' }}>
             <CellContent>
               <Text fontSize="14px" color="textSubtle">
                 {t('APY/APR')}
               </Text>
             </CellContent>
           </StyledCell>
-          <StyledCell role="cell" style={{flex:'2 0 100px'}}>
-            <CellContent>
-              <Text fontSize="14px" color="textSubtle">
-                {t('Total Staked')}
-              </Text>
-            </CellContent>
-          </StyledCell>
-          <StyledCell role="cell" style={{flex:'2 0 100px'}}>
-            <CellContent>
-              <Text fontSize="14px" color="textSubtle">
-                {t('Ends in')}
-              </Text>
-            </CellContent>
-          </StyledCell>
-          <StyledCell role="cell" style={{flex:'0 0 120px'}}>
-            <CellContent>
-              <Text fontSize="14px" color="textSubtle">
-                {t('Details View')}
-              </Text>
-            </CellContent>
-          </StyledCell>
+
+          {(isLg || isXl) && (
+            <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
+              <CellContent>
+                <Text fontSize="14px" color="textSubtle">
+                  {t('Total Staked')}
+                </Text>
+              </CellContent>
+            </StyledCell>
+          )}
+
+          {isXl && (
+            <>
+              <StyledCell role="cell" style={{ flex: '2 0 80px' }}>
+                <CellContent>
+                  <Text fontSize="14px" color="textSubtle">
+                    {t('Ends in')}
+                  </Text>
+                </CellContent>
+              </StyledCell>
+              <StyledCell role="cell" style={{ flex: '0 0 120px' }}>
+                <CellContent>
+                  <Text fontSize="14px" color="textSubtle">
+                    {t('Details View')}
+                  </Text>
+                </CellContent>
+              </StyledCell>
+            </>
+          )}
         </StyledRow>
 
         {pools.map((pool) => (
@@ -106,6 +114,7 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
             userDataLoaded={userDataLoaded}
           />
         ))}
+
         <ScrollButtonContainer>
           <Button variant="text" onClick={scrollToTop}>
             {t('To Top')}
