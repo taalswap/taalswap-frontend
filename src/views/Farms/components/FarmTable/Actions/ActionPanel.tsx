@@ -163,10 +163,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         )}
         <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
         <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
-        <TagsContainer>
-          {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
-          {dual ? <DualTag /> : null}
-        </TagsContainer>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
