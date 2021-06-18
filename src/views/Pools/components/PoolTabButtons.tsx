@@ -10,8 +10,23 @@ import {
   useMatchBreakpoints,
 } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
+import styled from 'styled-components'
 import ToggleView, { ViewMode } from './ToggleView/ToggleView'
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    padding:10px 20px;
+    font-size:12px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 16px;
+  }
+`
 const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, viewMode, setViewMode }) => {
   const { url, isExact } = useRouteMatch()
   const { isXs, isSm } = useMatchBreakpoints()
@@ -20,16 +35,18 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
   const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
 
   const liveOrFinishedSwitch = (
-    <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="primary">
-      <ButtonMenuItem as={Link} to={`${url}`}>
-        {t('Live')}
-      </ButtonMenuItem>
-      <NotificationDot show={hasStakeInFinishedPools}>
-        <ButtonMenuItem as={Link} to={`${url}/history`}>
-          {t('Finished')}
+    <Wrapper>
+      <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="primary">
+        <ButtonMenuItem as={Link} to={`${url}`}>
+          {t('Live')}
         </ButtonMenuItem>
-      </NotificationDot>
-    </ButtonMenu>
+        <NotificationDot show={hasStakeInFinishedPools}>
+          <ButtonMenuItem as={Link} to={`${url}/history`}>
+            {t('Finished')}
+          </ButtonMenuItem>
+        </NotificationDot>
+      </ButtonMenu>
+    </Wrapper>
   )
 
   const stakedOnlySwitch = (
