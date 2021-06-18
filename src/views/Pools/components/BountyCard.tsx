@@ -24,7 +24,7 @@ import HelpButton from './HelpButton'
 const StyledCard = styled(Card)`
   width: 100%;
   flex: 1;
-  background:initial;
+  background: initial;
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 240px;
   }
@@ -80,8 +80,8 @@ const BountyCard = () => {
   return (
     <>
       {tooltipVisible && tooltip}
-      <StyledCard style={{boxShadow:"none",minWidth:"initial",borderRadius:"0"}}>
-        <CardBody style={{display:"flex",padding:"0",width:"100%"}}>
+      <StyledCard style={{ boxShadow: 'none', minWidth: 'initial', borderRadius: '0' }}>
+        <CardBody style={{ display: 'flex', padding: '0', width: '100%' }}>
           <HelpButton />
           <Flex flexDirection="row" mr="10px" mt="10px">
             <Flex alignItems="center">
@@ -97,9 +97,9 @@ const BountyCard = () => {
             <Flex flexDirection="column" mr="10px">
               <Heading>
                 {hasFetchedCakeBounty ? (
-                  <Balance fontSize="16px" bold value={cakeBountyToDisplay} decimals={3}/>
+                  <Balance fontSize="16px" bold value={cakeBountyToDisplay} decimals={3} />
                 ) : (
-                  <Skeleton height={20} width={96} mb="5px"/>
+                  <Skeleton height={20} width={96} mb="5px" />
                 )}
               </Heading>
               {hasFetchedDollarBounty ? (
