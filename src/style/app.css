@@ -1,5 +1,5 @@
 @font-face {
     font-family: "Be Vietnam, sans-serif"; 
-    src: url("./font/BeVietnam-Medium.ttf") format("truetype"),
-    url("./font/BeVietnam-Medium.woff") format('woff');
+    src: url("./font/BeVietnam-Bold.ttf") format("truetype"),
+    url("./font/BeVietnam-Bold.woff") format('woff');
   }
