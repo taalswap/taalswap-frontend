@@ -23,6 +23,7 @@ export interface ActionPanelProps {
   details: FarmWithStakedValue
   userDataReady: boolean
   expanded: boolean
+  isLandingPage: boolean
 }
 
 const expandAnimation = keyframes`
@@ -67,7 +68,7 @@ const Container = styled.div<{ expanded }>`
 
 const StyledLinkExternal = styled.div`
   font-weight: 400;
-  cursor:pointer;
+  cursor: pointer;
 `
 
 const StakeContainer = styled.div`
@@ -116,9 +117,9 @@ const ActionContainer = styled.div`
 
 const InfoContainer = styled.div`
   min-width: 200px;
-  display:flex;
-  align-items:center;
-  justify-content:space-evenly;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 `
 
 const ValueContainer = styled.div`
@@ -143,6 +144,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   liquidity,
   userDataReady,
   expanded,
+  isLandingPage,
 }) => {
   const farm = details
 
@@ -158,41 +160,28 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const bsc = getBscScanAddressUrl(lpAddress)
   const info = `https://taalswap.info/pair/${lpAddress}`
 
-  const [isShown, setIsShown] = useState(false);
-  const [isShown2, setIsShown2] = useState(false);
-  const [isShown3, setIsShown3] = useState(false);
+  const [isShown, setIsShown] = useState(false)
+  const [isShown2, setIsShown2] = useState(false)
+  const [isShown3, setIsShown3] = useState(false)
 
   return (
     <Container expanded={expanded}>
       <InfoContainer>
         {isActive && (
           <StakeContainer>
-            <StyledLinkExternal onMouseEnter={() => setIsShown(true)}
-        onMouseLeave={() => setIsShown(false)}>
+            <StyledLinkExternal onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
               <LpIcon />
-              {isShown && (
-        <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
-          Get LP
-        </div>
-      )}
+              {isShown && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>Get LP</div>}
             </StyledLinkExternal>
           </StakeContainer>
         )}
-        <StyledLinkExternal onMouseEnter={() => setIsShown2(true)}
-        onMouseLeave={() => setIsShown2(false)}><LpIcon2 />
-        {isShown2 && (
-        <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
-          View Contract
-        </div>
-      )}
+        <StyledLinkExternal onMouseEnter={() => setIsShown2(true)} onMouseLeave={() => setIsShown2(false)}>
+          <LpIcon2 />
+          {isShown2 && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>View Contract</div>}
         </StyledLinkExternal>
-        <StyledLinkExternal onMouseEnter={() => setIsShown3(true)}
-        onMouseLeave={() => setIsShown3(false)}><LpIcon3 />
-        {isShown3 && (
-        <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
-          See Pair Info
-        </div>
-      )}
+        <StyledLinkExternal onMouseEnter={() => setIsShown3(true)} onMouseLeave={() => setIsShown3(false)}>
+          <LpIcon3 />
+          {isShown3 && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>See Pair Info</div>}
         </StyledLinkExternal>
       </InfoContainer>
       <ValueContainer>
