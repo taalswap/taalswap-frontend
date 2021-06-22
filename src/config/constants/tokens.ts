@@ -29,7 +29,7 @@ const tokens = {
       97: '0xb01258e6fb20bde11dab2b65b2ffa197d725c91c',
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://taalswap.finance/',
   },
   weth: {
     symbol: 'WETH',
@@ -39,7 +39,7 @@ const tokens = {
       97: '0x28ce78ae1acb29b22d63092f3ff61939ce537d9d',
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://taalswap.finance/',
   },
   busd: {
     symbol: 'BUSD',
@@ -59,7 +59,7 @@ const tokens = {
       97: '0x7c0725d27F3f4C89d00Dc8d770B644b8aee8e614',
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://taalswap.finance/',
   },
   usdt: {
     symbol: 'USDT',
@@ -69,7 +69,7 @@ const tokens = {
       97: '',
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://taalswap.finance/',
   },
   qsd: {
     symbol: 'QSD',
