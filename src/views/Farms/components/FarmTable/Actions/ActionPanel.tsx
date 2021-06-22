@@ -172,7 +172,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <LpIcon />
               {isShown && (
         <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
-          Get LP
+          {t('Get %symbol%', { symbol: lpLabel })}
         </div>
       )}
             </StyledLinkExternal>
