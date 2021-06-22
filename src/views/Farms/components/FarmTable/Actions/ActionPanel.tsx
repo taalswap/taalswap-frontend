@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from 'taalswap-uikit'
@@ -12,6 +12,9 @@ import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
+import LpIcon from './Icons/LpIcon'
+import LpIcon2 from './Icons/LpIcon2'
+import LpIcon3 from './Icons/LpIcon3'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -62,8 +65,9 @@ const Container = styled.div<{ expanded }>`
   }
 `
 
-const StyledLinkExternal = styled(LinkExternal)`
+const StyledLinkExternal = styled.div`
   font-weight: 400;
+  cursor:pointer;
 `
 
 const StakeContainer = styled.div`
@@ -112,6 +116,9 @@ const ActionContainer = styled.div`
 
 const InfoContainer = styled.div`
   min-width: 200px;
+  display:flex;
+  align-items:center;
+  justify-content:space-evenly;
 `
 
 const ValueContainer = styled.div`
@@ -151,18 +158,42 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const bsc = getBscScanAddressUrl(lpAddress)
   const info = `https://taalswap.info/pair/${lpAddress}`
 
+  const [isShown, setIsShown] = useState(false);
+  const [isShown2, setIsShown2] = useState(false);
+  const [isShown3, setIsShown3] = useState(false);
+
   return (
     <Container expanded={expanded}>
       <InfoContainer>
         {isActive && (
           <StakeContainer>
-            <StyledLinkExternal href={`http://localhost:3000/#/add/${liquidityUrlPathParts}`}>
-              {t('Get %symbol%', { symbol: lpLabel })}
+            <StyledLinkExternal onMouseEnter={() => setIsShown(true)}
+        onMouseLeave={() => setIsShown(false)}>
+              <LpIcon />
+              {isShown && (
+        <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
+          Get LP
+        </div>
+      )}
             </StyledLinkExternal>
           </StakeContainer>
         )}
-        <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
-        <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
+        <StyledLinkExternal onMouseEnter={() => setIsShown2(true)}
+        onMouseLeave={() => setIsShown2(false)}><LpIcon2 />
+        {isShown2 && (
+        <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
+          View Contract
+        </div>
+      )}
+        </StyledLinkExternal>
+        <StyledLinkExternal onMouseEnter={() => setIsShown3(true)}
+        onMouseLeave={() => setIsShown3(false)}><LpIcon3 />
+        {isShown3 && (
+        <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
+          See Pair Info
+        </div>
+      )}
+        </StyledLinkExternal>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
