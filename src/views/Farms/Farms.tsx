@@ -276,6 +276,7 @@ const Farms: React.FC = () => {
         multiplier: farm.multiplier,
       },
       details: farm,
+      isLandingPage: false,
     }
 
     return row
@@ -308,7 +309,7 @@ const Farms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
+      return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage={false} />
     }
 
     return (
@@ -341,11 +342,11 @@ const Farms: React.FC = () => {
   return (
     <>
       <PageHeader>
-        <div style={{borderBottom:"1px solid rgba(133,133,133,0.1)",paddingBottom:"32px"}}>
-          <Heading as="h1" color="text" mb="15px" style={{fontSize:"30px",fontWeight:"bold"}}>
-          {t('Farms')}
+        <div style={{ borderBottom: '1px solid rgba(133,133,133,0.1)', paddingBottom: '32px' }}>
+          <Heading as="h1" color="text" mb="15px" style={{ fontSize: '30px', fontWeight: 'bold' }}>
+            {t('Farms')}
           </Heading>
-          <Heading color="textSubtle" style={{fontSize:"16px"}}>
+          <Heading color="textSubtle" style={{ fontSize: '16px' }}>
             {t('Start farming by staking your LP tokens')}
           </Heading>
         </div>
@@ -355,8 +356,8 @@ const Farms: React.FC = () => {
           <ViewControls>
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
-            <ToggleWrapper >
-              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm"/>
+            <ToggleWrapper>
+              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
               <Text> {t('Staked only')}</Text>
             </ToggleWrapper>
           </ViewControls>

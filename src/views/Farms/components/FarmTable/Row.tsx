@@ -23,6 +23,7 @@ export interface RowProps {
   multiplier: MultiplierProps
   liquidity: LiquidityProps
   details: FarmWithStakedValue
+  isLandingPage: boolean
 }
 
 interface RowPropsWithLoading extends RowProps {
@@ -68,10 +69,11 @@ const FarmMobileCell = styled.td`
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
-  const { details, userDataReady } = props
+  const { details, userDataReady, isLandingPage } = props
   const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
   const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)
   const shouldRenderChild = useDelayedUnmount(actionPanelExpanded, 300)
+
   const { t } = useTranslation()
 
   const toggleActionPanel = () => {
@@ -79,8 +81,12 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   }
 
   useEffect(() => {
-    setActionPanelExpanded(hasStakedAmount)
-  }, [hasStakedAmount])
+    if (isLandingPage) {
+      setActionPanelExpanded(false)
+    } else {
+      setActionPanelExpanded(hasStakedAmount)
+    }
+  }, [hasStakedAmount, isLandingPage])
 
   const { isXl, isXs } = useMatchBreakpoints()
 
@@ -113,7 +119,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout>
+                      <CellLayout label={t('APR')}>
                         <Apr {...props.apr} hideButton={isMobile} />
                       </CellLayout>
                     </CellInner>
@@ -123,7 +129,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout>
+                      <CellLayout label={t(tableSchema[columnIndex].label)}>
                         {React.createElement(cells[key], { ...props[key], userDataReady })}
                       </CellLayout>
                     </CellInner>
@@ -147,12 +153,12 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
           </tr>
           <tr>
             <EarnedMobileCell>
-              <CellLayout>
+              <CellLayout label={t('Earned')}>
                 <Earned {...props.earned} userDataReady={userDataReady} />
               </CellLayout>
             </EarnedMobileCell>
             <AprMobileCell>
-              <CellLayout>
+              <CellLayout label={t('APR')}>
                 <Apr {...props.apr} hideButton />
               </CellLayout>
             </AprMobileCell>

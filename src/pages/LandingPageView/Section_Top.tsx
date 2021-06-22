@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text,Link } from 'taalswap-uikit'
+import { Image, Heading, RowType, Toggle, Text, Link } from 'taalswap-uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -24,11 +24,10 @@ import FarmTabButtons from '../../views/Farms/components/FarmTabButtons'
 import { RowProps } from '../../views/Farms/components/FarmTable/Row'
 import ToggleView from '../../views/Farms/components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from '../../views/Farms/components/types'
-import circleImg01 from './images/cilcle_icon01.png';
-import circleImg02 from './images/cilcle_icon02.png';
-import circleImg03 from './images/cilcle_icon03.png';
-import circleImg04 from './images/cilcle_icon04.png';
-
+import circleImg01 from './images/cilcle_icon01.png'
+import circleImg02 from './images/cilcle_icon02.png'
+import circleImg03 from './images/cilcle_icon03.png'
+import circleImg04 from './images/cilcle_icon04.png'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
@@ -209,6 +208,7 @@ const SectionTop: React.FC = () => {
         multiplier: farm.multiplier,
       },
       details: farm,
+      isLandingPage: true,
     }
 
     return row
@@ -241,125 +241,160 @@ const SectionTop: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
+      return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
     }
 
     return (
-        <div>
-          <FlexLayout>
-            <Route exact path={`${path}`}>
-              {farmsStakedMemoized.map((farm) => (
-                <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
-              ))}
-            </Route>
-            <Route exact path={`${path}/history`}>
-              {farmsStakedMemoized.map((farm) => (
-                <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-              ))}
-            </Route>
-            <Route exact path={`${path}/archived`}>
-              {farmsStakedMemoized.map((farm) => (
-                <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-              ))}
-            </Route>
-          </FlexLayout>
-        </div>
-      )
-    }
-
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
-  }
-    return (
-      <div className='top_wrap'>
-        <div className='cont'>
-            <div className='cont_top'>
-                <div>
-                    <p className='home_title'>Boost your assets the way <br />you&apos;re never imagined</p>
-                    <p className='home_subtit'>A multi-chain AMM protocol to safeguard and increse your assets</p>
-                    <p className='current_time'><span>05/25</span><span>20:00</span><span>SGT</span></p>
-                    <input type="button" value='Start!' style={{cursor:'pointer'}} className="start_btn"/>
-                </div>
-                <div className='top_buyline'>
-                    <p className='buy_name'>Current TVL</p>
-                    <p className='buy_num'>$0,000,000,000</p>
-                    <div className='buy_btnwrap'>
-                        <input type="button" value='BUY TAL' style={{cursor:'pointer'}}/>
-                    </div>
-                </div>
-            </div>
-            <div className='input_wrap'>
-                <div className='taal_info'>
-                    <ul>
-                        <li><img src={circleImg01} alt="circle_icon"/>
-                            <span className='info_title'>TAL price</span>
-                        </li>
-                        <li><span className='info_num'>37.3051</span><span className='info_name'>USD</span>
-                        </li>
-                    </ul>
-                </div>
-                <div className='taal_info'>
-                    <ul>
-                        <li><img src={circleImg02} alt="circle_icon"/>
-                            <span className='info_title'>TAL market cap</span>
-                        </li>
-                        <li><span className='info_num'>101.5M</span><span className='info_name'>USD</span>
-                        </li>
-                    </ul>
-                </div>
-                <div className='taal_info'>
-                    <ul>
-                        <li><img src={circleImg03} alt="circle_icon"/>
-                            <span className='info_title'>TAL burnt</span>
-                        </li>
-                        <li><span className='info_num'>59,566.5887</span><span className='info_name'>TAL</span>
-                        </li>
-                    </ul>
-                </div>
-                <div className='taal_info'>
-                    <ul>
-                        <li><img src={circleImg04} alt="circle_icon"/>
-                            <span className='info_title'>TAL circ. supply</span>
-                        </li>
-                        <li><span className='info_num'>2,709,061</span><span className='info_name'>TAL</span>
-                        </li>
-                        <li className='list_name'><span className='info_subname'>= <span>BSC 2.3M</span>/<span>HECO 0.2M</span>/<span>OTHERS 0.2M</span></span>
-                        </li>
-                    </ul>
-                </div>
-                <div className='taal_info info_portfolio'>
-                    <ul>
-                        <li><span className='info_title'>MY PORTFOLIO</span>
-                        </li>
-                        <li className='list_progressbar'>
-                            <div>
-                                <p className='progressbar_title'>My Average APR</p>
-                                <p className='progressbar'>progressbar</p>
-                                <p className='progressbar_num'><span>-</span>%</p>
-                            </div>
-                        </li>
-                        <li className='list_date'>
-                            <ul>
-                                <li>
-                                    <div><span className='date_title'>My Total Deposit</span></div>
-                                    <div><span className='date_num'>-</span><span className='date_name'>USD</span></div>
-                                </li>
-                                <li>
-                                    <div><span className='date_title'>TAL Earned</span></div>
-                                    <div><span className='date_num'>-</span><span className='date_name'>TAL</span></div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div className='farms_wrap'>
-            {renderContent()}
-            <div ref={loadMoreRef} />
-            </div>
-        </div>
+      <div>
+        <FlexLayout>
+          <Route exact path={`${path}`}>
+            {farmsStakedMemoized.map((farm) => (
+              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
+            ))}
+          </Route>
+          <Route exact path={`${path}/history`}>
+            {farmsStakedMemoized.map((farm) => (
+              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
+            ))}
+          </Route>
+          <Route exact path={`${path}/archived`}>
+            {farmsStakedMemoized.map((farm) => (
+              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
+            ))}
+          </Route>
+        </FlexLayout>
       </div>
     )
   }
 
-  export default SectionTop
+  const handleSortOptionChange = (option: OptionProps): void => {
+    setSortOption(option.value)
+  }
+  return (
+    <div className="top_wrap">
+      <div className="cont">
+        <div className="cont_top">
+          <div>
+            <p className="home_title">
+              Boost your assets the way <br />
+              you&apos;re never imagined
+            </p>
+            <p className="home_subtit">A multi-chain AMM protocol to safeguard and increse your assets</p>
+            <p className="current_time">
+              <span>05/25</span>
+              <span>20:00</span>
+              <span>SGT</span>
+            </p>
+            <input type="button" value="Start!" style={{ cursor: 'pointer' }} className="start_btn" />
+          </div>
+          <div className="top_buyline">
+            <p className="buy_name">Current TVL</p>
+            <p className="buy_num">$0,000,000,000</p>
+            <div className="buy_btnwrap">
+              <input type="button" value="BUY TAL" style={{ cursor: 'pointer' }} />
+            </div>
+          </div>
+        </div>
+        <div className="input_wrap">
+          <div className="taal_info">
+            <ul>
+              <li>
+                <img src={circleImg01} alt="circle_icon" />
+                <span className="info_title">TAL price</span>
+              </li>
+              <li>
+                <span className="info_num">37.3051</span>
+                <span className="info_name">USD</span>
+              </li>
+            </ul>
+          </div>
+          <div className="taal_info">
+            <ul>
+              <li>
+                <img src={circleImg02} alt="circle_icon" />
+                <span className="info_title">TAL market cap</span>
+              </li>
+              <li>
+                <span className="info_num">101.5M</span>
+                <span className="info_name">USD</span>
+              </li>
+            </ul>
+          </div>
+          <div className="taal_info">
+            <ul>
+              <li>
+                <img src={circleImg03} alt="circle_icon" />
+                <span className="info_title">TAL burnt</span>
+              </li>
+              <li>
+                <span className="info_num">59,566.5887</span>
+                <span className="info_name">TAL</span>
+              </li>
+            </ul>
+          </div>
+          <div className="taal_info">
+            <ul>
+              <li>
+                <img src={circleImg04} alt="circle_icon" />
+                <span className="info_title">TAL circ. supply</span>
+              </li>
+              <li>
+                <span className="info_num">2,709,061</span>
+                <span className="info_name">TAL</span>
+              </li>
+              <li className="list_name">
+                <span className="info_subname">
+                  = <span>BSC 2.3M</span>/<span>HECO 0.2M</span>/<span>OTHERS 0.2M</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div className="taal_info info_portfolio">
+            <ul>
+              <li>
+                <span className="info_title">MY PORTFOLIO</span>
+              </li>
+              <li className="list_progressbar">
+                <div>
+                  <p className="progressbar_title">My Average APR</p>
+                  <p className="progressbar">progressbar</p>
+                  <p className="progressbar_num">
+                    <span>-</span>%
+                  </p>
+                </div>
+              </li>
+              <li className="list_date">
+                <ul>
+                  <li>
+                    <div>
+                      <span className="date_title">My Total Deposit</span>
+                    </div>
+                    <div>
+                      <span className="date_num">-</span>
+                      <span className="date_name">USD</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span className="date_title">TAL Earned</span>
+                    </div>
+                    <div>
+                      <span className="date_num">-</span>
+                      <span className="date_name">TAL</span>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="farms_wrap">
+          {renderContent()}
+          <div ref={loadMoreRef} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default SectionTop
