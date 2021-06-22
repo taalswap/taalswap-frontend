@@ -1,5 +1,12 @@
+@font-face {
+    font-family: "Be Vietnam, sans-serif"; 
+    src: url("./font/BeVietnam-Bold.ttf") format("truetype"),
+    url("./font/BeVietnam-Bold.woff") format('woff');
+  }
 .wrap{width:100%;height:100%;}
 p,span{font-weight:500;}
+*{font-family: 'Be Vietnam', sans-serif;}
+
 
 /* topbar */
 .original_header{position:fixed;z-index:99;width:100%;top:0;transition: all 0.3s;}
