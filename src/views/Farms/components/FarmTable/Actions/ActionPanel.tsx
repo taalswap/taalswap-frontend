@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { LinkExternal, Text } from 'taalswap-uikit'
+import { LinkExternalNoIcon, Text } from 'taalswap-uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBscScanAddressUrl } from 'utils/bscscan'
@@ -66,7 +66,10 @@ const Container = styled.div<{ expanded }>`
   }
 `
 
-const StyledLinkExternal = styled.div`
+const StyledLinkExternalNoIcon = styled(LinkExternalNoIcon)`
+`
+
+const StyledLinkExternalCSS = styled.div`
   font-weight: 400;
   cursor: pointer;
 `
@@ -169,20 +172,26 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <InfoContainer>
         {isActive && (
           <StakeContainer>
-            <StyledLinkExternal onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
-              <LpIcon />
-              {isShown && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>Get LP</div>}
-            </StyledLinkExternal>
+            <StyledLinkExternalNoIcon href={`http://localhost:3000/#/add/${liquidityUrlPathParts}`}>
+              <StyledLinkExternalCSS onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
+                <LpIcon />
+                {isShown && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>Get LP</div>}
+              </StyledLinkExternalCSS>
+            </StyledLinkExternalNoIcon>
           </StakeContainer>
         )}
-        <StyledLinkExternal onMouseEnter={() => setIsShown2(true)} onMouseLeave={() => setIsShown2(false)}>
-          <LpIcon2 />
-          {isShown2 && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>View Contract</div>}
-        </StyledLinkExternal>
-        <StyledLinkExternal onMouseEnter={() => setIsShown3(true)} onMouseLeave={() => setIsShown3(false)}>
-          <LpIcon3 />
-          {isShown3 && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>See Pair Info</div>}
-        </StyledLinkExternal>
+        <StyledLinkExternalNoIcon href={bsc}>
+          <StyledLinkExternalCSS onMouseEnter={() => setIsShown2(true)} onMouseLeave={() => setIsShown2(false)}>
+            <LpIcon2 />
+            {isShown2 && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>View Contract</div>}
+          </StyledLinkExternalCSS>
+        </StyledLinkExternalNoIcon>
+        <StyledLinkExternalNoIcon href={info}>
+          <StyledLinkExternalCSS onMouseEnter={() => setIsShown3(true)} onMouseLeave={() => setIsShown3(false)}>
+            <LpIcon3 />
+            {isShown3 && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>See Pair Info</div>}
+          </StyledLinkExternalCSS>
+        </StyledLinkExternalNoIcon>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
