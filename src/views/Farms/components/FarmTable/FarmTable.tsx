@@ -10,6 +10,7 @@ export interface ITableProps {
   columns: ColumnType<RowProps>[]
   userDataReady: boolean
   sortColumn?: string
+  isLandingPage: boolean
 }
 
 const Container = styled.div`
@@ -72,7 +73,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
   const { isXl, isSm, isMd, isLg } = useMatchBreakpoints()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
-  const { data, columns, userDataReady } = props
+  const { data, columns, userDataReady, isLandingPage } = props
 
   const { rows } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
 
@@ -144,7 +145,14 @@ const FarmTable: React.FC<ITableProps> = (props) => {
                 )}
               </tr>
               {rows.map((row) => {
-                return <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
+                return (
+                  <Row
+                    {...row.original}
+                    userDataReady={userDataReady}
+                    key={`table-row-${row.id}`}
+                    isLandingPage={isLandingPage}
+                  />
+                )
               })}
             </TableBody>
           </StyledTable>
