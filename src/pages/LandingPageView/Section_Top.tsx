@@ -278,13 +278,13 @@ const SectionTop: React.FC = () => {
                     <p className='home_title'>Boost your assets the way <br />you&apos;re never imagined</p>
                     <p className='home_subtit'>A multi-chain AMM protocol to safeguard and increse your assets</p>
                     <p className='current_time'><span>05/25</span><span>20:00</span><span>SGT</span></p>
-                    <input type="button" value='Start!' style={{cursor:'pointer'}} className="start_btn"/>
+                    <input type="button" value='Start' style={{cursor:'pointer'}} className="start_btn"/>
                 </div>
                 <div className='top_buyline'>
                     <p className='buy_name'>Current TVL</p>
                     <p className='buy_num'>$0,000,000,000</p>
                     <div className='buy_btnwrap'>
-                        <input type="button" value='BUY TAL' style={{cursor:'pointer'}}/>
+                        <input type="button" value='Buy TAL' style={{cursor:'pointer'}}/>
                     </div>
                 </div>
             </div>
@@ -334,8 +334,7 @@ const SectionTop: React.FC = () => {
                         <li className='list_progressbar'>
                             <div>
                                 <p className='progressbar_title'>My Average APR</p>
-                                <p className='progressbar'>progressbar</p>
-                                <p className='progressbar_num'><span>-</span>%</p>
+                                <p><span className='progressbar'>progressbar</span><span><span className='progressbar_num'>-</span>%</span></p>
                             </div>
                         </li>
                         <li className='list_date'>
