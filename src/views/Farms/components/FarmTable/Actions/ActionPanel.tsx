@@ -68,6 +68,15 @@ const Container = styled.div<{ expanded }>`
 const StyledLinkExternal = styled.div`
   font-weight: 400;
   cursor:pointer;
+  display:flex;
+  justify-content:center;
+  margin-right:30px;
+`
+const StyledLinkExternal2 = styled.div`
+  font-weight: 400;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
 `
 
 const StakeContainer = styled.div`
@@ -118,7 +127,7 @@ const InfoContainer = styled.div`
   min-width: 200px;
   display:flex;
   align-items:center;
-  justify-content:space-evenly;
+  justify-content:center;
 `
 
 const ValueContainer = styled.div`
@@ -171,7 +180,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         onMouseLeave={() => setIsShown(false)}>
               <LpIcon />
               {isShown && (
-        <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"36px",color:"#00ab55",fontSize:'13px'}}>
           {t('Get %symbol%', { symbol: lpLabel })}
         </div>
       )}
@@ -181,19 +190,19 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <StyledLinkExternal onMouseEnter={() => setIsShown2(true)}
         onMouseLeave={() => setIsShown2(false)}><LpIcon2 />
         {isShown2 && (
-        <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"36px",color:"#00ab55",fontSize:'13px'}}>
           View Contract
         </div>
       )}
         </StyledLinkExternal>
-        <StyledLinkExternal onMouseEnter={() => setIsShown3(true)}
+        <StyledLinkExternal2 onMouseEnter={() => setIsShown3(true)}
         onMouseLeave={() => setIsShown3(false)}><LpIcon3 />
         {isShown3 && (
-        <div style={{position:"absolute",marginTop:"10px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"32px",color:"#00ab55",fontSize:'13px'}}>
           See Pair Info
         </div>
       )}
-        </StyledLinkExternal>
+        </StyledLinkExternal2>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
