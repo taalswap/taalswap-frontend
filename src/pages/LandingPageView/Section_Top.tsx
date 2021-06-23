@@ -291,7 +291,7 @@ const SectionTop: React.FC = () => {
             <p className="buy_name">Current TVL</p>
             <p className="buy_num">$0,000,000,000</p>
             <div className="buy_btnwrap">
-              <input type="button" value="BUY TAL" style={{ cursor: 'pointer' }} />
+              <input type="button" value="Buy TAL" style={{ cursor: 'pointer' }} />
             </div>
           </div>
         </div>
