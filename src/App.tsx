@@ -89,7 +89,8 @@ const App: React.FC = () => {
                   <Redirect to="/pools" />
                 </Route> */}
                 <Route path="/syrup">
-                  <Redirect to="/pools" />
+                  {/* <Redirect to="/pools" /> */}
+                  <Redirect to="/staking" />
                 </Route>
                 <Route path="/nft">
                   <Redirect to="/collectibles" />

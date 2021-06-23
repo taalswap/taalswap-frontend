@@ -47,7 +47,7 @@ const TopBar = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="/pools" style={{ textDecoration: 'none', fontSize: '14px' }}>
+            <Link href="/staking" style={{ textDecoration: 'none', fontSize: '14px' }}>
               Staking
             </Link>
           </div>
