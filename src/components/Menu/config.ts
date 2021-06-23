@@ -36,7 +36,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   },
   {
     label: t('Liquidity'),
-    icon: 'PoolIcon',
+    icon: 'LiquidityIcon',
     href: 'http://localhost:3000/#/pool',
   },
   {

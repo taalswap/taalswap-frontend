@@ -37,10 +37,14 @@ const Results = () => (
           <span className="farms_icon">Farms_icon</span>Farms
         </Link>
       </li>
-      <li><Link href='#/pool' style={{textDecoration:'none'}}><span className='pools_icon'>pools_icon</span>pools</Link></li>
+      <li>
+        <Link href="#/pool" style={{ textDecoration: 'none' }}>
+          <span className="pools_icon">pools_icon</span>pools
+        </Link>
+      </li>
       <li>
         <Link href="/" style={{ textDecoration: 'none' }}>
-          <span className="connect_icon">connect_icon</span>Connect Wallet
+          <span className="connect_icon">connect_icon</span>Coneect Wallet
         </Link>
       </li>
     </ul>
