@@ -285,7 +285,7 @@ const SectionTop: React.FC = () => {
               <span>20:00</span>
               <span>SGT</span>
             </p>
-            <input type="button" value="Start!" style={{ cursor: 'pointer' }} className="start_btn" />
+            <input type="button" value="Start" style={{ cursor: 'pointer' }} className="start_btn" />
           </div>
           <div className="top_buyline">
             <p className="buy_name">Current TVL</p>
