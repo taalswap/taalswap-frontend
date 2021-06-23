@@ -28,7 +28,7 @@ const Results = () => (
         </Link>
       </li>
       <li>
-        <Link href="#/pool" style={{ textDecoration: 'none' }}>
+        <Link href="#/liquidity" style={{ textDecoration: 'none' }}>
           <span className="liquidity_icon">liquidity_icon</span>Liquidity
         </Link>
       </li>
@@ -38,7 +38,7 @@ const Results = () => (
         </Link>
       </li>
       <li>
-        <Link href="#/pool" style={{ textDecoration: 'none' }}>
+        <Link href="#/liquidity" style={{ textDecoration: 'none' }}>
           <span className="pools_icon">pools_icon</span>pools
         </Link>
       </li>

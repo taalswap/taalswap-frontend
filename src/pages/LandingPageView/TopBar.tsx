@@ -37,7 +37,7 @@ const TopBar = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="http://localhost:3000/#/pool" style={{ textDecoration: 'none', fontSize: '14px' }}>
+            <Link href="http://localhost:3000/#/liquidity" style={{ textDecoration: 'none', fontSize: '14px' }}>
               Liquidity
             </Link>
           </div>
