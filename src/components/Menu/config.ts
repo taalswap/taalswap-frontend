@@ -37,17 +37,19 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Liquidity'),
     icon: 'LiquidityIcon',
-    href: 'http://localhost:3000/#/pool',
+    // href: 'http://localhost:3000/#/pool',
+    href: 'http://localhost:3000/#/liquidity',
   },
   {
     label: t('Farms'),
     icon: 'FarmIcon',
-    href: '/farms',
+    href: 'http://localhost:3001/farms',
   },
   {
     label: t('Staking'),
     icon: 'PoolIcon',
-    href: '/pools',
+    // href: '/pools',
+    href: 'http://localhost:3001/staking',
   },
   // {
   //   label: t('Prediction (BETA)'),
