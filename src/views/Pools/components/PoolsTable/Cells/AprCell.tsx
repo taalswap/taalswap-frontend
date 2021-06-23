@@ -30,7 +30,7 @@ const AprCell: React.FC<AprCellProps> = ({ pool, performanceFee }) => {
           pool={pool}
           performanceFee={isAutoVault ? performanceFee : 0}
           showIcon={!isXs && !isSm}
-          alignItems="flex-start"
+          alignItems="center"
         />
       </CellContent>
     </StyledCell>

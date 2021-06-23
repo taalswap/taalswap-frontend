@@ -5,7 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    <Tag variant="secondary" outline {...props}>
       {t('Core')}
     </Tag>
   )

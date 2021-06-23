@@ -175,7 +175,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <StyledLinkExternalNoIcon href={`http://localhost:3000/#/add/${liquidityUrlPathParts}`}>
               <StyledLinkExternalCSS onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
                 <LpIcon />
-                {isShown && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>Get LP</div>}
+                {isShown && <div style={{ position: 'absolute', marginTop: '10px', color: '#00ab55' }}>{t('Get %symbol%', { symbol: lpLabel })}</div>}
               </StyledLinkExternalCSS>
             </StyledLinkExternalNoIcon>
           </StakeContainer>
