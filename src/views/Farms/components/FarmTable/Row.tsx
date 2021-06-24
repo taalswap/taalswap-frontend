@@ -119,7 +119,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout label={t('APR')}>
+                      <CellLayout>
                         <Apr {...props.apr} hideButton={isMobile} />
                       </CellLayout>
                     </CellInner>
@@ -129,9 +129,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout label={t(tableSchema[columnIndex].label)}>
-                        {React.createElement(cells[key], { ...props[key], userDataReady })}
-                      </CellLayout>
+                      <CellLayout>{React.createElement(cells[key], { ...props[key], userDataReady })}</CellLayout>
                     </CellInner>
                   </td>
                 )
@@ -153,12 +151,12 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
           </tr>
           <tr>
             <EarnedMobileCell>
-              <CellLayout label={t('Earned')}>
+              <CellLayout>
                 <Earned {...props.earned} userDataReady={userDataReady} />
               </CellLayout>
             </EarnedMobileCell>
             <AprMobileCell>
-              <CellLayout label={t('APR')}>
+              <CellLayout>
                 <Apr {...props.apr} hideButton />
               </CellLayout>
             </AprMobileCell>
