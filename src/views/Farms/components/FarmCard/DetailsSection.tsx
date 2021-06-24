@@ -22,7 +22,17 @@ const Wrapper = styled.div`
 
 const StyledLinkExternal = styled.div`
   font-weight: 400;
+  display:flex;
+  justify-content:center;
+  margin-right:30px;
 `
+const StyledLinkExternal2 = styled.div`
+  font-weight: 400;
+  display:flex;
+  justify-content:center;
+`
+
+
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
   infoAddress,
@@ -45,12 +55,12 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <Text>{t('Total Liquidity')}:</Text>
         {totalValueFormatted ? <Text>{totalValueFormatted}</Text> : <Skeleton width={75} height={25} />}
       </Flex>
-      <Flex justifyContent='space-evenly' alignItems='center' mt='20px'>
+      <Flex justifyContent='center' alignItems='center' mt='20px'>
       {!removed && (
         <StyledLinkExternal onMouseEnter={() => setIsShown(true)}
         onMouseLeave={() => setIsShown(false)} style={{cursor:'pointer'}}><LpIcon />
         {isShown && (
-        <div style={{position:"absolute",marginTop:"5px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"35px",color:"#00ab55",fontSize:'13px'}}>
           {t('Get %symbol%', { symbol: lpLabel })}
         </div>
         )}
@@ -59,19 +69,19 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       <StyledLinkExternal onMouseEnter={() => setIsShown2(true)}
         onMouseLeave={() => setIsShown2(false)} style={{cursor:'pointer'}}><LpIcon2 />
         {isShown2 && (
-        <div style={{position:"absolute",marginTop:"5px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"35px",color:"#00ab55",fontSize:'13px'}}>
           {t('View Contract')}
         </div>
         )}
         </StyledLinkExternal>
-      <StyledLinkExternal onMouseEnter={() => setIsShown3(true)}
+      <StyledLinkExternal2 onMouseEnter={() => setIsShown3(true)}
         onMouseLeave={() => setIsShown3(false)} style={{cursor:'pointer'}}><LpIcon3 />
         {isShown3 && (
-        <div style={{position:"absolute",marginTop:"5px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"31px",color:"#00ab55",fontSize:'13px'}}>
           {t('See Pair Info')}
         </div>
         )}
-        </StyledLinkExternal>
+        </StyledLinkExternal2>
       </Flex>
     </Wrapper>
   )

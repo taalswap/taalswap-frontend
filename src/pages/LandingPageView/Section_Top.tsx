@@ -357,10 +357,7 @@ const SectionTop: React.FC = () => {
               <li className="list_progressbar">
                 <div>
                   <p className="progressbar_title">My Average APR</p>
-                  <p className="progressbar">progressbar</p>
-                  <p className="progressbar_num">
-                    <span>-</span>%
-                  </p>
+                  <p><span className='progressbar'>progressbar</span><span><span className='progressbar_num'>-</span>%</span></p>
                 </div>
               </li>
               <li className="list_date">
