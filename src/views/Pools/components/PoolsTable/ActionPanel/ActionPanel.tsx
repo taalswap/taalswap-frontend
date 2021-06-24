@@ -102,7 +102,7 @@ const InfoSection = styled(Box)`
   flex: 0 0 230px;
   display:flex;
   align-items:center;
-  justify-content:space-evenly;
+  justify-content:center;
   padding: 8px 8px;
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 0;
@@ -225,7 +225,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {(isXs || isSm) && aprRow}
         {(isXs || isSm || isMd) && totalStakedRow}
         {shouldShowBlockCountdown && blocksRow}
-        <Flex mb="8px" style={{cursor:"pointer"}} onMouseEnter={() => setIsShown(true)}
+        <Flex mb="8px" mr='30px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown(true)}
         onMouseLeave={() => setIsShown(false)}>
         <svg id="그룹_882" data-name="그룹 882" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
   <g id="타원_24" data-name="타원 24" transform="translate(0 0)" fill="none" stroke="#00ab55" strokeWidth="2">
@@ -240,12 +240,12 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   </g>
 </svg>
         {isShown && (
-        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55",fontSize:"13px"}}>
           Info site
         </div>
       )}
         </Flex>
-        <Flex mb="8px" style={{cursor:"pointer"}} onMouseEnter={() => setIsShown2(true)}
+        <Flex mb="8px" mr='26px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown2(true)}
         onMouseLeave={() => setIsShown2(false)}>
         <svg id="그룹_880" data-name="그룹 880" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26.328 26.177">
   <g id="타원_25" data-name="타원 25" transform="translate(0)" fill="none" stroke="#00ab55" strokeWidth="2">
@@ -256,13 +256,13 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   <text id="TotalActiveUsers" transform="translate(11.896 16)" fill="#09ab64" fontSize="13" fontFamily="BeVietnam-Bold, Be Vietnam" fontWeight="700" letterSpacing="-0.035em"><tspan x="-3.803" y="0">P</tspan></text>
 </svg>
 {isShown2 && (
-        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55",fontSize:"13px"}}>
           Project site
         </div>
       )}
         </Flex>
         {account && isMetaMaskInScope && tokenAddress && (
-          <Flex mb="8px">
+          <Flex mb="8px" justifyContent='center'>
             <Button
               variant="text"
               p="0"
@@ -273,7 +273,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             >
               <MetamaskIcon ml="4px" />
               {isShown3 && (
-        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"53px",color:"#00ab55",fontSize:"13px"}}>
           Add to Metamask
         </div>
       )}

@@ -120,8 +120,8 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           </Flex>
         </Flex>
       )}
-      <Flex justifyContent='space-evenly' mt='20px' alignItems='center'>
-      <Flex mb="2px" style={{cursor:"pointer"}} onMouseEnter={() => setIsShown(true)}
+      <Flex justifyContent='center' mt='20px' alignItems='center'>
+      <Flex mb="2px" mr='30px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown(true)}
         onMouseLeave={() => setIsShown(false)}>
         <svg id="그룹_882" data-name="그룹 882" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
   <g id="타원_24" data-name="타원 24" transform="translate(0 0)" fill="none" stroke="#00ab55" strokeWidth="2">
@@ -136,13 +136,13 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   </g>
 </svg>
         {isShown && (
-        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55",fontSize:'13px'}}>
           {t('View Project Site')}
         </div>
       )}
       </Flex>
       {poolContractAddress && (
-        <Flex mb="2px" style={{cursor:"pointer"}} onMouseEnter={() => setIsShown2(true)}
+        <Flex mb="2px" mr='26px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown2(true)}
         onMouseLeave={() => setIsShown2(false)}>
           <svg id="그룹_880" data-name="그룹 880" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26.328 26.177">
   <g id="타원_25" data-name="타원 25" transform="translate(0)" fill="none" stroke="#00ab55" strokeWidth="2">
@@ -153,14 +153,14 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   <text id="TotalActiveUsers" transform="translate(11.896 16)" fill="#09ab64" fontSize="13" fontFamily="BeVietnam-Bold, Be Vietnam" fontWeight="700" letterSpacing="-0.035em"><tspan x="-3.803" y="0">P</tspan></text>
 </svg>
 {isShown2 && (
-        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55"}}>
+        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55",fontSize:'13px'}}>
           Project site
         </div>
       )}
         </Flex>
       )}
       {account && isMetaMaskInScope && tokenAddress && (
-        <Flex>
+        <Flex justifyContent='center'>
           <Button
             variant="text"
             p="0"
@@ -171,10 +171,8 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           >
             <MetamaskIcon ml="4px" />
             {isShown3 && (
-        <div style={{position:"absolute",marginTop:"30px",color:"#00ab55"}}>
-          <Text color="primary" fontSize="14px">
-              {t('Add to Metamask')}
-            </Text>
+        <div style={{position:"absolute",marginTop:"48px",color:"#00ab55",fontSize:'13px'}}>
+              Add to Metamask
         </div>
       )}
           </Button>
