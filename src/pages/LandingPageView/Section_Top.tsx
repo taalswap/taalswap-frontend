@@ -3,7 +3,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { RowType } from 'taalswap-uikit'
+import { RowType, Link } from 'taalswap-uikit'
 
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
@@ -276,7 +276,9 @@ const SectionTop: React.FC = () => {
               <span>20:00</span>
               <span>SGT</span>
             </p>
-            <input type="button" value="Start" style={{ cursor: 'pointer' }} className="start_btn" />
+            <Link href="http://localhost:3000/#/liquidity">
+              <input type="button" value="Start" style={{ cursor: 'pointer' }} className="start_btn" />
+            </Link>
           </div>
           <div className="top_buyline">
             <p className="buy_name">Current TVL</p>
@@ -294,8 +296,10 @@ const SectionTop: React.FC = () => {
                 </div>
               </div>
             </p>
-            <div className="buy_btnwrap">
-              <input type="button" value="Buy TAL" style={{ cursor: 'pointer' }} />
+            <div>
+              <Link className="buy_btnwrap" href="http://localhost:3000/#/swap">
+                <input type="button" value="Buy TAL" style={{ cursor: 'pointer' }} />
+              </Link>
             </div>
           </div>
         </div>
