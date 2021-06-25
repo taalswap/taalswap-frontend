@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'taalswap-uikit'
 import footerlogo_img from './images/footer_Logo.png'
-import facebook_icon from './images/facebook_icon.png'
-import in_icon from './images/in_icon.png'
-import instar_icon from './images/instar_icon.png'
+import messege_icon from './images/messege_icon.png'
+import page_icon from './images/page_icon.png'
 import twitter_icon from './images/twitter_icon.png'
 
 const Footer = () => {
@@ -15,24 +14,19 @@ const Footer = () => {
           <p>&copy; All rights reserved. Made by TaalSwap. <Link href="/" style={{color:"#00ab55",display:"inline-block",textDecoration:"underline",fontSize:"13px"}}>Audited by HAECHI AUDIT</Link></p>
         </div>
         <div className="footer_menu">
-          <div>
+          <div style={{ marginLeft: '30px' }}>
             <Link href="/">
-              <img src={facebook_icon} alt="facebook_icon" className="facebook_icon" />
+              <img src={twitter_icon} alt="twitter_icon"/>
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
             <Link href="/">
-              <img src={in_icon} alt="in_icon" className="in_icon" />
+              <img src={page_icon} alt="page_icon"/>
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
             <Link href="/">
-              <img src={instar_icon} alt="instar_icon" className="instar_icon" />
-            </Link>
-          </div>
-          <div style={{ marginLeft: '30px' }}>
-            <Link href="/">
-              <img src={twitter_icon} alt="twitter_icon" className="twitter_icon" />
+              <img src={messege_icon} alt="messege_icon"  />
             </Link>
           </div>
         </div>
