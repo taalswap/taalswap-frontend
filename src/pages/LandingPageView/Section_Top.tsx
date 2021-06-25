@@ -118,10 +118,6 @@ const SectionTop: React.FC = () => {
     [cakePrice, query, isActive],
   )
 
-  const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value)
-  }
-
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
@@ -265,9 +261,6 @@ const SectionTop: React.FC = () => {
     return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
   }
 
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
-  }
   return (
     <div className="top_wrap">
       <div className="cont">
@@ -297,7 +290,7 @@ const SectionTop: React.FC = () => {
               >
                 <p>$</p>
                 <div>
-                  <CardValue value={talTvl} color="#005046" fontSize="45" />
+                  <CardValue value={talTvl} color="#005046" fontSize="45" decimals={0} />
                 </div>
               </div>
             </p>
@@ -341,7 +334,7 @@ const SectionTop: React.FC = () => {
               </li>
               <li>
                 <span className="info_num">
-                  <CardValue fontSize="29" value={burnedBalance} />
+                  <CardValue fontSize="29" value={burnedBalance} decimals={0} />
                 </span>
                 <span className="info_name">TAL</span>
               </li>
@@ -355,7 +348,7 @@ const SectionTop: React.FC = () => {
               </li>
               <li>
                 <span className="info_num">
-                  <CardValue fontSize="29" value={cakeSupply} />
+                  <CardValue fontSize="29" value={cakeSupply} decimals={0} />
                 </span>
                 <span className="info_name">TAL</span>
               </li>
