@@ -1,13 +1,13 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
-import { Route, useRouteMatch, useLocation } from 'react-router-dom'
+
+import { useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text, Link } from 'taalswap-uikit'
-import styled from 'styled-components'
-import FlexLayout from 'components/layout/Flex'
-import Page from 'components/layout/Page'
+import { RowType } from 'taalswap-uikit'
+
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
-import usePersistState from 'hooks/usePersistState'
+import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { getTaalAddress } from 'utils/addressHelpers'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -15,14 +15,14 @@ import { getFarmApr } from 'utils/apr'
 import { orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
-import PageHeader from 'components/PageHeader'
-import SearchInput from 'components/SearchInput'
-import Select, { OptionProps } from 'components/Select/Select'
-import FarmCard, { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
+
+import { OptionProps } from 'components/Select/Select'
+import CardValue from 'views/Home/components/CardValue'
+import { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
 import Table from '../../views/Farms/components/FarmTable/FarmTable'
-import FarmTabButtons from '../../views/Farms/components/FarmTabButtons'
+
 import { RowProps } from '../../views/Farms/components/FarmTable/Row'
-import ToggleView from '../../views/Farms/components/ToggleView/ToggleView'
+
 import { DesktopColumnSchema, ViewMode } from '../../views/Farms/components/types'
 import circleImg01 from './images/cilcle_icon01.png'
 import circleImg02 from './images/cilcle_icon02.png'
@@ -36,15 +36,23 @@ const SectionTop: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
+
   const cakePrice = usePriceCakeBusd()
+
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'pancake_farm_view')
+
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
+  const [talTvl, setTalTvl] = useState(0)
+  const [talPrice, setTalPrice] = useState(0)
 
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
+
+  const totalSupply = useTotalSupply()
+  const burnedBalance = getBalanceNumber(useBurnedBalance(getTaalAddress()))
+  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
   usePollFarmsData(isArchived)
 
@@ -56,6 +64,20 @@ const SectionTop: React.FC = () => {
   useEffect(() => {
     setStakedOnly(!isActive)
   }, [isActive])
+
+  useEffect(() => {
+    fetch('https://taalswap-info-api.vercel.app/api/tvl', {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setTalTvl(response.data.tvl)
+      })
+    setTalPrice(cakePrice.toNumber())
+  }, [setTalTvl, cakePrice, setTalPrice])
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
@@ -215,56 +237,6 @@ const SectionTop: React.FC = () => {
   })
 
   const renderContent = (): JSX.Element => {
-    // if (viewMode === ViewMode.TABLE && rowData.length) {
-    //   const columnSchema = DesktopColumnSchema
-
-    //   const columns = columnSchema.map((column) => ({
-    //     id: column.id,
-    //     name: column.name,
-    //     label: column.label,
-    //     sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
-    //       switch (column.name) {
-    //         case 'farm':
-    //           return b.id - a.id
-    //         case 'apr':
-    //           if (a.original.apr.value && b.original.apr.value) {
-    //             return Number(a.original.apr.value) - Number(b.original.apr.value)
-    //           }
-
-    //           return 0
-    //         case 'earned':
-    //           return a.original.earned.earnings - b.original.earned.earnings
-    //         default:
-    //           return 1
-    //       }
-    //     },
-    //     sortable: column.sortable,
-    //   }))
-
-    //   return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
-    // }
-
-    // return (
-    //   <div>
-    //     <FlexLayout>
-    //       <Route exact path={`${path}`}>
-    //         {farmsStakedMemoized.map((farm) => (
-    //           <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
-    //         ))}
-    //       </Route>
-    //       <Route exact path={`${path}/history`}>
-    //         {farmsStakedMemoized.map((farm) => (
-    //           <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-    //         ))}
-    //       </Route>
-    //       <Route exact path={`${path}/archived`}>
-    //         {farmsStakedMemoized.map((farm) => (
-    //           <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-    //         ))}
-    //       </Route>
-    //     </FlexLayout>
-    //   </div>
-    // )
     const columnSchema = DesktopColumnSchema
 
     const columns = columnSchema.map((column) => ({
@@ -315,7 +287,20 @@ const SectionTop: React.FC = () => {
           </div>
           <div className="top_buyline">
             <p className="buy_name">Current TVL</p>
-            <p className="buy_num">$0,000,000,000</p>
+            <p className="buy_num">
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  alignContent: 'center',
+                }}
+              >
+                <p>$</p>
+                <div>
+                  <CardValue value={talTvl} color="#005046" fontSize="45" />
+                </div>
+              </div>
+            </p>
             <div className="buy_btnwrap">
               <input type="button" value="Buy TAL" style={{ cursor: 'pointer' }} />
             </div>
@@ -329,7 +314,9 @@ const SectionTop: React.FC = () => {
                 <span className="info_title">TAL price</span>
               </li>
               <li>
-                <span className="info_num">37.3051</span>
+                <span className="info_num">
+                  <CardValue fontSize="29" value={talPrice} />
+                </span>
                 <span className="info_name">USD</span>
               </li>
             </ul>
@@ -353,7 +340,9 @@ const SectionTop: React.FC = () => {
                 <span className="info_title">TAL burnt</span>
               </li>
               <li>
-                <span className="info_num">59,566.5887</span>
+                <span className="info_num">
+                  <CardValue fontSize="29" value={burnedBalance} />
+                </span>
                 <span className="info_name">TAL</span>
               </li>
             </ul>
@@ -365,7 +354,9 @@ const SectionTop: React.FC = () => {
                 <span className="info_title">TAL circ. supply</span>
               </li>
               <li>
-                <span className="info_num">2,709,061</span>
+                <span className="info_num">
+                  <CardValue fontSize="29" value={cakeSupply} />
+                </span>
                 <span className="info_name">TAL</span>
               </li>
               <li className="list_name">
