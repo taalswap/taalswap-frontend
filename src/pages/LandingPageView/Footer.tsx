@@ -11,22 +11,31 @@ const Footer = () => {
       <div className="footer_cont">
         <div className="footer_left">
           <img src={footerlogo_img} alt="logo_img" className="footer_logo" />
-          <p>&copy; All rights reserved. Made by TaalSwap. <Link href="/" style={{color:"#00ab55",display:"inline-block",textDecoration:"underline",fontSize:"13px"}}>Audited by HAECHI AUDIT</Link></p>
+          <p>
+            &copy; All rights reserved. Made by TaalSwap.{' '}
+            <Link
+              href="https://taalswap.gitbook.io/taalswap-documents/taalswap-security"
+              target="_blank"
+              style={{ color: '#00ab55', display: 'inline-block', textDecoration: 'underline', fontSize: '13px' }}
+            >
+              Audited by HAECHI AUDIT
+            </Link>
+          </p>
         </div>
         <div className="footer_menu">
           <div style={{ marginLeft: '30px' }}>
-            <Link href="/">
-              <img src={twitter_icon} alt="twitter_icon"/>
+            <Link href="https://twitter.com/taal_fi" target="_blank">
+              <img src={twitter_icon} alt="twitter_icon" />
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="/">
-              <img src={page_icon} alt="page_icon"/>
+            <Link href="https://t.me/TaalSwapOfficial" target="_blank">
+              <img src={page_icon} alt="page_icon" />
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="/">
-              <img src={messege_icon} alt="messege_icon"  />
+            <Link href="https://medium.com/taalswap" target="_blank">
+              <img src={messege_icon} alt="messege_icon" />
             </Link>
           </div>
         </div>
