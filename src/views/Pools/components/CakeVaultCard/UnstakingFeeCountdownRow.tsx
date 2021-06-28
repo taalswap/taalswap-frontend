@@ -18,19 +18,6 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
     fees: { withdrawalFee, withdrawalFeePeriod },
   } = useCakeVault()
   const feeAsDecimal = withdrawalFee / 100 || '-'
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    <>
-      <Text bold mb="4px">
-        {t('Unstaking fee: %fee%%', { fee: feeAsDecimal })}
-      </Text>
-      <Text>
-        {t(
-          'Only applies within 3 days of staking. Unstaking after 3 days will not include a fee. Timer resets every time you stake new TAL in the pool.',
-        )}
-      </Text>
-    </>,
-    { placement: 'bottom-start' },
-  )
 
   const { secondsRemaining, hasUnstakingFee } = useWithdrawalFeeTimer(
     parseInt(lastDepositedTime, 10),
@@ -40,6 +27,20 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
 
   // The user has made a deposit, but has no fee
   const noFeeToPay = lastDepositedTime && !hasUnstakingFee && userShares.gt(0)
+
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+    <>
+      <Text bold mb="4px">
+        {t('Unstaking fee: %fee%%', { fee: noFeeToPay ? 0 : feeAsDecimal })}
+      </Text>
+      <Text>
+        {t(
+          'Only applies within 3 days of staking. Unstaking after 3 days will not include a fee. Timer resets every time you stake new TAL in the pool.',
+        )}
+      </Text>
+    </>,
+    { placement: 'bottom-start' },
+  )
 
   // Show the timer if a user is connected, has deposited, and has an unstaking fee
   const shouldShowTimer = account && lastDepositedTime && hasUnstakingFee
