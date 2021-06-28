@@ -232,6 +232,44 @@ const SectionTop: React.FC = () => {
     return row
   })
 
+  const getTotalAssets = () => {
+    let result = 0
+
+    farmsStakedMemoized.forEach((farm) => {
+      if (farm.userData.earnings !== '0') {
+        result += Number(farm.liquidity)
+      }
+    })
+    return result
+  }
+
+  const getTotalEarned = () => {
+    let result = 0
+    farmsStakedMemoized.forEach((farm) => {
+      const earnings = getBalanceNumber(new BigNumber(farm.userData.earnings))
+      result += earnings
+    })
+    return result
+  }
+
+  const getTotalApr = () => {
+    let result = 0
+    let cnt = 0
+    farmsStakedMemoized.forEach((farm) => {
+      if (farm.userData.earnings !== '0') {
+        result += farm.apr
+        cnt++
+      }
+    })
+
+    const returnValue = result / cnt
+
+    if (Number.isNaN(returnValue)) {
+      return 0
+    }
+    return returnValue
+  }
+
   const renderContent = (): JSX.Element => {
     const columnSchema = DesktopColumnSchema
 
@@ -357,9 +395,9 @@ const SectionTop: React.FC = () => {
                 <span className="info_name">TAL</span>
               </li>
               <li className="list_name">
-                <span className="info_subname">
+                {/* <span className="info_subname">
                   = <span>BSC 2.3M</span>/<span>HECO 0.2M</span>/<span>OTHERS 0.2M</span>
-                </span>
+                </span> */}
               </li>
             </ul>
           </div>
@@ -371,23 +409,45 @@ const SectionTop: React.FC = () => {
               <li className="list_progressbar">
                 <div>
                   <p className="progressbar_title">My Average APR</p>
-                  <p>
-                    <span className="progressbar">progressbar</span>
+                  <div style={{ display: 'flex' }}>
+                    <div>
+                      <CardValue fontSize="18" value={getTotalApr()} decimals={3} />
+                    </div>
+                    <div>
+                      <p>%</p>
+                    </div>
+                  </div>
+                  {/* <span className="progressbar">progressbar</span>
                     <span>
-                      <span className="progressbar_num">-</span>%
-                    </span>
-                  </p>
+                      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <div>
+                          <span className="progressbar_num">
+                            
+                            <CardValue fontSize="18" value={getTotalApr()} decimals={3} />
+                            
+                          </span>
+                        </div>
+                        <div>%</div>
+                      </div>
+                    </span> */}
+                  {/* </p> */}
                 </div>
               </li>
               <li className="list_date">
                 <ul>
                   <li>
                     <div>
-                      <span className="date_title">My Total Deposit</span>
+                      <span className="date_title">My Total Assets</span>
                     </div>
                     <div>
-                      <span className="date_num">-</span>
-                      <span className="date_name">USD</span>
+                      <div style={{ display: 'flex' }}>
+                        <span className="date_num">
+                          <CardValue fontSize="18" value={getTotalAssets()} decimals={3} />
+                        </span>
+                        <div>
+                          <span className="date_name">USD</span>
+                        </div>
+                      </div>
                     </div>
                   </li>
                   <li>
@@ -395,8 +455,12 @@ const SectionTop: React.FC = () => {
                       <span className="date_title">TAL Earned</span>
                     </div>
                     <div>
-                      <span className="date_num">-</span>
-                      <span className="date_name">TAL</span>
+                      <div style={{ display: 'flex' }}>
+                        <span className="date_num">
+                          <CardValue fontSize="18" value={getTotalEarned()} decimals={3} />
+                        </span>
+                        <span className="date_name">TAL</span>
+                      </div>
                     </div>
                   </li>
                 </ul>
