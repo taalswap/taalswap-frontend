@@ -329,7 +329,9 @@ const SectionTop: React.FC = () => {
                 </div>
                 <div className='taal_info info_portfolio'>
                     <ul>
-                        <li><span className='info_title'>MY PORTFOLIO</span>
+                        <li>
+                          <span className='info_title'>MY PORTFOLIO</span>
+                          <input type="button" value='Harvest All' style={{cursor:"pointer"}}/>
                         </li>
                         <li className='list_progressbar'>
                             <div>
