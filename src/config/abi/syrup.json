@@ -590,7 +590,7 @@
         "type": "uint256"
       }
     ],
-    "name": "safeCakeTransfer",
+    "name": "safeTaalTransfer",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
