@@ -335,7 +335,7 @@ const SectionTop: React.FC = () => {
             {/* <Link href="http://localhost:3000/#/liquidity"> */}
             <input
               type="button"
-              value="Start"
+              value={t('Start')}
               onClick={() => linkToURL('http://localhost:3000/#/liquidity')}
               style={{ cursor: 'pointer' }}
               className="start_btn"
@@ -347,7 +347,6 @@ const SectionTop: React.FC = () => {
             <div>
               <StyledTvlDic
                 className="buy_num"
-               
               >
                 <div>$</div>
                 <div>
@@ -362,7 +361,7 @@ const SectionTop: React.FC = () => {
               > */}
               <input
                 type="button"
-                value="Buy TAL"
+                value={t("Buy TAL")}
                 style={{ cursor: 'pointer' }}
                 onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
               />
@@ -434,7 +433,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <span className="info_title">{t('MY PORTFOLIO')}</span>
-                <input type="button" value="Harvest All" style={{ cursor: 'pointer' }} />
+                <input type="button" value={t("Harvest All")} style={{ cursor: 'pointer' }} />
               </li>
               <li className="list_progressbar">
                 <div>
