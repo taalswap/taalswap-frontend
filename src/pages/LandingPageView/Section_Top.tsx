@@ -217,7 +217,7 @@ const SectionTop: React.FC = () => {
         result += parseInt(multiplier.replace('X', ''))
       }
     })
-  return result / farmsStakedMemoized.length;
+  return result;
   }
 
   const rowData = farmsStakedMemoized.map((farm) => {
