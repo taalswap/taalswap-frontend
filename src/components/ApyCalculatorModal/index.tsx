@@ -98,7 +98,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridHeaderItem>
         <GridHeaderItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mr="12px" ml="12px" mb="12px">
-            {t('ROI')}
+            {t('ROI Title')}
           </Text>
         </GridHeaderItem>
         <GridHeaderItem>
