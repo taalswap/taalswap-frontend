@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 
+import styled from 'styled-components'
 import { useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
@@ -30,6 +31,19 @@ import circleImg03 from './images/cilcle_icon03.png'
 import circleImg04 from './images/cilcle_icon04.png'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
+
+const StyledTvlDic = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  // align-items: center;
+  color: red;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: flex;
+    justify-content: flex-start;
+    color: blue;
+  }
+`
 
 const SectionTop: React.FC = () => {
   const { path } = useRouteMatch()
@@ -299,6 +313,10 @@ const SectionTop: React.FC = () => {
     return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
   }
 
+  const linkToURL = (url: string) => {
+    window.location.href = url
+  }
+
   return (
     <div className="top_wrap">
       <div className="cont">
@@ -314,33 +332,41 @@ const SectionTop: React.FC = () => {
               <span>20:00</span>
               <span>SGT</span>
             </p>
-            <Link href="http://localhost:3000/#/liquidity">
-              <input type="button" value="Start" style={{ cursor: 'pointer' }} className="start_btn" />
-            </Link>
+            {/* <Link href="http://localhost:3000/#/liquidity"> */}
+            <input
+              type="button"
+              value="Start"
+              onClick={() => linkToURL('http://localhost:3000/#/liquidity')}
+              style={{ cursor: 'pointer' }}
+              className="start_btn"
+            />
+            {/* </Link> */}
           </div>
           <div className="top_buyline">
-            <p className="buy_name">Total Value Locked (TVL)</p>
-            <p className="buy_num">
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-start',
-                  alignContent: 'center',
-                }}
+            <div className="buy_name">Total Value Locked (TVL)</div>
+            <div>
+              <StyledTvlDic
+                className="buy_num"
+               
               >
-                <p>$</p>
+                <div>$</div>
                 <div>
                   <CardValue value={talTvl} color="#005046" fontSize="45" decimals={0} />
                 </div>
-              </div>
-            </p>
-            <div>
-              <Link
+              </StyledTvlDic>
+            </div>
+            <div className="buy_btnwrap">
+              {/* <Link
                 className="buy_btnwrap"
                 href="http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf"
-              >
-                <input type="button" value="Buy TAL" style={{ cursor: 'pointer' }} />
-              </Link>
+              > */}
+              <input
+                type="button"
+                value="Buy TAL"
+                style={{ cursor: 'pointer' }}
+                onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
+              />
+              {/* </Link> */}
             </div>
           </div>
         </div>
@@ -408,7 +434,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <span className="info_title">MY PORTFOLIO</span>
-                <input type="button" value='Harvest All' style={{cursor:"pointer"}}/>
+                <input type="button" value="Harvest All" style={{ cursor: 'pointer' }} />
               </li>
               <li className="list_progressbar">
                 <div>
