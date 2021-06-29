@@ -335,7 +335,10 @@ const SectionTop: React.FC = () => {
               </div>
             </p>
             <div>
-              <Link className="buy_btnwrap" href="http://localhost:3000/#/swap">
+              <Link
+                className="buy_btnwrap"
+                href="http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf"
+              >
                 <input type="button" value="Buy TAL" style={{ cursor: 'pointer' }} />
               </Link>
             </div>
