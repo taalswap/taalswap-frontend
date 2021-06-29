@@ -343,7 +343,7 @@ const SectionTop: React.FC = () => {
             {/* </Link> */}
           </div>
           <div className="top_buyline">
-            <div className="buy_name">Total Value Locked (TVL)</div>
+            <div className="buy_name">{t('Total Value Locked (TVL)')}</div>
             <div>
               <StyledTvlDic
                 className="buy_num"
@@ -375,7 +375,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <img src={circleImg01} alt="circle_icon" />
-                <span className="info_title">TAL price</span>
+                <span className="info_title">{t('TAL price')}</span>
               </li>
               <li>
                 <span className="info_num">
@@ -389,7 +389,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <img src={circleImg02} alt="circle_icon" />
-                <span className="info_title">TAL market cap</span>
+                <span className="info_title">{t('TAL market cap')}</span>
               </li>
               <li>
                 <span className="info_num">101.5M</span>
@@ -401,7 +401,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <img src={circleImg03} alt="circle_icon" />
-                <span className="info_title">TAL burnt</span>
+                <span className="info_title">{t('TAL burnt')}</span>
               </li>
               <li>
                 <span className="info_num">
@@ -415,7 +415,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <img src={circleImg04} alt="circle_icon" />
-                <span className="info_title">TAL circ. supply</span>
+                <span className="info_title">{t('TAL circ. supply')}</span>
               </li>
               <li>
                 <span className="info_num">
@@ -433,12 +433,12 @@ const SectionTop: React.FC = () => {
           <div className="taal_info info_portfolio">
             <ul>
               <li>
-                <span className="info_title">MY PORTFOLIO</span>
+                <span className="info_title">{t('MY PORTFOLIO')}</span>
                 <input type="button" value="Harvest All" style={{ cursor: 'pointer' }} />
               </li>
               <li className="list_progressbar">
                 <div>
-                  <p className="progressbar_title">My Average APR</p>
+                  <p className="progressbar_title">{t('My Average APR')}</p>
                   <div style={{ display: 'flex' }}>
                     <div>
                       <CardValue fontSize="18" value={getTotalApr()} decimals={3} />
@@ -467,7 +467,7 @@ const SectionTop: React.FC = () => {
                 <ul>
                   <li>
                     <div>
-                      <span className="date_title">My Total Assets</span>
+                      <span className="date_title">{t('My Total Assets')}</span>
                     </div>
                     <div>
                       <div style={{ display: 'flex' }}>
@@ -482,7 +482,7 @@ const SectionTop: React.FC = () => {
                   </li>
                   <li>
                     <div>
-                      <span className="date_title">TAL Earned</span>
+                      <span className="date_title">{t('TAL Earned')}</span>
                     </div>
                     <div>
                       <div style={{ display: 'flex' }}>
