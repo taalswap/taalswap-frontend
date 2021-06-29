@@ -80,6 +80,9 @@ p,span,div,input{font-weight:600;}
 .cont .farms_wrap{padding:0 0 30px;}
 .cont .farms_wrap table th {font-size:16px;}
 
+.cont .input_wrap .info_portfolio ul li:first-child{display:flex;justify-content:space-between;}
+.cont .input_wrap .info_portfolio ul li input[type=button]{box-sizing:border-box;padding:10px 25px;border-radius:8px;background:#00ab55;color:#fff;border:none;}
+
 /* section Bottom */
 .bottom_wrap{width:100%;background:#DBF7E0;margin-bottom:400px;}
 .bottom_wrap .bottom_cont{padding:0 40px;}
@@ -161,6 +164,29 @@ p,span,div,input{font-weight:600;}
 .footer_cont .footer_left p{text-align:center;margin:14px 0;font-size:13px;}
 .footer_cont .footer_menu{margin-top:10px;}
 }
-@media screen and (max-width: 600px){
+@media screen and (max-width: 760px){
 .cont .input_wrap .taal_info ul{padding:24px;}
+.top_wrap .cont{padding-top:70px;}
+.cont .home_title{font-size:26px;margin-bottom:15px;}
+.cont .home_subtit{font-size:14px;margin-bottom:15px;}
+.cont .current_time{margin-bottom:15px;}
+.cont .start_btn{margin-bottom:20px;padding:7px 30px;}
+.cont .top_buyline{padding:15px;}
+.cont .top_buyline .buy_name{font-size:20px;}
+.cont .top_buyline .buy_num{font-size:22px;margin-bottom:15px;}
+.cont .top_buyline .buy_btnwrap input[type=button]{padding:7px 15px;}
+.cont .input_wrap{padding-top:30px;}
+.cont .input_wrap .taal_info ul{margin-bottom:15px;padding:15px;}
+.cont .input_wrap .taal_info ul li .info_title{font-size:18px;}
+.cont .input_wrap .taal_info ul li{margin-bottom:10px;}
+.cont .input_wrap .taal_info ul li .info_num{font-size:26px;}
+.taal_idobox{padding:15px 0;}
+.taal_idobox .ido_textwrap p{font-size:26px;line-height:1.25;}
+.taal_idobox .ido_textwrap div p{margin-bottom:15px;}
+.cont .input_wrap .info_portfolio ul li:first-child{margin-bottom:10px;}
+.cont .input_wrap .info_portfolio ul li:nth-child(2){margin-bottom:10px;}
+.cont .farms_wrap table tr td div{font-size:14px;}
+
+.cont .input_wrap .info_portfolio ul li input[type=button]{padding:7px 15px;}
+
 }
