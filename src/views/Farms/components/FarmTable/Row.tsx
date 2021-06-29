@@ -28,6 +28,8 @@ export interface RowProps {
 
 interface RowPropsWithLoading extends RowProps {
   userDataReady: boolean
+  // multiplierAvg: number
+  
 }
 
 const cells = {
@@ -35,7 +37,7 @@ const cells = {
   farm: Farm,
   earned: Earned,
   details: Details,
-  multiplier: Multiplier,
+  // multiplier: Multiplier,
   liquidity: Liquidity,
 }
 
@@ -69,7 +71,7 @@ const FarmMobileCell = styled.td`
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
-  const { details, userDataReady, isLandingPage } = props
+  const { details, userDataReady, isLandingPage} = props
   const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
   const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)
   const shouldRenderChild = useDelayedUnmount(actionPanelExpanded, 300)
@@ -94,6 +96,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
 
+  
   const handleRenderRow = () => {
     if (!isXs) {
       return (
@@ -121,6 +124,16 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                     <CellInner>
                       <CellLayout>
                         <Apr {...props.apr} hideButton={isMobile} />
+                      </CellLayout>
+                    </CellInner>
+                  </td>
+                )
+                case 'multiplier':
+                return (
+                  <td key={key}>
+                    <CellInner>
+                      <CellLayout>
+                        <Multiplier {...props.multiplier} />
                       </CellLayout>
                     </CellInner>
                   </td>
@@ -179,7 +192,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
       {shouldRenderChild && (
         <tr>
           <td colSpan={6}>
-            <ActionPanel {...props} expanded={actionPanelExpanded} />
+            <ActionPanel {...props}  expanded={actionPanelExpanded} />
           </td>
         </tr>
       )}
