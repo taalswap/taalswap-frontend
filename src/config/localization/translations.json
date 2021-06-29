@@ -825,5 +825,7 @@
   "TAL burnt":"TAL burnt",
   "TAL circ. supply":"TAL circ. supply",
   "MY PORTFOLIO":"MY PORTFOLIO",
-  "My Average" : "My Average APR" 
+  "My Average" : "My Average APR" ,
+  "My Total Assets": "My Total Assets",
+  "TAL Earned":"TAL Earned"
 }
