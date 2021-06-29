@@ -401,7 +401,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <img src={circleImg02} alt="circle_icon" />
-                <span className="info_title">{t('TAL market cap')}</span>
+                <span className="info_title">{t('TAL Market Cap.')}</span>
               </li>
               <li>
                 <span className="info_num">101.5M</span>
@@ -413,7 +413,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <img src={circleImg03} alt="circle_icon" />
-                <span className="info_title">{t('TAL burnt')}</span>
+                <span className="info_title">{t('TAL Burnt')}</span>
               </li>
               <li>
                 <span className="info_num">
@@ -427,7 +427,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <img src={circleImg04} alt="circle_icon" />
-                <span className="info_title">{t('TAL circ. supply')}</span>
+                <span className="info_title">{t('TAL Circulating Supply')}</span>
               </li>
               <li>
                 <span className="info_num">
@@ -445,7 +445,7 @@ const SectionTop: React.FC = () => {
           <div className="taal_info info_portfolio">
             <ul>
               <li>
-                <span className="info_title">{t('MY PORTFOLIO')}</span>
+                <span className="info_title">{t('My Portfolio')}</span>
                 <input type="button" value={t("Harvest All")} style={{ cursor: 'pointer' }} />
               </li>
               <li className="list_progressbar">
