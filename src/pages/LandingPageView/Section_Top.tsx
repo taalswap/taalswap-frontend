@@ -30,6 +30,19 @@ import circleImg03 from './images/cilcle_icon03.png';
 import circleImg04 from './images/cilcle_icon04.png';
 
 
+const Usewrap = styled.ul`
+  background-color: ${({ theme }) => theme.colors.background};
+`
+const Txtcolor = styled.span`
+  color: ${({ theme }) => theme.colors.logoColor};
+`
+const Titcolor = styled.span`
+  color: ${({ theme }) => theme.colors.textSubtle};
+`
+const Titcolor2 = styled.p`
+  color: ${({ theme }) => theme.colors.logoColor};
+`
+
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const SectionTop: React.FC = () => {
@@ -290,68 +303,69 @@ const SectionTop: React.FC = () => {
             </div>
             <div className='input_wrap'>
                 <div className='taal_info'>
-                    <ul>
-                        <li><img src={circleImg01} alt="circle_icon"/>
-                            <span className='info_title'>TAL price</span>
+                  <Usewrap>
+                        <li>
+                          <img src={circleImg01} alt="circle_icon"/>
+                          <Titcolor className='info_title'>TAL price</Titcolor>
                         </li>
-                        <li><span className='info_num'>37.3051</span><span className='info_name'>USD</span>
+                        <li><Txtcolor className='info_num'>37.3051</Txtcolor><Titcolor className='info_name'>USD</Titcolor>
                         </li>
-                    </ul>
+                  </Usewrap>
                 </div>
                 <div className='taal_info'>
-                    <ul>
+                  <Usewrap>
                         <li><img src={circleImg02} alt="circle_icon"/>
-                            <span className='info_title'>TAL market cap</span>
+                          <Titcolor className='info_title'>TAL market cap</Titcolor>
                         </li>
-                        <li><span className='info_num'>101.5M</span><span className='info_name'>USD</span>
+                        <li><Txtcolor className='info_num'>3101.5M</Txtcolor><Titcolor className='info_name'>USD</Titcolor>
                         </li>
-                    </ul>
+                </Usewrap>
                 </div>
                 <div className='taal_info'>
-                    <ul>
+                <Usewrap>
                         <li><img src={circleImg03} alt="circle_icon"/>
-                            <span className='info_title'>TAL burnt</span>
+                          <Titcolor className='info_title'>TAL burnt</Titcolor>
                         </li>
-                        <li><span className='info_num'>59,566.5887</span><span className='info_name'>TAL</span>
+                        <li><Txtcolor className='info_num'>359,566.5887</Txtcolor><Titcolor className='info_name'>TAL</Titcolor>
                         </li>
-                    </ul>
+                </Usewrap>
                 </div>
                 <div className='taal_info'>
-                    <ul>
+                    <Usewrap>
                         <li><img src={circleImg04} alt="circle_icon"/>
-                            <span className='info_title'>TAL circ. supply</span>
+                          <Titcolor className='info_title'>TAL circ. supply</Titcolor>
                         </li>
-                        <li><span className='info_num'>2,709,061</span><span className='info_name'>TAL</span>
+                        <li><Txtcolor className='info_num'>32,709,061</Txtcolor><Titcolor className='info_name'>TAL</Titcolor>
                         </li>
-                        <li className='list_name'><span className='info_subname'>= <span>BSC 2.3M</span>/<span>HECO 0.2M</span>/<span>OTHERS 0.2M</span></span>
+                        <li className='list_name'><Titcolor className='info_subname'>= <span>BSC 2.3M</span>/<span>HECO 0.2M</span>/<span>OTHERS 0.2M</span></Titcolor>
                         </li>
-                    </ul>
+                    </Usewrap>
                 </div>
                 <div className='taal_info info_portfolio'>
-                    <ul>
+                <Usewrap>
                         <li>
-                          <span className='info_title'>MY PORTFOLIO</span>
+                          <Txtcolor className='info_title'>MY PORTFOLIO</Txtcolor>
                           <input type="button" value='Harvest All' style={{cursor:"pointer"}}/>
                         </li>
                         <li className='list_progressbar'>
                             <div>
-                                <p className='progressbar_title'>My Average APR</p>
-                                <p><span className='progressbar'>progressbar</span><span><span className='progressbar_num'>-</span>%</span></p>
+                                <Titcolor2 className='progressbar_title'>My Average APR</Titcolor2>
+                                <p><span className='progressbar'>progressbar</span><Titcolor><Txtcolor className='progressbar_num'>-</Txtcolor>%</Titcolor></p>
                             </div>
                         </li>
                         <li className='list_date'>
                             <ul>
                                 <li>
-                                    <div><span className='date_title'>My Total Deposit</span></div>
-                                    <div><span className='date_num'>-</span><span className='date_name'>USD</span></div>
+                                    <div><Txtcolor className='date_title'>My Total Deposit</Txtcolor></div>
+                                    <div><Txtcolor className='date_num'>-</Txtcolor><Titcolor className='date_name'>USD</Titcolor></div>
                                 </li>
                                 <li>
-                                    <div><span className='date_title'>TAL Earned</span></div>
-                                    <div><span className='date_num'>-</span><span className='date_name'>TAL</span></div>
+                                    <div><Txtcolor className='date_title'>TAL Earned</Txtcolor></div>
+                                    <div><Txtcolor className='date_num'>-</Txtcolor><Titcolor className='date_name'>TAL</Titcolor></div>
                                 </li>
                             </ul>
                         </li>
-                    </ul>
+                    </Usewrap>
                 </div>
             </div>
             <div className='farms_wrap'>
