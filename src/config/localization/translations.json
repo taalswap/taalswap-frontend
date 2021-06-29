@@ -267,6 +267,7 @@
   "We couldn't find any Taal Collectibles in your wallet.": "We couldn't find any Taal Collectibles in your wallet.",
   "You need a Taal Collectible to finish setting up your profile. If you sold or transferred your starter collectible to another wallet, you'll need to get it back or acquire a new one somehow. You can't make a new starter with this wallet address.": "You need a Taal Collectible to finish setting up your profile. If you sold or transferred your starter collectible to another wallet, you'll need to get it back or acquire a new one somehow. You can't make a new starter with this wallet address.",
   "ROI": "ROI",
+  "ROI Title": "ROI",
   "Timeframe": "Timeframe",
   "TAL per $1000": "TAL per $1000",
   "Calculated based on current rates. Compounding %freq%x daily. Rates are estimates provided for your convenience only, and by no means represent guaranteed returns.": "Calculated based on current rates. Compounding %freq%x daily. Rates are estimates provided for your convenience only, and by no means represent guaranteed returns.",
@@ -818,5 +819,14 @@
   "Starts in": "Starts in",
   "Total amount of %symbol% staked in this pool": "Total amount of %symbol% staked in this pool",
   "These pools are no longer distributing rewards. Please unstake your tokens.": "These pools are no longer distributing rewards. Please unstake your tokens.",
-  "Max. stake per user": "Max. stake per user"
+  "Max. stake per user": "Max. stake per user",
+  "TAL price" : "TAL price",
+  "TAL Market Cap." :"TAL Market Cap.",
+  "TAL Burnt":"TAL Burnt",
+  "TAL Circulating Supply":"TAL Circulating Supply",
+  "My Portfolio":"My Portfolio",
+  "My Average" : "My Average APR" ,
+  "My Total Assets": "My Total Assets",
+  "TAL Earned":"TAL Earned",
+  "Harvest All":"Harvest All"
 }

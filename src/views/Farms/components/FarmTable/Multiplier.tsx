@@ -9,11 +9,12 @@ const ReferenceElement = styled.div`
 
 export interface MultiplierProps {
   multiplier: string
+  multiplierAvg: number
 }
 
 const MultiplierWrapper = styled.div`
   color: ${({ theme }) => theme.colors.text};
-  width: 36px;
+  width: 100px;
   text-align: right;
   margin-right: 14px;
 
@@ -28,8 +29,8 @@ const Container = styled.div`
   align-items: center;
 `
 
-const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) => {
-  const displayMultiplier = multiplier ? multiplier.toLowerCase() : <Skeleton width={30} />
+const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier ,multiplierAvg}) => {
+  const displayMultiplier = multiplier ? `${multiplier.toLowerCase()} (${multiplierAvg.toFixed(2)}%)` : <Skeleton width={30} />
   const { t } = useTranslation()
   const tooltipContent = (
     <div>

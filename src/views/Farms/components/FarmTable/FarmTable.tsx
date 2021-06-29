@@ -103,29 +103,29 @@ const FarmTable: React.FC<ITableProps> = (props) => {
               <tr style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
                 <th style={{ borderRadius: '8px 0 0 0', paddingLeft: '20px' }}>
                   <CellInner>
-                    <CellLayout>Pair</CellLayout>
+                    <CellLayout>{t('Pair')}</CellLayout>
                   </CellInner>
                 </th>
                 <th>
                   <CellInner>
-                    <CellLayout>Earned</CellLayout>
+                    <CellLayout>{t('Earned')}</CellLayout>
                   </CellInner>
                 </th>
                 <th>
                   <CellInner>
-                    <CellLayout>APR</CellLayout>
+                    <CellLayout>{t('APR')}</CellLayout>
                   </CellInner>
                 </th>
                 {isXl && (
                   <>
                     <th>
                       <CellInner>
-                        <CellLayout>Liquidity</CellLayout>
+                        <CellLayout>{t('Liquidity')}</CellLayout>
                       </CellInner>
                     </th>
                     <th>
                       <CellInner>
-                        <CellLayout>Multiplier</CellLayout>
+                        <CellLayout>{t('Multiplier')}</CellLayout>
                       </CellInner>
                     </th>
                   </>
@@ -139,7 +139,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
                 ) : (
                   <th style={{ borderRadius: '0 8px 0 0' }}>
                     <CellInner>
-                      <CellLayout>Details View</CellLayout>
+                      <CellLayout>{t('Details View')}</CellLayout>
                     </CellInner>
                   </th>
                 )}
