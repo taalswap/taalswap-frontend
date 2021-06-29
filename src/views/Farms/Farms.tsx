@@ -244,6 +244,20 @@ const Farms: React.FC = () => {
     }
   }, [farmsStakedMemoized, observerIsSet])
 
+  const getMultiplierAvg = () => {
+    let result = 0
+    // const a = farmsStakedMemoized.map((row) => console.log(row.multiplier.replace('X', '')))
+    farmsStakedMemoized.forEach((row) => {
+      const multiplier = row.multiplier
+      if(multiplier !== undefined) {
+        result += parseInt(multiplier.replace('X', ''))
+      }
+    })
+  return result / farmsStakedMemoized.length;
+  }
+  
+
+
   const rowData = farmsStakedMemoized.map((farm) => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
@@ -274,6 +288,7 @@ const Farms: React.FC = () => {
       },
       multiplier: {
         multiplier: farm.multiplier,
+        multiplierAvg: getMultiplierAvg()
       },
       details: farm,
       isLandingPage: false,
