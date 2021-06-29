@@ -319,7 +319,7 @@ const SectionTop: React.FC = () => {
             </Link>
           </div>
           <div className="top_buyline">
-            <p className="buy_name">Current TVL</p>
+            <p className="buy_name">Total Value Locked (TVL)</p>
             <p className="buy_num">
               <div
                 style={{
@@ -422,9 +422,9 @@ const SectionTop: React.FC = () => {
                       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <div>
                           <span className="progressbar_num">
-                            
+
                             <CardValue fontSize="18" value={getTotalApr()} decimals={3} />
-                            
+
                           </span>
                         </div>
                         <div>%</div>
