@@ -832,5 +832,13 @@
   "Max. stake per user": "사용자당 최대 예치",
   "You have claimed your rewards!": "리워드를 이미 클레임했습니다!",
   "Swap": "교환",
-  "Start farming by staking your LP tokens": "LP 토큰을 예치하여 이자농사를 시작하세요."
+  "Start farming by staking your LP tokens": "LP 토큰을 예치하여 이자농사를 시작하세요.",
+  "TAL price" : "TAL 가격",
+  "TAL market cap" :"TAL 마캣 캡",
+  "TAL burnt":"TAL 번트",
+  "TAL circ. supply":"TAL circ. 서플라이",
+  "MY PORTFOLIO":"나의 포트폴리오",
+  "My Average APR" : "나의 평균 APR" ,
+  "My Total Assets": "나의 Assets 총합",
+  "TAL Earned":"벌어들인 TAL"
 }
