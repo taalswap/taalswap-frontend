@@ -385,7 +385,7 @@ const SectionTop: React.FC = () => {
               </li>
             </ul>
           </div>
-          <div className="taal_info">
+          <div className="taal_info ">
             <ul>
               <li>
                 <img src={circleImg04} alt="circle_icon" />
@@ -408,6 +408,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <span className="info_title">MY PORTFOLIO</span>
+                <input type="button" value='Harvest All' style={{cursor:"pointer"}}/>
               </li>
               <li className="list_progressbar">
                 <div>
