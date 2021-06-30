@@ -80,7 +80,7 @@ const SectionTop: React.FC = () => {
   }, [isActive])
 
   useEffect(() => {
-    fetch('https://taalswap-info-api.vercel.app/api/tvl', {
+    fetch('https://taalswap-api-ethereum.vercel.app/api/tvl', {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
