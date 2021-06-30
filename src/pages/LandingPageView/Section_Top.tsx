@@ -4,9 +4,17 @@ import styled from 'styled-components'
 import { useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { RowType, Link } from 'taalswap-uikit'
+import { RowType } from 'taalswap-uikit'
 
-import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
+import {
+  useFarms,
+  usePollFarmsData,
+  usePriceCakeBusd,
+  usePools,
+  useCakeVault,
+  useFetchCakeVault,
+  useFetchPublicPoolsData,
+} from 'state/hooks'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getTaalAddress } from 'utils/addressHelpers'
 import { Farm } from 'state/types'
@@ -17,7 +25,6 @@ import { orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 
-import { OptionProps } from 'components/Select/Select'
 import CardValue from 'views/Home/components/CardValue'
 import { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
 import Table from '../../views/Farms/components/FarmTable/FarmTable'
@@ -46,20 +53,16 @@ const StyledTvlDic = styled.div`
 `
 
 const SectionTop: React.FC = () => {
-  const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
-
   const cakePrice = usePriceCakeBusd()
-
   const [query, setQuery] = useState('')
-
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const [talTvl, setTalTvl] = useState(0)
   const [talPrice, setTalPrice] = useState(0)
-
+  const [talStakedTotal, setTalStakedTotal] = useState(0)
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
@@ -69,29 +72,82 @@ const SectionTop: React.FC = () => {
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
   usePollFarmsData(isArchived)
-
+  useFetchPublicPoolsData()
+  useFetchCakeVault()
   // Users with no wallet connected should see 0 as Earned amount
   // Connected users should see loading indicator until first userData has loaded
   const userDataReady = !account || (!!account && userDataLoaded)
+
+  const {
+    userData: { userShares },
+    fees: { performanceFee },
+    totalCakeInVault,
+  } = useCakeVault()
 
   const [stakedOnly, setStakedOnly] = useState(!isActive)
   useEffect(() => {
     setStakedOnly(!isActive)
   }, [isActive])
 
-  useEffect(() => {
-    fetch('https://taalswap-info-api.vercel.app/api/tvl', {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json',
-      },
+  const { pools: poolsWithoutAutoVault } = usePools(account)
+  const pools = useMemo(() => {
+    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+    const cakeAutoVault = { ...cakePool, isAutoVault: true }
+    return [cakeAutoVault, ...poolsWithoutAutoVault]
+  }, [poolsWithoutAutoVault])
+
+  const getTalStaked = useCallback(() => {
+    let result = 0
+    pools.forEach((pool) => {
+      if (pool.isAutoVault) {
+        // console.log(
+        //   `${pool.stakingToken.symbol}(${pool.isAutoVault}):  ${getBalanceNumber(
+        //     totalCakeInVault,
+        //     pool.stakingToken.decimals,
+        //   )}`,
+        // )
+        result += getBalanceNumber(totalCakeInVault, pool.stakingToken.decimals)
+      } else if (pool.sousId === 0) {
+        const manualCakeTotalMinusAutoVault = new BigNumber(pool.totalStaked).minus(totalCakeInVault)
+        // console.log(
+        //   `${pool.stakingToken.symbol}(${pool.isAutoVault}):  ${getBalanceNumber(
+        //     manualCakeTotalMinusAutoVault,
+        //     pool.stakingToken.decimals,
+        //   )}`,
+        // )
+        result += getBalanceNumber(manualCakeTotalMinusAutoVault, pool.stakingToken.decimals)
+      } else {
+        result += getBalanceNumber(pool.totalStaked, pool.stakingToken.decimals)
+      }
     })
-      .then((response) => response.json())
-      .then((response) => {
-        setTalTvl(response.data.tvl)
+
+    setTalStakedTotal(result)
+  }, [pools, totalCakeInVault])
+
+  useEffect(() => {
+    async function fetchData() {
+      let result = 0
+      getTalStaked()
+      fetch('https://taalswap-info-api.vercel.app/api/tvl', {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
       })
-    setTalPrice(cakePrice.toNumber())
-  }, [setTalTvl, cakePrice, setTalPrice])
+        .then((response) => response.json())
+        .then((response) => {
+          // console.log(`tvl : ${response.data.tvl}`)
+          // console.log(`talStakedTotal : ${talStakedTotal}`)
+          // console.log(`cakePrice.toNumber() : ${cakePrice.toNumber()}`)
+          result = parseFloat(response.data.tvl) + talStakedTotal * cakePrice.toNumber()
+          // console.log(`result : ${result}`)
+          setTalTvl(result)
+        })
+
+      setTalPrice(cakePrice.toNumber())
+    }
+    fetchData()
+  }, [talTvl, setTalTvl, cakePrice, setTalPrice, talStakedTotal, getTalStaked])
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
@@ -210,14 +266,13 @@ const SectionTop: React.FC = () => {
 
   const getMultiplierAvg = () => {
     let result = 0
-    // const a = farmsStakedMemoized.map((row) => console.log(row.multiplier.replace('X', '')))
     farmsStakedMemoized.forEach((row) => {
       const multiplier = row.multiplier
-      if(multiplier !== undefined) {
+      if (multiplier !== undefined) {
         result += parseInt(multiplier.replace('X', ''))
       }
     })
-  return result / farmsStakedMemoized.length;
+    return result
   }
 
   const rowData = farmsStakedMemoized.map((farm) => {
@@ -250,7 +305,7 @@ const SectionTop: React.FC = () => {
       },
       multiplier: {
         multiplier: farm.multiplier,
-        multiplierAvg: getMultiplierAvg()
+        multiplierAvg: getMultiplierAvg(),
       },
       details: farm,
       isLandingPage: true,
@@ -358,9 +413,7 @@ const SectionTop: React.FC = () => {
           <div className="top_buyline">
             <div className="buy_name">{t('Total Value Locked (TVL)')}</div>
             <div>
-              <StyledTvlDic
-                className="buy_num"
-              >
+              <StyledTvlDic className="buy_num">
                 <div>$</div>
                 <div>
                   <CardValue value={talTvl} color="#005046" fontSize="45" decimals={0} />
@@ -374,7 +427,7 @@ const SectionTop: React.FC = () => {
               > */}
               <input
                 type="button"
-                value={t("Buy TAL")}
+                value={t('Buy TAL')}
                 style={{ cursor: 'pointer' }}
                 onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
               />
@@ -446,18 +499,16 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <span className="info_title">{t('My Portfolio')}</span>
-                <input type="button" value={t("Harvest All")} style={{ cursor: 'pointer' }} />
+                <input type="button" value={t('Harvest All')} style={{ cursor: 'pointer' }} />
               </li>
               <li className="list_progressbar">
                 <div>
                   <p className="progressbar_title">{t('My Average APR')}</p>
-                  <div style={{ display: 'flex' }}>
-                    <div>
+                  <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                    <span className="progressbar_num">
                       <CardValue fontSize="18" value={getTotalApr()} decimals={3} />
-                    </div>
-                    <div>
-                      <p>%</p>
-                    </div>
+                    </span>
+                    <p>%</p>
                   </div>
                   {/* <span className="progressbar">progressbar</span>
                     <span>
