@@ -31,7 +31,7 @@ const Container = styled.div`
 
 const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier ,multiplierAvg}) => {
   const count = multiplier!== undefined ? parseInt(multiplier.replace('X', '')) :0
-  const displayMultiplier = multiplier ? `${multiplier.toLowerCase()} (${(count/multiplierAvg*100).toFixed(2)}%)` : <Skeleton width={30} />
+  const displayMultiplier = multiplier ? `${multiplier.toLowerCase()} (${((count/multiplierAvg)*100).toFixed(2)}%)` : <Skeleton width={30} />
   const { t } = useTranslation()
   const tooltipContent = (
     <div>

@@ -440,7 +440,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <img src={circleImg01} alt="circle_icon" />
-                <span className="info_title">{t('TAL price')}</span>
+                <span className="info_title">{t('TAL Price')}</span>
               </li>
               <li>
                 <span className="info_num">
