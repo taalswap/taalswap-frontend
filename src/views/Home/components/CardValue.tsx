@@ -45,7 +45,7 @@ const CardValue: React.FC<CardValueProps> = ({
     <Text
       bold={bold}
       fontSize={fontSize}
-      style={{ lineHeight }}
+      style={{ lineHeight, padding: 0 }}
       color={color}
       marginRight={marginRight}
       fontWeight={fontWeight}
