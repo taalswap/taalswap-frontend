@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 // Only support specific token pairs until we find a method to validate token pairs
 export enum TokenPair {
-  BNBUSDT = 'bnbusdt',
+  ETHUSDT = 'ethusdt',
 }
 
 /**
@@ -145,5 +145,5 @@ export const useTokenPairTicker = (tokenPair: TokenPair, connectOnMount: boolean
 
 // Token pair helpers
 export const useBnbUsdtTicker = (connectOnMount = true) => {
-  return useTokenPairTicker(TokenPair.BNBUSDT, connectOnMount)
+  return useTokenPairTicker(TokenPair.ETHUSDT, connectOnMount)
 }

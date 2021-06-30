@@ -24,6 +24,7 @@ const tokens = {
   taal: {
     symbol: 'TAL',
     address: {
+      3: '0x78a24accf5f557b004c1313b2cad2e85c345d971',
       4: '0xe18e460d38441027b6672363d68c9088f3d773bf',
       56: '',
       97: '0xb01258e6fb20bde11dab2b65b2ffa197d725c91c',
@@ -34,6 +35,7 @@ const tokens = {
   weth: {
     symbol: 'WETH',
     address: {
+      3: '0x46884d7849223e057226a69e5f8215d6ff1b8bd6',
       4: '0x92ecacfc94588aa99fba837be1a98738290e3252',
       56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
       97: '0x28ce78ae1acb29b22d63092f3ff61939ce537d9d',
@@ -41,10 +43,11 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
   },
-  busd: {
-    symbol: 'BUSD',
+  usdc: {
+    symbol: 'USDC',
     address: {
-      4: '0xd16431da4eafe953b4f34923cdb8d833fb1b2e7c',
+      3: '0x9c8fa1ee532f8afe9f2e27f06fd836f3c9572f71',
+      4: '0xd16431da4eafe953b4f34923cdb8d833fb1b2e7c',    // BUSD
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
       97: '0x0c290b2d7a082588411408861f6c7347a1348196',
     },
@@ -54,6 +57,7 @@ const tokens = {
   syrup: {
     symbol: 'SYRUP',
     address: {
+      3: '0xed7a3bfc065d7baabae5170478315f63f87ee0d6',
       4: '0x124bdb941df9fc548d99e21f727357e9c287772e',
       56: '',
       97: '0x7c0725d27F3f4C89d00Dc8d770B644b8aee8e614',
@@ -64,6 +68,7 @@ const tokens = {
   usdt: {
     symbol: 'USDT',
     address: {
+      3: '0x897ad6a487bd9b490d537b3860860863ae414f1e',
       4: '0xc958c2ace36870471238319bc29018cc549c126d',
       56: '',
       97: '',
@@ -74,6 +79,7 @@ const tokens = {
   qsd: {
     symbol: 'QSD',
     address: {
+      3: '',
       4: '0x07AaA29E63FFEB2EBf59B33eE61437E1a91A3bb2',
       56: '0x07AaA29E63FFEB2EBf59B33eE61437E1a91A3bb2',
       97: '',

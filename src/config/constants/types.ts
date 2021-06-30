@@ -2,6 +2,7 @@ import { TranslatableText } from 'state/types'
 
 export interface Address {
   1?: string
+  3?: string
   4?: string
   97?: string
   56?: string
