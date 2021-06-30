@@ -52,7 +52,7 @@ export const usePollFarmsData = (includeArchive = false) => {
 /**
  * Fetches the "core" farm data used globally
  * 251 = TAL-ETH LP
- * 252 = BUSD-ETH LP
+ * 252 = USDT-ETH LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
