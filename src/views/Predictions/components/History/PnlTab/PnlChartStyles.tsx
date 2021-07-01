@@ -43,7 +43,7 @@ export const SVG = styled.svg`
 
 const DefaultSlice = styled.circle<SliceProps>`
   fill: none;
-  strokeWidth: 16;
+  stroke-width: 16;
   stroke-dasharray: ${(props) => `${props.length} 339.292`};
 `
 
