@@ -10,6 +10,7 @@ import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPRCard from 'views/Home/components/EarnAPRCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import WinCard from 'views/Home/components/WinCard'
+import TimeCounter from 'components/TimeCounter'
 
 const Hero = styled.div`
   align-items: center;
@@ -89,6 +90,7 @@ const Home: React.FC = () => {
 
   return (
     <Page>
+      <TimeCounter />
       <Hero>
         <Heading as="h1" scale="xl" mb="24px" color="secondary">
           {t('TaalSwap')}
