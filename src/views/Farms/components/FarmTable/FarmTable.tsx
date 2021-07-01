@@ -69,6 +69,18 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 
+const CellInner = styled.div`
+  padding: 24px 0px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding-right: 8px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding-right: 18px;
+  }
+`
+
 const FarmTable: React.FC<ITableProps> = (props) => {
   const { isXl, isSm, isMd, isLg } = useMatchBreakpoints()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -83,17 +95,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
     })
   }
 
-  const CellInner = styled.div`
-    padding: 24px 0px;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    padding-right: 8px;
-
-    ${({ theme }) => theme.mediaQueries.xl} {
-      padding-right: 18px;
-    }
-  `
   return (
     <Container>
       <TableContainer>
