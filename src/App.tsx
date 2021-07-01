@@ -53,14 +53,34 @@ const App: React.FC = () => {
                 {/* <Route path="/" exact>
               <Home />
             </Route> */}
+
+                {/* 임시 라우팅 시작 */}
+                {/* <Route path="/farms" exact>
+                  <Redirect to="/" />
+                </Route>
+                <Route path="/staking" exact>
+                  <Redirect to="/" />
+                </Route>
+                <Route path="/farms/:isAdmin">
+                  <Farms />
+                </Route>
+                <Route path="/staking/:isAdmin">
+                  <Pools />
+                </Route> */}
+                {/* 임시 라우팅 끝 */}
+
+                {/* 정식 라우팅 시작 */}
                 <Route path="/farms">
                   <Farms />
                 </Route>
-                {/* <Route path="/pools"> */}
                 <Route path="/staking">
                   <Pools />
                 </Route>
-                <Route path="/lottery">
+                {/* 정식 라우팅 끝 */}
+
+                {/* 사용하지 않는 페이지 라우팅 시작 */}
+
+                {/* <Route path="/lottery">
                   <Lottery />
                 </Route>
                 <Route path="/ifo">
@@ -84,17 +104,16 @@ const App: React.FC = () => {
                 <Route path="/prediction">
                   <Predictions />
                 </Route>
-                {/* Redirect */}
-                {/* <Route path="/staking">
-                  <Redirect to="/pools" />
-                </Route> */}
+                
+
                 <Route path="/syrup">
-                  {/* <Redirect to="/pools" /> */}
                   <Redirect to="/staking" />
                 </Route>
                 <Route path="/nft">
                   <Redirect to="/collectibles" />
-                </Route>
+                </Route> */}
+
+                {/* 사용하지 않는 페이지 라우팅 끝 */}
                 {/* 404 */}
                 <Route component={NotFound} />
               </Switch>
