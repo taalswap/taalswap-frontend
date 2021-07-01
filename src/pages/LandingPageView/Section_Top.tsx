@@ -15,6 +15,9 @@ import {
   useFetchCakeVault,
   useFetchPublicPoolsData,
 } from 'state/hooks'
+import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
+import { useMasterchef } from 'hooks/useContract'
+import { harvest } from 'utils/callHelpers'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getTaalAddress } from 'utils/addressHelpers'
 import { Farm } from 'state/types'
@@ -63,6 +66,15 @@ const SectionTop: React.FC = () => {
   const [talTvl, setTalTvl] = useState(0)
   const [talPrice, setTalPrice] = useState(0)
   const [talStakedTotal, setTalStakedTotal] = useState(0)
+  const [maxApr, setMaxApr] = useState(0)
+  const [transactions24, setTransactions24] = useState(0)
+  const [volumeUSD24, setVolumeUSD24] = useState(0)
+  const [pendingTx, setPendingTx] = useState(false)
+
+  const farmsWithBalance = useFarmsWithBalance()
+  const masterChefContract = useMasterchef()
+  const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
+
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
@@ -146,7 +158,23 @@ const SectionTop: React.FC = () => {
 
       setTalPrice(cakePrice.toNumber())
     }
+
+    async function fetchData24h() {
+      fetch('https://taalswap-info-api.vercel.app/api/daily', {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setTransactions24(response.data.transactions)
+          setVolumeUSD24(response.data.volumeUSD)
+        })
+    }
+
     fetchData()
+    fetchData24h()
   }, [talTvl, setTalTvl, cakePrice, setTalPrice, talStakedTotal, getTalStaked])
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
@@ -338,6 +366,9 @@ const SectionTop: React.FC = () => {
     let result = 0
     let cnt = 0
     farmsStakedMemoized.forEach((farm) => {
+      if (maxApr < farm.apr) {
+        setMaxApr(farm.apr)
+      }
       if (farm.userData.earnings !== '0') {
         result += farm.apr
         cnt++
@@ -384,6 +415,20 @@ const SectionTop: React.FC = () => {
   const linkToURL = (url: string) => {
     window.location.href = url
   }
+
+  const harvestAllFarms = useCallback(async () => {
+    setPendingTx(true)
+    // eslint-disable-next-line no-restricted-syntax
+    for (const farmWithBalance of balancesWithValue) {
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        await harvest(masterChefContract, farmWithBalance.pid, account)
+      } catch (error) {
+        // TODO: find a way to handle when the user rejects transaction or it fails
+      }
+    }
+    setPendingTx(false)
+  }, [account, balancesWithValue, masterChefContract])
 
   return (
     <div className="top_wrap">
@@ -457,11 +502,12 @@ const SectionTop: React.FC = () => {
                 <span className="info_title">{t('TAL Market Cap.')}</span>
               </li>
               <li>
-                <span className="info_num">101.5M</span>
+                <span className="info_num">{talPrice * cakeSupply}</span>
                 <span className="info_name">USD</span>
               </li>
             </ul>
           </div>
+
           <div className="taal_info">
             <ul>
               <li>
@@ -499,7 +545,7 @@ const SectionTop: React.FC = () => {
             <ul>
               <li>
                 <span className="info_title">{t('My Portfolio')}</span>
-                <input type="button" value={t('Harvest All')} style={{ cursor: 'pointer' }} />
+                <input type="button" value={t('Harvest All')} style={{ cursor: 'pointer' }} onClick={harvestAllFarms} />
               </li>
               <li className="list_progressbar">
                 <div>
