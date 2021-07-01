@@ -80,12 +80,23 @@ const tokens = {
     symbol: 'QSD',
     address: {
       3: '',
-      4: '0x07AaA29E63FFEB2EBf59B33eE61437E1a91A3bb2',
-      56: '0x07AaA29E63FFEB2EBf59B33eE61437E1a91A3bb2',
+      4: '0x07aaa29e63ffeb2ebf59b33ee61437e1a91a3bb2',
+      56: '0x07aaa29e63ffeb2ebf59b33ee61437e1a91a3bb2',
       97: '',
     },
     decimals: 18,
     projectLink: 'https://chemix.io/home',
+  },
+  talk: {
+    symbol: 'TALK',
+    address: {
+      3: '0xce052e71e31c8a061172ddb700553b6ef23b03c7',
+      4: '',
+      56: '',
+      97: '',
+    },
+    decimals: 18,
+    projectLink: 'https://talken.io/',
   },
 }
 
