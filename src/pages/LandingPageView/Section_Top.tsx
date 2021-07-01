@@ -392,7 +392,7 @@ const SectionTop: React.FC = () => {
           <div>
             <p className="home_title">
               Boost your assets the way <br />
-              you&apos;re never imagined
+              you&apos;ve never imagined
             </p>
             <p className="home_subtit">A multi-chain AMM protocol to safeguard and increse your assets</p>
             <p className="current_time">
