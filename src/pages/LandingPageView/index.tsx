@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 // import TopBar from './TopBar'
 import useAuth from 'hooks/useAuth'
 import { useWeb3React } from '@web3-react/core'
@@ -12,16 +11,11 @@ import SectionBottom from './Section_Bottom'
 import Footer from './Footer'
 import './App.css'
 
-const AppWrapper = styled.div`
-  height: '100%';
-  width: '100%';
-`
-
 const LandingPageView = () => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
-  const { currentLanguage, setLanguage, t } = useTranslation()
+  const { currentLanguage, setLanguage } = useTranslation()
   return (
     <div className="wrap">
       <TopBar

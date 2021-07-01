@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text } from 'taalswap-uikit'
+import { Heading, RowType, Toggle, Text } from 'taalswap-uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -92,11 +92,12 @@ const ViewControls = styled.div`
   }
 `
 
-const StyledImage = styled(Image)`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 58px;
-`
+// const StyledImage = styled(Image)`
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: 58px;
+// `
+
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = () => {
@@ -249,14 +250,12 @@ const Farms: React.FC = () => {
     // const a = farmsStakedMemoized.map((row) => console.log(row.multiplier.replace('X', '')))
     farmsStakedMemoized.forEach((row) => {
       const multiplier = row.multiplier
-      if(multiplier !== undefined) {
+      if (multiplier !== undefined) {
         result += parseInt(multiplier.replace('X', ''))
       }
     })
-  return result;
+    return result
   }
-
-
 
   const rowData = farmsStakedMemoized.map((farm) => {
     const { token, quoteToken } = farm
@@ -288,7 +287,7 @@ const Farms: React.FC = () => {
       },
       multiplier: {
         multiplier: farm.multiplier,
-        multiplierAvg: getMultiplierAvg()
+        multiplierAvg: getMultiplierAvg(),
       },
       details: farm,
       isLandingPage: false,

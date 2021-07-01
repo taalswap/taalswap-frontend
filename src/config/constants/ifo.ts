@@ -1,6 +1,6 @@
 // import tokens from './tokens'
-import farms from './farms'
-import { Ifo, Token } from './types'
+// import farms from './farms'
+import { Ifo } from './types'
 
 // Don't use IFO
 // const cakeBnbLpToken: Token = {
