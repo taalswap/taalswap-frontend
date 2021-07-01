@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
-import { Box, Card, Typography } from '@material-ui/core'
-import { useTheme, alpha, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
 
 const CountDownItem = styled.div`
@@ -38,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 const TimeCounter = () => {
   const classes = useStyles()
-  const [month, setMonth] = useState('00')
   const [days, setDays] = useState('00')
   const [hours, setHours] = useState('00')
   const [minutes, setMinutes] = useState('00')
@@ -62,7 +60,6 @@ const TimeCounter = () => {
       }, 1000)
       return () => clearInterval(interval)
     } catch (error) {
-      console.log(error)
       return null
     }
   }, [])
