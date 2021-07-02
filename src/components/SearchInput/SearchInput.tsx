@@ -11,6 +11,7 @@ const StyledInput = styled(Input)`
   padding:0 0 0 30px;
   height:40px;
   border:1px solid rgb(74 74 104 / 10%);
+  font-weight:400;
 `
 
 const InputWrapper = styled.div`
