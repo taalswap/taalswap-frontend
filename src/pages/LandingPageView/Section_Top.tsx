@@ -140,7 +140,7 @@ const SectionTop: React.FC = () => {
     async function fetchData() {
       let result = 0
       getTalStaked()
-      fetch('https://taalswap-info-api.vercel.app/api/tvl', {
+      fetch('https://taalswap-api-ethereum.vercel.app/api/tvl', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -160,7 +160,7 @@ const SectionTop: React.FC = () => {
     }
 
     async function fetchData24h() {
-      fetch('https://taalswap-info-api.vercel.app/api/daily', {
+      fetch('https://taalswap-api-ethereum.vercel.app/api/daily', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -176,6 +176,18 @@ const SectionTop: React.FC = () => {
     fetchData()
     fetchData24h()
   }, [talTvl, setTalTvl, cakePrice, setTalPrice, talStakedTotal, getTalStaked])
+    fetch('https://taalswap-api-ethereum.vercel.app/api/tvl', {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setTalTvl(response.data.tvl)
+      })
+    setTalPrice(cakePrice.toNumber())
+  }, [setTalTvl, cakePrice, setTalPrice])
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
