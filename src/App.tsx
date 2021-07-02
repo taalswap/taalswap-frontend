@@ -53,30 +53,31 @@ const App: React.FC = () => {
                 <Route path="/home" exact>
                   <Home />
                 </Route>
-
-                {/* 임시 라우팅 시작 */}
-                {/* <Route path="/farms" exact>
-                  <Redirect to="/" />
-                </Route>
-                <Route path="/staking" exact>
-                  <Redirect to="/" />
-                </Route>
-                <Route path="/farms/:isAdmin">
-                  <Farms />
-                </Route>
-                <Route path="/staking/:isAdmin">
-                  <Pools />
-                </Route> */}
-                {/* 임시 라우팅 끝 */}
-
-                {/* 정식 라우팅 시작 */}
-                <Route path="/farms">
-                  <Farms />
-                </Route>
-                <Route path="/staking">
-                  <Pools />
-                </Route>
-                {/* 정식 라우팅 끝 */}
+                {process.env.REACT_APP_SITE_STOP === 'true' ? (
+                  <>
+                    <Route path="/farms" exact>
+                      <Redirect to="/" />
+                    </Route>
+                    <Route path="/staking" exact>
+                      <Redirect to="/" />
+                    </Route>
+                    <Route path="/farms/:isAdmin">
+                      <Farms />
+                    </Route>
+                    <Route path="/staking/:isAdmin">
+                      <Pools />
+                    </Route>
+                  </>
+                ) : (
+                  <>
+                    <Route path="/farms">
+                      <Farms />
+                    </Route>
+                    <Route path="/staking">
+                      <Pools />
+                    </Route>
+                  </>
+                )}
 
                 {/* 사용하지 않는 페이지 라우팅 시작 */}
 
