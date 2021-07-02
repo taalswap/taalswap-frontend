@@ -176,18 +176,6 @@ const SectionTop: React.FC = () => {
     fetchData()
     fetchData24h()
   }, [talTvl, setTalTvl, cakePrice, setTalPrice, talStakedTotal, getTalStaked])
-    fetch('https://taalswap-api-ethereum.vercel.app/api/tvl', {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setTalTvl(response.data.tvl)
-      })
-    setTalPrice(cakePrice.toNumber())
-  }, [setTalTvl, cakePrice, setTalPrice])
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
