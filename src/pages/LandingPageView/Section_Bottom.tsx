@@ -16,7 +16,7 @@ const Section_Bottom = () => {
                 Fire up your project with <span style={{ color: '#00ab55' }}>TaalSwap IDO</span>
               </p>
               <Link href="https://ido.taalswap.finance/" target="_blank">
-                <input type="button" value="Go Now" style={{ cursor: 'pointer' }} />
+                <input type="button" value={t('Go Now')} style={{ cursor: 'pointer' }} />
               </Link>
             </div>
           </div>
