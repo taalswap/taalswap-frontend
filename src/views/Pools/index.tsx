@@ -235,7 +235,7 @@ const Pools: React.FC = () => {
           />
           <SearchSortContainer>
             <Flex flexDirection="column" width="50%">
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+              <Text fontSize="12px" color="textSubtle" textTransform="uppercase">
                 {t('Sort by')}
               </Text>
               <ControlStretch>
@@ -263,7 +263,7 @@ const Pools: React.FC = () => {
               </ControlStretch>
             </Flex>
             <Flex flexDirection="column" width="50%">
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+              <Text fontSize="12px" color="textSubtle" textTransform="uppercase">
                 {t('Search')}
               </Text>
               <ControlStretch>

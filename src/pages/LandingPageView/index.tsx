@@ -18,7 +18,7 @@ const AppWrapper = styled.div`
 const LandingPageView = () => {
   return (
     <AppWrapper className='wrap'>
-        <Teaser />
+        {/* <Teaser /> */}
         <TopBar />
         <SectionTop />
         <TableWrap />
