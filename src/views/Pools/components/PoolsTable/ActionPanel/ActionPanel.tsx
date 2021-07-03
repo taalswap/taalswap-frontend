@@ -173,16 +173,20 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const blocksRow =
     blocksRemaining || blocksUntilStart ? (
       <Flex mb="8px" justifyContent="space-between">
-        <Text>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
-        <Flex>
-          <Link external href={getBscScanBlockCountdownUrl(endBlock)}>
-            <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
-            <Text ml="4px" color="primary" textTransform="lowercase">
-              {t('Blocks')}
-            </Text>
-            <TimerIcon ml="4px" color="primary" />
-          </Link>
-        </Flex>
+        <div>
+          <Text ml="4px" color="primary">
+            {hasPoolStarted ? t('Ends in') : t('Starts in')} :
+          </Text>
+          <Flex>
+            <Link external href={getBscScanBlockCountdownUrl(endBlock)}>
+              <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
+              <Text ml="4px" color="primary" textTransform="lowercase">
+                {t('Blocks')}
+              </Text>
+              <TimerIcon ml="4px" color="primary" />
+            </Link>
+          </Flex>
+        </div>
       </Flex>
     ) : (
       <Skeleton width="56px" height="16px" />
@@ -224,7 +228,6 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {maxStakeRow}
         {(isXs || isSm) && aprRow}
         {(isXs || isSm || isMd) && totalStakedRow}
-        {shouldShowBlockCountdown && blocksRow}
         <Flex mb="8px" mr='30px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown(true)}
         onMouseLeave={() => setIsShown(false)}>
         <svg id="그룹_882" data-name="그룹 882" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -288,6 +291,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} TAL ${t('Stake').toLocaleLowerCase()} TAL`}
           </Text>
         )}
+        {shouldShowBlockCountdown && blocksRow}
         <Harvest {...pool} userDataLoaded={userDataLoaded} />
         <Stake pool={pool} userDataLoaded={userDataLoaded} />
       </ActionContainer>
