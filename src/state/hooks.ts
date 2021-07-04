@@ -52,7 +52,7 @@ export const usePollFarmsData = (includeArchive = false) => {
 /**
  * Fetches the "core" farm data used globally
  * 251 = TAL-ETH LP
- * 252 = USDT-ETH LP
+ * 252 = USDC-ETH LP    (was BUSD-BNB LP)
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
@@ -328,7 +328,7 @@ export const useAchievements = () => {
 // TODO : Ethereum에서는 수정 필요
 export const usePriceBnbBusd = (): BigNumber => {
   // const bnbBusdFarm = useFarmFromPid(252)
-  const bnbBusdFarm = useFarmFromPid(2)
+  const bnbBusdFarm = useFarmFromPid(2)   // 252 -> 2
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 

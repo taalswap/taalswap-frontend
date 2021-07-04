@@ -31,19 +31,19 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 2,
-    lpSymbol: 'USDT-ETH LP',
+    lpSymbol: 'USDT-ETH LP',    // <-- USDC-ETH 로 변경
     lpAddresses: {
       3: '0xd3ebd345775b0491e8842fdbad71256f5b15bf8a',
       4: '0x73b1501e0ab88dc81d95f8ed9aa67938afabda4b',
       97: '0xd2dafced17fc1679fbabfd02d10b001405dcd299',
       56: '',
     },
-    token: tokens.usdt,
+    token: tokens.usdt,         // <-- usdc 로 변경
     quoteToken: tokens.weth,
   },
   {
     pid: 3,
-    lpSymbol: 'ETH-USDC LP',
+    lpSymbol: 'ETH-USDC LP',    // <-- ETH-USDT 로 변경
     lpAddresses: {
       3: '0x1e5aefcbf561cade978cf7c87762e97e772090c5',
       4: '0x1a7bab68f22eb8f84e8920b120bec8130efd6db8',
@@ -51,7 +51,7 @@ const farms: FarmConfig[] = [
       56: '',
     },
     token: tokens.weth,
-    quoteToken: tokens.usdc,
+    quoteToken: tokens.usdc,    // <-- usdt 로 변경
   },
   {
     pid: 4,
