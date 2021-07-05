@@ -420,7 +420,7 @@ const SectionTop: React.FC = () => {
               Boost your assets the way <br />
               you&apos;re never imagined
             </p>
-            <p className="home_subtit">A multi-chain AMM protocol to safeguard and increse your assets</p>
+            <p className="home_subtit">A multi-chain AMM protocol to safeguard and increase your assets</p>
             <input
               type="button"
               value={t('Start')}
@@ -467,7 +467,7 @@ const SectionTop: React.FC = () => {
               <li>
                 <div>
                   <img src={info2Img01} alt="info_icon" />
-                  <Titcolor className="img_tit">Maximum ARP</Titcolor>
+                  <Titcolor className="img_tit">{t('Maximum ARP')}</Titcolor>
                 </div>
                 <Txtcolor className="info_num" style={{ display: 'flex', justifyContent: 'flex-start' }}>
                   <span>
@@ -479,7 +479,7 @@ const SectionTop: React.FC = () => {
               <li>
                 <div>
                   <img src={info2Img02} alt="info_icon" />
-                  <Titcolor className="img_tit"># of Transactions (24H)</Titcolor>
+                  <Titcolor className="img_tit">{t('# of Transactions (24H)')}</Titcolor>
                 </div>
                 <Txtcolor className="info_num">
                   <CardValue fontSize="29" value={transactions24} decimals={0} />
@@ -488,7 +488,7 @@ const SectionTop: React.FC = () => {
               <li>
                 <div>
                   <img src={info2Img03} alt="info_icon" />
-                  <Titcolor className="img_tit"># of Volume USD (24H)</Titcolor>
+                  <Titcolor className="img_tit">{t('# of Volume USD (24H)')}</Titcolor>
                 </div>
                 <div>
                   <Txtcolor className="info_num">
@@ -505,58 +505,18 @@ const SectionTop: React.FC = () => {
                 <img src={info2Img04} alt="info_icon" />
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
                   <Txtcolor style={{ marginRight: '0px', width: 'auto' }} className="info_title">
-                    Halving Countdown
+                    {t('Halving Countdown')}
                   </Txtcolor>
                 </div>
                 <TimeCounter />
               </li>
               <li>
-                {/* <Flex flexDirection="row" mr="10px" mt="10px">
-                  <img src={info2Img01} alt="info_icon" />
-                  <Flex alignItems="center">
-                    <Text fontSize="14px" bold color="textSubtle" mr="4px">
-                      {t('Auto TAL Bounty')}
-                    </Text>
-                  </Flex>
-                </Flex>
-                <Flex alignItems="center" justifyContent="space-between" mt="10px">
-                  <Flex flexDirection="column" mr="10px">
-                    <Heading>
-                      {hasFetchedCakeBounty ? (
-                        <Balance fontSize="16px" bold value={cakeBountyToDisplay} decimals={3} />
-                      ) : (
-                        <Skeleton height={20} width={96} mb="5px" />
-                      )}
-                    </Heading>
-                    {hasFetchedDollarBounty ? (
-                      <Balance
-                        fontSize="12px"
-                        color="textSubtle"
-                        value={dollarBountyToDisplay}
-                        decimals={2}
-                        unit=" USD"
-                        prefix="~"
-                      />
-                    ) : (
-                      <Skeleton height={16} width={62} />
-                    )}
-                  </Flex>
-
-                  <Button
-                    disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
-                    onClick={onPresentBountyModal}
-                    scale="sm"
-                    mr="5px"
-                  >
-                    {t('Claim')}
-                  </Button>
-                </Flex> */}
                 <div>
                   <img src={info2Img01} alt="info_icon" />
                   <Titcolor className="info_name">{t('Auto TAL Bounty')}</Titcolor>
                 </div>
-                <div style={{ border: '1px solid black', display: 'flex', justifyContent: 'flex-end' }}>
-                  <div style={{ border: '1px solid blue' }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <div>
                     {hasFetchedCakeBounty ? (
                       <Balance fontSize="16px" bold value={cakeBountyToDisplay} decimals={3} />
                     ) : (
@@ -576,8 +536,14 @@ const SectionTop: React.FC = () => {
                       <Skeleton height={16} width={62} />
                     )}
                   </div>
-                  <div style={{ border: '1px solid red' }}>
-                    <input type="button" value="Claim" style={{ cursor: 'pointer' }} />
+                  <div>
+                    <input
+                      disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
+                      type="button"
+                      value={t('Claim')}
+                      style={{ cursor: 'pointer' }}
+                      onClick={onPresentBountyModal}
+                    />
                   </div>
                 </div>
               </li>
