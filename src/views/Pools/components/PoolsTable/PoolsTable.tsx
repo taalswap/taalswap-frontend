@@ -91,7 +91,7 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
               <StyledCell role="cell" style={{ flex: '2 0 80px' }}>
                 <CellContent>
                   <Text fontSize="14px" color="textSubtle">
-                    {t('Ends in')}
+                    {t('Blocks')}
                   </Text>
                 </CellContent>
               </StyledCell>
