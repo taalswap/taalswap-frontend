@@ -1,10 +1,23 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 
 import styled from 'styled-components'
-import { useRouteMatch, useLocation } from 'react-router-dom'
+import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { RowType } from 'taalswap-uikit'
+import {
+  Image,
+  Heading,
+  RowType,
+  Toggle,
+  Text,
+  Link,
+  Skeleton,
+  Flex,
+  Box,
+  HelpIcon,
+  Button,
+  useModal,
+} from 'taalswap-uikit'
 
 import {
   useFarms,
@@ -16,6 +29,8 @@ import {
   useFetchPublicPoolsData,
 } from 'state/hooks'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
+import Balance from 'components/Balance'
+import BountyModal from 'views/Pools/components/BountyModal'
 import { useMasterchef } from 'hooks/useContract'
 import { harvest } from 'utils/callHelpers'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
@@ -24,10 +39,11 @@ import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
-import { orderBy } from 'lodash'
+import { max, orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 
+import TimeCounter from 'components/TimeCounter'
 import CardValue from 'views/Home/components/CardValue'
 import { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
 import Table from '../../views/Farms/components/FarmTable/FarmTable'
@@ -39,12 +55,16 @@ import circleImg01 from './images/cilcle_icon01.png'
 import circleImg02 from './images/cilcle_icon02.png'
 import circleImg03 from './images/cilcle_icon03.png'
 import circleImg04 from './images/cilcle_icon04.png'
+import info2Img01 from './images/info2_icon01.png'
+import info2Img02 from './images/info2_icon02.png'
+import info2Img03 from './images/info2_icon03.png'
+import info2Img04 from './images/info2_icon04.png'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const StyledTvlDic = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
   // align-items: center;
   color: red;
@@ -54,10 +74,31 @@ const StyledTvlDic = styled.div`
     color: blue;
   }
 `
+const Usewrap = styled.ul`
+  background-color: ${({ theme }) => theme.colors.background};
+`
+const Txtcolor = styled.span`
+  color: ${({ theme }) => theme.colors.logoColor};
+`
+const Titcolor = styled.span`
+  color: ${({ theme }) => theme.colors.textSubtle};
+`
+const Titcolor2 = styled.p`
+  color: ${({ theme }) => theme.colors.logoColor};
+`
+const Txtcolor3 = styled.span`
+  color: ${({ theme }) => theme.colors.logoColor};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.logoColor};
+`
 
 const SectionTop: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
+  const {
+    estimatedCakeBountyReward,
+    totalPendingCakeHarvest,
+    fees: { callFee },
+  } = useCakeVault()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
@@ -74,7 +115,16 @@ const SectionTop: React.FC = () => {
   const farmsWithBalance = useFarmsWithBalance()
   const masterChefContract = useMasterchef()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
+  const cakePriceBusd = usePriceCakeBusd()
 
+  const estimatedDollarBountyReward = useMemo(() => {
+    return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)
+  }, [cakePriceBusd, estimatedCakeBountyReward])
+
+  const hasFetchedDollarBounty = estimatedDollarBountyReward.gte(0)
+  const hasFetchedCakeBounty = estimatedCakeBountyReward ? estimatedCakeBountyReward.gte(0) : false
+  const dollarBountyToDisplay = hasFetchedDollarBounty ? getBalanceNumber(estimatedDollarBountyReward, 18) : 0
+  const cakeBountyToDisplay = hasFetchedCakeBounty ? getBalanceNumber(estimatedCakeBountyReward, 18) : 0
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
@@ -140,7 +190,7 @@ const SectionTop: React.FC = () => {
     async function fetchData() {
       let result = 0
       getTalStaked()
-      fetch('https://taalswap-api-ethereum.vercel.app/api/tvl', {
+      fetch('https://taalswap-info-api.vercel.app/api/tvl', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -160,7 +210,7 @@ const SectionTop: React.FC = () => {
     }
 
     async function fetchData24h() {
-      fetch('https://taalswap-api-ethereum.vercel.app/api/daily', {
+      fetch('https://taalswap-info-api.vercel.app/api/daily', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -215,6 +265,10 @@ const SectionTop: React.FC = () => {
     },
     [cakePrice, query, isActive],
   )
+
+  const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value)
+  }
 
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
@@ -274,74 +328,6 @@ const SectionTop: React.FC = () => {
     numberOfFarmsVisible,
   ])
 
-  useEffect(() => {
-    const showMoreFarms = (entries) => {
-      const [entry] = entries
-      if (entry.isIntersecting) {
-        setNumberOfFarmsVisible((farmsCurrentlyVisible) => farmsCurrentlyVisible + NUMBER_OF_FARMS_VISIBLE)
-      }
-    }
-
-    if (!observerIsSet) {
-      const loadMoreObserver = new IntersectionObserver(showMoreFarms, {
-        rootMargin: '0px',
-        threshold: 1,
-      })
-      loadMoreObserver.observe(loadMoreRef.current)
-      setObserverIsSet(true)
-    }
-  }, [farmsStakedMemoized, observerIsSet])
-
-  const getMultiplierAvg = () => {
-    let result = 0
-    farmsStakedMemoized.forEach((row) => {
-      const multiplier = row.multiplier
-      if (multiplier !== undefined) {
-        result += parseInt(multiplier.replace('X', ''))
-      }
-    })
-    return result
-  }
-
-  const rowData = farmsStakedMemoized.map((farm) => {
-    const { token, quoteToken } = farm
-    const tokenAddress = token.address
-    const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('TAAL', '')
-
-    const row: RowProps = {
-      apr: {
-        value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
-        multiplier: farm.multiplier,
-        lpLabel,
-        tokenAddress,
-        quoteTokenAddress,
-        cakePrice,
-        originalValue: farm.apr,
-      },
-      farm: {
-        image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
-        label: lpLabel,
-        pid: farm.pid,
-      },
-      earned: {
-        earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
-        pid: farm.pid,
-      },
-      liquidity: {
-        liquidity: farm.liquidity,
-      },
-      multiplier: {
-        multiplier: farm.multiplier,
-        multiplierAvg: getMultiplierAvg(),
-      },
-      details: farm,
-      isLandingPage: true,
-    }
-
-    return row
-  })
-
   const getTotalAssets = () => {
     let result = 0
 
@@ -383,34 +369,29 @@ const SectionTop: React.FC = () => {
     return returnValue
   }
 
-  const renderContent = (): JSX.Element => {
-    const columnSchema = DesktopColumnSchema
+  const TooltipComponent = () => (
+    <>
+      <Text mb="16px">{t('This bounty is given as a reward for providing a service to other users.')}</Text>
+      <Text mb="16px">
+        {t(
+          'Whenever you successfully claim the bounty, you’re also helping out by activating the Auto TAL Pool’s compounding function for everyone.',
+        )}
+      </Text>
+      <Text style={{ fontWeight: 'bold' }}>
+        {t('Auto-Compound Bounty: %fee%% of all Auto TAL pool users pending yield', { fee: callFee / 100 })}
+      </Text>
+    </>
+  )
 
-    const columns = columnSchema.map((column) => ({
-      id: column.id,
-      name: column.name,
-      label: column.label,
-      sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
-        switch (column.name) {
-          case 'farm':
-            return b.id - a.id
-          case 'apr':
-            if (a.original.apr.value && b.original.apr.value) {
-              return Number(a.original.apr.value) - Number(b.original.apr.value)
-            }
-
-            return 0
-          case 'earned':
-            return a.original.earned.earnings - b.original.earned.earnings
-          default:
-            return 1
-        }
-      },
-      sortable: column.sortable,
-    }))
-
-    return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
-  }
+  const [onPresentBountyModal] = useModal(
+    <BountyModal
+      cakeBountyToDisplay={cakeBountyToDisplay}
+      dollarBountyToDisplay={dollarBountyToDisplay}
+      totalPendingCakeHarvest={totalPendingCakeHarvest}
+      callFee={callFee}
+      TooltipComponent={TooltipComponent}
+    />,
+  )
 
   const linkToURL = (url: string) => {
     window.location.href = url
@@ -430,17 +411,6 @@ const SectionTop: React.FC = () => {
     setPendingTx(false)
   }, [account, balancesWithValue, masterChefContract])
 
-  function MoneyFormat(labelValue) {
-    return labelValue
-    // return Math.abs(Number(labelValue)) >= 1.0e9
-    //   ? Math.abs(Number(labelValue)) / 1.0e9 + 'B'
-    //   : Math.abs(Number(labelValue)) >= 1.0e6
-    //   ? Math.abs(Number(labelValue)) / 1.0e6 + 'M'
-    //   : Math.abs(Number(labelValue)) >= 1.0e3
-    //   ? Math.abs(Number(labelValue)) / 1.0e3 + 'K'
-    //   : Math.abs(Number(labelValue))
-  }
-
   return (
     <div className="top_wrap">
       <div className="cont">
@@ -448,179 +418,222 @@ const SectionTop: React.FC = () => {
           <div>
             <p className="home_title">
               Boost your assets the way <br />
-              you&apos;ve never imagined
+              you&apos;re never imagined
             </p>
             <p className="home_subtit">A multi-chain AMM protocol to safeguard and increase your assets</p>
-            <p className="current_time">
-              <span>05/25</span>
-              <span>20:00</span>
-              <span>SGT</span>
-            </p>
-            {/* <Link href="http://localhost:3000/#/liquidity"> */}
             <input
               type="button"
               value={t('Start')}
-              onClick={() => linkToURL('http://localhost:3000/#/liquidity')}
               style={{ cursor: 'pointer' }}
               className="start_btn"
+              onClick={() => linkToURL('http://localhost:3000/#/liquidity')}
             />
-            {/* </Link> */}
           </div>
           <div className="top_buyline">
-            <div className="buy_name">{t('Total Value Locked (TVL)')}</div>
-            <div>
-              <StyledTvlDic className="buy_num">
-                <div>$</div>
-                <div>
-                  <CardValue value={talTvl} color="#005046" fontSize="45" decimals={0} />
-                </div>
-              </StyledTvlDic>
-            </div>
+            <p className="buy_name">{t('Total Value Locked (TVL)')}</p>
+            <StyledTvlDic className="buy_num">
+              <div>$</div>
+              <div>
+                <CardValue value={talTvl} color="#005046" fontSize="45" decimals={0} />
+              </div>
+            </StyledTvlDic>
             <div className="buy_btnwrap">
-              {/* <Link
-                className="buy_btnwrap"
-                href="http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf"
-              > */}
               <input
                 type="button"
                 value={t('Buy TAL')}
                 style={{ cursor: 'pointer' }}
                 onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
               />
-              {/* </Link> */}
             </div>
           </div>
         </div>
         <div className="input_wrap">
-          <div className="taal_info">
-            <ul>
+          <div className="taal_info info01">
+            <Usewrap>
               <li>
                 <img src={circleImg01} alt="circle_icon" />
-                <span className="info_title">{t('TAL Price')}</span>
+                <Titcolor className="info_title">{t('TAL Price')}</Titcolor>
               </li>
               <li>
-                <span className="info_num">
+                <Txtcolor className="info_num">
                   <CardValue fontSize="29" value={talPrice} />
-                </span>
-                <span className="info_name">USD</span>
+                </Txtcolor>
+                <Titcolor className="info_name">USD</Titcolor>
               </li>
-            </ul>
+            </Usewrap>
           </div>
-          <div className="taal_info">
-            <ul>
+          <div className="taal_info info02">
+            <Usewrap>
               <li>
-                <img src={circleImg02} alt="circle_icon" />
-                <span className="info_title">{t('TAL Market Cap.')}</span>
+                <div>
+                  <img src={info2Img01} alt="info_icon" />
+                  <Titcolor className="img_tit">{t('Maximum ARP')}</Titcolor>
+                </div>
+                <Txtcolor className="info_num" style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <span>
+                    <CardValue fontSize="29" value={maxApr} />
+                  </span>
+                  %
+                </Txtcolor>
               </li>
               <li>
-                <span className="info_num">{talPrice * cakeSupply}</span>
-                <span className="info_name">USD</span>
+                <div>
+                  <img src={info2Img02} alt="info_icon" />
+                  <Titcolor className="img_tit">{t('# of Transactions (24H)')}</Titcolor>
+                </div>
+                <Txtcolor className="info_num">
+                  <CardValue fontSize="29" value={transactions24} decimals={0} />
+                </Txtcolor>
               </li>
-            </ul>
+              <li>
+                <div>
+                  <img src={info2Img03} alt="info_icon" />
+                  <Titcolor className="img_tit">{t('# of Volume USD (24H)')}</Titcolor>
+                </div>
+                <div>
+                  <Txtcolor className="info_num">
+                    <CardValue fontSize="29" value={volumeUSD24} decimals={0} />
+                  </Txtcolor>
+                  <Titcolor className="info_name">USD</Titcolor>
+                </div>
+              </li>
+            </Usewrap>
           </div>
+          <div className="taal_info info03">
+            <Usewrap>
+              <li style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <img src={info2Img04} alt="info_icon" />
+                <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+                  <Txtcolor style={{ marginRight: '0px', width: 'auto' }} className="info_title">
+                    {t('Halving Countdown')}
+                  </Txtcolor>
+                </div>
+                <TimeCounter />
+              </li>
+              <li>
+                <div>
+                  <img src={info2Img01} alt="info_icon" />
+                  <Titcolor className="info_name">{t('Auto TAL Bounty')}</Titcolor>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <div>
+                    {hasFetchedCakeBounty ? (
+                      <Balance fontSize="16px" bold value={cakeBountyToDisplay} decimals={3} />
+                    ) : (
+                      <Skeleton height={20} width={96} mb="5px" />
+                    )}
 
-          <div className="taal_info">
-            <ul>
-              <li>
-                <img src={circleImg03} alt="circle_icon" />
-                <span className="info_title">{t('TAL Burnt')}</span>
+                    {hasFetchedDollarBounty ? (
+                      <Balance
+                        fontSize="12px"
+                        color="textSubtle"
+                        value={dollarBountyToDisplay}
+                        decimals={2}
+                        unit=" USD"
+                        prefix="~"
+                      />
+                    ) : (
+                      <Skeleton height={16} width={62} />
+                    )}
+                  </div>
+                  <div>
+                    <input
+                      disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
+                      type="button"
+                      value={t('Claim')}
+                      style={{ cursor: 'pointer' }}
+                      onClick={onPresentBountyModal}
+                    />
+                  </div>
+                </div>
               </li>
-              <li>
-                <span className="info_num">
-                  <CardValue fontSize="29" value={burnedBalance} decimals={0} />
-                </span>
-                <span className="info_name">TAL</span>
-              </li>
-            </ul>
+            </Usewrap>
           </div>
-          <div className="taal_info ">
-            <ul>
+          <div className="taal_info info04">
+            <Usewrap>
               <li>
-                <img src={circleImg04} alt="circle_icon" />
-                <span className="info_title">{t('TAL Circulating Supply')}</span>
+                <div>
+                  <img src={circleImg02} alt="circle_icon" />
+                  <Titcolor className="info_title">{t('TAL Market Cap.')}</Titcolor>
+                </div>
+                <div>
+                  <Txtcolor className="info_num">
+                    <CardValue fontSize="29" value={talPrice * cakeSupply} />
+                  </Txtcolor>
+                  <Titcolor className="info_name">USD</Titcolor>
+                </div>
               </li>
               <li>
-                <span className="info_num">
-                  <CardValue fontSize="29" value={cakeSupply} decimals={0} />
-                </span>
-                <span className="info_name">TAL</span>
+                <div>
+                  <img src={circleImg03} alt="circle_icon" />
+                  <Titcolor className="info_title">{t('TAL Burnt')}</Titcolor>
+                </div>
+                <div>
+                  <Txtcolor className="info_num">
+                    <CardValue fontSize="29" value={burnedBalance} decimals={0} />
+                  </Txtcolor>
+                  <Titcolor className="info_name">TAL</Titcolor>
+                </div>
               </li>
-              <li className="list_name">
-                {/* <span className="info_subname">
-                  = <span>BSC 2.3M</span>/<span>HECO 0.2M</span>/<span>OTHERS 0.2M</span>
-                </span> */}
+              <li>
+                <div>
+                  <img src={circleImg04} alt="circle_icon" />
+                  <Titcolor className="info_title">{t('TAL Circulating Supply')}</Titcolor>
+                </div>
+                <div>
+                  <Txtcolor className="info_num">
+                    <CardValue fontSize="29" value={cakeSupply} decimals={0} />
+                  </Txtcolor>
+                  <Titcolor className="info_name">TAL</Titcolor>
+                </div>
               </li>
-            </ul>
+            </Usewrap>
           </div>
           <div className="taal_info info_portfolio">
-            <ul>
+            <Usewrap>
               <li>
-                <span className="info_title">{t('My Portfolio')}</span>
+                <Txtcolor className="info_title">{t('My Portfolio')}</Txtcolor>
                 <input type="button" value={t('Harvest All')} style={{ cursor: 'pointer' }} onClick={harvestAllFarms} />
               </li>
               <li className="list_progressbar">
                 <div>
-                  <p className="progressbar_title">{t('My Average APR')}</p>
-                  <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                    <span className="progressbar_num">
-                      <CardValue fontSize="18" value={getTotalApr()} decimals={3} />
-                    </span>
-                    <p>%</p>
+                  <Titcolor className="progressbar_title">{t('My Average APR')}</Titcolor>
+                  <div>
+                    <Txtcolor3 className="info_num" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <CardValue fontSize="18" value={getTotalApr()} />
+                      <p>%</p>
+                    </Txtcolor3>
                   </div>
-                  {/* <span className="progressbar">progressbar</span>
-                    <span>
-                      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <div>
-                          <span className="progressbar_num">
-
-                            <CardValue fontSize="18" value={getTotalApr()} decimals={3} />
-
-                          </span>
-                        </div>
-                        <div>%</div>
-                      </div>
-                    </span> */}
-                  {/* </p> */}
                 </div>
               </li>
               <li className="list_date">
                 <ul>
                   <li>
                     <div>
-                      <span className="date_title">{t('My Total Assets')}</span>
+                      <Titcolor className="date_title">{t('My Total Assets')}</Titcolor>
                     </div>
-                    <div>
-                      <div style={{ display: 'flex' }}>
-                        <span className="date_num">
-                          <CardValue fontSize="18" value={getTotalAssets()} decimals={3} />
-                        </span>
-                        <div>
-                          <span className="date_name">USD</span>
-                        </div>
-                      </div>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Txtcolor className="date_num">
+                        <CardValue fontSize="18" value={getTotalAssets()} />
+                      </Txtcolor>
+                      <Titcolor className="date_name">USD</Titcolor>
                     </div>
                   </li>
                   <li>
                     <div>
-                      <span className="date_title">{t('TAL Earned')}</span>
+                      <Titcolor className="date_title">{t('TAL Earned')}</Titcolor>
                     </div>
-                    <div>
-                      <div style={{ display: 'flex' }}>
-                        <span className="date_num">
-                          <CardValue fontSize="18" value={getTotalEarned()} decimals={3} />
-                        </span>
-                        <span className="date_name">TAL</span>
-                      </div>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Txtcolor className="date_num">
+                        <CardValue fontSize="18" value={getTotalEarned()} />
+                      </Txtcolor>
+                      <Titcolor className="date_name">TAL</Titcolor>
                     </div>
                   </li>
                 </ul>
               </li>
-            </ul>
+            </Usewrap>
           </div>
-        </div>
-        <div className="farms_wrap">
-          {renderContent()}
-          <div ref={loadMoreRef} />
         </div>
       </div>
     </div>
