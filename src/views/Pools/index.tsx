@@ -23,6 +23,7 @@ import BountyCard from './components/BountyCard'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
+import Teaser from '../../pages/LandingPageView/Teaser_page';
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -205,6 +206,7 @@ const Pools: React.FC = () => {
 
   return (
     <>
+    {/* <Teaser /> */}
       <PageHeader>
         <div style={{borderBottom:"1px solid rgba(133,133,133,0.1)",paddingBottom:"32px"}}>
           <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']} alignItems="center">
@@ -233,7 +235,7 @@ const Pools: React.FC = () => {
           />
           <SearchSortContainer>
             <Flex flexDirection="column" width="50%">
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+              <Text fontSize="12px" color="textSubtle" textTransform="uppercase">
                 {t('Sort by')}
               </Text>
               <ControlStretch>
@@ -261,7 +263,7 @@ const Pools: React.FC = () => {
               </ControlStretch>
             </Flex>
             <Flex flexDirection="column" width="50%">
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+              <Text fontSize="12px" color="textSubtle" textTransform="uppercase">
                 {t('Search')}
               </Text>
               <ControlStretch>

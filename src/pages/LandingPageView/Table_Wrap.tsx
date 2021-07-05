@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, RowType, Toggle, Text } from 'taalswap-uikit'
+import { Image, Heading, RowType, Toggle, Text, Link } from 'taalswap-uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -18,90 +18,16 @@ import { latinise } from 'utils/latinise'
 import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
-import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
-import Table from './components/FarmTable/FarmTable'
-import FarmTabButtons from './components/FarmTabButtons'
-import { RowProps } from './components/FarmTable/Row'
-import ToggleView from './components/ToggleView/ToggleView'
-import { DesktopColumnSchema, ViewMode } from './components/types'
-import Teaser from '../../pages/LandingPageView/Teaser_page';
-
-const ControlContainer = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  position: relative;
-
-  justify-content: space-between;
-  flex-direction: column;
-  margin-bottom: 32px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 16px 32px;
-    margin-bottom: 0;
-  }
-`
-
-const ToggleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-
-  ${Text} {
-    margin-left: 8px;
-  }
-`
-
-const LabelWrapper = styled.div`
-  > ${Text} {
-    font-size: 12px;
-  }
-`
-
-const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-    padding: 0;
-  }
-`
-
-const ViewControls = styled.div`
-  flex-wrap: wrap;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-  > div {
-    padding: 8px 0px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    justify-content: flex-start;
-    width: auto;
-
-    > div {
-      padding: 0;
-    }
-  }
-`
-
-// const StyledImage = styled(Image)`
-//   margin-left: auto;
-//   margin-right: auto;
-//   margin-top: 58px;
-// `
+import FarmCard, { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
+import Table from '../../views/Farms/components/FarmTable/FarmTable'
+import FarmTabButtons from '../../views/Farms/components/FarmTabButtons'
+import { RowProps } from '../../views/Farms/components/FarmTable/Row'
+import ToggleView from '../../views/Farms/components/ToggleView/ToggleView'
+import { DesktopColumnSchema, ViewMode } from '../../views/Farms/components/types'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
-const Farms: React.FC = () => {
+const TableWrap: React.FC = () => {
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const { t } = useTranslation()
@@ -248,7 +174,6 @@ const Farms: React.FC = () => {
 
   const getMultiplierAvg = () => {
     let result = 0
-    // const a = farmsStakedMemoized.map((row) => console.log(row.multiplier.replace('X', '')))
     farmsStakedMemoized.forEach((row) => {
       const multiplier = row.multiplier
       if (multiplier !== undefined) {
@@ -291,7 +216,7 @@ const Farms: React.FC = () => {
         multiplierAvg: getMultiplierAvg(),
       },
       details: farm,
-      isLandingPage: false,
+      isLandingPage: true,
     }
 
     return row
@@ -324,7 +249,7 @@ const Farms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage={false} />
+      return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
     }
 
     return (
@@ -355,68 +280,11 @@ const Farms: React.FC = () => {
   }
 
   return (
-    <>
-      {/* <Teaser /> */}
-      <PageHeader>
-        <div style={{ borderBottom: '1px solid rgba(133,133,133,0.1)', paddingBottom: '32px' }}>
-          <Heading as="h1" color="text" mb="15px" style={{ fontSize: '30px', fontWeight: 'bold' }}>
-            {t('Farms')}
-          </Heading>
-          <Heading color="textSubtle" style={{ fontSize: '16px' }}>
-            {t('Start farming by staking your LP tokens')}
-          </Heading>
-        </div>
-      </PageHeader>
-      <Page>
-        <ControlContainer>
-          <ViewControls>
-            <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
-            <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
-            <ToggleWrapper>
-              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-              <Text> {t('Staked only')}</Text>
-            </ToggleWrapper>
-          </ViewControls>
-          <FilterContainer>
-            <LabelWrapper>
-              <Text textTransform="uppercase">{t('Sort by')}</Text>
-              <Select
-                options={[
-                  {
-                    label: t('Hot'),
-                    value: 'hot',
-                  },
-                  {
-                    label: t('APR'),
-                    value: 'apr',
-                  },
-                  {
-                    label: t('Multiplier'),
-                    value: 'multiplier',
-                  },
-                  {
-                    label: t('Earned'),
-                    value: 'earned',
-                  },
-                  {
-                    label: t('Liquidity'),
-                    value: 'liquidity',
-                  },
-                ]}
-                onChange={handleSortOptionChange}
-              />
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text textTransform="uppercase">{t('Search')}</Text>
-              <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
-            </LabelWrapper>
-          </FilterContainer>
-        </ControlContainer>
-        {renderContent()}
-        <div ref={loadMoreRef} />
-      </Page>
-    </>
+    <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      {renderContent()}
+      <div ref={loadMoreRef} />
+    </div>
   )
 }
 
-export default Farms
+export default TableWrap

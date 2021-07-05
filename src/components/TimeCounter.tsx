@@ -17,21 +17,19 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexWrap: 'wrap',
+    flexWrap: 'nowrap',
+    maxWidth: '150px',
   },
 
   countdownItem: {
-    fontSize: '20px',
+    // border: '1px solid black',
+    fontSize: '12x',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
-    width: '40px',
-    '& span': {
-      fontSize: '10px',
-      fontWeight: '600',
-      textTransform: 'uppercase',
-    },
+    // minWidth: '20px',
+    // width: '40px',
+    margin: '0px 2px',
   },
 }))
 
@@ -66,22 +64,22 @@ const TimeCounter = () => {
 
   return (
     <>
-      <div className={classes.countdownWrapper} style={{ border: '1px solid red' }}>
+      <div className={classes.countdownWrapper}>
         <CountDownItem className={classes.countdownItem}>
           {fillZero(2, days)}
           {/* <span>DD</span> */}
         </CountDownItem>
-        <CountDownItem>:</CountDownItem>
+        <CountDownItem className={classes.countdownItem}>days, </CountDownItem>
         <CountDownItem className={classes.countdownItem}>
           {fillZero(2, hours)}
           {/* <span>HH</span> */}
         </CountDownItem>
-        <CountDownItem>:</CountDownItem>
+        <CountDownItem className={classes.countdownItem}>:</CountDownItem>
         <CountDownItem className={classes.countdownItem}>
           {fillZero(2, minutes)}
           {/* <span>MM</span> */}
         </CountDownItem>
-        <CountDownItem>:</CountDownItem>
+        <CountDownItem className={classes.countdownItem}>:</CountDownItem>
         <CountDownItem className={classes.countdownItem}>
           {fillZero(2, seconds)}
           {/* <span>SS</span> */}
