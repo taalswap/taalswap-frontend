@@ -206,7 +206,7 @@ const Pools: React.FC = () => {
 
   return (
     <>
-    <Teaser />
+    {/* <Teaser /> */}
       <PageHeader>
         <div style={{borderBottom:"1px solid rgba(133,133,133,0.1)",paddingBottom:"32px"}}>
           <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']} alignItems="center">
