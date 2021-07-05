@@ -30,9 +30,6 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
   ${({ isPromoted, theme }) =>
     isPromoted
       ? css`
-          background: linear-gradient(180deg, ${theme.colors.primaryBright}, ${theme.colors.secondary});
-          padding: 1px 1px 1px 1px;
-          background-size: 400% 400%;
         `
       : `background: ${(props) => props.theme.card.background};`}
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components';
 // import TopBar from './TopBar'
 import useAuth from 'hooks/useAuth'
 import { useWeb3React } from '@web3-react/core'
@@ -7,8 +8,11 @@ import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { TopBar } from 'taalswap-uikit'
 import SectionTop from './Section_Top'
+import TableWrap from './Table_Wrap'
 import SectionBottom from './Section_Bottom'
-import Footer from './Footer'
+import Footer from './Footer';
+import Teaser from './Teaser_page';
+import SubSection from './Sub_Section';
 import './App.css'
 
 const LandingPageView = () => {
@@ -18,6 +22,7 @@ const LandingPageView = () => {
   const { currentLanguage, setLanguage } = useTranslation()
   return (
     <div className="wrap">
+        {/* <Teaser /> */}
       <TopBar
         account={account}
         login={login}
@@ -28,9 +33,11 @@ const LandingPageView = () => {
         isDark={isDark}
         toggleTheme={toggleTheme}
       />
-      <SectionTop />
-      <SectionBottom />
-      <Footer />
+        <SectionTop />
+        <TableWrap />
+        <SectionBottom />
+        <SubSection />
+        <Footer />
     </div>
   )
 }
