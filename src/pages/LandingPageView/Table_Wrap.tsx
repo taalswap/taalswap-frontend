@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text,Link } from 'taalswap-uikit'
+import { Image, Heading, RowType, Toggle, Text, Link } from 'taalswap-uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -172,6 +172,17 @@ const TableWrap: React.FC = () => {
     }
   }, [farmsStakedMemoized, observerIsSet])
 
+  const getMultiplierAvg = () => {
+    let result = 0
+    farmsStakedMemoized.forEach((row) => {
+      const multiplier = row.multiplier
+      if (multiplier !== undefined) {
+        result += parseInt(multiplier.replace('X', ''))
+      }
+    })
+    return result
+  }
+
   const rowData = farmsStakedMemoized.map((farm) => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
@@ -202,8 +213,10 @@ const TableWrap: React.FC = () => {
       },
       multiplier: {
         multiplier: farm.multiplier,
+        multiplierAvg: getMultiplierAvg(),
       },
       details: farm,
+      isLandingPage: true,
     }
 
     return row
@@ -236,7 +249,7 @@ const TableWrap: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
+      return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
     }
 
     return (
@@ -262,16 +275,16 @@ const TableWrap: React.FC = () => {
     )
   }
 
-const handleSortOptionChange = (option: OptionProps): void => {
-  setSortOption(option.value)
-}
+  const handleSortOptionChange = (option: OptionProps): void => {
+    setSortOption(option.value)
+  }
 
-    return (
-          <div className='farms_wrap' style={{maxWidth:'1280px',margin:'0 auto'}}>
-          {renderContent()}
-          <div ref={loadMoreRef} />
-          </div>
+  return (
+    <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      {renderContent()}
+      <div ref={loadMoreRef} />
+    </div>
   )
-    }
+}
 
 export default TableWrap

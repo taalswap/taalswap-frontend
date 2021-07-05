@@ -32,7 +32,7 @@ const CardValue: React.FC<CardValueProps> = ({
     separator: ',',
     decimals:
       // eslint-disable-next-line no-nested-ternary
-      decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e5 ? 0 : 3,
+      decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e5 ? 0 : 2,
   })
 
   const updateValue = useRef(update)
