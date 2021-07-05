@@ -19,22 +19,22 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
   },
-  // {
-  //   sousId: 2,
-  //   stakingToken: tokens.taal,
-  //   earningToken: tokens.talk,
-  //   contractAddress: {
-  //     1: '',
-  //     3: '0x487deb3c38ea935556de4f36b2b31cb7409da7ca',   // SmartChefFactory::deployPool() --> SmartChefInitializable Address
-  //     4: '',
-  //     97: '',
-  //     56: '0x2b3974dda76b2d408b7d680a27fbb0393e3cf0e1',   // SmartChefInitializable
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   harvest: true,
-  //   sortOrder: 999,
-  //   tokenPerBlock: '0.3472',
-  // },
+  {
+    sousId: 2,
+    stakingToken: tokens.taal,
+    earningToken: tokens.talk,
+    contractAddress: {
+      1: '',
+      3: '0xb61dda68ee9861901badb761790951a58d877754',   // SmartChefFactory::deployPool() --> SmartChefInitializable Address
+      4: '',
+      97: '',
+      56: '0x2b3974dda76b2d408b7d680a27fbb0393e3cf0e1',   // SmartChefInitializable
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    sortOrder: 999,
+    tokenPerBlock: '0.3472',
+  },
 ]
 
 export default pools
