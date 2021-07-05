@@ -9,6 +9,7 @@ import circleImg04 from './images/cilcle_icon04.png';
 import info2Img01 from './images/info2_icon01.png';
 import info2Img02 from './images/info2_icon02.png';
 import info2Img03 from './images/info2_icon03.png';
+import info2Img04 from './images/info2_icon04.png';
 
 const SectionTop: React.FC = () => {
 
@@ -43,7 +44,7 @@ border-bottom: 2px solid ${({ theme }) => theme.colors.logoColor};
                     <p className='buy_name'>Current TVL</p>
                     <p className='buy_num'>$0,000,000,000</p>
                     <div className='buy_btnwrap'>
-                        <input type="button" value='Buy TAL' style={{cursor:'pointer'}}/>
+                        <input type="button" value='Buy TAL' style={{cursor:'pointer'}} />
                     </div>
                 </div>
             </div>
@@ -89,13 +90,14 @@ border-bottom: 2px solid ${({ theme }) => theme.colors.logoColor};
                 <div className='taal_info info03'>
                 <Usewrap>
                         <li>
+                          <img src={info2Img04} alt="info_icon" />
                           <Txtcolor className='info_title'>Halving Countdown</Txtcolor>
                           <Txtcolor className='info_num'><span>11</span>:<span>42</span>:<span>35</span></Txtcolor>
                         </li>
                         <li>
                           <div>
                             <img src={info2Img01} alt="info_icon" />
-                            <Titcolor className='info_name'>Auto TAL bounty</Titcolor>
+                            <Titcolor className='info_name'>New TAL/sec</Titcolor>
                           </div>
                           <div>
                             <div>

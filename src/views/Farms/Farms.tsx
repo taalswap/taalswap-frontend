@@ -341,7 +341,7 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <Teaser />
+      {/* <Teaser /> */}
       <PageHeader>
         <div style={{borderBottom:"1px solid rgba(133,133,133,0.1)",paddingBottom:"32px"}}>
           <Heading as="h1" color="text" mb="15px" style={{fontSize:"30px",fontWeight:"bold"}}>
