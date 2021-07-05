@@ -843,8 +843,8 @@
   "TAL Earned": "TAL 획득량",
   "Harvest All": "모두 수확하기",
   "Go Now": "바로가기",
-  "Maximum ARP": "Maximum ARP",
-  "# of Transactions (24H)": "# of Transactions (24H)",
-  "# of Volume USD (24H)": "# of Volume USD (24H)",
-  "Halving Countdown": "Halving Countdown"
+  "Maximum APR": "최고 APR",
+  "# of Transactions (24H)": "트랜백션 수 (24H)",
+  "# of Volume USD (24H)": "USD 볼륨 증가 (24H)",
+  "Halving Countdown": "반감기 카운트다운"
 }
