@@ -48,12 +48,12 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
 
   // Auto TAL vault calculations
   const {
-    userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
+    userData: { taalAtLastUserAction, userShares, lastUserActionTime },
     pricePerFullShare,
   } = useCakeVault()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    taalAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,
