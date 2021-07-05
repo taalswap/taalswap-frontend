@@ -190,7 +190,7 @@ const SectionTop: React.FC = () => {
     async function fetchData() {
       let result = 0
       getTalStaked()
-      fetch('https://taalswap-info-api.vercel.app/api/tvl', {
+      fetch('https://taalswap-api-ethereum.vercel.app/api/tvl', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -210,7 +210,7 @@ const SectionTop: React.FC = () => {
     }
 
     async function fetchData24h() {
-      fetch('https://taalswap-info-api.vercel.app/api/daily', {
+      fetch('https://taalswap-api-ethereum.vercel.app/api/daily', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -467,7 +467,7 @@ const SectionTop: React.FC = () => {
               <li>
                 <div>
                   <img src={info2Img01} alt="info_icon" />
-                  <Titcolor className="img_tit">{t('Maximum ARP')}</Titcolor>
+                  <Titcolor className="img_tit">{t('Maximum APR')}</Titcolor>
                 </div>
                 <Txtcolor className="info_num" style={{ display: 'flex', justifyContent: 'flex-start' }}>
                   <span>
