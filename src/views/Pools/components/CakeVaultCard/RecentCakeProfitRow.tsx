@@ -11,12 +11,12 @@ const RecentCakeProfitCountdownRow = () => {
   const { account } = useWeb3React()
   const {
     pricePerFullShare,
-    userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
+    userData: { taalAtLastUserAction, userShares, lastUserActionTime },
   } = useCakeVault()
   const cakePriceBusd = usePriceCakeBusd()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    taalAtLastUserAction,
     userShares,
     pricePerFullShare,
     cakePriceBusd.toNumber(),
