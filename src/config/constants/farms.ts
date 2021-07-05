@@ -89,6 +89,18 @@ const farms: FarmConfig[] = [
     token: tokens.usdt,
     quoteToken: tokens.usdc,
   },
+  {
+    pid: 7,
+    lpSymbol: 'TALK-USDT LP',
+    lpAddresses: {
+      3: '0x02c2ce771fc95d8ec1caead6ed16b03b256bc164',
+      4: '',
+      97: '',
+      56: '',
+    },
+    token: tokens.talk,
+    quoteToken: tokens.usdt,
+  },
   // // {
   // //   pid: 13,
   // //   lpSymbol: 'TALK-ETH LP',
