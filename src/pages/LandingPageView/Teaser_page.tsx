@@ -52,11 +52,11 @@ const Teaser: React.FC = () => {
                     </li>
                     <li style={{listStyle:'none',display:'flex',alignItems:'flex-start',marginTop:'10px'}}>
                         <img src={CheckIcon} alt="checkIcon" style={{width:'10%',maxWidth:'40px'}}/>
-                        <span style={{color:'#fff',fontSize:'1.5vw',marginLeft:'10px',lineHeight:'130%'}}>Partnership : <a href="./" style={{color:'#FFC107'}}>Register here</a></span>
+                        <span style={{color:'#fff',fontSize:'1.5vw',marginLeft:'10px',lineHeight:'130%'}}>Partnership : <a href="https://docs.google.com/forms/d/e/1FAIpQLSf6UYO1Olnt1Mevz8Ap5sXSd2T8J2UGKxOBT5Z-hzKF7CYhSg/viewform" style={{color:'#FFC107'}}>Register here</a></span>
                     </li>
                     <li style={{listStyle:'none',display:'flex',alignItems:'flex-start',marginTop:'10px'}}>
                         <img src={CheckIcon} alt="checkIcon" style={{width:'10%',maxWidth:'40px'}}/>
-                        <span style={{color:'#fff',fontSize:'1.5vw',marginLeft:'10px',lineHeight:'130%'}}>For detailed information, please visit TaalSwap docs page <a href="./" style={{color:'#FFC107'}}>here</a>.</span>
+                        <span style={{color:'#fff',fontSize:'1.5vw',marginLeft:'10px',lineHeight:'130%'}}>For detailed information, please visit TaalSwap docs page <a href="https://taalswap.gitbook.io/taalswap-docs-v-2-0/" style={{color:'#FFC107'}}>here</a>.</span>
                     </li>
                 </ul>
             </TeaserBox>
