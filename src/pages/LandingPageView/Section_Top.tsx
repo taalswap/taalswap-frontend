@@ -33,7 +33,7 @@ import Balance from 'components/Balance'
 import BountyModal from 'views/Pools/components/BountyModal'
 import { useMasterchef } from 'hooks/useContract'
 import { harvest } from 'utils/callHelpers'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useTotalSupply, useBurnedBalance, useDeployerBalance } from 'hooks/useTokenBalance'
 import { getTaalAddress } from 'utils/addressHelpers'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -132,7 +132,8 @@ const SectionTop: React.FC = () => {
 
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getTaalAddress()))
-  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+  const deployerBalance = getBalanceNumber(useDeployerBalance(getTaalAddress()))
+  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance - deployerBalance : 0
 
   usePollFarmsData(isArchived)
   useFetchPublicPoolsData()
