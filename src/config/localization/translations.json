@@ -834,5 +834,6 @@
   "Maximum ARP": "Maximum ARP",
   "# of Transactions (24H)": "# of Transactions (24H)",
   "# of Volume USD (24H)": "# of Volume USD (24H)",
-  "Halving Countdown": "Rewards Reduction"
+  "Halving Countdown": "Rewards Reduction",
+  "TAL generation per block": "TAL generation per block"
 }
