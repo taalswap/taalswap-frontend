@@ -442,7 +442,7 @@ const SectionTop: React.FC = () => {
                 type="button"
                 value={t('Buy TAL')}
                 style={{ cursor: 'pointer' }}
-                onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
+                onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0x2ccdF53b17cCe1c1c37BdD0ff0f8320E8cEA34ed')}
               />
             </div>
           </div>
