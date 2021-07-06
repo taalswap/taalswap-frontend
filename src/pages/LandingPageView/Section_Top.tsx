@@ -422,10 +422,8 @@ const SectionTop: React.FC = () => {
               you&apos;ve never imagined
             </p>
             <p className="home_subtit">A multi-chain AMM protocol to safeguard and increase your assets</p>
-            <Button
-              className="start_btn"
-              onClick={() => linkToURL('http://localhost:3000/#/swap')}
-            >{t('Start')}
+            <Button className="start_btn" onClick={() => linkToURL('http://localhost:3000/#/swap')}>
+              {t('Start')}
             </Button>
           </div>
           <div className="top_buyline">
@@ -440,8 +438,10 @@ const SectionTop: React.FC = () => {
               <Button
                 value={t('Buy TAL')}
                 onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
-                className='buy_Btn'
-              >{t('Buy TAL')}</Button>
+                className="buy_Btn"
+              >
+                {t('Buy TAL')}
+              </Button>
             </div>
           </div>
         </div>
@@ -508,15 +508,24 @@ const SectionTop: React.FC = () => {
                 </div>
                 <TimeCounter />
               </li>
+              {/* <li style={{ border: '1px solid red' }}>
+                <div>
+                  <img src={circleImg03} alt="info_icon" />
+                  <Titcolor className="info_title">블록 당 TAL 생성 갯수</Titcolor>
+                </div>
+                <Txtcolor>
+                  <CardValue fontSize="20" value={40} decimals={0} />
+                </Txtcolor>
+              </li> */}
               <li>
                 <div>
                   <img src={info2Img01} alt="info_icon" />
                   <Titcolor className="info_name">{t('Auto TAL Bounty')}</Titcolor>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <div className='Tal_num' >
+                  <div className="Tal_num">
                     {hasFetchedCakeBounty ? (
-                      <Balance fontSize="16px" bold value={cakeBountyToDisplay} decimals={3}/>
+                      <Balance fontSize="16px" bold value={cakeBountyToDisplay} decimals={3} />
                     ) : (
                       <Skeleton height={20} width={96} mb="5px" />
                     )}
@@ -539,9 +548,20 @@ const SectionTop: React.FC = () => {
                       disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
                       onClick={onPresentBountyModal}
                       scale="sm"
-                    >{t('Claim')}</Button>
+                    >
+                      {t('Claim')}
+                    </Button>
                   </div>
                 </div>
+              </li>
+              <li>
+                <div>
+                  <img src={circleImg03} alt="info_icon" />
+                  <Titcolor className="info_title">{t('TAL generation per block')}</Titcolor>
+                </div>
+                <Txtcolor>
+                  <CardValue fontSize="20" value={40} decimals={0} />
+                </Txtcolor>
               </li>
             </Usewrap>
           </div>
@@ -590,35 +610,28 @@ const SectionTop: React.FC = () => {
               <li>
                 <Txtcolor className="info_title">{t('My Portfolio')}</Txtcolor>
 
-
-
                 {account ? (
-                        <Button disabled={balancesWithValue.length <= 0 || pendingTx} onClick={harvestAllFarms} scale="sm">
-                          {
-                            pendingTx
-                                ? t('Collecting TAL')
-                                : t('Harvest all (%count%)', {
-                                  count: balancesWithValue.length,
-                                })
-                          }
-                        </Button>
-                  // <input
-                  //   type="button"
-                  //   disabled={balancesWithValue.length <= 0 || pendingTx}
-                  //   value={
-                  //     pendingTx
-                  //       ? t('Collecting TAL')
-                  //       : t('Harvest all (%count%)', {
-                  //           count: balancesWithValue.length,
-                  //         })
-                  //   }
-                  //   style={{ cursor: 'pointer' }}
-                  //   onClick={harvestAllFarms}
-                  // />
-                ) : null}
-
-
-
+                  <Button disabled={balancesWithValue.length <= 0 || pendingTx} onClick={harvestAllFarms} scale="sm">
+                    {pendingTx
+                      ? t('Collecting TAL')
+                      : t('Harvest all (%count%)', {
+                          count: balancesWithValue.length,
+                        })}
+                  </Button>
+                ) : // <input
+                //   type="button"
+                //   disabled={balancesWithValue.length <= 0 || pendingTx}
+                //   value={
+                //     pendingTx
+                //       ? t('Collecting TAL')
+                //       : t('Harvest all (%count%)', {
+                //           count: balancesWithValue.length,
+                //         })
+                //   }
+                //   style={{ cursor: 'pointer' }}
+                //   onClick={harvestAllFarms}
+                // />
+                null}
               </li>
               <li className="list_progressbar">
                 <div>
@@ -637,7 +650,7 @@ const SectionTop: React.FC = () => {
                     <div>
                       <Titcolor className="date_title">{t('My Total Assets')}</Titcolor>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems:'flex-end' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
                       <Txtcolor className="date_num">
                         <CardValue fontSize="18" value={getTotalAssets()} />
                       </Txtcolor>
@@ -648,7 +661,7 @@ const SectionTop: React.FC = () => {
                     <div>
                       <Titcolor className="date_title">{t('TAL Earned')}</Titcolor>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end',alignItems:'flex-end' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
                       <Txtcolor className="date_num">
                         <CardValue fontSize="18" value={getTotalEarned()} />
                       </Txtcolor>
