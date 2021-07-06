@@ -43,6 +43,7 @@ import { max, orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 
+import UnlockButton from 'components/UnlockButton'
 import TimeCounter from 'components/TimeCounter'
 import CardValue from 'views/Home/components/CardValue'
 import { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
@@ -593,7 +594,21 @@ const SectionTop: React.FC = () => {
             <Usewrap>
               <li>
                 <Txtcolor className="info_title">{t('My Portfolio')}</Txtcolor>
-                <input type="button" value={t('Harvest All')} style={{ cursor: 'pointer' }} onClick={harvestAllFarms} />
+                {account ? (
+                  <input
+                    type="button"
+                    disabled={balancesWithValue.length <= 0 || pendingTx}
+                    value={
+                      pendingTx
+                        ? t('Collecting TAL')
+                        : t('Harvest all (%count%)', {
+                            count: balancesWithValue.length,
+                          })
+                    }
+                    style={{ cursor: 'pointer' }}
+                    onClick={harvestAllFarms}
+                  />
+                ) : null}
               </li>
               <li className="list_progressbar">
                 <div>
