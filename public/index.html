@@ -20,10 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1" />
     <meta name="theme-color" content="#000000" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
@@ -33,10 +30,7 @@
       property="og:description"
       content="TaalSwap is a decentralized and interoperable multi-chain platform for IDO, yield farming and NFT auction."
     />
-    <meta
-      property="og:image"
-      content="https://taalswap.finance/static/symbol/taalsymbol.png"
-    />
+    <meta property="og:image" content="https://taalswap.finance/static/symbol/taalsymbol.png" />
     <meta property="og:url" content="https://taalswap.finance" />
     <meta property="og:site_name" content="TaalSwap Finance" />
     <meta name="twitter:card" content="summary" />
@@ -50,10 +44,7 @@
       name="twitter:description"
       content="TaalSwap is a decentralized and interoperable multi-chain platform for IDO, yield farming and NFT auction."
     />
-    <meta
-      name="twitter:image"
-      content="https://taalswap.finance/static/symbol/taalsymbol.png"
-    />
+    <meta name="twitter:image" content="https://taalswap.finance/static/symbol/taalsymbol.png" />
 
     <!-- GTAG -->
     <script>
@@ -69,13 +60,24 @@
       })(window, document, 'script', 'dataLayer', '%REACT_APP_GTAG%')
 
       function postCrossDomainMessage(msg) {
-        var win = document.getElementById('ifr');
-        win.contentWindow.postMessage(msg, "https://swap.taalswap.finance/");
+        var win = document.getElementById('ifr')
+        win.contentWindow.postMessage(msg, 'https://swap.taalswap.finance/')
       }
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBZX2D4HSZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-BBZX2D4HSZ')
     </script>
   </head>
   <body>
-    <iframe style="display:none;" src="https://swap.taalswap.finance/getlocalstorage.html" id="ifr"></iframe>
+    <iframe style="display: none" src="https://swap.taalswap.finance/getlocalstorage.html" id="ifr"></iframe>
     <!-- GTAG (noscript) -->
     <noscript>
       <iframe
