@@ -223,56 +223,56 @@ const TableWrap: React.FC = () => {
   })
 
   const renderContent = (): JSX.Element => {
-    if (viewMode === ViewMode.TABLE && rowData.length) {
-      const columnSchema = DesktopColumnSchema
+    // if (viewMode === ViewMode.TABLE && rowData.length) {
+    const columnSchema = DesktopColumnSchema
 
-      const columns = columnSchema.map((column) => ({
-        id: column.id,
-        name: column.name,
-        label: column.label,
-        sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
-          switch (column.name) {
-            case 'farm':
-              return b.id - a.id
-            case 'apr':
-              if (a.original.apr.value && b.original.apr.value) {
-                return Number(a.original.apr.value) - Number(b.original.apr.value)
-              }
+    const columns = columnSchema.map((column) => ({
+      id: column.id,
+      name: column.name,
+      label: column.label,
+      sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
+        switch (column.name) {
+          case 'farm':
+            return b.id - a.id
+          case 'apr':
+            if (a.original.apr.value && b.original.apr.value) {
+              return Number(a.original.apr.value) - Number(b.original.apr.value)
+            }
 
-              return 0
-            case 'earned':
-              return a.original.earned.earnings - b.original.earned.earnings
-            default:
-              return 1
-          }
-        },
-        sortable: column.sortable,
-      }))
+            return 0
+          case 'earned':
+            return a.original.earned.earnings - b.original.earned.earnings
+          default:
+            return 1
+        }
+      },
+      sortable: column.sortable,
+    }))
 
-      return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
-    }
+    return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
+    // }
 
-    return (
-      <div>
-        <FlexLayout>
-          <Route exact path={`${path}`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
-            ))}
-          </Route>
-          <Route exact path={`${path}/history`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-            ))}
-          </Route>
-          <Route exact path={`${path}/archived`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-            ))}
-          </Route>
-        </FlexLayout>
-      </div>
-    )
+    // return (
+    //   <div>
+    //     <FlexLayout>
+    //       <Route exact path={`${path}`}>
+    //         {farmsStakedMemoized.map((farm) => (
+    //           <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
+    //         ))}
+    //       </Route>
+    //       <Route exact path={`${path}/history`}>
+    //         {farmsStakedMemoized.map((farm) => (
+    //           <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
+    //         ))}
+    //       </Route>
+    //       <Route exact path={`${path}/archived`}>
+    //         {farmsStakedMemoized.map((farm) => (
+    //           <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
+    //         ))}
+    //       </Route>
+    //     </FlexLayout>
+    //   </div>
+    // )
   }
 
   const handleSortOptionChange = (option: OptionProps): void => {
