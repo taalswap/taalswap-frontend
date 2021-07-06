@@ -33,7 +33,7 @@ import Balance from 'components/Balance'
 import BountyModal from 'views/Pools/components/BountyModal'
 import { useMasterchef } from 'hooks/useContract'
 import { harvest } from 'utils/callHelpers'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useTotalSupply, useBurnedBalance, useDeployerBalance } from 'hooks/useTokenBalance'
 import { getTaalAddress } from 'utils/addressHelpers'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -132,7 +132,8 @@ const SectionTop: React.FC = () => {
 
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getTaalAddress()))
-  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+  const deployerBalance = getBalanceNumber(useDeployerBalance(getTaalAddress()))
+  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance - deployerBalance : 0
 
   usePollFarmsData(isArchived)
   useFetchPublicPoolsData()
@@ -502,7 +503,7 @@ const SectionTop: React.FC = () => {
               <li style={{ display: 'flex', justifyContent: 'flex-start' }}>
                 <img src={info2Img04} alt="info_icon" />
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-                  <Titcolor style={{ marginRight: '0px', width: 'auto' }} className="info_title">
+                  <Titcolor style={{ marginRight: '0px', width: 'auto', color: 'red' }} className="info_title">
                     {t('Halving Countdown')}
                   </Titcolor>
                 </div>
