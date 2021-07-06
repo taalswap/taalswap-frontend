@@ -1,3 +1,4 @@
+import invariant from 'tiny-invariant';
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
@@ -9,16 +10,20 @@ const POLLING_INTERVAL = 12000
 const rpcUrl = getNodeUrl()
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
-const injected = new InjectedConnector({ supportedChainIds: [chainId] })
+invariant(chainId, 'TaalSwap : select a chain ID...')
+
+// const injected = new InjectedConnector({ supportedChainIds: [chainId] })
+const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4] })
 
 const walletconnect = new WalletConnectConnector({
   rpc: { [chainId]: rpcUrl },
-  bridge: 'https://pancakeswap.bridge.walletconnect.org/',
+  bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,
 })
 
-const bscConnector = new BscConnector({ supportedChainIds: [chainId] })
+// const bscConnector = new BscConnector({ supportedChainIds: [chainId] })
+const bscConnector = new BscConnector({ supportedChainIds: [1, 3, 4] })
 
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
