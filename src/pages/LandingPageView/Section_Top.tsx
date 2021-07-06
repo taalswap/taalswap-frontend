@@ -529,7 +529,7 @@ const SectionTop: React.FC = () => {
                     ) : (
                       <Skeleton height={20} width={96} mb="5px" />
                     )}
-
+                    {/* temp  */}
                     {/* {hasFetchedDollarBounty ? (
                       <Balance
                         fontSize="12px"
