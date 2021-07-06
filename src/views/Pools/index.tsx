@@ -23,7 +23,7 @@ import BountyCard from './components/BountyCard'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
-import Teaser from '../../pages/LandingPageView/Teaser_page';
+import Teaser from '../../pages/LandingPageView/Teaser_page'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -206,14 +206,15 @@ const Pools: React.FC = () => {
 
   return (
     <>
+      {/* <Teaser /> */}
       <PageHeader>
-        <div style={{borderBottom:"1px solid rgba(133,133,133,0.1)",paddingBottom:"32px"}}>
+        <div style={{ borderBottom: '1px solid rgba(133,133,133,0.1)', paddingBottom: '32px' }}>
           <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']} alignItems="center">
             <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-              <Heading as="h1" color="text" mb="15px" style={{fontSize:"30px",fontWeight:"bold"}}>
+              <Heading as="h1" color="text" mb="15px" style={{ fontSize: '30px', fontWeight: 'bold' }}>
                 {t('Staking Pools')}
               </Heading>
-              <Heading color="textSubtle" style={{fontSize:"16px"}}>
+              <Heading color="textSubtle" style={{ fontSize: '16px' }}>
                 {t('Just stake some tokens to earn. High Yields, Little Risks.')}
               </Heading>
             </Flex>
