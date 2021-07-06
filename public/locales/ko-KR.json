@@ -847,7 +847,7 @@
   "Go Now": "바로가기",
   "Maximum ARP": "최대 ARP",
   "# of Transactions (24H)": "일일 트랜잭션 수",
-  "# of Volume USD (24H)": "일일 USD 볼륨",
+  "# of Volume USD (24H)": "일일 거래량",
   "Halving Countdown": "보상감소",
   "TAL generation per block": "블록 당 TAL 생성 갯수"
 }
