@@ -24,7 +24,7 @@ import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
-import Teaser from '../../pages/LandingPageView/Teaser_page';
+import Teaser from '../../pages/LandingPageView/Teaser_page'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -356,6 +356,7 @@ const Farms: React.FC = () => {
 
   return (
     <>
+      {/* <Teaser /> */}
       <PageHeader>
         <div style={{ borderBottom: '1px solid rgba(133,133,133,0.1)', paddingBottom: '32px' }}>
           <Heading as="h1" color="text" mb="15px" style={{ fontSize: '30px', fontWeight: 'bold' }}>
