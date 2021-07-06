@@ -286,6 +286,8 @@
   "You haven’t set up your profile yet!": "You haven’t set up your profile yet!",
   "You can do this at any time by clicking on your profile picture in the menu": "You can do this at any time by clicking on your profile picture in the menu",
   "Collect": "Collect",
+  "ReceiveInterest": "Collect",
+  "ProcessInterest": "Collect",
   "Compounding": "Compounding",
   "Harvesting": "Harvesting",
   "Buy TAL": "Buy TAL",
