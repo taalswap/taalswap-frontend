@@ -94,7 +94,7 @@ export const useDeployerBalance = (tokenAddress: string) => {
   useEffect(() => {
     const fetchBalance = async () => {
       const contract = getBep20Contract(tokenAddress, web3)
-      const res = await contract.methods.balanceOf('0xdc926E34E73292cD7c48c6fD7375af7D93435D36').call()
+      const res = await contract.methods.balanceOf('0x1539e0A3Bb88cE47914C06c739862D7dAE6BB164').call()
       setBalance(new BigNumber(res))
     }
 

@@ -46,8 +46,7 @@ const Teaser: React.FC = () => {
                     </li>
                     <li style={{listStyle:'none',display:'flex',alignItems:'flex-start',marginTop:'10px'}}>
                         <img src={CheckIcon} alt="checkIcon" style={{width:'10%',maxWidth:'40px'}}/>
-                        <span style={{color:'#fff',fontSize:'1.5vw',marginLeft:'10px',lineHeight:'130%'}}>Rewarding starts from Block # 12,784.560 (First block generation expected
-                        at 12:00 PM (UTC+9) on July 8, 2021.)
+                        <span style={{color:'#fff',fontSize:'1.5vw',marginLeft:'10px',lineHeight:'130%'}}>Rewarding starts at 12:00 PM (UTC+9) on July 21, 2021.
                         </span>
                     </li>
                     <li style={{listStyle:'none',display:'flex',alignItems:'flex-start',marginTop:'10px'}}>
