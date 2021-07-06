@@ -418,7 +418,7 @@ const SectionTop: React.FC = () => {
           <div>
             <p className="home_title">
               Boost your assets the way <br />
-              you&apos;re never imagined
+              you&apos;ve never imagined
             </p>
             <p className="home_subtit">A multi-chain AMM protocol to safeguard and increase your assets</p>
             <input
@@ -426,7 +426,7 @@ const SectionTop: React.FC = () => {
               value={t('Start')}
               style={{ cursor: 'pointer' }}
               className="start_btn"
-              onClick={() => linkToURL('http://localhost:3000/#/liquidity')}
+              onClick={() => linkToURL('http://localhost:3000/#/swap')}
             />
           </div>
           <div className="top_buyline">

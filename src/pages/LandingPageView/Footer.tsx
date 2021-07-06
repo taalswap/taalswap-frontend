@@ -11,16 +11,7 @@ const Footer = () => {
       <div className="footer_cont">
         <div className="footer_left">
           <img src={footerlogo_img} alt="logo_img" className="footer_logo" />
-          <p>
-            &copy; All rights reserved. Made by TaalSwap.{' '}
-            <Link
-              href="https://taalswap.gitbook.io/taalswap-documents/taalswap-security"
-              target="_blank"
-              style={{ color: '#00ab55', display: 'inline-block', textDecoration: 'underline', fontSize: '13px' }}
-            >
-              Audited by HAECHI AUDIT
-            </Link>
-          </p>
+          <p>&copy; All rights reserved. Made by TaalSwap. </p>
         </div>
         <div className="footer_menu">
           <div style={{ marginLeft: '30px' }}>

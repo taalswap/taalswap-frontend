@@ -49,7 +49,7 @@ const TimeCounter = () => {
       const interval = setInterval(() => {
         const now = new Date()
 
-        const thenMnt = moment('2022-01-05 12:00:00')
+        const thenMnt = moment('2021-08-05 12:00:00')
 
         setDays(parseInt(moment.duration(thenMnt.diff(now)).asDays().toString()).toString())
         setHours(moment.duration(thenMnt.diff(now)).hours().toString())
