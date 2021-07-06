@@ -86,6 +86,24 @@ export const useBurnedBalance = (tokenAddress: string) => {
   return balance
 }
 
+export const useDeployerBalance = (tokenAddress: string) => {
+  const [balance, setBalance] = useState(BIG_ZERO)
+  const { slowRefresh } = useRefresh()
+  const web3 = useWeb3()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const contract = getBep20Contract(tokenAddress, web3)
+      const res = await contract.methods.balanceOf('0xdc926E34E73292cD7c48c6fD7375af7D93435D36').call()
+      setBalance(new BigNumber(res))
+    }
+
+    fetchBalance()
+  }, [web3, tokenAddress, slowRefresh])
+
+  return balance
+}
+
 export const useGetBnbBalance = () => {
   const [balance, setBalance] = useState(BIG_ZERO)
   const { account } = useWeb3React()
