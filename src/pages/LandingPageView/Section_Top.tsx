@@ -43,6 +43,7 @@ import { max, orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 
+import UnlockButton from 'components/UnlockButton'
 import TimeCounter from 'components/TimeCounter'
 import CardValue from 'views/Home/components/CardValue'
 import { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
@@ -419,7 +420,7 @@ const SectionTop: React.FC = () => {
           <div>
             <p className="home_title">
               Boost your assets the way <br />
-              you&apos;re never imagined
+              you&apos;ve never imagined
             </p>
             <p className="home_subtit">A multi-chain AMM protocol to safeguard and increase your assets</p>
             <input
@@ -427,7 +428,7 @@ const SectionTop: React.FC = () => {
               value={t('Start')}
               style={{ cursor: 'pointer' }}
               className="start_btn"
-              onClick={() => linkToURL('http://localhost:3000/#/liquidity')}
+              onClick={() => linkToURL('http://localhost:3000/#/swap')}
             />
           </div>
           <div className="top_buyline">
@@ -594,7 +595,21 @@ const SectionTop: React.FC = () => {
             <Usewrap>
               <li>
                 <Txtcolor className="info_title">{t('My Portfolio')}</Txtcolor>
-                <input type="button" value={t('Harvest All')} style={{ cursor: 'pointer' }} onClick={harvestAllFarms} />
+                {account ? (
+                  <input
+                    type="button"
+                    disabled={balancesWithValue.length <= 0 || pendingTx}
+                    value={
+                      pendingTx
+                        ? t('Collecting TAL')
+                        : t('Harvest all (%count%)', {
+                            count: balancesWithValue.length,
+                          })
+                    }
+                    style={{ cursor: 'pointer' }}
+                    onClick={harvestAllFarms}
+                  />
+                ) : null}
               </li>
               <li className="list_progressbar">
                 <div>
