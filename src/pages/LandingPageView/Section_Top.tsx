@@ -508,15 +508,15 @@ const SectionTop: React.FC = () => {
                 </div>
                 <TimeCounter />
               </li>
-              {/* <li style={{ border: '1px solid red' }}>
+              <li>
                 <div>
                   <img src={circleImg03} alt="info_icon" />
-                  <Titcolor className="info_title">블록 당 TAL 생성 갯수</Titcolor>
+                  <Titcolor className="info_title">{t('TAL generation per block')}</Titcolor>
                 </div>
                 <Txtcolor>
                   <CardValue fontSize="20" value={40} decimals={0} />
                 </Txtcolor>
-              </li> */}
+              </li>
               <li>
                 <div>
                   <img src={info2Img01} alt="info_icon" />
@@ -530,7 +530,7 @@ const SectionTop: React.FC = () => {
                       <Skeleton height={20} width={96} mb="5px" />
                     )}
 
-                    {hasFetchedDollarBounty ? (
+                    {/* {hasFetchedDollarBounty ? (
                       <Balance
                         fontSize="12px"
                         color="textSubtle"
@@ -541,20 +541,21 @@ const SectionTop: React.FC = () => {
                       />
                     ) : (
                       <Skeleton height={16} width={62} />
-                    )}
+                    )} */}
                   </div>
                   <div>
                     <Button
                       disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
                       onClick={onPresentBountyModal}
                       scale="sm"
+                      marginLeft="10px"
                     >
                       {t('Claim')}
                     </Button>
                   </div>
                 </div>
               </li>
-              <li>
+              {/* <li>
                 <div>
                   <img src={circleImg03} alt="info_icon" />
                   <Titcolor className="info_title">{t('TAL generation per block')}</Titcolor>
@@ -562,7 +563,7 @@ const SectionTop: React.FC = () => {
                 <Txtcolor>
                   <CardValue fontSize="20" value={40} decimals={0} />
                 </Txtcolor>
-              </li>
+              </li> */}
             </Usewrap>
           </div>
           <div className="taal_info info04">
