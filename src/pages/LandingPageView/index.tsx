@@ -21,7 +21,6 @@ const LandingPageView = () => {
   const { currentLanguage, setLanguage } = useTranslation()
   return (
     <div className="wrap">
-      <Teaser />
       <TopBar
         account={account}
         login={login}
