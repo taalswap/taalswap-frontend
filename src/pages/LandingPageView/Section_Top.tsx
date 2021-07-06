@@ -192,7 +192,7 @@ const SectionTop: React.FC = () => {
     async function fetchData() {
       let result = 0
       getTalStaked()
-      fetch('https://taalswap-api-ethereum.vercel.app/api/tvl', {
+      fetch('https://taalswap-info-api.vercel.app/api/tvl', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -212,7 +212,7 @@ const SectionTop: React.FC = () => {
     }
 
     async function fetchData24h() {
-      fetch('https://taalswap-api-ethereum.vercel.app/api/daily', {
+      fetch('https://taalswap-info-api.vercel.app/api/daily', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -444,7 +444,7 @@ const SectionTop: React.FC = () => {
                 type="button"
                 value={t('Buy TAL')}
                 style={{ cursor: 'pointer' }}
-                onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0x2ccdF53b17cCe1c1c37BdD0ff0f8320E8cEA34ed')}
+                onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0x90a4a420732907b3c38b11058f9aa02b3f4121df')}
               />
             </div>
           </div>
