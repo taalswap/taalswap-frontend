@@ -54,7 +54,7 @@ const tokens = {
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
       97: '0x0c290b2d7a082588411408861f6c7347a1348196',
     },
-    decimals: 18,
+    decimals: 6,
     projectLink: 'https://www.centre.io/usdc/',
   },
   syrup: {
@@ -78,21 +78,21 @@ const tokens = {
       56: '',
       97: '',
     },
-    decimals: 18,
+    decimals: 6,
     projectLink: 'https://tether.to/',
   },
-  qsd: {
-    symbol: 'QSD',
-    address: {
-      1: '',
-      3: '',
-      4: '0x07aaa29e63ffeb2ebf59b33ee61437e1a91a3bb2',
-      56: '0x07aaa29e63ffeb2ebf59b33ee61437e1a91a3bb2',
-      97: '',
-    },
-    decimals: 18,
-    projectLink: 'https://chemix.io/home',
-  }
+  // qsd: {
+  //   symbol: 'QSD',
+  //   address: {
+  //     1: '',
+  //     3: '',
+  //     4: '0x07aaa29e63ffeb2ebf59b33ee61437e1a91a3bb2',
+  //     56: '0x07aaa29e63ffeb2ebf59b33ee61437e1a91a3bb2',
+  //     97: '',
+  //   },
+  //   decimals: 18,
+  //   projectLink: 'https://chemix.io/home',
+  // }
 }
 
 export default tokens
