@@ -16,14 +16,13 @@ import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
-import PoolCard from './components/PoolCard'
-import CakeVaultCard from './components/CakeVaultCard'
-import PoolTabButtons from './components/PoolTabButtons'
-import BountyCard from './components/BountyCard'
-import PoolsTable from './components/PoolsTable/PoolsTable'
-import { ViewMode } from './components/ToggleView/ToggleView'
-import { getAprData, getCakeVaultEarnings } from './helpers'
-import Teaser from '../../pages/LandingPageView/Teaser_page';
+import PoolCard from '../../views/Pools/components/PoolCard'
+import CakeVaultCard from '../../views/Pools/components/CakeVaultCard'
+import PoolTabButtons from '../../views/Pools/components/PoolTabButtons'
+import BountyCard from '../../views/Pools/components/BountyCard'
+import PoolsTable from '../../views/Pools/components/PoolsTable/PoolsTable'
+import { ViewMode } from '../../views/Pools/components/ToggleView/ToggleView'
+import { getAprData, getCakeVaultEarnings } from '../../views/Pools/helpers'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -201,77 +200,17 @@ const Pools: React.FC = () => {
       )}
     </CardLayout>
   )
+  
+  const Txtcolor = styled.p`
+  color: ${({ theme }) => theme.colors.logoColor};
+  text-align:center;
+  `
 
   const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
 
   return (
-    <>
-      {/* <Teaser /> */}
-      <PageHeader>
-        <div style={{borderBottom:"1px solid rgba(133,133,133,0.1)",paddingBottom:"32px"}}>
-          <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']} alignItems="center">
-            <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-              <Heading as="h1" color="text" mb="15px" style={{fontSize:"30px",fontWeight:"bold"}}>
-                {t('Staking Pools')}
-              </Heading>
-              <Heading color="textSubtle" style={{fontSize:"16px"}}>
-                {t('Just stake some tokens to earn. High Yields, Little Risks.')}
-              </Heading>
-            </Flex>
-            <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-              <BountyCard />
-            </Flex>
-          </Flex>
-        </div>
-      </PageHeader>
-      <Page>
-        <PoolControls justifyContent="space-between">
-          <PoolTabButtons
-            stakedOnly={stakedOnly}
-            setStakedOnly={setStakedOnly}
-            hasStakeInFinishedPools={hasStakeInFinishedPools}
-            viewMode={viewMode}
-            setViewMode={setViewMode}
-          />
-          <SearchSortContainer>
-            <Flex flexDirection="column" width="50%">
-              <Text fontSize="12px" color="textSubtle" textTransform="uppercase">
-                {t('Sort by')}
-              </Text>
-              <ControlStretch>
-                <Select
-                  options={[
-                    {
-                      label: t('Hot'),
-                      value: 'hot',
-                    },
-                    {
-                      label: t('APR'),
-                      value: 'apr',
-                    },
-                    {
-                      label: t('Earned'),
-                      value: 'earned',
-                    },
-                    {
-                      label: t('Total staked'),
-                      value: 'totalStaked',
-                    },
-                  ]}
-                  onChange={handleSortOptionChange}
-                />
-              </ControlStretch>
-            </Flex>
-            <Flex flexDirection="column" width="50%">
-              <Text fontSize="12px" color="textSubtle" textTransform="uppercase">
-                {t('Search')}
-              </Text>
-              <ControlStretch>
-                <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-              </ControlStretch>
-            </Flex>
-          </SearchSortContainer>
-        </PoolControls>
+      <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      <Txtcolor className='section_tit'>Staking Pools</Txtcolor>
         {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">
             {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
@@ -279,8 +218,7 @@ const Pools: React.FC = () => {
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
-      </Page>
-    </>
+      </div>
   )
 }
 

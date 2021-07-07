@@ -70,8 +70,8 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
-      <Balance fontSize="16px" value={autoCakeToDisplay} decimals={3} bold unit=" TAL" />
-      <Balance fontSize="16px" value={autoUsdToDisplay} decimals={2} bold prefix="~$" />
+      <Balance fontSize="14px" value={autoCakeToDisplay} decimals={3} bold unit=" TAL" />
+      <Balance fontSize="14px" value={autoUsdToDisplay} decimals={2} bold prefix="~$" />
       {t('Earned since your last action')}
       <Text>{dateStringToDisplay}</Text>
     </>,
@@ -108,7 +108,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
                 <Balance
                   mt="4px"
                   bold={!isXs && !isSm}
-                  fontSize={isXs || isSm ? '14px' : '16px'}
+                  fontSize={isXs || isSm ? '14px' : '14px'}
                   color={hasEarnings ? 'primary' : 'textDisabled'}
                   decimals={hasEarnings ? 5 : 1}
                   value={hasEarnings ? earningTokenBalance : 0}

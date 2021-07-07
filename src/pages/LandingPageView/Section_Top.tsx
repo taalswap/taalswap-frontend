@@ -502,7 +502,7 @@ const SectionTop: React.FC = () => {
                 <img src={info2Img04} alt="info_icon" />
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
                   <Titcolor style={{ marginRight: '0px', width: 'auto' }} className="info_title">
-                    {t('Halving Countdown')}
+                    {t('Rewards starting in')}
                   </Titcolor>
                 </div>
                 <TimeCounter />
