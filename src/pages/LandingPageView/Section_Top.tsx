@@ -134,6 +134,8 @@ const SectionTop: React.FC = () => {
   const burnedBalance = getBalanceNumber(useBurnedBalance(getTaalAddress()))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
+  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
+
   usePollFarmsData(isArchived)
   useFetchPublicPoolsData()
   useFetchCakeVault()
@@ -422,7 +424,8 @@ const SectionTop: React.FC = () => {
               you&apos;ve never imagined
             </p>
             <p className="home_subtit">A multi-chain AMM protocol to safeguard and increase your assets</p>
-            <Button className="start_btn" onClick={() => linkToURL('http://localhost:3000/#/swap')}>
+            {/* <Button className="start_btn" onClick={() => linkToURL('http://localhost:3000/#/swap')}> */}
+            <Button className="start_btn" onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap`)}>
               {t('Start')}
             </Button>
           </div>
@@ -437,7 +440,8 @@ const SectionTop: React.FC = () => {
             <div className="buy_btnwrap">
               <Button
                 value={t('Buy TAL')}
-                onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
+                // onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
+                onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf`)}
                 className="buy_Btn"
               >
                 {t('Buy TAL')}

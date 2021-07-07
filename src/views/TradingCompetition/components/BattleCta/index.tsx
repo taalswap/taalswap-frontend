@@ -74,6 +74,7 @@ const BattleCta: React.FC<CompetitionProps> = ({
   )
   const { hasRegistered, hasUserClaimed } = userTradingInformation
   const registeredAndNotStarted = hasRegistered && !isCompetitionLive && !hasCompetitionEnded
+  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
 
   const isButtonDisabled = Boolean(
     isLoading ||
@@ -162,7 +163,8 @@ const BattleCta: React.FC<CompetitionProps> = ({
     }
     // Registered and competition is live
     if (hasRegistered && isCompetitionLive) {
-      window.location.href = 'http://localhost:3000/#/swap'
+      // window.location.href = 'http://localhost:3000/#/swap'
+      window.location.href = `${interfaceBaseUrl}/#/swap`
     }
     // Registered and competition has finished
     if (hasRegistered && hasCompetitionEnded) {

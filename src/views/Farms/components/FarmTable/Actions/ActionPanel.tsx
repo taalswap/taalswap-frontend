@@ -66,8 +66,7 @@ const Container = styled.div<{ expanded }>`
   }
 `
 
-const StyledLinkExternalNoIcon = styled(LinkExternalNoIcon)`
-`
+const StyledLinkExternalNoIcon = styled(LinkExternalNoIcon)``
 
 const StyledLinkExternalCSS = styled.div`
   font-weight: 400;
@@ -76,16 +75,16 @@ const StyledLinkExternalCSS = styled.div`
 
 const StyledLinkExternal = styled.div`
   font-weight: 400;
-  cursor:pointer;
-  display:flex;
-  justify-content:center;
-  margin-right:30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-right: 30px;
 `
 const StyledLinkExternal2 = styled.div`
   font-weight: 400;
-  cursor:pointer;
-  display:flex;
-  justify-content:center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
 `
 
 const StakeContainer = styled.div`
@@ -134,9 +133,9 @@ const ActionContainer = styled.div`
 
 const InfoContainer = styled.div`
   min-width: 200px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const ValueContainer = styled.div`
@@ -176,6 +175,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = getBscScanAddressUrl(lpAddress)
   const info = `https://taalswap.info/pair/${lpAddress}`
+  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
 
   const [isShown, setIsShown] = useState(false)
   const [isShown2, setIsShown2] = useState(false)
@@ -186,12 +186,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <InfoContainer>
         {isActive && (
           <StakeContainer>
-            <StyledLinkExternalNoIcon href={`http://localhost:3000/#/add/${liquidityUrlPathParts}`}>
-              <StyledLinkExternal onMouseEnter={() => setIsShown(true)}
-                                  onMouseLeave={() => setIsShown(false)}>
+            {/* <StyledLinkExternalNoIcon href={`http://localhost:3000/#/add/${liquidityUrlPathParts}`}> */}
+            <StyledLinkExternalNoIcon href={`${interfaceBaseUrl}/#/add/${liquidityUrlPathParts}`}>
+              <StyledLinkExternal onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
                 <LpIcon />
                 {isShown && (
-                  <div style={{position:"absolute",marginTop:"36px",color:"#00ab55",fontSize:'13px'}}>
+                  <div style={{ position: 'absolute', marginTop: '36px', color: '#00ab55', fontSize: '13px' }}>
                     {t('Get %symbol%', { symbol: lpLabel })}
                   </div>
                 )}
@@ -200,20 +200,20 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           </StakeContainer>
         )}
         <StyledLinkExternalNoIcon href={bsc}>
-          <StyledLinkExternal onMouseEnter={() => setIsShown2(true)}
-                              onMouseLeave={() => setIsShown2(false)}><LpIcon2 />
+          <StyledLinkExternal onMouseEnter={() => setIsShown2(true)} onMouseLeave={() => setIsShown2(false)}>
+            <LpIcon2 />
             {isShown2 && (
-              <div style={{position:"absolute",marginTop:"36px",color:"#00ab55",fontSize:'13px'}}>
+              <div style={{ position: 'absolute', marginTop: '36px', color: '#00ab55', fontSize: '13px' }}>
                 View Contract
               </div>
             )}
           </StyledLinkExternal>
         </StyledLinkExternalNoIcon>
         <StyledLinkExternalNoIcon href={info}>
-          <StyledLinkExternal2 onMouseEnter={() => setIsShown3(true)}
-                               onMouseLeave={() => setIsShown3(false)}><LpIcon3 />
+          <StyledLinkExternal2 onMouseEnter={() => setIsShown3(true)} onMouseLeave={() => setIsShown3(false)}>
+            <LpIcon3 />
             {isShown3 && (
-              <div style={{position:"absolute",marginTop:"32px",color:"#00ab55",fontSize:'13px'}}>
+              <div style={{ position: 'absolute', marginTop: '32px', color: '#00ab55', fontSize: '13px' }}>
                 See Pair Info
               </div>
             )}
