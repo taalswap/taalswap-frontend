@@ -59,7 +59,7 @@ const Container = styled.div<{ expanded }>`
   width: 100%;
   flex-direction: column-reverse;
   padding: 24px;
-
+  position:relative;
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
     padding: 16px 32px;
@@ -79,7 +79,7 @@ const StyledLinkExternal = styled.div`
   cursor:pointer;
   display:flex;
   justify-content:center;
-  margin-right:30px;
+  margin-right:16px;
 `
 const StyledLinkExternal2 = styled.div`
   font-weight: 400;
@@ -133,15 +133,27 @@ const ActionContainer = styled.div`
 `
 
 const InfoContainer = styled.div`
-  min-width: 200px;
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+  margin-top:24px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width:auto;
+    min-width: 160px;
   display:flex;
   align-items:center;
   justify-content:center;
+  position:initial;
+  }
 `
 
 const ValueContainer = styled.div`
   display: block;
-
+  background: ${({ theme }) => theme.colors.backgroundAlt};
+  margin:0 16px;
+  border-radius:8px;
+  box-sizing:border-box;
+  padding:16px;
   ${({ theme }) => theme.mediaQueries.lg} {
     display: none;
   }
@@ -150,8 +162,11 @@ const ValueContainer = styled.div`
 const ValueWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content:flex-end;
   margin: 4px 0px;
+  > div{
+    justify-content:flex-end;
+  }
 `
 
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({

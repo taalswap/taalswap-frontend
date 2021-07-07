@@ -25,6 +25,7 @@ const Container = styled.div`
   padding-left: 16px;
   display: flex;
   align-items: center;
+  max-width:140px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
   }
@@ -52,7 +53,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
       <IconImage src={`/images/farms/${image}.svg`} alt="icon" width={40} height={40} mr="8px" />
       <div>
         {handleRenderFarming()}
-        <Text bold>{label}</Text>
+        <Text bold fontSize='14px'>{label}</Text>
       </div>
     </Container>
   )

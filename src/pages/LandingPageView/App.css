@@ -106,7 +106,7 @@ p,span,div,input{font-weight:600;}
 .cont .input_wrap .info_portfolio ul .list_progressbar div .info_num{font-size:24px;box-sizing:border-box;padding-bottom:5px;}
 
 
-.farms_wrap{padding:20px;box-sizing:border-box;}
+.farms_wrap{padding:50px 20px;box-sizing:border-box;}
 .farms_wrap table th {font-size:16px;}
 
 .cont .input_wrap .info_portfolio ul li:first-child{display:flex;justify-content:space-between;}
@@ -128,7 +128,7 @@ p,span,div,input{font-weight:600;}
 
 /* sub section */
 .subsection_box{width:100%;max-width:1280px;margin:0 auto;text-align:center;padding:50px 0;}
-.subsection_box .section_tit{font-size:30px;margin-bottom:25px;}
+.section_tit{font-size:30px;margin-bottom:25px;}
 .subsection_box ul{display:flex;justify-content:space-between;}
 .subsection_box ul li{width:calc(50% - 50px);list-style:none;text-align:center;border-radius:16px;padding:45px 20px;box-sizing:border-box;}
 
