@@ -334,7 +334,7 @@ export const usePriceBnbBusd = (): BigNumber => {
 
 // TODO : Ethereum에서는 수정 필요
 export const usePriceCakeBusd = (): BigNumber => {
-  // const cakeBnbFarm = useFarmFromPid(251)
+  // const cakeBnbFarm = useFarmFromPid(251)  // 251 -> 1
   const cakeBnbFarm = useFarmFromPid(1)
   return new BigNumber(cakeBnbFarm.token.busdPrice)
 }
