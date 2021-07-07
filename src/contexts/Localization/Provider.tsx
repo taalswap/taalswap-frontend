@@ -47,9 +47,7 @@ export const LanguageProvider: React.FC = ({ children }) => {
   }, [setState])
 
   const setLanguage = async (language: Language) => {
-    const postMsg = {'key': LS_KEY, 'value': language.locale}
     // @ts-ignore
-    postCrossDomainMessage(postMsg)
     if (!languageMap.has(language.locale)) {
       setState((prevState) => ({
         ...prevState,
