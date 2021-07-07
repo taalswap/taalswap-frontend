@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Target } from 'react-feather'
 import { Link } from 'taalswap-uikit'
 
+const frontendBaseUrl = process.env.REACT_APP_FRONTEND || 'http://localhost:3001'
+const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
+
 const Search = () => {
   const [show, toggleShow] = React.useState(true)
   return (
@@ -23,23 +26,23 @@ const Results = () => (
         </Link>
       </li>
       <li>
-        <Link href="#/swap" style={{ textDecoration: 'none' }}>
+        <Link href={`${interfaceBaseUrl}/#/swap`} style={{ textDecoration: 'none' }}>
           <span className="swap_icon">swap_icon</span>Swap
         </Link>
       </li>
       <li>
-        <Link href="#/liquidity" style={{ textDecoration: 'none' }}>
+        <Link href={`${interfaceBaseUrl}/#/liquidity`} style={{ textDecoration: 'none' }}>
           <span className="liquidity_icon">liquidity_icon</span>Liquidity
         </Link>
       </li>
       <li>
-        <Link href="http://localhost:3001/farms" style={{ textDecoration: 'none' }}>
+        <Link href={`${frontendBaseUrl}/farms`} style={{ textDecoration: 'none' }}>
           <span className="farms_icon">Farms_icon</span>Farms
         </Link>
       </li>
       <li>
-        <Link href="#/liquidity" style={{ textDecoration: 'none' }}>
-          <span className="pools_icon">pools_icon</span>pools
+        <Link href={`${frontendBaseUrl}/staking`} style={{ textDecoration: 'none' }}>
+          <span className="pools_icon">pools_icon</span>Staking
         </Link>
       </li>
       <li>
