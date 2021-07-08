@@ -845,9 +845,9 @@
   "TAL Earned": "TAL 획득량",
   "Harvest All": "모두 수확하기",
   "Go Now": "바로가기",
-  "Maximum ARP": "최대 ARP",
+  "Maximum APR": "최대 APR",
   "# of Transactions (24H)": "일일 트랜잭션 수",
   "# of Volume USD (24H)": "일일 거래량",
   "Rewards starting in": "보상 시작",
-  "TAL Minted per block": "블록 당 TAL 생성 갯수"
+  "TAL minted per block": "블록 당 TAL 생성 갯수"
 }
