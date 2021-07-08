@@ -22,7 +22,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.text};
-
+  width:100px;
   button {
     width: 20px;
     height: 20px;
@@ -36,7 +36,6 @@ const Container = styled.div`
 `
 
 const AprWrapper = styled.div`
-  min-width: 60px;
   text-align: left;
 `
 

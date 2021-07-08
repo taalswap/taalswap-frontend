@@ -104,6 +104,7 @@ const InfoSection = styled(Box)`
   align-items:center;
   justify-content:center;
   padding: 8px 8px;
+  flex-wrap:wrap;
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 0;
   }
@@ -173,39 +174,35 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const blocksRow =
     blocksRemaining || blocksUntilStart ? (
       <Flex mb="8px" justifyContent="space-between">
-        <div>
-          <Text ml="4px" color="primary">
-            {hasPoolStarted ? t('Ends in') : t('Starts in')} :
-          </Text>
-          <Flex>
-            <Link external href={getBscScanBlockCountdownUrl(endBlock)}>
-              <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
-              <Text ml="4px" color="primary" textTransform="lowercase">
-                {t('Blocks')}
-              </Text>
-              <TimerIcon ml="4px" color="primary" />
-            </Link>
-          </Flex>
-        </div>
+        <Text>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
+        <Flex>
+          <Link external href={getBscScanBlockCountdownUrl(endBlock)}>
+            <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
+            <Text ml="4px" color="primary" textTransform="lowercase">
+              {t('Blocks')}
+            </Text>
+            <TimerIcon ml="4px" color="primary" />
+          </Link>
+        </Flex>
       </Flex>
     ) : (
       <Skeleton width="56px" height="16px" />
     )
 
   const aprRow = (
-    <Flex justifyContent="space-between" alignItems="center" mb="8px">
-      <Text>{isAutoVault ? t('APY') : t('APR')}</Text>
+    <Flex justifyContent="space-between" alignItems="center" mb="8px" width='100%'>
+      <Text bold fontSize='14px' color="textSubtle">{isAutoVault ? t('APY') : t('APR')}</Text>
       <Apr pool={pool} showIcon performanceFee={isAutoVault ? performanceFeeAsDecimal : 0} />
     </Flex>
   )
 
   const totalStakedRow = (
-    <Flex justifyContent="space-between" alignItems="center" mb="8px">
-      <Text maxWidth={['50px', '100%']}>{t('Total staked')}</Text>
+    <Flex justifyContent="space-between" alignItems="center" mb="8px" width='100%'>
+      <Text maxWidth={['50px', '100%']} bold fontSize='14px' color="textSubtle">{t('Total staked')}</Text>
       <Flex alignItems="center">
         {totalStaked ? (
           <>
-            <Balance fontSize="16px" value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
+            <Balance fontSize="14px" bold value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
             <span ref={totalStakedTargetRef}>
               <HelpIcon color="textSubtle" width="20px" ml="6px" />
             </span>
@@ -228,7 +225,8 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {maxStakeRow}
         {(isXs || isSm) && aprRow}
         {(isXs || isSm || isMd) && totalStakedRow}
-        <Flex mb="8px" mr='30px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown(true)}
+        {shouldShowBlockCountdown && blocksRow}
+        <Flex mb="8px" mr='16px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown(true)}
         onMouseLeave={() => setIsShown(false)}>
         <svg id="그룹_882" data-name="그룹 882" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
   <g id="타원_24" data-name="타원 24" transform="translate(0 0)" fill="none" stroke="#00ab55" strokeWidth="2">
@@ -248,7 +246,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         </div>
       )}
         </Flex>
-        <Flex mb="8px" mr='26px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown2(true)}
+        <Flex mb="8px" mr='16px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown2(true)}
         onMouseLeave={() => setIsShown2(false)}>
         <svg id="그룹_880" data-name="그룹 880" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26.328 26.177">
   <g id="타원_25" data-name="타원 25" transform="translate(0)" fill="none" stroke="#00ab55" strokeWidth="2">
@@ -287,11 +285,10 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
       </InfoSection>
       <ActionContainer>
         {showSubtitle && (
-          <Text mt="4px" mb="16px" color="textSubtle">
+          <Text mt="4px" mb="16px" color="textSubtle" bold fontSize='14px'>
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} TAL ${t('Stake').toLocaleLowerCase()} TAL`}
           </Text>
         )}
-        {shouldShowBlockCountdown && blocksRow}
         <Harvest {...pool} userDataLoaded={userDataLoaded} />
         <Stake pool={pool} userDataLoaded={userDataLoaded} />
       </ActionContainer>

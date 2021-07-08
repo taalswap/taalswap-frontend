@@ -155,7 +155,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
           </Flex>
         ) : (
           <Button disabled={!hasEarnings} onClick={onPresentCollect}>
-            {isCompoundPool ? t('Collect') : t('Harvest')}
+            {isCompoundPool ? t('ReceiveInterest') : t('Harvest')}
           </Button>
         )}
       </ActionContent>

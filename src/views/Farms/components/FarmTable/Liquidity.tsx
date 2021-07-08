@@ -13,10 +13,11 @@ export interface LiquidityProps {
 }
 
 const LiquidityWrapper = styled.div`
-  min-width: 110px;
+  min-width: 85px;
   font-weight: 600;
-  text-align: right;
+  text-align: left;
   margin-right: 14px;
+  font-size:14px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     text-align: left;
@@ -45,7 +46,7 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
   return (
     <Container>
       <LiquidityWrapper>
-        <Text>{displayLiquidity}</Text>
+        <Text style={{fontSize:'14px'}}fontWeight='600'>{displayLiquidity}</Text>
       </LiquidityWrapper>
       <ReferenceElement ref={targetRef}>
         <HelpIcon color="textSubtle" />

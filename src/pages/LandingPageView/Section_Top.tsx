@@ -1,23 +1,10 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 
 import styled from 'styled-components'
-import { Route, useRouteMatch, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import {
-  Image,
-  Heading,
-  RowType,
-  Toggle,
-  Text,
-  Link,
-  Skeleton,
-  Flex,
-  Box,
-  HelpIcon,
-  Button,
-  useModal,
-} from 'taalswap-uikit'
+import { Text, Skeleton, Button, useModal } from 'taalswap-uikit'
 
 import {
   useFarms,
@@ -39,19 +26,14 @@ import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
-import { max, orderBy } from 'lodash'
+import { orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 
-import UnlockButton from 'components/UnlockButton'
 import TimeCounter from 'components/TimeCounter'
 import CardValue from 'views/Home/components/CardValue'
 import { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
-import Table from '../../views/Farms/components/FarmTable/FarmTable'
 
-import { RowProps } from '../../views/Farms/components/FarmTable/Row'
-
-import { DesktopColumnSchema, ViewMode } from '../../views/Farms/components/types'
 import circleImg01 from './images/cilcle_icon01.png'
 import circleImg02 from './images/cilcle_icon02.png'
 import circleImg03 from './images/cilcle_icon03.png'
@@ -135,6 +117,8 @@ const SectionTop: React.FC = () => {
   const deployerBalance = getBalanceNumber(useDeployerBalance(getTaalAddress()))
   const cakeSupply = getBalanceNumber(totalSupply) - burnedBalance - deployerBalance
 
+  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
+
   usePollFarmsData(isArchived)
   useFetchPublicPoolsData()
   useFetchCakeVault()
@@ -164,21 +148,9 @@ const SectionTop: React.FC = () => {
     let result = 0
     pools.forEach((pool) => {
       if (pool.isAutoVault) {
-        // console.log(
-        //   `${pool.stakingToken.symbol}(${pool.isAutoVault}):  ${getBalanceNumber(
-        //     totalCakeInVault,
-        //     pool.stakingToken.decimals,
-        //   )}`,
-        // )
         result += getBalanceNumber(totalCakeInVault, pool.stakingToken.decimals)
       } else if (pool.sousId === 0) {
         const manualCakeTotalMinusAutoVault = new BigNumber(pool.totalStaked).minus(totalCakeInVault)
-        // console.log(
-        //   `${pool.stakingToken.symbol}(${pool.isAutoVault}):  ${getBalanceNumber(
-        //     manualCakeTotalMinusAutoVault,
-        //     pool.stakingToken.decimals,
-        //   )}`,
-        // )
         result += getBalanceNumber(manualCakeTotalMinusAutoVault, pool.stakingToken.decimals)
       } else {
         result += getBalanceNumber(pool.totalStaked, pool.stakingToken.decimals)
@@ -200,15 +172,11 @@ const SectionTop: React.FC = () => {
       })
         .then((response) => response.json())
         .then((response) => {
-          // console.log(`tvl : ${response.data.tvl}`)
-          // console.log(`talStakedTotal : ${talStakedTotal}`)
-          // console.log(`cakePrice.toNumber() : ${cakePrice.toNumber()}`)
           if (cakePrice.isNaN()) {
             result = parseFloat(response.data.tvl)
           } else {
             result = parseFloat(response.data.tvl) + talStakedTotal * cakePrice.toNumber()
           }
-          // console.log(`result : ${result}`)
           setTalTvl(result)
         })
 
@@ -276,10 +244,7 @@ const SectionTop: React.FC = () => {
     setQuery(event.target.value)
   }
 
-  const loadMoreRef = useRef<HTMLDivElement>(null)
-
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
-  const [observerIsSet, setObserverIsSet] = useState(false)
 
   const farmsStakedMemoized = useMemo(() => {
     let farmsStaked = []
@@ -427,7 +392,8 @@ const SectionTop: React.FC = () => {
               you&apos;ve never imagined
             </p>
             <p className="home_subtit">A multi-chain AMM protocol to safeguard and increase your assets</p>
-            <Button className="start_btn" onClick={() => linkToURL('http://localhost:3000/#/swap')}>
+            {/* <Button className="start_btn" onClick={() => linkToURL('http://localhost:3000/#/swap')}> */}
+            <Button className="start_btn" onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap`)}>
               {t('Start')}
             </Button>
           </div>
@@ -442,7 +408,8 @@ const SectionTop: React.FC = () => {
             <div className="buy_btnwrap">
               <Button
                 value={t('Buy TAL')}
-                onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
+                // onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
+                onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap/ETH/0x90a4A420732907b3c38B11058F9aA02B3f4121dF`)}
                 className="buy_Btn"
               >
                 {t('Buy TAL')}
@@ -508,7 +475,7 @@ const SectionTop: React.FC = () => {
                 <img src={info2Img04} alt="info_icon" />
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
                   <Titcolor style={{ marginRight: '0px', width: 'auto', color: 'red' }} className="info_title">
-                    {t('Halving Countdown')}
+                    {t('Rewards starting in')}
                   </Titcolor>
                 </div>
                 <TimeCounter />
@@ -516,7 +483,7 @@ const SectionTop: React.FC = () => {
               <li>
                 <div>
                   <img src={circleImg03} alt="info_icon" />
-                  <Titcolor className="info_title">{t('TAL generation per block')}</Titcolor>
+                  <Titcolor className="info_name">{t('TAL Minted per block')}</Titcolor>
                 </div>
                 <Txtcolor>
                   <CardValue fontSize="20" value={40} decimals={0} />
@@ -560,15 +527,6 @@ const SectionTop: React.FC = () => {
                   </div>
                 </div>
               </li>
-              {/* <li>
-                <div>
-                  <img src={circleImg03} alt="info_icon" />
-                  <Titcolor className="info_title">{t('TAL generation per block')}</Titcolor>
-                </div>
-                <Txtcolor>
-                  <CardValue fontSize="20" value={40} decimals={0} />
-                </Txtcolor>
-              </li> */}
             </Usewrap>
           </div>
           <div className="taal_info info04">
