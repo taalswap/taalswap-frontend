@@ -133,7 +133,7 @@ const SectionTop: React.FC = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getTaalAddress()))
   const deployerBalance = getBalanceNumber(useDeployerBalance(getTaalAddress()))
-  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance - deployerBalance : 0
+  const cakeSupply = getBalanceNumber(totalSupply) - burnedBalance - deployerBalance
 
   usePollFarmsData(isArchived)
   useFetchPublicPoolsData()
