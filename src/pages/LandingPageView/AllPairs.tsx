@@ -117,7 +117,7 @@ const AllPairs = () => {
           <tr>
             <TitleStyle>Name</TitleStyle>
             <TitleStyle>Liquidity</TitleStyle>
-            <TitleStyle>Prices</TitleStyle>
+            <TitleStyle>Swap</TitleStyle>
           </tr>
           {pairTableRow().map((pair) => (
             <>
