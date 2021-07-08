@@ -34,7 +34,7 @@ const Pools: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const {
-    userData: { cakeAtLastUserAction, userShares },
+    userData: { taalAtLastUserAction, userShares },
     fees: { performanceFee },
     pricePerFullShare,
     totalCakeInVault,
@@ -114,7 +114,7 @@ const Pools: React.FC = () => {
             return pool.isAutoVault
               ? getCakeVaultEarnings(
                   account,
-                  cakeAtLastUserAction,
+                  taalAtLastUserAction,
                   userShares,
                   pricePerFullShare,
                   pool.earningTokenPrice,
