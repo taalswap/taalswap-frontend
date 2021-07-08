@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Text, Link } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
-import { useTranslation } from 'contexts/Localization'
 
 const Txtcolor = styled.p`
   color: ${({ theme }) => theme.colors.logoColor};
