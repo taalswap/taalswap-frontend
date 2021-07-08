@@ -23,7 +23,6 @@ const Container = styled.div`
 
 const TableWrapper = styled.div`
   overflow: visible;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -41,9 +40,8 @@ const StyledTable = styled.table`
 const TableBody = styled.tbody`
   & tr {
     td {
-      font-size: 16px;
+      font-size: 14px;
       vertical-align: middle;
-      border-bottom: 2px solid rgba(133, 133, 133, 0.1);
     }
   }
   & tr {
@@ -51,12 +49,13 @@ const TableBody = styled.tbody`
       text-align: left;
       background: ${({ theme }) => theme.colors.tertiary};
       color: ${({ theme }) => theme.colors.textSubtle};
+      font-size:14px;
     }
   }
-  &tr {
-    padding: 0 20px;
+  & tr {
+    border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   }
-`
+  `
 
 const TableContainer = styled.div`
   position: relative;

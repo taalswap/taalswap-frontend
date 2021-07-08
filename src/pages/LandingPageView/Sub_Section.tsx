@@ -25,12 +25,12 @@ const LandingPageView = () => {
         <Txtcolor className="section_tit">Auditing Agency</Txtcolor>
         <ul>
           <Usewrap>
-            <a href="./">
+            <a href="https://www.slowmist.com" target="_blank" rel="noreferrer">
               <img src={AgencyLogo01} alt="LogoImg" style={{ width: '100%', maxWidth: '188px' }} />
             </a>
           </Usewrap>
           <Usewrap>
-            <a href="./">
+            <a href="https://audit.haechi.io" target="_blank" rel="noreferrer">
               <img src={AgencyLogo02} alt="LogoImg" style={{ width: '100%', maxWidth: '146px' }} />
             </a>
           </Usewrap>

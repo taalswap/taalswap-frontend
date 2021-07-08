@@ -9,6 +9,10 @@ import logo_imgChange from './images/TAAL_Logo.svg'
 const TopBar = () => {
   const { account } = useWeb3React()
   const [scrollPosition, setScrollPosition] = useState(0)
+
+  const frontendBaseUrl = process.env.REACT_APP_FRONTEND || 'http://localhost:3001'
+  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
+
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop)
   }
@@ -32,22 +36,22 @@ const TopBar = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="http://localhost:3000/#/swap" style={{ textDecoration: 'none', fontSize: '14px' }}>
+            <Link href={`${interfaceBaseUrl}/#/swap`} style={{ textDecoration: 'none', fontSize: '14px' }}>
               Swap
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="http://localhost:3000/#/liquidity" style={{ textDecoration: 'none', fontSize: '14px' }}>
+            <Link href={`${interfaceBaseUrl}/#/liquidity`} style={{ textDecoration: 'none', fontSize: '14px' }}>
               Liquidity
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="/farms" style={{ textDecoration: 'none', fontSize: '14px' }}>
+            <Link href={`${frontendBaseUrl}/farms`} style={{ textDecoration: 'none', fontSize: '14px' }}>
               Farms
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="/staking" style={{ textDecoration: 'none', fontSize: '14px' }}>
+            <Link href={`${frontendBaseUrl}/staking`} style={{ textDecoration: 'none', fontSize: '14px' }}>
               Staking
             </Link>
           </div>

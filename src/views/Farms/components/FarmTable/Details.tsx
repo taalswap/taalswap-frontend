@@ -31,7 +31,7 @@ const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
 
   return (
     <Container>
-      {!isMobile && actionPanelToggled ? t('Hide') : t('Details')}
+      {/* {!isMobile && actionPanelToggled ? t('Hide') : t('Details')} */}
       <ArrowIcon color="primary" toggled={actionPanelToggled} />
     </Container>
   )
