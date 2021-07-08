@@ -849,5 +849,6 @@
   "# of Transactions (24H)": "일일 트랜잭션 수",
   "# of Volume USD (24H)": "일일 거래량",
   "Rewards starting in": "보상 시작",
-  "TAL minted per block": "블록 당 TAL 생성 갯수"
+  "TAL minted per block": "블록 당 TAL 생성 갯수",
+  "Buy: %symbol%": "%symbol% 구입"
 }
