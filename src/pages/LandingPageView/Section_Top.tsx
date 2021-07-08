@@ -437,7 +437,7 @@ const SectionTop: React.FC = () => {
               <li>
                 <div>
                   <img src={info2Img01} alt="info_icon" />
-                  <Titcolor className="img_tit">{t('Maximum ARP')}</Titcolor>
+                  <Titcolor className="img_tit">{t('Maximum APR')}</Titcolor>
                 </div>
                 <Txtcolor className="info_num" style={{ display: 'flex', justifyContent: 'flex-start' }}>
                   <span>
@@ -483,7 +483,7 @@ const SectionTop: React.FC = () => {
               <li>
                 <div>
                   <img src={circleImg03} alt="info_icon" />
-                  <Titcolor className="info_name">{t('TAL Minted per block')}</Titcolor>
+                  <Titcolor className="info_name">{t('TAL minted per block')}</Titcolor>
                 </div>
                 <Txtcolor className="info_num">
                   <CardValue fontSize="16px" value={40} decimals={0} />
