@@ -19,7 +19,7 @@ interface ApyCalculatorModalProps {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 33.3%);
   grid-template-rows: repeat(4, auto);
   margin-bottom: 12px;
 `
@@ -108,10 +108,10 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridHeaderItem>
         {/* 1 day row */}
         <GridItem>
-          <Text>{t('%num%d', { num: 1 })}</Text>
+          <Text fontSize="14px">{t('%num%d', { num: 1 })}</Text>
         </GridItem>
         <GridItem>
-          <Text mr="12px" ml="12px">
+          <Text mr="12px" ml="12px" fontSize="14px">
             {getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
               roundingDecimals,
             )}
@@ -119,14 +119,14 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{tokenEarnedPerThousand1D}</Text>
+          <Text fontSize="14px">{tokenEarnedPerThousand1D}</Text>
         </GridItem>
         {/* 7 day row */}
         <GridItem>
-          <Text>{t('%num%d', { num: 7 })}</Text>
+          <Text fontSize="14px">{t('%num%d', { num: 7 })}</Text>
         </GridItem>
         <GridItem>
-          <Text mr="12px" ml="12px">
+          <Text mr="12px" ml="12px" fontSize="14px">
             {getRoi({ amountEarned: tokenEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
               roundingDecimals,
             )}
@@ -134,14 +134,14 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{tokenEarnedPerThousand7D}</Text>
+          <Text fontSize="14px">{tokenEarnedPerThousand7D}</Text>
         </GridItem>
         {/* 30 day row */}
         <GridItem>
-          <Text>{t('%num%d', { num: 30 })}</Text>
+          <Text fontSize="14px">{t('%num%d', { num: 30 })}</Text>
         </GridItem>
         <GridItem>
-          <Text mr="12px" ml="12px">
+          <Text mr="12px" ml="12px" fontSize="14px">
             {getRoi({
               amountEarned: tokenEarnedPerThousand30D,
               amountInvested: oneThousandDollarsWorthOfToken,
@@ -150,14 +150,14 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{tokenEarnedPerThousand30D}</Text>
+          <Text fontSize="14px">{tokenEarnedPerThousand30D}</Text>
         </GridItem>
         {/* 365 day / APY row */}
         <GridItem style={{ maxWidth: '180px' }}>
-          <Text>{t('365d(APY)')}</Text>
+          <Text fontSize="14px">{t('365d(APY)')}</Text>
         </GridItem>
         <GridItem>
-          <Text mr="12px" ml="12px">
+          <Text mr="12px" ml="12px" fontSize="14px">
             {getRoi({
               amountEarned: tokenEarnedPerThousand365D,
               amountInvested: oneThousandDollarsWorthOfToken,
@@ -166,7 +166,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{tokenEarnedPerThousand365D}</Text>
+          <Text fontSize="14px">{tokenEarnedPerThousand365D}</Text>
         </GridItem>
       </Grid>
       <Flex justifyContent="center">

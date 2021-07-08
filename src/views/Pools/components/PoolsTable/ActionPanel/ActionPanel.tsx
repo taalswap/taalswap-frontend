@@ -99,7 +99,7 @@ interface ActionPanelProps {
 }
 
 const InfoSection = styled(Box)`
-  flex: 0 0 230px;
+  flex: 0 0 160px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -226,7 +226,8 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {(isXs || isSm) && aprRow}
         {(isXs || isSm || isMd) && totalStakedRow}
         {shouldShowBlockCountdown && blocksRow}
-        <Flex mb="8px" mr='16px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown(true)}
+        <Flex style={{width:'100%',justifyContent:'space-evenly'}}>
+        <Flex mb="8px" justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown(true)}
         onMouseLeave={() => setIsShown(false)}>
         <svg id="그룹_882" data-name="그룹 882" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
   <g id="타원_24" data-name="타원 24" transform="translate(0 0)" fill="none" stroke="#00ab55" strokeWidth="2">
@@ -246,7 +247,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         </div>
       )}
         </Flex>
-        <Flex mb="8px" mr='16px' justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown2(true)}
+        <Flex mb="8px" justifyContent='center' style={{cursor:"pointer"}} onMouseEnter={() => setIsShown2(true)}
         onMouseLeave={() => setIsShown2(false)}>
         <svg id="그룹_880" data-name="그룹 880" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26.328 26.177">
   <g id="타원_25" data-name="타원 25" transform="translate(0)" fill="none" stroke="#00ab55" strokeWidth="2">
@@ -282,6 +283,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
           </Flex>
         )}
         {tagTooltipVisible && tagTooltip}
+        </Flex>
       </InfoSection>
       <ActionContainer>
         {showSubtitle && (
