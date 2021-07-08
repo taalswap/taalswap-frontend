@@ -3,28 +3,32 @@ import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
 
-const CountDownItem = styled.div`
+const CountDownItem = styled.span`
   color: ${({ theme }) => theme.colors.text};
 `
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: 'flex',
-    alignItems: 'center',
+    // display: 'flex',
+    // alignItems: 'center',
   },
   countdownWrapper: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexWrap: 'nowrap',
-    maxWidth: '150px',
+
+    // flexDirection: 'column',
+    // flexWrap: 'nowrap',
+    // width: '100%',
+    // margin: '0px',
+    // padding: '0px',
   },
 
   countdownItem: {
     fontSize: '16px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // display: 'flex',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     margin: '0px 2px',
   },
 }))
@@ -45,7 +49,7 @@ const TimeCounter = () => {
       const interval = setInterval(() => {
         const now = new Date()
 
-        const thenMnt = moment('2021-08-05 12:00:00')
+        const thenMnt = moment('2021-07-21 12:00:00')
 
         setDays(parseInt(moment.duration(thenMnt.diff(now)).asDays().toString()).toString())
         setHours(moment.duration(thenMnt.diff(now)).hours().toString())
@@ -60,29 +64,16 @@ const TimeCounter = () => {
 
   return (
     <>
-      <div className={classes.countdownWrapper} style={{ display: 'flex', alignItems: 'center' }}>
+      <div className={classes.countdownWrapper}>
         <div className="count_Box">
-          <CountDownItem className={classes.countdownItem}>
-            {fillZero(2, days)}
-            {/* <span>DD</span> */}
-          </CountDownItem>
+          {/* {`${fillZero(2, days)} days ${fillZero(2, hours)} : ${fillZero(2, minutes)} : ${fillZero(2, seconds)} `} */}
+          <CountDownItem className={classes.countdownItem}>{fillZero(2, days)}</CountDownItem>
           <CountDownItem className={classes.countdownItem}>days</CountDownItem>
-        </div>
-        <div className="count_Box">
-          <CountDownItem className={classes.countdownItem}>
-            {fillZero(2, hours)}
-            {/* <span>HH</span> */}
-          </CountDownItem>
+          <CountDownItem className={classes.countdownItem}>{fillZero(2, hours)}</CountDownItem>
           <CountDownItem className={classes.countdownItem}>:</CountDownItem>
-          <CountDownItem className={classes.countdownItem}>
-            {fillZero(2, minutes)}
-            {/* <span>MM</span> */}
-          </CountDownItem>
+          <CountDownItem className={classes.countdownItem}>{fillZero(2, minutes)}</CountDownItem>
           <CountDownItem className={classes.countdownItem}>:</CountDownItem>
-          <CountDownItem className={classes.countdownItem}>
-            {fillZero(2, seconds)}
-            {/* <span>SS</span> */}
-          </CountDownItem>
+          <CountDownItem className={classes.countdownItem}>{fillZero(2, seconds)}</CountDownItem>
         </div>
       </div>
     </>
