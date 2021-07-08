@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { RowType } from 'taalswap-uikit'
+import { RowType, useMatchBreakpoints } from 'taalswap-uikit'
 import styled from 'styled-components'
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
 import { Farm } from 'state/types'
@@ -13,6 +13,7 @@ import { orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 import { OptionProps } from 'components/Select/Select'
+import TimeCounter from 'components/TimeCounter'
 import { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
 import Table from '../../views/Farms/components/FarmTable/FarmTable'
 import { RowProps } from '../../views/Farms/components/FarmTable/Row'
@@ -37,6 +38,8 @@ const TableWrap: React.FC = () => {
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
+
+  const { isXl, isLg } = useMatchBreakpoints()
 
   usePollFarmsData(isArchived)
 
@@ -246,7 +249,54 @@ const TableWrap: React.FC = () => {
   }
   return (
     <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
-      <Txtcolor className="section_tit">Farms</Txtcolor>
+      {isLg || isXl ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <Txtcolor className="section_tit">Farms</Txtcolor>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              marginBottom: '20px',
+              marginLeft: '10px',
+            }}
+          >
+            <Txtcolor>(Starting in </Txtcolor>
+            <TimeCounter />
+            <Txtcolor>)</Txtcolor>
+          </div>
+        </div>
+      ) : (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Txtcolor className="section_tit">Farms</Txtcolor>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              marginBottom: '20px',
+              marginLeft: '10px',
+            }}
+          >
+            <Txtcolor>(Starting in </Txtcolor>
+            <TimeCounter />
+            <Txtcolor>)</Txtcolor>
+          </div>
+        </div>
+      )}
+
       {renderContent()}
       <div ref={loadMoreRef} />
     </div>
