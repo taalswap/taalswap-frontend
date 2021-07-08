@@ -835,5 +835,6 @@
   "# of Transactions (24H)": "# of Transactions (24H)",
   "# of Volume USD (24H)": "# of Volume USD (24H)",
   "Rewards starting in": "Rewards starting in",
-  "TAL minted per block": "TAL minted per block"
+  "TAL minted per block": "TAL minted per block",
+  "Buy: %symbol%": "Buy %symbol%"
 }
