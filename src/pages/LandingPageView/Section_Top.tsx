@@ -203,7 +203,11 @@ const SectionTop: React.FC = () => {
           // console.log(`tvl : ${response.data.tvl}`)
           // console.log(`talStakedTotal : ${talStakedTotal}`)
           // console.log(`cakePrice.toNumber() : ${cakePrice.toNumber()}`)
-          result = parseFloat(response.data.tvl) + talStakedTotal * cakePrice.toNumber()
+          if (cakePrice.isNaN()) {
+            result = parseFloat(response.data.tvl)
+          } else {
+            result = parseFloat(response.data.tvl) + talStakedTotal * cakePrice.toNumber()
+          }
           // console.log(`result : ${result}`)
           setTalTvl(result)
         })
