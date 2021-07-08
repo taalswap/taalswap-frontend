@@ -58,28 +58,28 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
             <>
             <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Pair')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '1 0 100px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Earned')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '0 0 120px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('APY/APR')}
               </Text>
             </CellContent>
           </StyledCell>
             <StyledCell role="cell" style={{ flex: '2 0 220px' }}>
               <CellContent>
-                <Text fontSize="14px" color="textSubtle">
+                <Text fontSize="14px" color="textSubtle" bold>
                   {t('Total Staked')}
                 </Text>
               </CellContent>
@@ -91,28 +91,28 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
             <>
             <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Pair')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '1 0 100px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Earned')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '0 0 120px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('APY/APR')}
               </Text>
             </CellContent>
           </StyledCell>
             <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
               <CellContent>
-                <Text fontSize="14px" color="textSubtle">
+                <Text fontSize="14px" color="textSubtle" bold>
                   {t('Total Staked')}
                 </Text>
               </CellContent>
@@ -126,7 +126,7 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
               </StyledCell>
               <StyledCell role="cell" style={{ flex: '0 0 120px' }}>
                 <CellContent>
-                  <Text fontSize="14px" color="textSubtle">
+                  <Text fontSize="14px" color="textSubtle" bold>
                     {t('Details View')}
                   </Text>
                 </CellContent>
@@ -138,21 +138,21 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
             <>
             <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Pair')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '1 0 100px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Earned')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '1 0 50px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('APY/APR')}
               </Text>
             </CellContent>
@@ -170,21 +170,21 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
             <>
             <StyledCell role="cell" style={{ flex: '5', paddingLeft: '20px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Pair')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '4.5' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Earned')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '1 0 50px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('APY/APR')}
               </Text>
             </CellContent>
@@ -202,21 +202,21 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
             <>
             <StyledCell role="cell" style={{ flex: '5', paddingLeft: '12px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Pair')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '4.5' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('Earned')}
               </Text>
             </CellContent>
           </StyledCell>
           <StyledCell role="cell" style={{ flex: '1 0 50px' }}>
             <CellContent>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="textSubtle" bold>
                 {t('APY/APR')}
               </Text>
             </CellContent>
