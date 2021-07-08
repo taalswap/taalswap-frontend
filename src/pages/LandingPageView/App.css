@@ -13,13 +13,13 @@ p,span,div,input{font-weight:600;}
 .top_logochange{display:none;}
 .change_header .top_logo{display:none;}
 .change_header .top_logochange{display:block;width:150px;}
-.top_menu .connect_btn{font-size:14px;margin-left:30px;cursor: pointer;border-radius:8px;color:#fff;background:#00ab55;border:none;box-sizing:border-box;padding: 8px 11px;}
+.top_menu .connect_btn{font-size:14px;margin-left:10px;cursor: pointer;border-radius:8px;color:#fff;background:#00ab55;border:none;box-sizing:border-box;padding: 8px 11px;}
 .mobile_menu{display:none;}
-.hide_menu{position:absolute;right: 20px; background:#fff;top:60px;box-sizing:border-box;padding:10px 0;border-radius:8px;width:220px;display:block;}
+.hide_menu{position:absolute;right: 9px; background:#fff;top:60px;box-sizing:border-box;padding:10px 0;border-radius:8px;width:220px;display:block;}
 .arrow_box{background:#fff;text-indent:-99999px;display:block;position: absolute;width:16px;height:16px;top:-8px;right:13px;transform:rotate(45deg);}
 .hide_menu ul li{box-sizing:border-box;padding:5px;}
 .hide_menu ul li{list-style:none;}
-.hide_menu ul li a{text-decoration:none;width:100%;padding:5px 10px;box-sizing:border-box;color:#212b36;line-height:1.5;}
+.hide_menu ul li a{text-decoration:none;width:100%;padding:5px 10px;box-sizing:border-box;color:#212b36;line-height:1.5;font-size:14px;}
 .hide_menu ul li:hover{background:#f7f7f8;}
 .hide_menu ul li:first-child{background:rgba(0, 171, 85, 0.08);}
 .hide_menu ul li span{text-indent:-99999px;width:18px;display:block;margin-right:10px;}
@@ -105,9 +105,7 @@ p,span,div,input{font-weight:600;}
 .cont .input_wrap .info_portfolio ul .list_progressbar div div:nth-child(2){margin-top:10px;}
 .cont .input_wrap .info_portfolio ul .list_progressbar div .info_num{font-size:24px;box-sizing:border-box;padding-bottom:5px;}
 
-
-.farms_wrap{padding:50px 20px;box-sizing:border-box;}
-.farms_wrap table th {font-size:16px;}
+.farms_wrap{padding:50px 20px 0;box-sizing:border-box;}
 
 .cont .input_wrap .info_portfolio ul li:first-child{display:flex;justify-content:space-between;}
 .cont .input_wrap .info_portfolio ul li input[type=button]{box-sizing:border-box;padding:8px 15px;border-radius:8px;background:#DBF7E0;color:#212B36;border:none;font-size:14px;transition:all 0.5s;}
@@ -160,9 +158,9 @@ p,span,div,input{font-weight:600;}
 .top_logochange{margin-left:30px;}
 .change_header .tabbar_wrap{padding:12px 0;}
 .tabbar_wrap .top_menu{display:none;}
-.mobile_menu{display:block;width:24px;margin-right:30px;}
-.mobilenav_icon{background:url(./images/mobile_nav_icon2.png) no-repeat;width:24px;border:none;background-size:100%;cursor: pointer;}
-.change_header .mobilenav_icon{background:url(./images/mobile_nav_icon.png) no-repeat;width:24px;border:none;background-size:100%;cursor: pointer;}
+.mobile_menu{display:block;width:180px;margin-right:15px;display:flex;align-items:center;justify-content:flex-end;}
+.mobilenav_icon{background:url(./images/mobile_nav_icon2.png) no-repeat center center;width:26px;border:none;background-size:100%;cursor: pointer;}
+.change_header .mobilenav_icon{background:url(./images/mobile_nav_icon.png) no-repeat center center;width:26px;border:none;background-size:100%;cursor: pointer;}
 
 /* section */
 .top_wrap .cont{padding-top:120px;}

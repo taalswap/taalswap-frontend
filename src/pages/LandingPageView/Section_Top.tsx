@@ -464,7 +464,7 @@ const SectionTop: React.FC = () => {
               <li>
                 <div>
                   <img src={info2Img01} alt="info_icon" />
-                  <Titcolor className="img_tit">{t('Maximum ARP')}</Titcolor>
+                  <Titcolor className="img_tit">{t('Maximum APR')}</Titcolor>
                 </div>
                 <Txtcolor className="info_num" style={{ display: 'flex', justifyContent: 'flex-start' }}>
                   <span>

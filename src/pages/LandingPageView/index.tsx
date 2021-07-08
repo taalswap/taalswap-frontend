@@ -13,6 +13,7 @@ import Footer from './Footer'
 import Teaser from './Teaser_page'
 import StakingWrap from './Staking_wrap'
 import SubSection from './Sub_Section'
+import AllPairs from './AllPairs'
 import './App.css'
 
 const LandingPageView = () => {
@@ -36,6 +37,7 @@ const LandingPageView = () => {
       <SectionTop />
       <TableWrap />
       <StakingWrap />
+      <AllPairs />
       <SectionBottom />
       <SubSection />
       <Footer />

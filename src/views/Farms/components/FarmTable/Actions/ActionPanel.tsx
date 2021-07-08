@@ -144,6 +144,7 @@ const InfoContainer = styled.div`
   align-items:center;
   justify-content:center;
   position:initial;
+  margin-top:0;
   }
 `
 
