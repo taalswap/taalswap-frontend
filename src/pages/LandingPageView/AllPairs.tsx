@@ -53,7 +53,8 @@ const AllPairs = () => {
       const quote_symbol = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_symbol
 
       const name = `${base_symbol}-${quote_symbol}`
-      const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
+      // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
+      const liquidity = parseFloat(pair.liquidity)
 
       const temp = {
         name,
