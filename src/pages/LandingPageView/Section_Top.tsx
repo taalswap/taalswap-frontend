@@ -484,8 +484,8 @@ const SectionTop: React.FC = () => {
                   <img src={circleImg03} alt="info_icon" />
                   <Titcolor className="info_name">{t('TAL Minted per block')}</Titcolor>
                 </div>
-                <Txtcolor>
-                  <CardValue fontSize="20" value={40} decimals={0} />
+                <Txtcolor className="info_num">
+                  <CardValue fontSize="16px" value={40} decimals={0} />
                 </Txtcolor>
               </li>
               <li>
@@ -500,19 +500,6 @@ const SectionTop: React.FC = () => {
                     ) : (
                       <Skeleton height={20} width={96} mb="5px" />
                     )}
-                    {/* temp  */}
-                    {/* {hasFetchedDollarBounty ? (
-                      <Balance
-                        fontSize="12px"
-                        color="textSubtle"
-                        value={dollarBountyToDisplay}
-                        decimals={2}
-                        unit=" USD"
-                        prefix="~"
-                      />
-                    ) : (
-                      <Skeleton height={16} width={62} />
-                    )} */}
                   </div>
                   <div>
                     <Button
