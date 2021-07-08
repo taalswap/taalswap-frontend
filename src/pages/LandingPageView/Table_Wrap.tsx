@@ -1,13 +1,10 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
-import { Route, useRouteMatch, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text, Link } from 'taalswap-uikit'
+import { RowType } from 'taalswap-uikit'
 import styled from 'styled-components'
-import FlexLayout from 'components/layout/Flex'
-import Page from 'components/layout/Page'
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
-import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -15,26 +12,25 @@ import { getFarmApr } from 'utils/apr'
 import { orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
-import PageHeader from 'components/PageHeader'
-import SearchInput from 'components/SearchInput'
-import Select, { OptionProps } from 'components/Select/Select'
-import FarmCard, { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
+import { OptionProps } from 'components/Select/Select'
+import { FarmWithStakedValue } from '../../views/Farms/components/FarmCard/FarmCard'
 import Table from '../../views/Farms/components/FarmTable/FarmTable'
-import FarmTabButtons from '../../views/Farms/components/FarmTabButtons'
 import { RowProps } from '../../views/Farms/components/FarmTable/Row'
-import ToggleView from '../../views/Farms/components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from '../../views/Farms/components/types'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
+const Txtcolor = styled.p`
+  color: ${({ theme }) => theme.colors.logoColor};
+  text-align: center;
+`
+
 const TableWrap: React.FC = () => {
-  const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'pancake_farm_view')
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
 
@@ -44,8 +40,6 @@ const TableWrap: React.FC = () => {
 
   usePollFarmsData(isArchived)
 
-  // Users with no wallet connected should see 0 as Earned amount
-  // Connected users should see loading indicator until first userData has loaded
   const userDataReady = !account || (!!account && userDataLoaded)
 
   const [stakedOnly, setStakedOnly] = useState(!isActive)
@@ -91,10 +85,6 @@ const TableWrap: React.FC = () => {
     },
     [cakePrice, query, isActive],
   )
-
-  const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value)
-  }
 
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
@@ -223,7 +213,6 @@ const TableWrap: React.FC = () => {
   })
 
   const renderContent = (): JSX.Element => {
-    // if (viewMode === ViewMode.TABLE && rowData.length) {
     const columnSchema = DesktopColumnSchema
 
     const columns = columnSchema.map((column) => ({
@@ -250,41 +239,14 @@ const TableWrap: React.FC = () => {
     }))
 
     return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
-    // }
-
-    // return (
-    //   <div>
-    //     <FlexLayout>
-    //       <Route exact path={`${path}`}>
-    //         {farmsStakedMemoized.map((farm) => (
-    //           <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
-    //         ))}
-    //       </Route>
-    //       <Route exact path={`${path}/history`}>
-    //         {farmsStakedMemoized.map((farm) => (
-    //           <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-    //         ))}
-    //       </Route>
-    //       <Route exact path={`${path}/archived`}>
-    //         {farmsStakedMemoized.map((farm) => (
-    //           <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-    //         ))}
-    //       </Route>
-    //     </FlexLayout>
-    //   </div>
-    // )
   }
 
   const handleSortOptionChange = (option: OptionProps): void => {
     setSortOption(option.value)
   }
-  const Txtcolor = styled.p`
-  color: ${({ theme }) => theme.colors.logoColor};
-  text-align:center;
-  `
   return (
     <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
-      <Txtcolor className='section_tit'>Farms</Txtcolor>
+      <Txtcolor className="section_tit">Farms</Txtcolor>
       {renderContent()}
       <div ref={loadMoreRef} />
     </div>

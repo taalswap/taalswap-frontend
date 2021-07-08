@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text } from 'taalswap-uikit'
+import { Text } from 'taalswap-uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -11,40 +11,13 @@ import usePersistState from 'hooks/usePersistState'
 import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault } from 'state/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/layout/Flex'
-import Page from 'components/layout/Page'
-import PageHeader from 'components/PageHeader'
-import SearchInput from 'components/SearchInput'
-import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
-import PoolCard from '../../views/Pools/components/PoolCard'
-import CakeVaultCard from '../../views/Pools/components/CakeVaultCard'
-import PoolTabButtons from '../../views/Pools/components/PoolTabButtons'
-import BountyCard from '../../views/Pools/components/BountyCard'
 import PoolsTable from '../../views/Pools/components/PoolsTable/PoolsTable'
-import { ViewMode } from '../../views/Pools/components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from '../../views/Pools/helpers'
 
-const CardLayout = styled(FlexLayout)`
-  justify-content: center;
-`
-
-const PoolControls = styled(Flex)`
-  flex-direction: column;
-  margin-bottom: 24px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    flex-direction: row;
-  }
-`
-
-const SearchSortContainer = styled(Flex)`
-  gap: 10px;
-  justify-content: space-between;
-`
-
-const ControlStretch = styled(Flex)`
-  > div {
-    flex: 1;
-  }
+const Txtcolor = styled.p`
+  color: ${({ theme }) => theme.colors.logoColor};
+  text-align: center;
 `
 
 const NUMBER_OF_POOLS_VISIBLE = 12
@@ -58,7 +31,6 @@ const Pools: React.FC = () => {
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'pancake_farm_view')
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const {
@@ -98,7 +70,6 @@ const Pools: React.FC = () => {
       }),
     [openPools, accountHasVaultShares],
   )
-  const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsData()
   useFetchCakeVault()
@@ -123,14 +94,6 @@ const Pools: React.FC = () => {
   }, [observerIsSet])
 
   const showFinishedPools = location.pathname.includes('history')
-
-  const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value)
-  }
-
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
-  }
 
   const sortPools = (poolsToSort: Pool[]) => {
     switch (sortOption) {
@@ -189,36 +152,20 @@ const Pools: React.FC = () => {
     return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   }
 
-  const cardLayout = (
-    <CardLayout>
-      {poolsToShow().map((pool) =>
-        pool.isAutoVault ? (
-          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
-        ) : (
-          <PoolCard key={pool.sousId} pool={pool} account={account} />
-        ),
-      )}
-    </CardLayout>
-  )
-  
-  const Txtcolor = styled.p`
-  color: ${({ theme }) => theme.colors.logoColor};
-  text-align:center;
-  `
-
   const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
 
   return (
-      <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
-      <Txtcolor className='section_tit'>Staking Pools</Txtcolor>
-        {showFinishedPools && (
-          <Text fontSize="20px" color="failure" pb="32px">
-            {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
-          </Text>
-        )}
-        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
-        <div ref={loadMoreRef} />
-      </div>
+    <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      <Txtcolor className="section_tit">Staking Pools</Txtcolor>
+      {showFinishedPools && (
+        <Text fontSize="20px" color="failure" pb="32px">
+          {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
+        </Text>
+      )}
+      {/* {viewMode === ViewMode.CARD ? cardLayout : tableLayout} */}
+      {tableLayout}
+      <div ref={loadMoreRef} />
+    </div>
   )
 }
 
