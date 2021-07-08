@@ -58,11 +58,6 @@
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
         f.parentNode.insertBefore(j, f)
       })(window, document, 'script', 'dataLayer', '%REACT_APP_GTAG%')
-
-      function postCrossDomainMessage(msg) {
-        var win = document.getElementById('ifr')
-        win.contentWindow.postMessage(msg, 'https://swap.taalswap.finance/')
-      }
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBZX2D4HSZ"></script>
@@ -77,7 +72,6 @@
     </script>
   </head>
   <body>
-    <iframe style="display: none" src="https://swap.taalswap.finance/getlocalstorage.html" id="ifr"></iframe>
     <!-- GTAG (noscript) -->
     <noscript>
       <iframe
