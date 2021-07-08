@@ -45,7 +45,6 @@ const AllPairs = () => {
   const [pairs, setPairs] = useState([])
   const [pairsArray, setPairsArray] = useState([])
   const [ethPrice, setEthPrice] = useState(0)
-  const { t } = useTranslation()
 
   const pairTableRow = () => {
     const resultRow = []
