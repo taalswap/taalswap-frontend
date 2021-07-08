@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Text, Link } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
+import { useTranslation } from 'contexts/Localization'
 
 const Txtcolor = styled.p`
   color: ${({ theme }) => theme.colors.logoColor};
@@ -45,6 +46,7 @@ const AllPairs = () => {
   const [pairs, setPairs] = useState([])
   const [pairsArray, setPairsArray] = useState([])
   const [ethPrice, setEthPrice] = useState(0)
+  const { t } = useTranslation()
 
   const pairTableRow = () => {
     const resultRow = []
@@ -115,9 +117,9 @@ const AllPairs = () => {
         <tbody>
           {/* {pairsArray && pairsArray.forEach((pair) => ()  :(null))} */}
           <tr>
-            <TitleStyle>Name</TitleStyle>
-            <TitleStyle>Liquidity</TitleStyle>
-            <TitleStyle>Swap</TitleStyle>
+            <TitleStyle>{t('Pair')}</TitleStyle>
+            <TitleStyle>{t('Liquidity')}</TitleStyle>
+            <TitleStyle>{t('Swap')}</TitleStyle>
           </tr>
           {pairTableRow().map((pair) => (
             <>
