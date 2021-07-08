@@ -64,8 +64,8 @@ const TimeCounter = () => {
 
   return (
     <>
-      <div className={classes.countdownWrapper} style={{display:'flex',flexDirection:'column',alignItems:'flex-end'}}>
-        <div style={{marginBottom:'5px'}} className='count_Box'>
+      <div className={classes.countdownWrapper} style={{display:'flex',alignItems:'center'}}>
+        <div className='count_Box'>
         <CountDownItem className={classes.countdownItem}>
           {fillZero(2, days)}
           {/* <span>DD</span> */}

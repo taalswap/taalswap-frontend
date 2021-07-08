@@ -11,6 +11,7 @@ import TableWrap from './Table_Wrap'
 import SectionBottom from './Section_Bottom'
 import Footer from './Footer'
 import Teaser from './Teaser_page'
+import StakingWrap from './Staking_wrap'
 import SubSection from './Sub_Section'
 import './App.css'
 
@@ -21,7 +22,7 @@ const LandingPageView = () => {
   const { currentLanguage, setLanguage } = useTranslation()
   return (
     <div className="wrap">
-      <Teaser />
+      {/* <Teaser /> */}
       <TopBar
         account={account}
         login={login}
@@ -34,6 +35,7 @@ const LandingPageView = () => {
       />
       <SectionTop />
       <TableWrap />
+      <StakingWrap />
       <SectionBottom />
       <SubSection />
       <Footer />
