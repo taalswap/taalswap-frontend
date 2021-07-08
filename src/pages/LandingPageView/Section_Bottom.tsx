@@ -10,7 +10,7 @@ const Section_Bottom = () => {
       <div className="cont bottom_cont">
         <div className="taal_idobox">
           <div className="ido_textwrap">
-            <p>Initial Taal Swap Offering</p>
+            <p>Initial TaalSwap Offering</p>
             <div>
               <p>
                 Fire up your project with <span style={{ color: '#00ab55' }}>TaalSwap IDO</span>

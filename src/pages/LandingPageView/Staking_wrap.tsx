@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Text } from 'taalswap-uikit'
+import { Text, useMatchBreakpoints } from 'taalswap-uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -12,6 +12,7 @@ import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData,
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/layout/Flex'
 import { Pool } from 'state/types'
+import TimeCounter from 'components/TimeCounter'
 import PoolsTable from '../../views/Pools/components/PoolsTable/PoolsTable'
 import { getAprData, getCakeVaultEarnings } from '../../views/Pools/helpers'
 
@@ -26,6 +27,7 @@ const Pools: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
   const { account } = useWeb3React()
+  const { isXl, isLg } = useMatchBreakpoints()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, 'pancake_pool_staked')
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
@@ -156,7 +158,54 @@ const Pools: React.FC = () => {
 
   return (
     <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
-      <Txtcolor className="section_tit">Staking Pools</Txtcolor>
+      {isLg || isXl ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <Txtcolor className="section_tit">Staking Pools</Txtcolor>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              marginBottom: '20px',
+              marginLeft: '10px',
+            }}
+          >
+            <Txtcolor>(Starting in </Txtcolor>
+            <TimeCounter />
+            <Txtcolor>)</Txtcolor>
+          </div>
+        </div>
+      ) : (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Txtcolor className="section_tit">Staking Pools</Txtcolor>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              marginBottom: '20px',
+              marginLeft: '10px',
+            }}
+          >
+            <Txtcolor>(Starting in </Txtcolor>
+            <TimeCounter />
+            <Txtcolor>)</Txtcolor>
+          </div>
+        </div>
+      )}
+
       {showFinishedPools && (
         <Text fontSize="20px" color="failure" pb="32px">
           {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
