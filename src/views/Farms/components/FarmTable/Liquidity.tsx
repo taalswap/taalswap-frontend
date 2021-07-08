@@ -15,8 +15,7 @@ export interface LiquidityProps {
 const LiquidityWrapper = styled.div`
   min-width: 85px;
   font-weight: 600;
-  text-align: left;
-  margin-right: 14px;
+  text-align: right;
   font-size:14px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
