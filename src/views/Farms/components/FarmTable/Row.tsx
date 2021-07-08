@@ -49,7 +49,7 @@ const CellInner = styled.div`
   padding-right: 8px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    padding-right: 32px;
+    padding-right: 16px;
   }
 `
 
@@ -154,16 +154,16 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
 
     return (
       <StyledTr onClick={toggleActionPanel}>
-        <td>
-          <tr>
-            <FarmMobileCell>
+        <td colSpan={3}>
+          <tr style={{borderBottom:'0'}}>
+            <FarmMobileCell colSpan={2}>
               <CellLayout>
                 <Farm {...props.farm} />
               </CellLayout>
             </FarmMobileCell>
           </tr>
           <tr>
-            <EarnedMobileCell>
+            <EarnedMobileCell colSpan={3}>
               <CellLayout>
                 <Earned {...props.earned} userDataReady={userDataReady} />
               </CellLayout>

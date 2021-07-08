@@ -42,7 +42,7 @@ const StyledCell = styled(BaseCell)`
   flex-direction: row;
 `
 const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {
-  const { isLg, isXl } = useMatchBreakpoints()
+  const { isLg, isXl, isSm, isMd, isXs } = useMatchBreakpoints()
   const { t } = useTranslation()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const scrollToTop = (): void => {
@@ -54,7 +54,9 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
     <StyledTableBorder>
       <StyledTable role="table" ref={tableWrapperEl}>
         <StyledRow role="row" style={{ borderRadius: "8px 8px 0 0", position: 'sticky', top: 0, zIndex: 1000 }}>
-          <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
+          {isLg  && (
+            <>
+            <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
             <CellContent>
               <Text fontSize="14px" color="textSubtle">
                 {t('Pair')}
@@ -75,8 +77,39 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
               </Text>
             </CellContent>
           </StyledCell>
+            <StyledCell role="cell" style={{ flex: '2 0 220px' }}>
+              <CellContent>
+                <Text fontSize="14px" color="textSubtle">
+                  {t('Total Staked')}
+                </Text>
+              </CellContent>
+            </StyledCell>
+            </>
+          )}
 
-          {(isLg || isXl) && (
+          {isXl && (
+            <>
+            <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('Pair')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+          <StyledCell role="cell" style={{ flex: '1 0 100px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('Earned')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+          <StyledCell role="cell" style={{ flex: '0 0 120px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('APY/APR')}
+              </Text>
+            </CellContent>
+          </StyledCell>
             <StyledCell role="cell" style={{ flex: '2 0 100px' }}>
               <CellContent>
                 <Text fontSize="14px" color="textSubtle">
@@ -84,10 +117,6 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
                 </Text>
               </CellContent>
             </StyledCell>
-          )}
-
-          {isXl && (
-            <>
               <StyledCell role="cell" style={{ flex: '2 0 80px' }}>
                 <CellContent>
                   <Text fontSize="14px" color="textSubtle">
@@ -99,6 +128,103 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
                 <CellContent>
                   <Text fontSize="14px" color="textSubtle">
                     {t('Details View')}
+                  </Text>
+                </CellContent>
+              </StyledCell>
+            </>
+          )}
+
+          {isMd && (
+            <>
+            <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('Pair')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+          <StyledCell role="cell" style={{ flex: '1 0 100px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('Earned')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+          <StyledCell role="cell" style={{ flex: '1 0 50px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('APY/APR')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+            <StyledCell role="cell" style={{ flex: '1' }}>
+                <CellContent>
+                  <Text fontSize="14px" color="textSubtle">
+                    {t('')}
+                  </Text>
+                </CellContent>
+              </StyledCell>
+            </>
+          )}
+          {isSm && (
+            <>
+            <StyledCell role="cell" style={{ flex: '5', paddingLeft: '20px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('Pair')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+          <StyledCell role="cell" style={{ flex: '4.5' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('Earned')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+          <StyledCell role="cell" style={{ flex: '1 0 50px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('APY/APR')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+            <StyledCell role="cell" style={{ flex: '1' }}>
+                <CellContent>
+                  <Text fontSize="14px" color="textSubtle">
+                    {t('')}
+                  </Text>
+                </CellContent>
+              </StyledCell>
+            </>
+          )}
+          {isXs && (
+            <>
+            <StyledCell role="cell" style={{ flex: '5', paddingLeft: '12px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('Pair')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+          <StyledCell role="cell" style={{ flex: '4.5' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('Earned')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+          <StyledCell role="cell" style={{ flex: '1 0 50px' }}>
+            <CellContent>
+              <Text fontSize="14px" color="textSubtle">
+                {t('APY/APR')}
+              </Text>
+            </CellContent>
+          </StyledCell>
+            <StyledCell role="cell" style={{ flex: '1' }}>
+                <CellContent>
+                  <Text fontSize="14px" color="textSubtle">
+                    {t('')}
                   </Text>
                 </CellContent>
               </StyledCell>

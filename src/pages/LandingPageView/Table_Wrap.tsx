@@ -278,9 +278,13 @@ const TableWrap: React.FC = () => {
   const handleSortOptionChange = (option: OptionProps): void => {
     setSortOption(option.value)
   }
-
+  const Txtcolor = styled.p`
+  color: ${({ theme }) => theme.colors.logoColor};
+  text-align:center;
+  `
   return (
     <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      <Txtcolor className='section_tit'>Farms</Txtcolor>
       {renderContent()}
       <div ref={loadMoreRef} />
     </div>
