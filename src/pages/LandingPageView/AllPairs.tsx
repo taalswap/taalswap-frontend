@@ -109,7 +109,7 @@ const AllPairs = () => {
 
   useEffect(() => {
     async function fetchETHPrice() {
-      await fetch('https://taalswap-info-api.vercel.app/api/ethprice', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/ethprice', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -124,7 +124,7 @@ const AllPairs = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://taalswap-info-api.vercel.app/api/pairs', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/pairs', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
