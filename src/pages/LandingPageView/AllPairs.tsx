@@ -171,24 +171,16 @@ const AllPairs = () => {
                 <TextStyle>
                   <div style={{ display: 'flex' }}>
                     <span style={{ marginRight: '5px' }}>$</span>
-                    <CardValue value={pair.liquidity} fontSize="14px" />
+                    <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
                   </div>
                 </TextStyle>
                 <TextStyle>
-                  {/* <LinkStyle href={pair.prices}>{t('Buy: %symbol%', { symbol: pair.base_symbol })}</LinkStyle> */}
-                  <Button onClick={() => linkToURL(pair.prices)} scale="sm" height="20px" width="95px" font-size="12px">
+                  <Button onClick={() => linkToURL(pair.prices)} scale="xs" width="75px" font-size="10px">
                     <BTextStyle>{t('Buy: %symbol%', { symbol: pair.base_symbol })}</BTextStyle>
                   </Button>
                 </TextStyle>
                 <TextStyle>
-                  {/* <LinkStyle href={pair.deposit}>{t('Deposit')}</LinkStyle> */}
-                  <Button
-                    onClick={() => linkToURL(pair.deposit)}
-                    scale="sm"
-                    height="20px"
-                    width="70px"
-                    font-size="12px"
-                  >
+                  <Button onClick={() => linkToURL(pair.deposit)} scale="xs" font-size="10px">
                     <BTextStyle>{t('Deposit')}</BTextStyle>
                   </Button>
                 </TextStyle>
