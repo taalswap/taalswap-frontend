@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { Text, Link } from 'taalswap-uikit'
+import { Text, Link, Button } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 
@@ -55,11 +55,20 @@ const LinkStyle = styled(Link)`
   font-size: 14px;
 `
 
+const BTextStyle = styled.td`
+  color: ${({ theme }) => theme.colors.background};
+  font-size: 12px;
+`
+
 const AllPairs = () => {
   const { t } = useTranslation()
   const [pairs, setPairs] = useState([])
   const [pairsArray, setPairsArray] = useState([])
   const [ethPrice, setEthPrice] = useState(0)
+
+  const linkToURL = (url: string) => {
+    window.location.href = url
+  }
 
   const pairTableRow = () => {
     const resultRow = []
@@ -166,10 +175,22 @@ const AllPairs = () => {
                   </div>
                 </TextStyle>
                 <TextStyle>
-                  <LinkStyle href={pair.prices}>{t('Buy: %symbol%', { symbol: pair.base_symbol })}</LinkStyle>
+                  {/* <LinkStyle href={pair.prices}>{t('Buy: %symbol%', { symbol: pair.base_symbol })}</LinkStyle> */}
+                  <Button onClick={() => linkToURL(pair.prices)} scale="sm" height="20px" width="95px" font-size="12px">
+                    <BTextStyle>{t('Buy: %symbol%', { symbol: pair.base_symbol })}</BTextStyle>
+                  </Button>
                 </TextStyle>
                 <TextStyle>
-                  <LinkStyle href={pair.deposit}>{t('Deposit')}</LinkStyle>
+                  {/* <LinkStyle href={pair.deposit}>{t('Deposit')}</LinkStyle> */}
+                  <Button
+                    onClick={() => linkToURL(pair.deposit)}
+                    scale="sm"
+                    height="20px"
+                    width="70px"
+                    font-size="12px"
+                  >
+                    <BTextStyle>{t('Deposit')}</BTextStyle>
+                  </Button>
                 </TextStyle>
               </tr>
             </>
