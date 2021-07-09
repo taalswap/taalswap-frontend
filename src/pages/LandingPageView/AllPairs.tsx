@@ -87,10 +87,15 @@ const AllPairs = () => {
           ? `${process.env.REACT_APP_INTERFACE}/#/add/${quoteDeposit}/${baseDeposit}`
           : `${process.env.REACT_APP_INTERFACE}/#/add/${baseDeposit}/${quoteDeposit}`
 
+      const prices =
+        baseDeposit === 'ETH'
+          ? `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.quote_address}`
+          : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
+
       const temp = {
         name,
         liquidity,
-        prices: `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`,
+        prices,
         base_symbol,
         deposit,
       }
