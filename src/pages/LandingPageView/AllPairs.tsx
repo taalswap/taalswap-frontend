@@ -14,45 +14,45 @@ const TableWrap = styled.table`
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   // margin: 16px 0px;
-  overflow: hidden;
+  // overflow: hidden;
 `
 
 const TitleStyle = styled.th`
-color: ${({ theme }) => theme.colors.textSubtle};
-background: ${({ theme }) => theme.colors.tertiary};
-border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-padding:24px 8px 24px 8px;
-text-align:left;
-font-size:12px;
-${({ theme }) => theme.mediaQueries.lg} {
-    padding:24px 8px 24px 20px;
-    font-size:14px;
+  color: ${({ theme }) => theme.colors.textSubtle};
+  background: ${({ theme }) => theme.colors.tertiary};
+  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
+  padding: 24px 8px 24px 8px;
+  text-align: left;
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 24px 8px 24px 20px;
+    font-size: 14px;
   }
 `
 
 const TextStyle = styled.td`
-color: ${({ theme }) => theme.colors.logoColor};
-padding:24px 8px 24px 8px;
-text-align:left;
-border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-font-size:12px;
+  color: ${({ theme }) => theme.colors.logoColor};
+  padding: 24px 8px 24px 8px;
+  text-align: left;
+  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
+  font-size: 12px;
 
- > a {
-     font-size: 14px;
- }
-${({ theme }) => theme.mediaQueries.lg} {
-    padding:24px 8px 24px 20px;
-    font-size:14px;
+  > a {
+    font-size: 14px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 24px 8px 24px 20px;
+    font-size: 14px;
   }
   > a {
-      font-size: 12px;
+    font-size: 12px;
   }
 `
 
 const LinkStyle = styled(Link)`
-color: ${({ theme }) => theme.colors.logoColor};
-text-decoration:underline;
-font-size:14px;
+  color: ${({ theme }) => theme.colors.logoColor};
+  text-decoration: underline;
+  font-size: 14px;
 `
 
 const AllPairs = () => {
