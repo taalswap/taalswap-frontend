@@ -60,6 +60,7 @@ const AllPairs = () => {
         liquidity,
         prices: `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`,
         base_symbol,
+        deposit: `${process.env.REACT_APP_INTERFACE}/#/add/${pair.base_address}/${pair.quote_symbol}`,
       }
 
       resultRow.push(temp)
@@ -115,9 +116,10 @@ const AllPairs = () => {
         <tbody>
           {/* {pairsArray && pairsArray.forEach((pair) => ()  :(null))} */}
           <tr>
-            <TitleStyle>Name</TitleStyle>
-            <TitleStyle>Liquidity</TitleStyle>
-            <TitleStyle>Prices</TitleStyle>
+            <TitleStyle>{t('Pair')}</TitleStyle>
+            <TitleStyle>{t('Liquidity')}</TitleStyle>
+            <TitleStyle>{t('Swap')}</TitleStyle>
+            <TitleStyle>{t('Deposit')}</TitleStyle>
           </tr>
           {pairTableRow().map((pair) => (
             <>
@@ -129,9 +131,11 @@ const AllPairs = () => {
                     <CardValue value={pair.liquidity} fontSize="14px" />
                   </div>
                 </TextStyle>
-
                 <TextStyle>
                   <LinkStyle href={pair.prices}>{t('Buy: %symbol%', { symbol: pair.base_symbol })}</LinkStyle>
+                </TextStyle>
+                <TextStyle>
+                  <LinkStyle href={pair.deposit}>{t('Deposit')}</LinkStyle>
                 </TextStyle>
               </tr>
             </>
