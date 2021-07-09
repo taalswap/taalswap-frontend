@@ -6,7 +6,7 @@ import { useTranslation } from '../../contexts/Localization'
 const Section_Bottom = () => {
   const { t } = useTranslation()
   return (
-    <div className="bottom_wrap">
+    <div className="bottom_wrap" style={{ marginTop: '30px' }}>
       <div className="cont bottom_cont">
         <div className="taal_idobox">
           <div className="ido_textwrap">
