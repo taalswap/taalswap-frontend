@@ -244,16 +244,14 @@ const TableWrap: React.FC = () => {
     return <Table data={rowData} columns={columns} userDataReady={userDataReady} isLandingPage />
   }
 
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
-  }
   return (
     <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
       {isLg || isXl ? (
         <div
           style={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
+            borderBottom: '3px solid #00ab55',
           }}
         >
           <Txtcolor className="section_tit">Farms</Txtcolor>
@@ -276,29 +274,27 @@ const TableWrap: React.FC = () => {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
+            borderBottom: '3px solid #00ab55',
             flexDirection: 'column',
-            alignItems: 'center',
           }}
         >
-          <Txtcolor className="section_tit">Farms</Txtcolor>
+          <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '-10px' }}>
+            <Txtcolor className="section_tit">Farms</Txtcolor>
+          </div>
           <div
             style={{
               display: 'flex',
               justifyContent: 'flex-start',
-              alignItems: 'center',
               marginBottom: '20px',
-              marginLeft: '10px',
             }}
           >
             <Txtcolor>(</Txtcolor>
-            <span style={{ color: 'red' }}>Starting in</span>
-            <TimeCounter />
+            <span style={{ color: 'red', marginRight: '5px' }}>Starting in</span> <TimeCounter />
             <Txtcolor>)</Txtcolor>
           </div>
         </div>
       )}
-
       {renderContent()}
       <div ref={loadMoreRef} />
     </div>

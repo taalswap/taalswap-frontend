@@ -18,7 +18,7 @@ const Container = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
-  margin: 16px 0px;
+  // margin: 16px 0px;
 `
 
 const TableWrapper = styled.div`
@@ -49,13 +49,13 @@ const TableBody = styled.tbody`
       text-align: left;
       background: ${({ theme }) => theme.colors.tertiary};
       color: ${({ theme }) => theme.colors.textSubtle};
-      font-size:14px;
+      font-size: 14px;
     }
   }
   & tr {
     border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   }
-  `
+`
 
 const TableContainer = styled.div`
   position: relative;

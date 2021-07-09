@@ -13,7 +13,7 @@ const TableWrap = styled.table`
   width: 100%;
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
-  margin: 16px 0px;
+  // margin: 16px 0px;
   overflow: hidden;
 `
 
@@ -53,15 +53,22 @@ const AllPairs = () => {
       const quote_symbol = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_symbol
 
       const name = `${base_symbol}-${quote_symbol}`
-      // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
-      const liquidity = parseFloat(pair.liquidity)
+
+      const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
+      const baseDeposit = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_address
+      const quoteDeposit = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_address
+
+      const deposit =
+        quoteDeposit === 'ETH'
+          ? `${process.env.REACT_APP_INTERFACE}/#/add/${quoteDeposit}/${baseDeposit}`
+          : `${process.env.REACT_APP_INTERFACE}/#/add/${baseDeposit}/${quoteDeposit}`
 
       const temp = {
         name,
         liquidity,
         prices: `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`,
         base_symbol,
-        deposit: `${process.env.REACT_APP_INTERFACE}/#/add/${pair.base_address}/${pair.quote_address}`,
+        deposit,
       }
 
       resultRow.push(temp)
@@ -112,10 +119,21 @@ const AllPairs = () => {
 
   return (
     <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
-      <Txtcolor className="section_tit">All Pairs</Txtcolor>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-start',
+          borderBottom: '3px solid #00ab55',
+          // border: '1px solid red',
+          // marginBottom: '0px',
+          // paddingBottom: '0px',
+        }}
+      >
+        <Txtcolor className="section_tit">All Pairs</Txtcolor>
+      </div>
+
       <TableWrap>
         <tbody>
-          {/* {pairsArray && pairsArray.forEach((pair) => ()  :(null))} */}
           <tr>
             <TitleStyle>{t('Pair')}</TitleStyle>
             <TitleStyle>{t('Liquidity')}</TitleStyle>
@@ -124,7 +142,7 @@ const AllPairs = () => {
           </tr>
           {pairTableRow().map((pair) => (
             <>
-              <tr>
+              <tr key={pair.name}>
                 <TextStyle>{pair.name}</TextStyle>
                 <TextStyle>
                   <div style={{ display: 'flex' }}>
