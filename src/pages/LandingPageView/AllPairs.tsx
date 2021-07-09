@@ -60,7 +60,7 @@ const AllPairs = () => {
         liquidity,
         prices: `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`,
         base_symbol,
-        deposit: `${process.env.REACT_APP_INTERFACE}/#/add/${pair.base_address}/${pair.quote_symbol}`,
+        deposit: `${process.env.REACT_APP_INTERFACE}/#/add/${pair.base_address}/${pair.quote_address}`,
       }
 
       resultRow.push(temp)
