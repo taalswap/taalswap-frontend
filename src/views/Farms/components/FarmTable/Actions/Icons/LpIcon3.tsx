@@ -3,7 +3,7 @@ import { Svg, SvgProps } from 'taalswap-uikit'
 
 const Prizes: React.FC<SvgProps> = (props) => {
   return (
-    <Svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" {...props}>
+    <Svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" mb="1px" viewBox="0 0 24 24" {...props}>
   <g id="타원_24" data-name="타원 24" fill="none" stroke="#00ab55" strokeWidth="2">
     <circle cx="12" cy="12" r="12" stroke="none"/>
     <circle cx="12" cy="12" r="11" fill="none"/>

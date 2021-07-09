@@ -75,7 +75,7 @@ const StyledTvlDic = styled.div`
   }
 `
 const Usewrap = styled.ul`
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
 `
 const Txtcolor = styled.span`
   color: ${({ theme }) => theme.colors.logoColor};

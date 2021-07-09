@@ -3,7 +3,7 @@ import { Svg, SvgProps } from 'taalswap-uikit'
 
 const Prizes: React.FC<SvgProps> = (props) => {
   return (
-    <Svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" {...props}>
+    <Svg xmlns="http://www.w3.org/2000/svg" mb="3px" width="32" height="32" viewBox="0 0 29 29" {...props}>
   <g id="그룹_872" data-name="그룹 872" transform="translate(-9.894 -3.522)">
     <text id="TotalActiveUsers" transform="translate(23.954 10.522)" fill="#09ab64" fontSize="6" fontFamily="Be Vietnam', sans-serif" fontWeight="700"><tspan x="-3.354" y="0">LP</tspan></text>
     <g id="그룹_921" data-name="그룹 921" transform="translate(-178.198 -109.92)">
