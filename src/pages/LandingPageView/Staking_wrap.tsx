@@ -162,7 +162,8 @@ const Pools: React.FC = () => {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
+            borderBottom: '3px solid #00ab55',
           }}
         >
           <Txtcolor className="section_tit">Staking Pools</Txtcolor>
@@ -185,28 +186,28 @@ const Pools: React.FC = () => {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
+            borderBottom: '3px solid #00ab55',
             flexDirection: 'column',
-            alignItems: 'center',
           }}
         >
-          <Txtcolor className="section_tit">Staking Pools</Txtcolor>
+          <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '-10px' }}>
+            <Txtcolor className="section_tit">Staking Pools</Txtcolor>
+          </div>
+
           <div
             style={{
               display: 'flex',
               justifyContent: 'flex-start',
-              alignItems: 'center',
               marginBottom: '20px',
-              marginLeft: '10px',
             }}
           >
-            <Txtcolor>(Starting in </Txtcolor>
-            <TimeCounter />
+            <Txtcolor>(</Txtcolor>
+            <span style={{ color: 'red' }}>Starting in</span> <TimeCounter />
             <Txtcolor>)</Txtcolor>
           </div>
         </div>
       )}
-
       {showFinishedPools && (
         <Text fontSize="20px" color="failure" pb="32px">
           {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
