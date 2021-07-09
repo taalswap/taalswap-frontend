@@ -265,7 +265,7 @@ const TableWrap: React.FC = () => {
             }}
           >
             <Txtcolor>(</Txtcolor>
-            <p style={{ color: 'red' }}>Starting in </p>
+            <p style={{ color: 'red', marginRight: '5px' }}>Starting in </p>
             <TimeCounter />
             <Txtcolor>)</Txtcolor>
           </div>
