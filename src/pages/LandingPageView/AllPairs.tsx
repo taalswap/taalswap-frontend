@@ -14,29 +14,39 @@ const TableWrap = styled.table`
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   // margin: 16px 0px;
-  overflow: hidden;
+  // overflow: hidden;
 `
 
 const TitleStyle = styled.th`
   color: ${({ theme }) => theme.colors.textSubtle};
   background: ${({ theme }) => theme.colors.tertiary};
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  padding: 24px 8px 24px 20px;
+  padding: 24px 8px 24px 8px;
   text-align: left;
-  font-size: 14px;
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 24px 8px 24px 20px;
+    font-size: 14px;
+  }
 `
 
 const TextStyle = styled.td`
   color: ${({ theme }) => theme.colors.logoColor};
-  padding: 24px 8px 24px 20px;
+  padding: 24px 8px 24px 8px;
   text-align: left;
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  font-size: 14px;
-`
-
-const BTextStyle = styled.td`
-  color: ${({ theme }) => theme.colors.background};
   font-size: 12px;
+
+  > a {
+    font-size: 14px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 24px 8px 24px 20px;
+    font-size: 14px;
+  }
+  > a {
+    font-size: 12px;
+  }
 `
 
 const LinkStyle = styled(Link)`
@@ -45,15 +55,20 @@ const LinkStyle = styled(Link)`
   font-size: 14px;
 `
 
-const linkToURL = (url: string) => {
-  window.location.href = url
-}
+const BTextStyle = styled.td`
+  color: ${({ theme }) => theme.colors.background};
+  font-size: 12px;
+`
 
 const AllPairs = () => {
   const { t } = useTranslation()
   const [pairs, setPairs] = useState([])
   const [pairsArray, setPairsArray] = useState([])
   const [ethPrice, setEthPrice] = useState(0)
+
+  const linkToURL = (url: string) => {
+    window.location.href = url
+  }
 
   const pairTableRow = () => {
     const resultRow = []
@@ -63,8 +78,7 @@ const AllPairs = () => {
 
       const name = `${base_symbol}-${quote_symbol}`
 
-      // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
-      const liquidity = parseFloat(pair.liquidity)
+      const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
       const baseDeposit = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_address
       const quoteDeposit = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_address
 
@@ -128,7 +142,7 @@ const AllPairs = () => {
   }, [])
 
   return (
-    <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto' }}>
       <div
         style={{
           display: 'flex',
@@ -160,18 +174,14 @@ const AllPairs = () => {
                     <CardValue value={pair.liquidity} fontSize="14px" />
                   </div>
                 </TextStyle>
-                  <Button
-                    onClick={() => linkToURL(pair.prices)}
-                    scale="sm"
-                    height="20px"
-                    width="95px"
-                    font-size="12px"
-                  >
-                    <BTextStyle>
-                      {t('Buy: %symbol%', { symbol: pair.base_symbol })}
-                    </BTextStyle>
-                  </Button>
                 <TextStyle>
+                  {/* <LinkStyle href={pair.prices}>{t('Buy: %symbol%', { symbol: pair.base_symbol })}</LinkStyle> */}
+                  <Button onClick={() => linkToURL(pair.prices)} scale="sm" height="20px" width="95px" font-size="12px">
+                    <BTextStyle>{t('Buy: %symbol%', { symbol: pair.base_symbol })}</BTextStyle>
+                  </Button>
+                </TextStyle>
+                <TextStyle>
+                  {/* <LinkStyle href={pair.deposit}>{t('Deposit')}</LinkStyle> */}
                   <Button
                     onClick={() => linkToURL(pair.deposit)}
                     scale="sm"
@@ -179,9 +189,7 @@ const AllPairs = () => {
                     width="70px"
                     font-size="12px"
                   >
-                    <BTextStyle>
-                      {t('Deposit')}
-                    </BTextStyle>
+                    <BTextStyle>{t('Deposit')}</BTextStyle>
                   </Button>
                 </TextStyle>
               </tr>
