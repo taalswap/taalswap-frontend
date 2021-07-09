@@ -175,7 +175,8 @@ const Pools: React.FC = () => {
               marginLeft: '10px',
             }}
           >
-            <Txtcolor>(Starting in </Txtcolor>
+            <Txtcolor>(</Txtcolor>
+            <p style={{ color: 'red' }}>Starting in </p>
             <TimeCounter />
             <Txtcolor>)</Txtcolor>
           </div>
