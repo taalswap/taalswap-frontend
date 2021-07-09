@@ -13,24 +13,38 @@ width: 100%;
 background: ${({ theme }) => theme.card.background};
 border-radius: 16px;
 margin: 16px 0px;
-overflow:hidden;
 `
 
 const TitleStyle = styled.th`
 color: ${({ theme }) => theme.colors.textSubtle};
 background: ${({ theme }) => theme.colors.tertiary};
 border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-padding:24px 8px 24px 20px;
+padding:24px 8px 24px 8px;
 text-align:left;
-font-size:14px;
+font-size:12px;
+${({ theme }) => theme.mediaQueries.lg} {
+    padding:24px 8px 24px 20px;
+    font-size:14px;
+  }
 `
 
 const TextStyle = styled.td`
 color: ${({ theme }) => theme.colors.logoColor};
-padding:24px 8px 24px 20px;
+padding:24px 8px 24px 8px;
 text-align:left;
 border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-font-size:14px;
+font-size:12px;
+
+ > a {
+     font-size: 14px;
+ }
+${({ theme }) => theme.mediaQueries.lg} {
+    padding:24px 8px 24px 20px;
+    font-size:14px;
+  }
+  > a {
+      font-size: 12px;
+  }
 `
 
 const LinkStyle = styled(Link)`
@@ -42,7 +56,7 @@ font-size:14px;
 const AllPairs = () => {
     const { t } = useTranslation()
     return (
-        <div className="farms_wrap" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+        <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <Txtcolor className='section_tit'>All Pairs</Txtcolor>
             <TableWrap>
                 <tbody>
@@ -50,13 +64,16 @@ const AllPairs = () => {
                         <TitleStyle>Name</TitleStyle>
                         <TitleStyle>Liquidity</TitleStyle>
                         <TitleStyle>Prices</TitleStyle>
+                        <TitleStyle>Prices</TitleStyle>
                     </tr>
                     <tr>
                         <TextStyle>XPN-ETH</TextStyle>
                         <TextStyle>$6,000</TextStyle>
                         <TextStyle><LinkStyle href='./'>{t('Buy XPN')}</LinkStyle></TextStyle>
+                        <TextStyle>$6,000</TextStyle>
                     </tr>
                     <tr>
+                        <TextStyle>.</TextStyle>
                         <TextStyle>.</TextStyle>
                         <TextStyle>.</TextStyle>
                         <TextStyle>.</TextStyle>
