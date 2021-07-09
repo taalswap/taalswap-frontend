@@ -40,6 +40,7 @@ const StyledRow = styled.div`
 `
 const StyledCell = styled(BaseCell)`
   flex-direction: row;
+  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
 `
 const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {
   const { isLg, isXl, isSm, isMd, isXs } = useMatchBreakpoints()
@@ -53,7 +54,7 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
   return (
     <StyledTableBorder>
       <StyledTable role="table" ref={tableWrapperEl}>
-        <StyledRow role="row" style={{ borderRadius: "8px 8px 0 0", position: 'sticky', top: 0, zIndex: 1000 }}>
+        <StyledRow role="row" style={{ borderRadius: "8px 8px 0 0", position: 'sticky', top:0, zIndex: 1000 }}>
           {isLg  && (
             <>
             <StyledCell role="cell" style={{ flex: '1 0 130px', paddingLeft: '20px' }}>
