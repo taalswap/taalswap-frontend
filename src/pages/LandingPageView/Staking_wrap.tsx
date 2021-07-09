@@ -177,7 +177,7 @@ const Pools: React.FC = () => {
             }}
           >
             <Txtcolor>(</Txtcolor>
-            <p style={{ color: 'red' }}>Starting in </p>
+            <p style={{ color: 'red', marginRight: '6px' }}>Starting in</p>
             <TimeCounter />
             <Txtcolor>)</Txtcolor>
           </div>
@@ -203,7 +203,7 @@ const Pools: React.FC = () => {
             }}
           >
             <Txtcolor>(</Txtcolor>
-            <span style={{ color: 'red', marginRight: '5px' }}>Starting in</span> <TimeCounter />
+            <span style={{ color: 'red', marginRight: '6px' }}>Starting in</span> <TimeCounter />
             <Txtcolor>)</Txtcolor>
           </div>
         </div>
