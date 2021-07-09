@@ -266,7 +266,8 @@ const TableWrap: React.FC = () => {
               marginLeft: '10px',
             }}
           >
-            <Txtcolor>(Starting in </Txtcolor>
+            <Txtcolor>(</Txtcolor>
+            <p style={{ color: 'red' }}>Starting in </p>
             <TimeCounter />
             <Txtcolor>)</Txtcolor>
           </div>
@@ -290,7 +291,8 @@ const TableWrap: React.FC = () => {
               marginLeft: '10px',
             }}
           >
-            <Txtcolor>(Starting in </Txtcolor>
+            <Txtcolor>(</Txtcolor>
+            <span style={{ color: 'red' }}>Starting in alsdifjlwiejfliajsdf </span>
             <TimeCounter />
             <Txtcolor>)</Txtcolor>
           </div>
