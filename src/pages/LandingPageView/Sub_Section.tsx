@@ -12,6 +12,9 @@ const SectionWrapper = styled.div`
 
 const Usewrap = styled.li`
   background-color: ${({ theme }) => theme.colors.subSectionlibg};
+  display:flex;
+  justify-content:center;
+  align-items:center;
 `;
 
 const Txtcolor = styled.p`
@@ -24,8 +27,8 @@ const LandingPageView = () => {
             <div className='subsection_box'>
                 <Txtcolor className='section_tit'>Auditing Agency</Txtcolor>
                 <ul>
-                    <Usewrap><a href="./"><img src={AgencyLogo01} alt="LogoImg" style={{width:'100%',maxWidth:'188px'}}/></a></Usewrap>
-                    <Usewrap><a href="./"><img src={AgencyLogo02} alt="LogoImg" style={{width:'100%',maxWidth:'146px'}}/></a></Usewrap>
+                    <Usewrap><a href="./" style={{width:'100%',display:'block'}}><img src={AgencyLogo01} alt="LogoImg" style={{width:'100%',maxWidth:'188px'}}/></a></Usewrap>
+                    <Usewrap><a href="./" style={{width:'100%',display:'block'}}><img src={AgencyLogo02} alt="LogoImg" style={{width:'100%',maxWidth:'146px'}}/></a></Usewrap>
                 </ul>  
             </div> 
             <div className='subsection_box'>

@@ -538,6 +538,7 @@ const SectionTop: React.FC = () => {
                       disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
                       onClick={onPresentBountyModal}
                       scale="sm"
+                      style={{fontSize:'14px',padding:'0 10px'}}
                     >{t('Claim')}</Button>
                   </div>
                 </div>
@@ -588,7 +589,7 @@ const SectionTop: React.FC = () => {
             <Usewrap>
               <li>
                 <Txtcolor className="info_title">{t('My Portfolio')}</Txtcolor>
-                <Button onClick={harvestAllFarms} scale="sm">
+                <Button onClick={harvestAllFarms} scale="sm" style={{fontSize:'14px',padding:'0 10px'}}>
                   {t('Harvest All')}
                 </Button>
               </li>
