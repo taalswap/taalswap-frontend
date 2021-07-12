@@ -56,8 +56,8 @@ const LinkStyle = styled(Link)`
 `
 
 const BTextStyle = styled.td`
-    color: ${({ theme }) => theme.colors.background};
     font-size: 12px;
+    width:100%;
 `
 
 const AllPairs = () => {
@@ -147,7 +147,7 @@ const AllPairs = () => {
     }, [])
 
     return (
-      <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto',paddingBottom:'50px' }}>
           <div
             style={{
                 display: 'flex',
@@ -172,21 +172,21 @@ const AllPairs = () => {
               {pairTableRow().map((pair) => (
                 <>
                     <tr key={pair.name}>
-                        <TextStyle>{pair.name}</TextStyle>
-                        <TextStyle>
-                            <div style={{ display: 'flex' }}>
+                        <TextStyle style={{verticalAlign:'middle'}}>{pair.name}</TextStyle>
+                        <TextStyle style={{verticalAlign:'middle'}}>
+                            <div style={{ display: 'flex',alignItems:'center' }}>
                                 <span style={{ marginRight: '5px' }}>$</span>
                                 <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
                             </div>
                         </TextStyle>
-                        <TextStyle>
-                            <Button onClick={() => linkToURL(pair.prices)} scale="xs" width="75px" font-size="10px">
-                                <BTextStyle>{t('Buy: %symbol%', { symbol: pair.base_symbol })}</BTextStyle>
+                        <TextStyle style={{verticalAlign:'middle'}}>
+                            <Button onClick={() => linkToURL(pair.prices)} scale="sm" maxWidth='100px' width='100%' style={{fontSize:'11px',padding:'0 7px',lineHeight:'1.1'}}>
+                                {t('Buy: %symbol%', { symbol: pair.base_symbol })}
                             </Button>
                         </TextStyle>
-                        <TextStyle>
-                            <Button onClick={() => linkToURL(pair.deposit)} scale="xs" font-size="10px">
-                                <BTextStyle>{t('Deposit')}</BTextStyle>
+                        <TextStyle style={{verticalAlign:'middle'}}>
+                            <Button onClick={() => linkToURL(pair.deposit)} scale="sm" style={{fontSize:'11px',padding:'0 7px',maxWidth:'100px',width:'100%'}}>
+                                {t('Deposit')}
                             </Button>
                         </TextStyle>
                     </tr>
