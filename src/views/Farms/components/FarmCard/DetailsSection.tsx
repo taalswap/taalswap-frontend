@@ -73,7 +73,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         >
           <LpIcon2 />
           {isShown2 && (
-            <div style={{ position: 'absolute', marginTop: '35px', color: '#00ab55', fontSize: '13px' }}>
+            <div style={{ position: 'absolute', marginTop: '33px', color: '#00ab55', fontSize: '13px' }}>
               {t('View Contract')}
             </div>
           )}
@@ -85,7 +85,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         >
           <LpIcon3 />
           {isShown3 && (
-            <div style={{ position: 'absolute', marginTop: '31px', color: '#00ab55', fontSize: '13px' }}>
+            <div style={{ position: 'absolute', marginTop: '33px', color: '#00ab55', fontSize: '13px' }}>
               {t('See Pair Info')}
             </div>
           )}

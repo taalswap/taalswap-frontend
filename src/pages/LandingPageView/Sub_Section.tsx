@@ -12,7 +12,10 @@ const SectionWrapper = styled.div`
 
 const Usewrap = styled.li`
   background-color: ${({ theme }) => theme.colors.subSectionlibg};
-`
+  display:flex;
+  justify-content:center;
+  align-items:center;
+`;
 
 const Txtcolor = styled.p`
   color: ${({ theme }) => theme.colors.logoColor};
@@ -25,12 +28,12 @@ const LandingPageView = () => {
         <Txtcolor className="section_tit">Auditing Agency</Txtcolor>
         <ul>
           <Usewrap>
-            <a href="https://www.slowmist.com" target="_blank" rel="noreferrer">
+            <a href="https://www.slowmist.com" target="_blank" rel="noreferrer" style={{width:'100%',display:'block'}}>
               <img src={AgencyLogo01} alt="LogoImg" style={{ width: '100%', maxWidth: '188px' }} />
             </a>
           </Usewrap>
           <Usewrap>
-            <a href="https://audit.haechi.io" target="_blank" rel="noreferrer">
+            <a href="https://audit.haechi.io" target="_blank" rel="noreferrer" style={{width:'100%',display:'block'}}>
               <img src={AgencyLogo02} alt="LogoImg" style={{ width: '100%', maxWidth: '146px' }} />
             </a>
           </Usewrap>

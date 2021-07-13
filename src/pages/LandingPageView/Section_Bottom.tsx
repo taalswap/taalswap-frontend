@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'taalswap-uikit'
+import { Link, Button } from 'taalswap-uikit'
 import ido_img from './images/ido_img.png'
 import { useTranslation } from '../../contexts/Localization'
 
@@ -16,7 +16,9 @@ const Section_Bottom = () => {
                 Fire up your project with <span style={{ color: '#00ab55' }}>TaalSwap IDO</span>
               </p>
               <Link href="https://ido.taalswap.finance/" target="_blank">
-                <input type="button" value={t('Go Now')} style={{ cursor: 'pointer' }} />
+                <Button scale='md' height='40px' style={{fontSize:'14px'}}>
+                  {t('Go Now')}
+                </Button>
               </Link>
             </div>
           </div>

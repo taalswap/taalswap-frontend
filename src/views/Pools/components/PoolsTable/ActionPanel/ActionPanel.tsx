@@ -273,7 +273,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
               onMouseEnter={() => setIsShown3(true)}
               onMouseLeave={() => setIsShown3(false)}
             >
-              <MetamaskIcon ml="4px" />
+              <MetamaskIcon ml="4px" width='24px' height='24px'/>
               {isShown3 && (
         <div style={{position:"absolute",marginTop:"53px",color:"#00ab55",fontSize:"13px"}}>
           Add to Metamask
