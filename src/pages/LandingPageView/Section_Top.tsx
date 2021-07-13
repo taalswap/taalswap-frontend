@@ -477,7 +477,7 @@ const SectionTop: React.FC = () => {
                     {t('Rewards starting in')}
                   </Titcolor>
                 </div>
-                <TimeCounter />
+                {/* <TimeCounter /> */}
               </li>
               <li>
                 <div>
