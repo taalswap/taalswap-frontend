@@ -507,6 +507,7 @@ const SectionTop: React.FC = () => {
                       onClick={onPresentBountyModal}
                       scale="sm"
                       marginLeft="10px"
+                      style={{fontSize:'14px',padding:'0 10px'}}
                     >
                       {t('Claim')}
                     </Button>
@@ -561,7 +562,7 @@ const SectionTop: React.FC = () => {
                 <Txtcolor className="info_title">{t('My Portfolio')}</Txtcolor>
 
                 {account ? (
-                  <Button disabled={balancesWithValue.length <= 0 || pendingTx} onClick={harvestAllFarms} scale="sm">
+                  <Button disabled={balancesWithValue.length <= 0 || pendingTx} onClick={harvestAllFarms} scale="sm" style={{fontSize:'14px',padding:'0 10px'}}>
                     {pendingTx
                       ? t('Collecting TAL')
                       : t('Harvest all (%count%)', {
