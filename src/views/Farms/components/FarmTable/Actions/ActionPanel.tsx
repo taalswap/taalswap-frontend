@@ -82,9 +82,9 @@ const StyledLinkExternal = styled.div`
 `
 const StyledLinkExternal2 = styled.div`
   font-weight: 400;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
 `
 
 const StakeContainer = styled.div`
@@ -219,7 +219,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <StyledLinkExternal onMouseEnter={() => setIsShown2(true)} onMouseLeave={() => setIsShown2(false)}>
             <LpIcon2 />
             {isShown2 && (
-              <div style={{ position: 'absolute', marginTop: '36px', color: '#00ab55', fontSize: '13px' }}>
+              <div style={{ position: 'absolute', marginTop: '34px', color: '#00ab55', fontSize: '13px' }}>
                 View Contract
               </div>
             )}
@@ -229,7 +229,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <StyledLinkExternal2 onMouseEnter={() => setIsShown3(true)} onMouseLeave={() => setIsShown3(false)}>
             <LpIcon3 />
             {isShown3 && (
-              <div style={{ position: 'absolute', marginTop: '32px', color: '#00ab55', fontSize: '13px' }}>
+
+              <div style={{position:"absolute",marginTop:"34px",color:"#00ab55",fontSize:'13px'}}>
                 See Pair Info
               </div>
             )}

@@ -15,10 +15,8 @@ export interface MultiplierProps {
 const MultiplierWrapper = styled.div`
   color: ${({ theme }) => theme.colors.text};
   width: 90px;
-  text-align: right;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    text-align: right;
     margin-right: 0;
   }
 `
