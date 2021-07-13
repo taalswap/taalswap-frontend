@@ -848,7 +848,7 @@
   "Maximum ARP": "최대 ARP",
   "# of Transactions (24H)": "일일 트랜잭션 수",
   "# of Volume USD (24H)": "일일 거래량",
-  "Rewards starting in": "보상 시작",
+  "Rewards starting in": "보상 시작이 곧 시작될 예정입니다.",
   "TAL Minted per block": "블록 당 TAL 생성 갯수",
   "Buy: %symbol%": "%symbol% 구입"
 }
