@@ -49,13 +49,17 @@ const TableBody = styled.tbody`
       text-align: left;
       background: ${({ theme }) => theme.colors.tertiary};
       color: ${({ theme }) => theme.colors.textSubtle};
-      font-size: 14px;
+      font-size:14px;
+      border-bottom: 2px solid rgba(133, 133, 133, 0.1);
     }
   }
-  & tr {
+  & tr td {
     border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   }
-`
+  tr td tr td{
+    border-bottom: none;
+  }
+  `
 
 const TableContainer = styled.div`
   position: relative;
