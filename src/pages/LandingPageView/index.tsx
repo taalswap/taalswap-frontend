@@ -35,8 +35,8 @@ const LandingPageView = () => {
         toggleTheme={toggleTheme}
       />
       <SectionTop />
-      <TableWrap />
-      <StakingWrap />
+      {/* <TableWrap />
+      <StakingWrap /> */}
       <AllPairs />
       <SectionBottom />
       <SubSection />

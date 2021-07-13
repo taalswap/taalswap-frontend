@@ -394,7 +394,7 @@ const SectionTop: React.FC = () => {
             <p className="home_subtit">A multi-chain AMM protocol to safeguard and increase your assets</p>
             {/* <Button className="start_btn" onClick={() => linkToURL('http://localhost:3000/#/swap')}> */}
             <Button className="start_btn" onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap`)}>
-              {t('Start')}
+              {t('Swap')}
             </Button>
           </div>
           <div className="top_buyline">
@@ -478,7 +478,7 @@ const SectionTop: React.FC = () => {
                     {t('Rewards starting in')}
                   </Titcolor>
                 </div>
-                <TimeCounter />
+                {/* <TimeCounter /> */}
               </li>
               <li>
                 <div>
@@ -508,7 +508,7 @@ const SectionTop: React.FC = () => {
                       onClick={onPresentBountyModal}
                       scale="sm"
                       marginLeft="10px"
-                      style={{fontSize:'14px',padding:'0 10px'}}
+                      style={{ fontSize: '14px', padding: '0 10px' }}
                     >
                       {t('Claim')}
                     </Button>
@@ -563,7 +563,12 @@ const SectionTop: React.FC = () => {
                 <Txtcolor className="info_title">{t('My Portfolio')}</Txtcolor>
 
                 {account ? (
-                  <Button disabled={balancesWithValue.length <= 0 || pendingTx} onClick={harvestAllFarms} scale="sm" style={{fontSize:'14px',padding:'0 10px'}}>
+                  <Button
+                    disabled={balancesWithValue.length <= 0 || pendingTx}
+                    onClick={harvestAllFarms}
+                    scale="sm"
+                    style={{ fontSize: '14px', padding: '0 10px' }}
+                  >
                     {pendingTx
                       ? t('Collecting TAL')
                       : t('Harvest all (%count%)', {
