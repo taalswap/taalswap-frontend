@@ -416,22 +416,17 @@ const SectionTop: React.FC = () => {
             </div>
           </div>
         </div>
-        {/* 임시 */}
-        <div className="input_wrap">
-          <div className="taal_info info02" style={{ width: '100%' }}>
-            <Usewrap>
-              <li>
-                <div>
-                  <img src={info2Img01} alt="info_icon" />
-                  <Titcolor className="img_tit">{t('Maximum APR')}</Titcolor>
-                </div>
-                <Txtcolor className="info_num" style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                  <span>
-                    <CardValue fontSize="29" value={maxApr} />
-                  </span>
-                  %
-                </Txtcolor>
-              </li>
+        {/* ----------------------------- 임시 ------------------------------ */}
+        <div
+          className="input_wrap"
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'nowrap',
+          }}
+        >
+          <div className="taal_info info02" style={{ width: '100%', paddingLeft: '10px', paddingRight: '10px' }}>
+            <Usewrap style={{ justifyContent: 'space-around' }}>
               <li>
                 <div>
                   <img src={info2Img02} alt="info_icon" />
@@ -455,8 +450,40 @@ const SectionTop: React.FC = () => {
               </li>
             </Usewrap>
           </div>
+          <div
+            className="taal_info info02"
+            style={{
+              width: '100%',
+              paddingLeft: '10px',
+              paddingRight: '10px',
+
+              justifyContent: 'center',
+            }}
+          >
+            <Usewrap style={{ justifyContent: 'space-around' }}>
+              <li>
+                <Txtcolor>{t('My Portfolio')}</Txtcolor>
+              </li>
+              <li>
+                <div>
+                  <Titcolor className="img_tit" style={{ marginLeft: '0px' }}>
+                    {t('My Total Assets')}
+                  </Titcolor>
+                </div>
+                <div>
+                  <Txtcolor className="info_num">
+                    <CardValue fontSize="29" value={getTotalAssets()} />
+                  </Txtcolor>
+                  <Titcolor className="info_name">USD</Titcolor>
+                </div>
+              </li>
+            </Usewrap>
+          </div>
         </div>
-        {/* 임시 끝 */}
+
+        {/* ----------------------------- 임시 끝 ------------------------------ */}
+
+        {/* ----------------------------- 원본 시작 ------------------------------ */}
         {/* <div className="input_wrap">
           <div className="taal_info info01">
             <Usewrap>
