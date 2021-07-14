@@ -56,11 +56,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     // href: 'http://localhost:3001/staking',
     href: `${frontendBaseUrl}/staking`,
   },
-  {
-    label: t('Info'),
-    icon: 'InfoIcon',
-    href: 'https://taalswap.info/home',
-  },
+  // {
+  //   label: t('Info'),
+  //   icon: 'InfoIcon',
+  //   href: 'https://taalswap.info/home',
+  // },
   // {
   //   label: t('Prediction (BETA)'),
   //   icon: 'PredictionsIcon',
