@@ -146,7 +146,7 @@ const AllPairs = () => {
         })
     }
 
-    fetchETHPrice()
+    // fetchETHPrice()
     fetchData()
   }, [])
 
