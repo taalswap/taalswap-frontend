@@ -79,10 +79,11 @@ const AllPairs = () => {
 
         const name = `${base_symbol}-${quote_symbol}`
 
-            // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
-            const liquidity = parseFloat(pair.liquidity)
-            const baseDeposit = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_address
-            const quoteDeposit = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_address
+        // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
+        const liquidity = parseFloat(pair.liquidity)
+
+        const baseDeposit = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_address
+        const quoteDeposit = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_address
 
         const deposit =
           quoteDeposit === 'ETH'
@@ -145,7 +146,7 @@ const AllPairs = () => {
         })
     }
 
-    fetchETHPrice()
+    // fetchETHPrice()
     fetchData()
   }, [])
 
