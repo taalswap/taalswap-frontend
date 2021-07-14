@@ -416,7 +416,48 @@ const SectionTop: React.FC = () => {
             </div>
           </div>
         </div>
+        {/* 임시 */}
         <div className="input_wrap">
+          <div className="taal_info info02" style={{ width: '100%' }}>
+            <Usewrap>
+              <li>
+                <div>
+                  <img src={info2Img01} alt="info_icon" />
+                  <Titcolor className="img_tit">{t('Maximum APR')}</Titcolor>
+                </div>
+                <Txtcolor className="info_num" style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <span>
+                    <CardValue fontSize="29" value={maxApr} />
+                  </span>
+                  %
+                </Txtcolor>
+              </li>
+              <li>
+                <div>
+                  <img src={info2Img02} alt="info_icon" />
+                  <Titcolor className="img_tit">{t('# of Transactions (24H)')}</Titcolor>
+                </div>
+                <Txtcolor className="info_num">
+                  <CardValue fontSize="29" value={transactions24} decimals={0} />
+                </Txtcolor>
+              </li>
+              <li>
+                <div>
+                  <img src={info2Img03} alt="info_icon" />
+                  <Titcolor className="img_tit">{t('# of Volume USD (24H)')}</Titcolor>
+                </div>
+                <div>
+                  <Txtcolor className="info_num">
+                    <CardValue fontSize="29" value={volumeUSD24} decimals={0} />
+                  </Txtcolor>
+                  <Titcolor className="info_name">USD</Titcolor>
+                </div>
+              </li>
+            </Usewrap>
+          </div>
+        </div>
+        {/* 임시 끝 */}
+        {/* <div className="input_wrap">
           <div className="taal_info info01">
             <Usewrap>
               <li>
@@ -468,6 +509,7 @@ const SectionTop: React.FC = () => {
               </li>
             </Usewrap>
           </div>
+
           <div className="taal_info info03">
             <Usewrap>
               <li style={{ display: 'flex', justifyContent: 'flex-start' }}>
@@ -477,7 +519,7 @@ const SectionTop: React.FC = () => {
                     {t('Rewards starting in')}
                   </Titcolor>
                 </div>
-                {/* <TimeCounter /> */}
+                <TimeCounter />
               </li>
               <li>
                 <div>
@@ -555,7 +597,7 @@ const SectionTop: React.FC = () => {
                 </div>
               </li>
             </Usewrap>
-          </div>
+          </div> 
           <div className="taal_info info_portfolio">
             <Usewrap>
               <li>
@@ -574,20 +616,7 @@ const SectionTop: React.FC = () => {
                           count: balancesWithValue.length,
                         })}
                   </Button>
-                ) : // <input
-                //   type="button"
-                //   disabled={balancesWithValue.length <= 0 || pendingTx}
-                //   value={
-                //     pendingTx
-                //       ? t('Collecting TAL')
-                //       : t('Harvest all (%count%)', {
-                //           count: balancesWithValue.length,
-                //         })
-                //   }
-                //   style={{ cursor: 'pointer' }}
-                //   onClick={harvestAllFarms}
-                // />
-                null}
+                ) : null}
               </li>
               <li className="list_progressbar">
                 <div>
@@ -629,6 +658,7 @@ const SectionTop: React.FC = () => {
             </Usewrap>
           </div>
         </div>
+      */}
       </div>
     </div>
   )
