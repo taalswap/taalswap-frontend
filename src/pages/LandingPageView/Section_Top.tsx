@@ -74,6 +74,20 @@ const Txtcolor3 = styled.span`
   border-bottom: 2px solid ${({ theme }) => theme.colors.logoColor};
 `
 
+/* ----------------------------- 임시 ------------------------------ */
+
+const TempDiv = styled.div`
+  padding-left: 0px;
+  padding-right: 0px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+`
+
+/* ----------------------------- 임시 끝 ------------------------------ */
+
 const SectionTop: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
@@ -404,14 +418,15 @@ const SectionTop: React.FC = () => {
                 <CardValue value={talTvl} color="#005046" fontSize="45" decimals={0} />
               </div>
             </StyledTvlDic>
+
             <div className="buy_btnwrap">
               <Button
                 value={t('Buy TAL')}
                 // onClick={() => linkToURL('http://localhost:3000/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf')}
-                onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap/ETH/0xe18E460d38441027b6672363d68C9088F3D773Bf`)}
+                onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap/ETH/0x0`)}
                 className="buy_Btn"
               >
-                {t('Buy TAL')}
+                {t('Buy')}
               </Button>
             </div>
           </div>
@@ -425,7 +440,7 @@ const SectionTop: React.FC = () => {
             flexWrap: 'nowrap',
           }}
         >
-          <div className="taal_info info02" style={{ width: '100%', paddingLeft: '10px', paddingRight: '10px' }}>
+          <TempDiv className="taal_info info02" style={{ width: '100%' }}>
             <Usewrap style={{ justifyContent: 'space-around' }}>
               <li>
                 <div>
@@ -449,17 +464,8 @@ const SectionTop: React.FC = () => {
                 </div>
               </li>
             </Usewrap>
-          </div>
-          <div
-            className="taal_info info02"
-            style={{
-              width: '100%',
-              paddingLeft: '10px',
-              paddingRight: '10px',
-
-              justifyContent: 'center',
-            }}
-          >
+          </TempDiv>
+          <TempDiv className="taal_info info02" style={{ width: '100%' }}>
             <Usewrap style={{ justifyContent: 'space-around' }}>
               <li>
                 <Txtcolor>{t('My Portfolio')}</Txtcolor>
@@ -478,7 +484,7 @@ const SectionTop: React.FC = () => {
                 </div>
               </li>
             </Usewrap>
-          </div>
+          </TempDiv>
         </div>
 
         {/* ----------------------------- 임시 끝 ------------------------------ */}
