@@ -90,12 +90,7 @@ const AllPairs = () => {
             ? `${process.env.REACT_APP_INTERFACE}/#/add/${quoteDeposit}/${baseDeposit}`
             : `${process.env.REACT_APP_INTERFACE}/#/add/${baseDeposit}/${quoteDeposit}`
 
-        let prices = ''
-        if (pair.base_symbol === 'USDC' && pair.quote_symbol === 'WETH') {
-          prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${baseDeposit}/${quoteDeposit}`
-        } else {
-          prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${quoteDeposit}/${baseDeposit}`
-        }
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${quoteDeposit}/${baseDeposit}`
 
         const temp = {
           name,
