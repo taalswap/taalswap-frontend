@@ -90,10 +90,15 @@ const AllPairs = () => {
             ? `${process.env.REACT_APP_INTERFACE}/#/add/${quoteDeposit}/${baseDeposit}`
             : `${process.env.REACT_APP_INTERFACE}/#/add/${baseDeposit}/${quoteDeposit}`
 
-        const prices =
-          baseDeposit === 'ETH'
-            ? `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.quote_address}`
-            : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
+        let prices = ''
+        if (pair.base_symbol === 'TSHP') {
+          prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/${pair.base_address}`
+        } else {
+          prices =
+            baseDeposit === 'ETH'
+              ? `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/ETH`
+              : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
+        }
 
         const temp = {
           name,
@@ -106,7 +111,8 @@ const AllPairs = () => {
         resultRow.push(temp)
       }
     })
-
+    // "http://localhost:3000/#/swap/0xdAC17F958D2ee523a2206206994597C13D831ec7/ETH"
+    // "http://localhost:3000/#/swap/0xdAC17F958D2ee523a2206206994597C13D831ec7/0x525794473F7ab5715C81d06d10f52d11cC052804"
     return resultRow
   }
 
@@ -174,37 +180,35 @@ const AllPairs = () => {
             <TitleStyle>{t('Deposit')}</TitleStyle>
           </tr>
           {pairTableRow().map((pair) => (
-            <>
-              <tr key={pair.name}>
-                <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
-                <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <span style={{ marginRight: '5px' }}>$</span>
-                    <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
-                  </div>
-                </TextStyle>
-                <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <Button
-                    onClick={() => linkToURL(pair.prices)}
-                    scale="sm"
-                    maxWidth="100px"
-                    width="100%"
-                    style={{ fontSize: '11px', padding: '0 7px', lineHeight: '1.1' }}
-                  >
-                    {t('Buy: %symbol%', { symbol: pair.base_symbol })}
-                  </Button>
-                </TextStyle>
-                <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <Button
-                    onClick={() => linkToURL(pair.deposit)}
-                    scale="sm"
-                    style={{ fontSize: '11px', padding: '0 7px', maxWidth: '100px', width: '100%' }}
-                  >
-                    {t('Deposit')}
-                  </Button>
-                </TextStyle>
-              </tr>
-            </>
+            <tr key={pair.name}>
+              <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ marginRight: '5px' }}>$</span>
+                  <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
+                </div>
+              </TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
+                <Button
+                  onClick={() => linkToURL(pair.prices)}
+                  scale="sm"
+                  maxWidth="100px"
+                  width="100%"
+                  style={{ fontSize: '11px', padding: '0 7px', lineHeight: '1.1' }}
+                >
+                  {t('Buy: %symbol%', { symbol: pair.base_symbol })}
+                </Button>
+              </TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
+                <Button
+                  onClick={() => linkToURL(pair.deposit)}
+                  scale="sm"
+                  style={{ fontSize: '11px', padding: '0 7px', maxWidth: '100px', width: '100%' }}
+                >
+                  {t('Deposit')}
+                </Button>
+              </TextStyle>
+            </tr>
           ))}
         </tbody>
       </TableWrap>
