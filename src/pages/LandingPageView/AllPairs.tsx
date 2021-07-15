@@ -90,10 +90,16 @@ const AllPairs = () => {
             ? `${process.env.REACT_APP_INTERFACE}/#/add/${quoteDeposit}/${baseDeposit}`
             : `${process.env.REACT_APP_INTERFACE}/#/add/${baseDeposit}/${quoteDeposit}`
 
-        const prices =
-          baseDeposit === 'ETH'
-            ? `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.quote_address}`
-            : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
+        let prices = ''
+        if (pair.base_symbol === 'TSHP') {
+          console.log('aaa')
+          prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/${pair.base_address}`
+        } else {
+          prices =
+            baseDeposit === 'ETH'
+              ? `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/ETH`
+              : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
+        }
 
         const temp = {
           name,
@@ -102,11 +108,12 @@ const AllPairs = () => {
           base_symbol,
           deposit,
         }
-
+        console.log(temp)
         resultRow.push(temp)
       }
     })
-
+    // "http://localhost:3000/#/swap/0xdAC17F958D2ee523a2206206994597C13D831ec7/ETH"
+    // "http://localhost:3000/#/swap/0xdAC17F958D2ee523a2206206994597C13D831ec7/0x525794473F7ab5715C81d06d10f52d11cC052804"
     return resultRow
   }
 
