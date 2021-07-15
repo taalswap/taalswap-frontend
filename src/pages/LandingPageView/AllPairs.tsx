@@ -91,13 +91,10 @@ const AllPairs = () => {
             : `${process.env.REACT_APP_INTERFACE}/#/add/${baseDeposit}/${quoteDeposit}`
 
         let prices = ''
-        if (pair.base_symbol === 'TSHP') {
-          prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/${pair.base_address}`
+        if (pair.base_symbol === 'USDC' && pair.quote_symbol === 'WETH') {
+          prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${baseDeposit}/${quoteDeposit}`
         } else {
-          prices =
-            baseDeposit === 'ETH'
-              ? `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/ETH`
-              : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
+          prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${quoteDeposit}/${baseDeposit}`
         }
 
         const temp = {
