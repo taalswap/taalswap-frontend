@@ -92,7 +92,6 @@ const AllPairs = () => {
 
         let prices = ''
         if (pair.base_symbol === 'TSHP') {
-          console.log('aaa')
           prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/${pair.base_address}`
         } else {
           prices =
@@ -108,7 +107,7 @@ const AllPairs = () => {
           base_symbol,
           deposit,
         }
-        console.log(temp)
+
         resultRow.push(temp)
       }
     })
