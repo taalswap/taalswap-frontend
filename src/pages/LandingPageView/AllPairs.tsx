@@ -180,37 +180,35 @@ const AllPairs = () => {
             <TitleStyle>{t('Deposit')}</TitleStyle>
           </tr>
           {pairTableRow().map((pair) => (
-            <>
-              <tr key={pair.name}>
-                <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
-                <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <span style={{ marginRight: '5px' }}>$</span>
-                    <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
-                  </div>
-                </TextStyle>
-                <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <Button
-                    onClick={() => linkToURL(pair.prices)}
-                    scale="sm"
-                    maxWidth="100px"
-                    width="100%"
-                    style={{ fontSize: '11px', padding: '0 7px', lineHeight: '1.1' }}
-                  >
-                    {t('Buy: %symbol%', { symbol: pair.base_symbol })}
-                  </Button>
-                </TextStyle>
-                <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <Button
-                    onClick={() => linkToURL(pair.deposit)}
-                    scale="sm"
-                    style={{ fontSize: '11px', padding: '0 7px', maxWidth: '100px', width: '100%' }}
-                  >
-                    {t('Deposit')}
-                  </Button>
-                </TextStyle>
-              </tr>
-            </>
+            <tr key={pair.name}>
+              <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ marginRight: '5px' }}>$</span>
+                  <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
+                </div>
+              </TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
+                <Button
+                  onClick={() => linkToURL(pair.prices)}
+                  scale="sm"
+                  maxWidth="100px"
+                  width="100%"
+                  style={{ fontSize: '11px', padding: '0 7px', lineHeight: '1.1' }}
+                >
+                  {t('Buy: %symbol%', { symbol: pair.base_symbol })}
+                </Button>
+              </TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
+                <Button
+                  onClick={() => linkToURL(pair.deposit)}
+                  scale="sm"
+                  style={{ fontSize: '11px', padding: '0 7px', maxWidth: '100px', width: '100%' }}
+                >
+                  {t('Deposit')}
+                </Button>
+              </TextStyle>
+            </tr>
           ))}
         </tbody>
       </TableWrap>
