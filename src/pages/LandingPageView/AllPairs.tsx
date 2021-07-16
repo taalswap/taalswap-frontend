@@ -174,7 +174,7 @@ const AllPairs = () => {
       <TableWrap>
         <tbody>
           <tr>
-            <TitleStyle>{t('Pair')}</TitleStyle>
+            <TitleStyle style={{ width: '25%' }}>{t('Pair')}</TitleStyle>
             <TitleStyle>{t('Price')}</TitleStyle>
             <TitleStyle>{t('Liquidity')}</TitleStyle>
             <TitleStyle>{t('Swap')}</TitleStyle>
