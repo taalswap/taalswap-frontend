@@ -178,7 +178,7 @@ const AllPairs = () => {
             <TitleStyle>{t('Price')}</TitleStyle>
             <TitleStyle>{t('Liquidity')}</TitleStyle>
             <TitleStyle>{t('Swap')}</TitleStyle>
-            <TitleStyle>{t('Deposit')}</TitleStyle>
+            <TitleStyle>{t('LP')}</TitleStyle>
           </tr>
           {pairTableRow().map((pair) => (
             <tr key={pair.name}>
