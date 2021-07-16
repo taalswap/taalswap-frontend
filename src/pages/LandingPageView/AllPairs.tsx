@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { Text, Link, Button } from 'taalswap-uikit'
+import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 
@@ -200,25 +200,14 @@ const AllPairs = () => {
                 </div>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
-                <Button
-                  onClick={() => linkToURL(pair.prices)}
-                  scale="sm"
-                  maxWidth="35px"
-                  width="100%"
-                  style={{ fontSize: '11px', padding: '0 7px', lineHeight: '1.1' }}
-                >
-                  {t('Swap')}
-                  {/* {t('Buy: %symbol%', { symbol: pair.base_symbol })} */}
-                </Button>
+                <IconButton onClick={() => linkToURL(pair.prices)} variant="text" scale="sm" ml="4px">
+                  <SyncAltIcon width="18px" />
+                </IconButton>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
-                <Button
-                  onClick={() => linkToURL(pair.deposit)}
-                  scale="sm"
-                  style={{ fontSize: '11px', padding: '0 7px', maxWidth: '35px', width: '100%' }}
-                >
-                  {t('LP')}
-                </Button>
+                <IconButton onClick={() => linkToURL(pair.deposit)} variant="text" scale="sm" ml="4px">
+                  <AddIcon width="18px" />
+                </IconButton>
               </TextStyle>
             </tr>
           ))}
