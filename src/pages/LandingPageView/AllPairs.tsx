@@ -78,7 +78,13 @@ const AllPairs = () => {
         const quote_symbol = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_symbol
 
         const name = `${base_symbol}-${quote_symbol}`
-        const price = pair.price
+        let price
+        if (parseFloat(pair.price) > 1) {
+          price = parseFloat(pair.price).toFixed(2)
+        } else {
+          price = parseFloat(pair.price).toFixed(8)
+        }
+        console.log(price)
 
         // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
         const liquidity = parseFloat(pair.liquidity)
@@ -179,7 +185,12 @@ const AllPairs = () => {
               <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <CardValue value={pair.price} decimals={8} fontSize="14px" />
+                  {
+                    pair.price > 1 ?
+                      <CardValue value={pair.price} decimals={2} fontSize="14px" />
+                      :
+                      <CardValue value={pair.price} decimals={8} fontSize="14px" />
+                  }
                 </div>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
@@ -192,20 +203,21 @@ const AllPairs = () => {
                 <Button
                   onClick={() => linkToURL(pair.prices)}
                   scale="sm"
-                  maxWidth="100px"
+                  maxWidth="35px"
                   width="100%"
                   style={{ fontSize: '11px', padding: '0 7px', lineHeight: '1.1' }}
                 >
-                  {t('Buy: %symbol%', { symbol: pair.base_symbol })}
+                  {t('Swap')}
+                  {/* {t('Buy: %symbol%', { symbol: pair.base_symbol })} */}
                 </Button>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <Button
                   onClick={() => linkToURL(pair.deposit)}
                   scale="sm"
-                  style={{ fontSize: '11px', padding: '0 7px', maxWidth: '100px', width: '100%' }}
+                  style={{ fontSize: '11px', padding: '0 7px', maxWidth: '35px', width: '100%' }}
                 >
-                  {t('Deposit')}
+                  {t('LP')}
                 </Button>
               </TextStyle>
             </tr>
