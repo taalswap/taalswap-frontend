@@ -78,6 +78,7 @@ const AllPairs = () => {
         const quote_symbol = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_symbol
 
         const name = `${base_symbol}-${quote_symbol}`
+        const price = pair.price
 
         // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
         const liquidity = parseFloat(pair.liquidity)
@@ -94,6 +95,7 @@ const AllPairs = () => {
 
         const temp = {
           name,
+          price,
           liquidity,
           prices,
           base_symbol,
@@ -167,6 +169,7 @@ const AllPairs = () => {
         <tbody>
           <tr>
             <TitleStyle>{t('Pair')}</TitleStyle>
+            <TitleStyle>{t('Price')}</TitleStyle>
             <TitleStyle>{t('Liquidity')}</TitleStyle>
             <TitleStyle>{t('Swap')}</TitleStyle>
             <TitleStyle>{t('Deposit')}</TitleStyle>
@@ -174,6 +177,11 @@ const AllPairs = () => {
           {pairTableRow().map((pair) => (
             <tr key={pair.name}>
               <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <CardValue value={pair.price} decimals={8} fontSize="14px" />
+                </div>
+              </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <span style={{ marginRight: '5px' }}>$</span>
