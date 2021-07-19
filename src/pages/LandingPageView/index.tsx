@@ -15,6 +15,7 @@ import StakingWrap from './Staking_wrap'
 import SubSection from './Sub_Section'
 import AllPairs from './AllPairs'
 import './App.css'
+import AllTokens from './AllTokens'
 
 const LandingPageView = () => {
   const { account } = useWeb3React()
@@ -35,8 +36,9 @@ const LandingPageView = () => {
         toggleTheme={toggleTheme}
       />
       <SectionTop />
-      <TableWrap />
-      <StakingWrap />
+      {/* <TableWrap />
+      <StakingWrap /> */}
+      <AllTokens />
       <AllPairs />
       <SectionBottom />
       <SubSection />
