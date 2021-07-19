@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { Text, Link, Button } from 'taalswap-uikit'
+import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 
@@ -79,6 +79,14 @@ const AllPairs = () => {
 
         const name = `${base_symbol}-${quote_symbol}`
 
+        let price
+        if (parseFloat(pair.price) > 1) {
+          price = parseFloat(pair.price).toFixed(2)
+        } else {
+          price = parseFloat(pair.price).toFixed(8)
+        }
+        // console.log(price)
+
         // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
         const liquidity = parseFloat(pair.liquidity)
 
@@ -104,6 +112,7 @@ const AllPairs = () => {
 
         const temp = {
           name,
+          price,
           liquidity,
           prices,
           base_symbol,
@@ -176,14 +185,24 @@ const AllPairs = () => {
       <TableWrap>
         <tbody>
           <tr>
-            <TitleStyle>{t('Pair')}</TitleStyle>
+            <TitleStyle style={{ width: '30%' }}>{t('Pair')}</TitleStyle>
+            <TitleStyle>{t('Price')}</TitleStyle>
             <TitleStyle>{t('Liquidity')}</TitleStyle>
             <TitleStyle>{t('Swap')}</TitleStyle>
-            <TitleStyle>{t('Deposit')}</TitleStyle>
+            <TitleStyle>{t('LP')}</TitleStyle>
           </tr>
           {pairTableRow().map((pair) => (
             <tr key={pair.name}>
               <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  {pair.price > 1 ? (
+                    <CardValue value={pair.price} decimals={2} fontSize="14px" />
+                  ) : (
+                    <CardValue value={pair.price} decimals={8} fontSize="14px" />
+                  )}
+                </div>
+              </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <span style={{ marginRight: '5px' }}>$</span>
@@ -191,24 +210,14 @@ const AllPairs = () => {
                 </div>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
-                <Button
-                  onClick={() => linkToURL(pair.prices)}
-                  scale="sm"
-                  maxWidth="100px"
-                  width="100%"
-                  style={{ fontSize: '11px', padding: '0 7px', lineHeight: '1.1' }}
-                >
-                  {t('Buy: %symbol%', { symbol: pair.base_symbol })}
-                </Button>
+                <IconButton onClick={() => linkToURL(pair.prices)} variant="text" scale="sm" ml="4px">
+                  <SyncAltIcon width="18px" />
+                </IconButton>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
-                <Button
-                  onClick={() => linkToURL(pair.deposit)}
-                  scale="sm"
-                  style={{ fontSize: '11px', padding: '0 7px', maxWidth: '100px', width: '100%' }}
-                >
-                  {t('Deposit')}
-                </Button>
+                <IconButton onClick={() => linkToURL(pair.deposit)} variant="text" scale="sm" ml="4px">
+                  <AddIcon width="18px" />
+                </IconButton>
               </TextStyle>
             </tr>
           ))}
