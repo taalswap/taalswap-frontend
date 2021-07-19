@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import Numeral from 'numeral'
 import { ethers } from 'ethers'
 import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -32,6 +31,19 @@ const TitleStyle = styled.th`
   }
 `
 
+const TitleIconStyle = styled.th`
+  color: ${({ theme }) => theme.colors.textSubtle};
+  background: ${({ theme }) => theme.colors.tertiary};
+  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
+  // padding: 28px 5px 28px 26px;
+  text-align: center;
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    // padding: 28x 8px 28px 20px;
+    font-size: 14px;
+  }
+`
+
 const TextStyle = styled.td`
   color: ${({ theme }) => theme.colors.logoColor};
   padding: 24px 8px 24px 8px;
@@ -44,6 +56,23 @@ const TextStyle = styled.td`
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
+    font-size: 14px;
+  }
+  > a {
+    font-size: 12px;
+  }
+`
+
+const TextIconStyle = styled.td`
+  color: ${({ theme }) => theme.colors.logoColor};
+  text-align: center;
+  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
+  font-size: 12px;
+
+  > a {
+    font-size: 14px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
     font-size: 14px;
   }
   > a {
@@ -168,9 +197,9 @@ const AllTokens = () => {
           <tr>
             <TitleStyle>{t('Name')} </TitleStyle>
             <TitleStyle>{t('Liquidity')}</TitleStyle>
-            <TitleStyle>{t('Price')}</TitleStyle>
-            <TitleStyle>{t('Swap')}</TitleStyle>
-            <TitleStyle>{t('LP')}</TitleStyle>
+            <TitleStyle>{t('Price ($)')}</TitleStyle>
+            <TitleIconStyle>{t('Swap')}</TitleIconStyle>
+            <TitleIconStyle>{t('LP')}</TitleIconStyle>
           </tr>
           {tokenTableRow().map((token) => (
             <tr key={token.name}>
@@ -200,16 +229,16 @@ const AllTokens = () => {
                 </div>
               </TextStyle>
 
-              <TextStyle style={{ verticalAlign: 'middle' }}>
+              <TextIconStyle style={{ verticalAlign: 'middle' }}>
                 <IconButton onClick={() => linkToURL(token.prices)} variant="text" scale="sm" ml="4px">
                   <SyncAltIcon width="18px" />
                 </IconButton>
-              </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
+              </TextIconStyle>
+              <TextIconStyle style={{ verticalAlign: 'middle' }}>
                 <IconButton onClick={() => linkToURL(token.deposit)} variant="text" scale="sm" ml="4px">
                   <AddIcon width="18px" />
                 </IconButton>
-              </TextStyle>
+              </TextIconStyle>
             </tr>
           ))}
         </tbody>
