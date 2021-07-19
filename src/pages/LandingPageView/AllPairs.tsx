@@ -79,15 +79,13 @@ const AllPairs = () => {
 
         const name = `${base_symbol}-${quote_symbol}`
 
-        let price
-        if (parseFloat(pair.price) > 1) {
-          price = parseFloat(pair.price).toFixed(2)
-        } else {
-          price = parseFloat(pair.price).toFixed(8)
-        }
-        // console.log(price)
+        const price = pair.price
+        // if (parseFloat(pair.price) > 1) {
+        //   price = parseFloat(pair.price).toFixed(2)
+        // } else {
+        //   price = parseFloat(pair.price).toFixed(8)
+        // }
 
-        // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
         const liquidity = parseFloat(pair.liquidity)
 
         const baseDeposit = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_address
@@ -97,6 +95,8 @@ const AllPairs = () => {
           quoteDeposit === 'ETH'
             ? `${process.env.REACT_APP_INTERFACE}/#/add/${quoteDeposit}/${baseDeposit}`
             : `${process.env.REACT_APP_INTERFACE}/#/add/${baseDeposit}/${quoteDeposit}`
+
+        const volumn24h = pair.previous24hVolumeUSD
 
         // let prices = ''
         // if (pair.base_symbol === 'TSHP') {
@@ -113,7 +113,7 @@ const AllPairs = () => {
         const temp = {
           name,
           price,
-          liquidity,
+          volumn24h,
           prices,
           base_symbol,
           deposit,
@@ -122,14 +122,12 @@ const AllPairs = () => {
         resultRow.push(temp)
       }
     })
-    // "http://localhost:3000/#/swap/0xdAC17F958D2ee523a2206206994597C13D831ec7/ETH"
-    // "http://localhost:3000/#/swap/0xdAC17F958D2ee523a2206206994597C13D831ec7/0x525794473F7ab5715C81d06d10f52d11cC052804"
     return resultRow
   }
 
   useEffect(() => {
     async function fetchETHPrice() {
-      await fetch('https://taalswap-info-api.vercel.app/api/ethprice', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/ethprice', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -144,7 +142,7 @@ const AllPairs = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://taalswap-info-api.vercel.app/api/pairs', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/pairs', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -187,7 +185,7 @@ const AllPairs = () => {
           <tr>
             <TitleStyle style={{ width: '30%' }}>{t('Pair')}</TitleStyle>
             <TitleStyle>{t('Price')}</TitleStyle>
-            <TitleStyle>{t('Liquidity')}</TitleStyle>
+            <TitleStyle>{t('Volume (24H)')}</TitleStyle>
             <TitleStyle>{t('Swap')}</TitleStyle>
             <TitleStyle>{t('LP')}</TitleStyle>
           </tr>
@@ -196,7 +194,7 @@ const AllPairs = () => {
               <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {pair.price > 1 ? (
+                  {pair.price >= 1 ? (
                     <CardValue value={pair.price} decimals={2} fontSize="14px" />
                   ) : (
                     <CardValue value={pair.price} decimals={8} fontSize="14px" />
@@ -206,7 +204,7 @@ const AllPairs = () => {
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <span style={{ marginRight: '5px' }}>$</span>
-                  <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
+                  <CardValue value={pair.volumn24h} decimals={0} fontSize="14px" />
                 </div>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
