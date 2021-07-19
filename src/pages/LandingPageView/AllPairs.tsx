@@ -30,6 +30,19 @@ const TitleStyle = styled.th`
   }
 `
 
+const TitleIconStyle = styled.th`
+  color: ${({ theme }) => theme.colors.textSubtle};
+  background: ${({ theme }) => theme.colors.tertiary};
+  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
+  // padding: 28px 5px 28px 26px;
+  text-align: center;
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    // padding: 28x 8px 28px 20px;
+    font-size: 14px;
+  }
+`
+
 const TextStyle = styled.td`
   color: ${({ theme }) => theme.colors.logoColor};
   padding: 24px 8px 24px 8px;
@@ -42,6 +55,23 @@ const TextStyle = styled.td`
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
+    font-size: 14px;
+  }
+  > a {
+    font-size: 12px;
+  }
+`
+
+const TextIconStyle = styled.td`
+  color: ${({ theme }) => theme.colors.logoColor};
+  text-align: center;
+  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
+  font-size: 12px;
+
+  > a {
+    font-size: 14px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
     font-size: 14px;
   }
   > a {
@@ -184,10 +214,10 @@ const AllPairs = () => {
         <tbody>
           <tr>
             <TitleStyle style={{ width: '30%' }}>{t('Pair')}</TitleStyle>
-            <TitleStyle>{t('Price')}</TitleStyle>
+            <TitleStyle>{t('Price ($)')}</TitleStyle>
             <TitleStyle>{t('Volume (24H)')}</TitleStyle>
-            <TitleStyle>{t('Swap')}</TitleStyle>
-            <TitleStyle>{t('LP')}</TitleStyle>
+            <TitleIconStyle>{t('Swap')}</TitleIconStyle>
+            <TitleIconStyle>{t('LP')}</TitleIconStyle>
           </tr>
           {pairTableRow().map((pair) => (
             <tr key={pair.name}>
@@ -207,16 +237,16 @@ const AllPairs = () => {
                   <CardValue value={pair.volumn24h} decimals={0} fontSize="14px" />
                 </div>
               </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
+              <TextIconStyle style={{ verticalAlign: 'middle' }}>
                 <IconButton onClick={() => linkToURL(pair.prices)} variant="text" scale="sm" ml="4px">
                   <SyncAltIcon width="18px" />
                 </IconButton>
-              </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
+              </TextIconStyle>
+              <TextIconStyle style={{ verticalAlign: 'middle' }}>
                 <IconButton onClick={() => linkToURL(pair.deposit)} variant="text" scale="sm" ml="4px">
                   <AddIcon width="18px" />
                 </IconButton>
-              </TextStyle>
+              </TextIconStyle>
             </tr>
           ))}
         </tbody>
