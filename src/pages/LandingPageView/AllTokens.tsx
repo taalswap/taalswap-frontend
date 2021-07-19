@@ -219,7 +219,7 @@ const AllTokens = () => {
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ marginRight: '5px' }}>$</span>
+                  {/* <span style={{ marginRight: '5px' }}>$</span> */}
                   {/* <CardValue value={parseFloat(formattedNum(token.price))} decimals={2} fontSize="14px" /> */}
                   {token.price >= 1 ? (
                     <CardValue value={token.price} decimals={2} fontSize="14px" />
