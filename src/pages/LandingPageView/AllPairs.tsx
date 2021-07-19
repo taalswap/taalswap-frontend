@@ -78,13 +78,14 @@ const AllPairs = () => {
         const quote_symbol = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_symbol
 
         const name = `${base_symbol}-${quote_symbol}`
+
         let price
         if (parseFloat(pair.price) > 1) {
           price = parseFloat(pair.price).toFixed(2)
         } else {
           price = parseFloat(pair.price).toFixed(8)
         }
-        console.log(price)
+        // console.log(price)
 
         // const liquidity = parseFloat(pair.liquidity) + parseFloat(pair.liquidity_ETH) * ethPrice
         const liquidity = parseFloat(pair.liquidity)
@@ -96,6 +97,16 @@ const AllPairs = () => {
           quoteDeposit === 'ETH'
             ? `${process.env.REACT_APP_INTERFACE}/#/add/${quoteDeposit}/${baseDeposit}`
             : `${process.env.REACT_APP_INTERFACE}/#/add/${baseDeposit}/${quoteDeposit}`
+
+        // let prices = ''
+        // if (pair.base_symbol === 'TSHP') {
+        //   prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/${pair.base_address}`
+        // } else {
+        //   prices =
+        //     baseDeposit === 'ETH'
+        //       ? `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/ETH`
+        //       : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
+        // }
 
         const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${quoteDeposit}/${baseDeposit}`
 
@@ -185,12 +196,11 @@ const AllPairs = () => {
               <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {
-                    pair.price > 1 ?
-                      <CardValue value={pair.price} decimals={2} fontSize="14px" />
-                      :
-                      <CardValue value={pair.price} decimals={8} fontSize="14px" />
-                  }
+                  {pair.price > 1 ? (
+                    <CardValue value={pair.price} decimals={2} fontSize="14px" />
+                  ) : (
+                    <CardValue value={pair.price} decimals={8} fontSize="14px" />
+                  )}
                 </div>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
