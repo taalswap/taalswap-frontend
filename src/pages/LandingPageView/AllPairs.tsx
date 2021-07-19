@@ -184,7 +184,7 @@ const AllPairs = () => {
         <tbody>
           <tr>
             <TitleStyle style={{ width: '30%' }}>{t('Pair')}</TitleStyle>
-            <TitleStyle>{t('Price')}</TitleStyle>
+            <TitleStyle>{t('Price ($)')}</TitleStyle>
             <TitleStyle>{t('Volume (24H)')}</TitleStyle>
             <TitleStyle>{t('Swap')}</TitleStyle>
             <TitleStyle>{t('LP')}</TitleStyle>

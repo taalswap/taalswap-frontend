@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import Numeral from 'numeral'
 import { ethers } from 'ethers'
 import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -168,7 +167,7 @@ const AllTokens = () => {
           <tr>
             <TitleStyle>{t('Name')} </TitleStyle>
             <TitleStyle>{t('Liquidity')}</TitleStyle>
-            <TitleStyle>{t('Price')}</TitleStyle>
+            <TitleStyle>{t('Price ($)')}</TitleStyle>
             <TitleStyle>{t('Swap')}</TitleStyle>
             <TitleStyle>{t('LP')}</TitleStyle>
           </tr>
