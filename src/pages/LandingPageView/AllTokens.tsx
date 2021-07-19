@@ -158,7 +158,7 @@ const AllTokens = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://taalswap-info-api.vercel.app/api/tokens', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/tokens', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -194,7 +194,7 @@ const AllTokens = () => {
 
       <TableWrap>
         <tbody>
-          <tr>
+          <tr key="allTokens">
             <TitleStyle>{t('Name')} </TitleStyle>
             <TitleStyle>{t('Liquidity')}</TitleStyle>
             <TitleStyle>{t('Price ($)')}</TitleStyle>
@@ -202,7 +202,7 @@ const AllTokens = () => {
             <TitleIconStyle>{t('LP')}</TitleIconStyle>
           </tr>
           {tokenTableRow().map((token) => (
-            <tr key={token.name}>
+            <tr key={token.address}>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                   <Inline>
