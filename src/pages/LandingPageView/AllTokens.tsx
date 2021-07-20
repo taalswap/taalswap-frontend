@@ -181,7 +181,7 @@ const AllTokens = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto', paddingBottom: '50px' }}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto' }}>
       <div
         style={{
           display: 'flex',
