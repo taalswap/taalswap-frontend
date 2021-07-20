@@ -1,9 +1,13 @@
 import React from 'react'
 import { Link } from 'taalswap-uikit'
 import footerlogo_img from './images/footer_Logo.png'
-import messege_icon from './images/messege_icon.png'
-import page_icon from './images/page_icon.png'
-import twitter_icon from './images/twitter_icon.png'
+// import messege_icon from './images/messege_icon.png'//
+// import page_icon from './images/page_icon.png'//
+// import twitter_icon from './images/twitter_icon.png'//
+import messege_icon from './images/messege_icon.svg' 
+import page_icon from './images/page_icon.svg' 
+import twitter_icon from './images/twitter_icon.svg' 
+
 
 const Footer = () => {
   return (
@@ -34,7 +38,7 @@ const Footer = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="https://medium.com/taalswap" target="_blank">
+            <Link href="https://taalswap.medium.com/" target="_blank">
               <img src={messege_icon} alt="messege_icon" />
             </Link>
           </div>

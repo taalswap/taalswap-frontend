@@ -36,7 +36,7 @@ const DropDownListContainer = styled.div`
 
 const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: number }>`
   cursor: pointer;
-  width: ${({ width }) => width}px;
+  width: 100%;
   position: relative;
   background: ${({ theme }) => theme.colors.input};
   border-radius: 16px;

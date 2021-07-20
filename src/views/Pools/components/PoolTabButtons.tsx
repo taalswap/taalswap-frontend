@@ -24,7 +24,6 @@ const Wrapper = styled.div`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 16px;
   }
 `
 const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, viewMode, setViewMode }) => {
@@ -71,7 +70,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
   return (
     <Flex
       alignItems="center"
-      justifyContent={['space-around', 'space-around', 'flex-start']}
+      justifyContent={['space-around', 'space-around', 'space-between']}
       mb={['24px', '24px', '24px', '0px']}
     >
       {viewModeToggle}

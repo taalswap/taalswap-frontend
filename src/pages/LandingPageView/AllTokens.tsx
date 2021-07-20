@@ -22,7 +22,7 @@ const TitleStyle = styled.th`
   color: ${({ theme }) => theme.colors.textSubtle};
   background: ${({ theme }) => theme.colors.tertiary};
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  padding: 24px 8px 24px 8px;
+  padding: 24px 4px 24px 4px;
   text-align: left;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -33,13 +33,13 @@ const TitleStyle = styled.th`
 
 const TextStyle = styled.td`
   color: ${({ theme }) => theme.colors.logoColor};
-  padding: 24px 8px 24px 8px;
+  padding: 24px 4px 24px 4px;
   text-align: left;
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  font-size: 12px;
+  font-size: 10px;
 
   > a {
-    font-size: 14px;
+    font-size: 10px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
@@ -61,7 +61,13 @@ const Image = styled.img`
   background-color: white;
   border-radius: 50%;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
+  display:none;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display:block;
+  }
 `
+
+
 
 const AllTokens = () => {
   const { t } = useTranslation()
@@ -165,15 +171,15 @@ const AllTokens = () => {
       <TableWrap>
         <tbody>
           <tr>
-            <TitleStyle>{t('Name')} </TitleStyle>
-            <TitleStyle>{t('Liquidity')}</TitleStyle>
-            <TitleStyle>{t('Price')}</TitleStyle>
-            <TitleStyle>{t('Swap')}</TitleStyle>
-            <TitleStyle>{t('LP')}</TitleStyle>
+            <TitleStyle style={{ width: '22%' }}>{t('Name')} </TitleStyle>
+            <TitleStyle style={{ width: '25%' }}>{t('Liquidity')}</TitleStyle>
+            <TitleStyle style={{ width: '25%' }}>{t('Price')}</TitleStyle>
+            <TitleStyle style={{ width: '10%', textAlign: 'center' }}>{t('Swap')}</TitleStyle>
+            <TitleStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleStyle>
           </tr>
           {tokenTableRow().map((token) => (
             <tr key={token.name}>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
+              <TextStyle style={{ width: '22%', verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                   <Inline>
                     <Image alt={token.name} src={token.path} width="24px" height="24px" />
@@ -184,7 +190,7 @@ const AllTokens = () => {
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <span style={{ marginRight: '5px' }}>$</span>
-                  <CardValue value={token.liquidity} decimals={0} fontSize="14px" />
+                  <CardValue value={token.liquidity} decimals={0}  fontSize="inherit" />
                 </div>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
@@ -192,19 +198,19 @@ const AllTokens = () => {
                   <span style={{ marginRight: '5px' }}>$</span>
                   {/* <CardValue value={parseFloat(formattedNum(token.price))} decimals={2} fontSize="14px" /> */}
                   {token.price >= 1 ? (
-                    <CardValue value={token.price} decimals={2} fontSize="14px" />
+                    <CardValue value={token.price} decimals={2}  fontSize="inherit" />
                   ) : (
-                    <CardValue value={token.price} decimals={4} fontSize="14px" />
+                    <CardValue value={token.price} decimals={4}  fontSize="inherit" />
                   )}
                 </div>
               </TextStyle>
 
-              <TextStyle style={{ verticalAlign: 'middle' }}>
+              <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 <IconButton onClick={() => linkToURL(token.prices)} variant="text" scale="sm" ml="4px">
                   <SyncAltIcon width="18px" />
                 </IconButton>
               </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
+              <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 <IconButton onClick={() => linkToURL(token.deposit)} variant="text" scale="sm" ml="4px">
                   <AddIcon width="18px" />
                 </IconButton>
