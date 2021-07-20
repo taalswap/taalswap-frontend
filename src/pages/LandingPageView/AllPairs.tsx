@@ -219,36 +219,38 @@ const AllPairs = () => {
             <TitleIconStyle>{t('Swap')}</TitleIconStyle>
             <TitleIconStyle>{t('LP')}</TitleIconStyle>
           </tr>
-          {pairTableRow().map((pair) => (
-            <tr key={pair.name}>
-              <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {pair.price >= 1 ? (
-                    <CardValue value={pair.price} decimals={2} fontSize="14px" />
-                  ) : (
-                    <CardValue value={pair.price} decimals={8} fontSize="14px" />
-                  )}
-                </div>
-              </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ marginRight: '5px' }}>$</span>
-                  <CardValue value={pair.volumn24h} decimals={0} fontSize="14px" />
-                </div>
-              </TextStyle>
-              <TextIconStyle style={{ verticalAlign: 'middle' }}>
-                <IconButton onClick={() => linkToURL(pair.prices)} variant="text" scale="sm" ml="4px">
-                  <SyncAltIcon width="18px" />
-                </IconButton>
-              </TextIconStyle>
-              <TextIconStyle style={{ verticalAlign: 'middle' }}>
-                <IconButton onClick={() => linkToURL(pair.deposit)} variant="text" scale="sm" ml="4px">
-                  <AddIcon width="18px" />
-                </IconButton>
-              </TextIconStyle>
-            </tr>
-          ))}
+          {pairTableRow()
+            .sort((pairA, pairB) => pairB.volumn24h - pairA.volumn24h)
+            .map((pair) => (
+              <tr key={pair.name}>
+                <TextStyle style={{ verticalAlign: 'middle' }}>{pair.name}</TextStyle>
+                <TextStyle style={{ verticalAlign: 'middle' }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {pair.price >= 1 ? (
+                      <CardValue value={pair.price} decimals={2} fontSize="14px" />
+                    ) : (
+                      <CardValue value={pair.price} decimals={8} fontSize="14px" />
+                    )}
+                  </div>
+                </TextStyle>
+                <TextStyle style={{ verticalAlign: 'middle' }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <span style={{ marginRight: '5px' }}>$</span>
+                    <CardValue value={pair.volumn24h} decimals={0} fontSize="14px" />
+                  </div>
+                </TextStyle>
+                <TextIconStyle style={{ verticalAlign: 'middle' }}>
+                  <IconButton onClick={() => linkToURL(pair.prices)} variant="text" scale="sm" ml="4px">
+                    <SyncAltIcon width="18px" />
+                  </IconButton>
+                </TextIconStyle>
+                <TextIconStyle style={{ verticalAlign: 'middle' }}>
+                  <IconButton onClick={() => linkToURL(pair.deposit)} variant="text" scale="sm" ml="4px">
+                    <AddIcon width="18px" />
+                  </IconButton>
+                </TextIconStyle>
+              </tr>
+            ))}
         </tbody>
       </TableWrap>
     </div>
