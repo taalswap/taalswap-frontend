@@ -198,7 +198,7 @@ const AllTokens = () => {
         <tbody>
           <tr key="allTokens">
             <TitleStyle>{t('Name')} </TitleStyle>
-            <TitleStyle>{t('Liquidity')}</TitleStyle>
+            <TitleStyle>{t('Liquigity ($)')}</TitleStyle>
             <TitleStyle>{t('Price ($)')}</TitleStyle>
             <TitleIconStyle>{t('Swap')}</TitleIconStyle>
             <TitleIconStyle>{t('LP')}</TitleIconStyle>
@@ -215,7 +215,7 @@ const AllTokens = () => {
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ marginRight: '5px' }}>$</span>
+                  {/* <span style={{ marginRight: '5px' }}>$</span> */}
                   <CardValue value={token.liquidity} decimals={0} fontSize="14px" />
                 </div>
               </TextStyle>
