@@ -198,7 +198,7 @@ const AllTokens = () => {
         <tbody>
           <tr key="allTokens">
             <TitleStyle>{t('Name')} </TitleStyle>
-            <TitleStyle>{t('Liquigity ($)')}</TitleStyle>
+            <TitleStyle>{t('Liquidity ($)')}</TitleStyle>
             <TitleStyle>{t('Price ($)')}</TitleStyle>
             <TitleIconStyle>{t('Swap')}</TitleIconStyle>
             <TitleIconStyle>{t('LP')}</TitleIconStyle>
