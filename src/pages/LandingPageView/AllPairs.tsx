@@ -301,7 +301,7 @@ const AllPairs = () => {
                   </div>
                 </TextStyle>
                 <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <CardValue value={pair.liquidity} decimals={2} fontSize="14px" />
+                  <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
                   {/* <div style={{ display: 'flex', alignItems: 'center' }}>
                     {pair.price >= 1 ? (
                       <CardValue value={pair.liquidity} decimals={2} fontSize="14px" />
