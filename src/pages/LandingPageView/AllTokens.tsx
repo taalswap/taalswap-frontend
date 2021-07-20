@@ -189,7 +189,9 @@ const AllTokens = () => {
           borderBottom: '3px solid #00ab55',
         }}
       >
-        <Txtcolor className="section_tit">All Tokens</Txtcolor>
+        <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
+          All Tokens
+        </Txtcolor>
       </div>
 
       <TableWrap>
