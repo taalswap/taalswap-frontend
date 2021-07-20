@@ -181,7 +181,7 @@ const AllTokens = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto', paddingBottom: '50px' }}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto' }}>
       <div
         style={{
           display: 'flex',
@@ -189,14 +189,16 @@ const AllTokens = () => {
           borderBottom: '3px solid #00ab55',
         }}
       >
-        <Txtcolor className="section_tit">All Tokens</Txtcolor>
+        <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
+          All Tokens
+        </Txtcolor>
       </div>
 
       <TableWrap>
         <tbody>
           <tr key="allTokens">
             <TitleStyle>{t('Name')} </TitleStyle>
-            <TitleStyle>{t('Liquidity')}</TitleStyle>
+            <TitleStyle>{t('Liquidity ($)')}</TitleStyle>
             <TitleStyle>{t('Price ($)')}</TitleStyle>
             <TitleIconStyle>{t('Swap')}</TitleIconStyle>
             <TitleIconStyle>{t('LP')}</TitleIconStyle>
@@ -213,7 +215,7 @@ const AllTokens = () => {
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ marginRight: '5px' }}>$</span>
+                  {/* <span style={{ marginRight: '5px' }}>$</span> */}
                   <CardValue value={token.liquidity} decimals={0} fontSize="14px" />
                 </div>
               </TextStyle>
