@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, RowType, Toggle, Text } from 'taalswap-uikit'
+import { Heading, RowType, Toggle, Text, CalculateIcon } from 'taalswap-uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -32,16 +32,19 @@ const ControlContainer = styled.div`
   align-items: center;
   position: relative;
 
-  justify-content: space-between;
-  flex-direction: column;
+  justify-content:space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 32px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.xl} {
+    justify-content: space-between;
     flex-direction: row;
-    flex-wrap: wrap;
-    padding: 16px 32px;
+    padding: 16px 0;
+    flex-wrap: nowrap;
     margin-bottom: 0;
   }
+
 `
 
 const ToggleWrapper = styled.div`
@@ -63,12 +66,26 @@ const LabelWrapper = styled.div`
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content:space-between;
   width: 100%;
   padding: 8px 0px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.xl} {
     width: auto;
     padding: 0;
+  }
+`
+
+const Customflex = styled.div`
+  display:flex;
+  flex-direction:column;
+  width:50%;
+  margin-right:16px;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    margin-right:0;
+  }
+  > ${Text} {
+    font-size: 12px;
   }
 `
 
@@ -83,14 +100,15 @@ const ViewControls = styled.div`
     padding: 8px 0px;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.xl} {
     justify-content: flex-start;
     width: auto;
-
+    flex-wrap:nowrap;
     > div {
       padding: 0;
     }
   }
+
 `
 
 // const StyledImage = styled(Image)`
@@ -378,8 +396,8 @@ const Farms: React.FC = () => {
             </ToggleWrapper>
           </ViewControls>
           <FilterContainer>
-            <LabelWrapper>
-              <Text textTransform="uppercase">{t('Sort by')}</Text>
+            <Customflex>
+              <Text textTransform="uppercase" color="textSubtle">{t('Sort by')}</Text>
               <Select
                 options={[
                   {
@@ -405,9 +423,9 @@ const Farms: React.FC = () => {
                 ]}
                 onChange={handleSortOptionChange}
               />
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text textTransform="uppercase">{t('Search')}</Text>
+            </Customflex>
+            <LabelWrapper style={{ marginLeft: '16px',width:'50%'}}>
+              <Text textTransform="uppercase" color="textSubtle">{t('Search')}</Text>
               <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
             </LabelWrapper>
           </FilterContainer>
