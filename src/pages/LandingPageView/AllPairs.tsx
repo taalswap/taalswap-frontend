@@ -96,7 +96,7 @@ const HigherLogo = styled.img`
   background-color: white;
   border-radius: 50%;
 
-  border: 1px solid gray;
+  border: 1px solid #e3e1e1;
 `
 
 const CoveredLogo = styled.img`
@@ -104,7 +104,7 @@ const CoveredLogo = styled.img`
   position: absolute;
   background-color: white;
   border-radius: 50%;
-  border: 1px solid gray;
+  border: 1px solid #e3e1e1;
   margin-left: 15px;
 `
 
@@ -190,8 +190,6 @@ const AllPairs = () => {
         const baseSymbolPath = getTokenIconPath(pair.base_address)
         const quoteSymbolPath = getTokenIconPath(pair.quote_address)
 
-        console.log(baseSymbolPath)
-        console.log(quoteSymbolPath)
         // let prices = ''
         // if (pair.base_symbol === 'TSHP') {
         //   prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/${pair.base_address}`
@@ -210,6 +208,7 @@ const AllPairs = () => {
           volumn24h,
           prices,
           base_symbol,
+          liquidity,
           deposit,
           baseSymbolPath,
           quoteSymbolPath,
@@ -273,14 +272,16 @@ const AllPairs = () => {
           // paddingBottom: '0px',
         }}
       >
-        <Txtcolor className="section_tit">All Pairs</Txtcolor>
+        <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
+          All Pairs
+        </Txtcolor>
       </div>
 
       <TableWrap>
         <tbody>
           <tr>
             <TitleStyle style={{ width: '30%' }}>{t('Pair')}</TitleStyle>
-            {/* <TitleStyle>{t('Price ($)')}</TitleStyle> */}
+            <TitleStyle>{t('Liquigity ($)')}</TitleStyle>
             <TitleStyle>{t('Volume (24H)')}</TitleStyle>
             <TitleIconStyle>{t('Swap')}</TitleIconStyle>
             <TitleIconStyle>{t('LP')}</TitleIconStyle>
@@ -299,15 +300,16 @@ const AllPairs = () => {
                     <div style={{ marginLeft: '20px' }}>{pair.name}</div>
                   </div>
                 </TextStyle>
-                {/* <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                <TextStyle style={{ verticalAlign: 'middle' }}>
+                  <CardValue value={pair.liquidity} decimals={2} fontSize="14px" />
+                  {/* <div style={{ display: 'flex', alignItems: 'center' }}>
                     {pair.price >= 1 ? (
-                      <CardValue value={pair.price} decimals={2} fontSize="14px" />
+                      <CardValue value={pair.liquidity} decimals={2} fontSize="14px" />
                     ) : (
                       <CardValue value={pair.price} decimals={8} fontSize="14px" />
                     )}
-                  </div>
-                </TextStyle> */}
+                  </div> */}
+                </TextStyle>
                 <TextStyle style={{ verticalAlign: 'middle' }}>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <span style={{ marginRight: '5px' }}>$</span>
