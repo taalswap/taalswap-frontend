@@ -838,5 +838,6 @@
   "TAL minted per block": "TAL minted per block",
   "Buy: %symbol%": "Buy %symbol%",
   "Volume (24H)": "Vol.(1d)",
-  "Liquidity ($)": "Liquidity"
+  "Liquidity ($)": "Liquidity",
+  "Vol.(24H)": "Vol.(1d)"
 }
