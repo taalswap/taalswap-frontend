@@ -1,9 +1,13 @@
 import React from 'react'
 import { Link } from 'taalswap-uikit'
 import footerlogo_img from './images/footer_Logo.png'
-import messege_icon from './images/messege_icon.png'
-import page_icon from './images/page_icon.png'
-import twitter_icon from './images/twitter_icon.png'
+// import messege_icon from './images/messege_icon.png'//
+// import page_icon from './images/page_icon.png'//
+// import twitter_icon from './images/twitter_icon.png'//
+import messege_icon from './images/messege_icon.svg'
+import page_icon from './images/page_icon.svg'
+import twitter_icon from './images/twitter_icon.svg'
+
 
 const Footer = () => {
   return (
