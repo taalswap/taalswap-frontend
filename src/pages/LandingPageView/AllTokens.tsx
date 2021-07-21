@@ -78,7 +78,6 @@ const Image = styled.img`
   background-color: white;
   border-radius: 50%;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
-  display: none;
   ${({ theme }) => theme.mediaQueries.sm} {
     display: block;
   }
