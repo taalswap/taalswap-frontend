@@ -8,14 +8,13 @@ import messege_icon from './images/messege_icon.svg'
 import page_icon from './images/page_icon.svg'
 import twitter_icon from './images/twitter_icon.svg'
 
-
 const Footer = () => {
   return (
     <div className="footer_wrap">
       <div className="footer_cont">
         <div className="footer_left">
           <img src={footerlogo_img} alt="logo_img" className="footer_logo" />
-          <p>&copy; All rights reserved. Made by TaalSwap. </p>
+          {/* <p>&copy; All rights reserved. Made by TaalSwap. </p> */}
         </div>
         <div className="footer_menu">
           <div style={{ marginLeft: '30px' }}>

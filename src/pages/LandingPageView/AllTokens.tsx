@@ -78,13 +78,11 @@ const Image = styled.img`
   background-color: white;
   border-radius: 50%;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
-  display:none;
+  display: none;
   ${({ theme }) => theme.mediaQueries.sm} {
-    display:block;
+    display: block;
   }
 `
-
-
 
 const AllTokens = () => {
   const { t } = useTranslation()
@@ -189,13 +187,13 @@ const AllTokens = () => {
 
       <TableWrap>
         <tbody>
-        <tr>
+          <tr>
             <TitleStyle style={{ width: '22%' }}>{t('Name')} </TitleStyle>
-            <TitleStyle style={{ width: '25%' }}>{t('Liquidity')}</TitleStyle>
-            <TitleStyle style={{ width: '25%' }}>{t('Price')}</TitleStyle>
+            <TitleStyle style={{ width: '25%' }}>{t('Liquidity ($)')}</TitleStyle>
+            <TitleStyle style={{ width: '25%' }}>{t('Price ($)')}</TitleStyle>
             <TitleStyle style={{ width: '10%', textAlign: 'center' }}>{t('Swap')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleStyle>
-        </tr>
+          </tr>
           {tokenTableRow().map((token) => (
             <tr key={token.address}>
               <TextStyle style={{ verticalAlign: 'middle' }}>
@@ -224,7 +222,7 @@ const AllTokens = () => {
                 </div>
               </TextStyle>
 
-              <TextIconStyle style={{ verticalAlign: 'middle', textAlign: 'center'  }}>
+              <TextIconStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 <IconButton onClick={() => linkToURL(token.prices)} variant="text" scale="sm" ml="4px">
                   <SyncAltIcon width="18px" />
                 </IconButton>
