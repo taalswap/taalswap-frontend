@@ -22,7 +22,7 @@ const TitleStyle = styled.th`
   color: ${({ theme }) => theme.colors.textSubtle};
   background: ${({ theme }) => theme.colors.tertiary};
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  padding: 24px 8px 24px 8px;
+  padding: 24px 3px 24px 3px;
   text-align: left;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -46,13 +46,13 @@ const TitleIconStyle = styled.th`
 
 const TextStyle = styled.td`
   color: ${({ theme }) => theme.colors.logoColor};
-  padding: 24px 8px 24px 8px;
+  padding: 24px 3px 24px 3px;
   text-align: left;
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  font-size: 12px;
+  font-size: 10px;
 
   > a {
-    font-size: 14px;
+    font-size: 10px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
@@ -89,7 +89,6 @@ const LinkStyle = styled(Link)`
 const BTextStyle = styled.td`
   font-size: 12px;
   width: 100%;
-  //
 `
 const HigherLogo = styled.img`
   z-index: 2;
@@ -97,6 +96,8 @@ const HigherLogo = styled.img`
   border-radius: 50%;
 
   border: 1px solid #e3e1e1;
+  font-size: 12px;
+  width: 100%;
 `
 
 const CoveredLogo = styled.img`
@@ -122,6 +123,7 @@ function DoubleTokenLogo({ a0, a1, size = 24, margin = false }) {
     </TokenWrapper>
   )
 }
+
 
 const AllPairs = () => {
   const { t } = useTranslation()
@@ -260,78 +262,74 @@ const AllPairs = () => {
     fetchData()
   }, [])
 
-  return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto', paddingBottom: '50px' }}>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          borderBottom: '3px solid #00ab55',
-          // border: '1px solid red',
-          // marginBottom: '0px',
-          // paddingBottom: '0px',
-        }}
-      >
-        <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
-          All Pairs
-        </Txtcolor>
-      </div>
+    return (
+      <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto',paddingBottom:'50px' }}>
+          <div
+            style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                borderBottom: '3px solid #00ab55',
+                // border: '1px solid red',
+                // marginBottom: '0px',
+                // paddingBottom: '0px',
+            }}
+          >
+              <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>All Pairs</Txtcolor>
+          </div>
 
-      <TableWrap>
-        <tbody>
-          <tr>
-            <TitleStyle style={{ width: '30%' }}>{t('Pair')}</TitleStyle>
-            <TitleStyle>{t('Liquidity ($)')}</TitleStyle>
-            <TitleStyle>{t('Volume (24H)')}</TitleStyle>
-            <TitleIconStyle>{t('Swap')}</TitleIconStyle>
-            <TitleIconStyle>{t('LP')}</TitleIconStyle>
-          </tr>
-          {pairTableRow()
-            .sort((pairA, pairB) => pairB.volumn24h - pairA.volumn24h)
-            .map((pair) => (
-              <tr key={pair.name}>
-                <TextStyle style={{ verticalAlign: 'middle' }}>
-                  {/* <DoubleTokenLogo a0={pair.baseSymbolPath} a1={pair.quoteSymbolPath} size={16} /> */}
-                  <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                    <TokenWrapper>
-                      <HigherLogo src={pair.baseSymbolPath} alt="test" width="24px" height="24px" />
-                      <CoveredLogo src={pair.quoteSymbolPath} alt="test" width="24px" height="24px" />
-                    </TokenWrapper>
-                    <div style={{ marginLeft: '20px' }}>{pair.name}</div>
-                  </div>
-                </TextStyle>
-                <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
-                  {/* <div style={{ display: 'flex', alignItems: 'center' }}>
+          <TableWrap>
+              <tbody>
+              <tr>
+                  <TitleStyle style={{ width: '22%' }}>{t('Pair')}</TitleStyle>
+                  <TitleStyle style={{ width: '25%' }}>{t('Liquidity ($)')}</TitleStyle>
+                  <TitleStyle style={{ width: '25%' }}>{t('Volume (24H)')}</TitleStyle>
+                  <TitleIconStyle style={{  width: '10%',textAlign: 'center' }}>{t('Swap')}</TitleIconStyle>
+                  <TitleIconStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleIconStyle>
+              </tr>
+              {pairTableRow().sort((pairA, pairB) => pairB.volumn24h - pairA.volumn24h).map((pair) => (
+                  <tr key={pair.name}>
+                      <TextStyle style={{ verticalAlign: 'middle' }}>
+                          {/* <DoubleTokenLogo a0={pair.baseSymbolPath} a1={pair.quoteSymbolPath} size={16} /> */}
+                          <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                              <TokenWrapper>
+                                  <HigherLogo src={pair.baseSymbolPath} alt="test" width="24px" height="24px" />
+                                  <CoveredLogo src={pair.quoteSymbolPath} alt="test" width="24px" height="24px" />
+                              </TokenWrapper>
+                              <div style={{ marginLeft: '20px' }}>{pair.name}</div>
+                          </div>
+                      </TextStyle>
+                      <TextStyle style={{ verticalAlign: 'middle' }}>
+                          <CardValue value={pair.liquidity} decimals={0} fontSize="14px" />
+                          {/* <div style={{ display: 'flex', alignItems: 'center' }}>
                     {pair.price >= 1 ? (
                       <CardValue value={pair.liquidity} decimals={2} fontSize="14px" />
                     ) : (
                       <CardValue value={pair.price} decimals={8} fontSize="14px" />
                     )}
                   </div> */}
-                </TextStyle>
-                <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <span style={{ marginRight: '5px' }}>$</span>
-                    <CardValue value={pair.volumn24h} decimals={0} fontSize="14px" />
-                  </div>
-                </TextStyle>
-                <TextIconStyle style={{ verticalAlign: 'middle' }}>
-                  <IconButton onClick={() => linkToURL(pair.prices)} variant="text" scale="sm" ml="4px">
-                    <SyncAltIcon width="18px" />
-                  </IconButton>
-                </TextIconStyle>
-                <TextIconStyle style={{ verticalAlign: 'middle' }}>
-                  <IconButton onClick={() => linkToURL(pair.deposit)} variant="text" scale="sm" ml="4px">
-                    <AddIcon width="18px" />
-                  </IconButton>
-                </TextIconStyle>
-              </tr>
-            ))}
-        </tbody>
-      </TableWrap>
-    </div>
-  )
+                      </TextStyle>
+                      <TextStyle style={{ verticalAlign: 'middle' }}>
+                          <div style={{ display: 'flex', alignItems: 'center' }}>
+                              <span style={{ marginRight: '5px' }}>$</span>
+                              <CardValue value={pair.volumn24h} decimals={0} fontSize="14px" />
+                          </div>
+                      </TextStyle>
+                      <TextIconStyle style={{ verticalAlign: 'middle' }}>
+                          <IconButton onClick={() => linkToURL(pair.prices)} variant="text" scale="sm" ml="4px">
+                              <SyncAltIcon width="18px" />
+                          </IconButton>
+                      </TextIconStyle>
+                      <TextIconStyle style={{ verticalAlign: 'middle' }}>
+                          <IconButton onClick={() => linkToURL(pair.deposit)} variant="text" scale="sm" ml="4px">
+                              <AddIcon width="18px" />
+                          </IconButton>
+                      </TextIconStyle>
+                  </tr>
+              ))}
+              </tbody>
+          </TableWrap>
+      </div>
+    )
 }
 
 export default AllPairs
