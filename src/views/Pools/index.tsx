@@ -32,14 +32,26 @@ const CardLayout = styled(FlexLayout)`
 const PoolControls = styled(Flex)`
   flex-direction: column;
   margin-bottom: 24px;
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.xl} {
     flex-direction: row;
   }
 `
 
+const Customflex = styled(Flex)`
+  flex-direction:column;
+  width:50%;
+  margin-right:16px;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    margin-right:0;
+  }
+`
+
 const SearchSortContainer = styled(Flex)`
+  padding:8px 0;
+  ${({ theme }) => theme.mediaQueries.xl} {
   gap: 10px;
   justify-content: space-between;
+  }
 `
 
 const ControlStretch = styled(Flex)`
@@ -210,8 +222,8 @@ const Pools: React.FC = () => {
     <>
       {/* <Teaser /> */}
       <PageHeader>
-        <div style={{ borderBottom: '1px solid rgba(133,133,133,0.1)', paddingBottom: '32px' }}>
-          <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']} alignItems="center">
+        <div style={{borderBottom:"1px solid rgba(133,133,133,0.1)",paddingBottom:"32px"}}>
+          <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']} alignItems={['flex-start', null, null, 'center']}>
             <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
               <Heading as="h1" color="text" mb="15px" style={{ fontSize: '30px', fontWeight: 'bold' }}>
                 {t('Staking Pools')}
@@ -236,7 +248,7 @@ const Pools: React.FC = () => {
             setViewMode={setViewMode}
           />
           <SearchSortContainer>
-            <Flex flexDirection="column" width="50%">
+            <Customflex>
               <Text fontSize="12px" color="textSubtle" textTransform="uppercase">
                 {t('Sort by')}
               </Text>
@@ -263,8 +275,8 @@ const Pools: React.FC = () => {
                   onChange={handleSortOptionChange}
                 />
               </ControlStretch>
-            </Flex>
-            <Flex flexDirection="column" width="50%">
+            </Customflex>
+            <Flex flexDirection="column" width="50%" style={{marginLeft:'16px'}}>
               <Text fontSize="12px" color="textSubtle" textTransform="uppercase">
                 {t('Search')}
               </Text>
