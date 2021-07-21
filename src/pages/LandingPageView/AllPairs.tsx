@@ -23,9 +23,44 @@ const TitleStyle = styled.th`
   padding: 24px 3px 24px 3px;
   text-align: left;
   font-size: 12px;
-  ${({ theme }) => theme.mediaQueries.lg} {
+
+    &:nth-child(1){
+      width:35% !important;
+    }
+    &:nth-child(2){
+      width:25% !important;
+    }
+    &:nth-child(3){
+      width:25% !important;
+    }
+    &:nth-child(4){
+      width:7.5% !important;
+    }
+    &:nth-child(5){
+      width:7.5% !important;
+    }
+  
+  
+  ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
+
+    &:nth-child(1){
+      width:22% !important;
+    }
+    &:nth-child(2){
+      width:25% !important;
+    }
+    &:nth-child(3){
+      width:25% !important;
+    }
+    &:nth-child(4){
+      width:10% !important;
+    }
+    &:nth-child(5){
+      width:12.5% !important;
+    }
+  
   }
 `
 
@@ -60,7 +95,7 @@ const TextStyle = styled.td`
 `
 
 const TextPairStyle = styled.div`
-  margin-left: 10px;
+  margin-left: 17.5px;
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 20px;
   }
@@ -98,7 +133,6 @@ const TokenWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  display: none;
   ${({ theme }) => theme.mediaQueries.sm} {
     display: flex;
   }
