@@ -44,7 +44,7 @@ p,span,div,input{font-weight:600;}
 .cont .top_buyline .buy_name{font-size:25px;color:#00ab55;margin-bottom:15px;text-align:left;}
 .cont .top_buyline .buy_num{font-size:45px;color:#005046;font-weight:bold;margin-bottom:30px;text-align:left;}
 .cont .top_buyline .buy_btnwrap{width:100%;}
-.cont .top_buyline .buy_btnwrap .buy_Btn{;box-sizing:border-box;padding:14px 25px;font-size:18px;width:100%;}
+.cont .top_buyline .buy_btnwrap .buy_Btn{box-sizing:border-box;padding:14px 25px;font-size:18px;width:100%;}
 
 .cont .input_wrap{padding-top:40px;display:flex;flex-wrap:wrap;justify-content:space-between;}
 .cont .input_wrap .taal_info{width:32.5%;margin-bottom:1.25%;}
@@ -280,4 +280,8 @@ p,span,div,input{font-weight:600;}
 .subsection_box ul li a{padding:15px 10px;}
 .subsection_box ul li a img{width:70% !important;}
 .mobile_menu .mo_LangIcon{width:23px;}
+}
+
+@media all and (max-width:420px){
+    .footer_cont .footer_menu div{margin-left:20px !important;}
 }
