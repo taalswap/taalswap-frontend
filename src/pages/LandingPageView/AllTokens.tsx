@@ -50,6 +50,23 @@ const TextStyle = styled.td`
   }
 `
 
+const TextIconStyle = styled.td`
+  color: ${({ theme }) => theme.colors.logoColor};
+  text-align: center;
+  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
+  font-size: 12px;
+
+  > a {
+    font-size: 14px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    font-size: 14px;
+  }
+  > a {
+    font-size: 12px;
+  }
+`
+
 const Inline = styled.div`
   display: flex;
   align-items: center;
@@ -61,13 +78,11 @@ const Image = styled.img`
   background-color: white;
   border-radius: 50%;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
-  display:none;
+  display: none;
   ${({ theme }) => theme.mediaQueries.sm} {
-    display:block;
+    display: block;
   }
 `
-
-
 
 const AllTokens = () => {
   const { t } = useTranslation()
@@ -134,7 +149,7 @@ const AllTokens = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://taalswap-info-api.vercel.app/api/tokens', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/tokens', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -157,7 +172,7 @@ const AllTokens = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto', paddingBottom: '50px' }}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto' }}>
       <div
         style={{
           display: 'flex',
@@ -165,21 +180,23 @@ const AllTokens = () => {
           borderBottom: '3px solid #00ab55',
         }}
       >
-        <Txtcolor className="section_tit">All Tokens</Txtcolor>
+        <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
+          All Tokens
+        </Txtcolor>
       </div>
 
       <TableWrap>
         <tbody>
           <tr>
             <TitleStyle style={{ width: '22%' }}>{t('Name')} </TitleStyle>
-            <TitleStyle style={{ width: '25%' }}>{t('Liquidity')}</TitleStyle>
-            <TitleStyle style={{ width: '25%' }}>{t('Price')}</TitleStyle>
+            <TitleStyle style={{ width: '25%' }}>{t('Liquidity ($)')}</TitleStyle>
+            <TitleStyle style={{ width: '25%' }}>{t('Price ($)')}</TitleStyle>
             <TitleStyle style={{ width: '10%', textAlign: 'center' }}>{t('Swap')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleStyle>
           </tr>
           {tokenTableRow().map((token) => (
-            <tr key={token.name}>
-              <TextStyle style={{ width: '22%', verticalAlign: 'middle' }}>
+            <tr key={token.address}>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                   <Inline>
                     <Image alt={token.name} src={token.path} width="24px" height="24px" />
@@ -189,32 +206,32 @@ const AllTokens = () => {
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ marginRight: '5px' }}>$</span>
-                  <CardValue value={token.liquidity} decimals={0}  fontSize="inherit" />
+                  {/* <span style={{ marginRight: '5px' }}>$</span> */}
+                  <CardValue value={token.liquidity} decimals={0} fontSize="inherit" />
                 </div>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ marginRight: '5px' }}>$</span>
+                  {/* <span style={{ marginRight: '5px' }}>$</span> */}
                   {/* <CardValue value={parseFloat(formattedNum(token.price))} decimals={2} fontSize="14px" /> */}
                   {token.price >= 1 ? (
-                    <CardValue value={token.price} decimals={2}  fontSize="inherit" />
+                    <CardValue value={token.price} decimals={2} fontSize="inherit" />
                   ) : (
-                    <CardValue value={token.price} decimals={4}  fontSize="inherit" />
+                    <CardValue value={token.price} decimals={4} fontSize="inherit" />
                   )}
                 </div>
               </TextStyle>
 
-              <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+              <TextIconStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 <IconButton onClick={() => linkToURL(token.prices)} variant="text" scale="sm" ml="4px">
                   <SyncAltIcon width="18px" />
                 </IconButton>
-              </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+              </TextIconStyle>
+              <TextIconStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 <IconButton onClick={() => linkToURL(token.deposit)} variant="text" scale="sm" ml="4px">
                   <AddIcon width="18px" />
                 </IconButton>
-              </TextStyle>
+              </TextIconStyle>
             </tr>
           ))}
         </tbody>
