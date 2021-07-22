@@ -24,54 +24,41 @@ const TitleStyle = styled.th`
   text-align: left;
   font-size: 12px;
 
-    &:nth-child(1){
-      width:35% !important;
-    }
-    &:nth-child(2){
-      width:25% !important;
-    }
-    &:nth-child(3){
-      width:25% !important;
-    }
-    &:nth-child(4){
-      width:7.5% !important;
-    }
-    &:nth-child(5){
-      width:7.5% !important;
-    }
-  
-  
+  &:nth-child(1) {
+    width: 35% !important;
+  }
+  &:nth-child(2) {
+    width: 25% !important;
+  }
+  &:nth-child(3) {
+    width: 25% !important;
+  }
+  &:nth-child(4) {
+    width: 7.5% !important;
+  }
+  &:nth-child(5) {
+    width: 7.5% !important;
+  }
+
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
 
-    &:nth-child(1){
-      width:22% !important;
+    &:nth-child(1) {
+      width: 22% !important;
     }
-    &:nth-child(2){
-      width:25% !important;
+    &:nth-child(2) {
+      width: 25% !important;
     }
-    &:nth-child(3){
-      width:25% !important;
+    &:nth-child(3) {
+      width: 25% !important;
     }
-    &:nth-child(4){
-      width:10% !important;
+    &:nth-child(4) {
+      width: 10% !important;
     }
-    &:nth-child(5){
-      width:12.5% !important;
+    &:nth-child(5) {
+      width: 12.5% !important;
     }
-  
-  }
-`
-
-const TitleIconStyle = styled.th`
-  color: ${({ theme }) => theme.colors.textSubtle};
-  background: ${({ theme }) => theme.colors.tertiary};
-  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  text-align: center;
-  font-size: 12px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 14px;
   }
 `
 
@@ -91,10 +78,10 @@ const TextStyle = styled.td`
   padding: 24px 3px 24px 3px;
   text-align: left;
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  font-size: 10px;
+  font-size: 11px;
 
   > a {
-    font-size: 10px;
+    font-size: 11px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
@@ -334,8 +321,8 @@ const AllPairs = () => {
                 <TextStyle style={{ verticalAlign: 'middle' }}>
                   <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                     <TokenWrapper>
-                      <HigherLogo src={pair.baseSymbolPath} alt="test" width="24px" height="24px" />
-                      <CoveredLogo src={pair.quoteSymbolPath} alt="test" width="24px" height="24px" />
+                      <HigherLogo src={pair.baseSymbolPath} alt="test" width="19px" height="19px" />
+                      <CoveredLogo src={pair.quoteSymbolPath} alt="test" width="19px" height="19px" />
                     </TokenWrapper>
                     <TextPairStyle>{pair.name}</TextPairStyle>
                   </div>

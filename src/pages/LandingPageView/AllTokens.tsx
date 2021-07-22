@@ -36,10 +36,10 @@ const TextStyle = styled.td`
   padding: 24px 4px 24px 4px;
   text-align: left;
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  font-size: 10px;
+  font-size: 11px;
 
   > a {
-    font-size: 10px;
+    font-size: 11px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
@@ -198,7 +198,7 @@ const AllTokens = () => {
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                   <Inline>
-                    <Image alt={token.name} src={token.path} width="24px" height="24px" />
+                    <Image alt={token.name} src={token.path} width="19px" height="19px" />
                   </Inline>
                   {token.symbol}
                 </div>
