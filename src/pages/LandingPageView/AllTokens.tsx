@@ -26,34 +26,33 @@ const TitleStyle = styled.th`
   text-align: left;
   font-size: 12px;
 
-  &:nth-child(2){
-    width:25% !important;
-    text-align:right;
+  &:nth-child(2) {
+    width: 25% !important;
+    text-align: right;
   }
-  &:nth-child(3){
-    width:25% !important;
-    text-align:right;
+  &:nth-child(3) {
+    width: 25% !important;
+    text-align: right;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    
   }
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
-    &:nth-child(1){
-      width:15% !important;
+    &:nth-child(1) {
+      width: 15% !important;
     }
-    &:nth-child(2){
-      width:21% !important;
+    &:nth-child(2) {
+      width: 21% !important;
     }
-    &:nth-child(3){
-      width:21% !important;
+    &:nth-child(3) {
+      width: 21% !important;
     }
-    &:nth-child(4){
-      width:10% !important;
+    &:nth-child(4) {
+      width: 10% !important;
     }
-    &:nth-child(5){
-      width:12.5% !important;
+    &:nth-child(5) {
+      width: 12.5% !important;
     }
   }
 `
@@ -65,16 +64,16 @@ const TextStyle = styled.td`
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   font-size: 11px;
 
-  &:nth-child(2){
-    text-align:right;
-    > div{
-      justify-content:flex-end;
+  &:nth-child(2) {
+    text-align: right;
+    > div {
+      justify-content: flex-end;
     }
   }
-  &:nth-child(3){
-    text-align:right;
-    > div{
-      justify-content:flex-end;
+  &:nth-child(3) {
+    text-align: right;
+    > div {
+      justify-content: flex-end;
     }
   }
   > a {
@@ -88,8 +87,6 @@ const TextStyle = styled.td`
     font-size: 12px;
   }
   ${({ theme }) => theme.mediaQueries.sm} {
-    
-
   }
 `
 
@@ -237,7 +234,7 @@ const AllTokens = () => {
             <TitleStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleStyle>
           </tr>
           {tokenTableRow().map((token) => (
-            <tr key={token.address}>
+            <tr key={token.symbol}>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                   <Inline>
