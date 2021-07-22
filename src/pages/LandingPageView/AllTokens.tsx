@@ -27,9 +27,11 @@ const TitleStyle = styled.th`
   font-size: 12px;
 
   &:nth-child(2){
+    width:25% !important;
     text-align:right;
   }
   &:nth-child(3){
+    width:25% !important;
     text-align:right;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -39,15 +41,13 @@ const TitleStyle = styled.th`
     padding: 24px 8px 24px 20px;
     font-size: 14px;
     &:nth-child(1){
-      width:22% !important;
+      width:15% !important;
     }
     &:nth-child(2){
-      width:25% !important;
-      text-align:left;
+      width:21% !important;
     }
     &:nth-child(3){
-      width:25% !important;
-      text-align:left;
+      width:21% !important;
     }
     &:nth-child(4){
       width:10% !important;
@@ -77,7 +77,6 @@ const TextStyle = styled.td`
       justify-content:flex-end;
     }
   }
-
   > a {
     font-size: auto;
   }
@@ -88,24 +87,10 @@ const TextStyle = styled.td`
   > a {
     font-size: 12px;
   }
-
   ${({ theme }) => theme.mediaQueries.sm} {
-    &:nth-child(2){
-      text-align:left;
-      > div{
-        justify-content:flex-start;
-      }
-    }
-    &:nth-child(3){
-      text-align:left;
-      > div{
-        justify-content:flex-start;
-      }
-    }
+    
 
   }
-  
-
 `
 
 const TextIconStyle = styled.td`
@@ -279,16 +264,16 @@ const AllTokens = () => {
                 </div>
               </TextStyle>
 
-              <TextIconStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+              <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 <IconButton onClick={() => linkToURL(token.prices)} variant="text" scale="sm" ml="4px">
                   <SyncAltIcon width="18px" />
                 </IconButton>
-              </TextIconStyle>
-              <TextIconStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+              </TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 <IconButton onClick={() => linkToURL(token.deposit)} variant="text" scale="sm" ml="4px">
                   <AddIcon width="18px" />
                 </IconButton>
-              </TextIconStyle>
+              </TextStyle>
             </tr>
           ))}
         </tbody>
