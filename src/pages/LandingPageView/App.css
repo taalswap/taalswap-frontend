@@ -24,7 +24,6 @@ p,span,div,input{font-weight:600;}
 .hide_menu ul li:first-child{background:rgba(0, 171, 85, 0.08);}
 .hide_menu ul li span{text-indent:-99999px;width:18px;display:block;margin-right:10px;}
 .hide_menu ul li span.home_icon{background:url(./images/m_homeicon.png)no-repeat center center;background-size:contain;}
-.hide_menu ul li span.info_icon{background:url(./images/info2_icon01.png)no-repeat center center;background-size:contain;}
 .hide_menu ul li span.swap_icon{background:url(./images/m_swapicon.png)no-repeat center center;background-size:contain;}
 .hide_menu ul li span.liquidity_icon{background:url(./images/m_liquidityicon.png)no-repeat center center;background-size:contain;}
 .hide_menu ul li span.info_icon{background:url(./images/info_icon.png)no-repeat center center;background-size:contain;}
