@@ -36,17 +36,17 @@ const Footer = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="https://taalswap.medium.com/" target="_blank">
+            <Link href="https://taalswap.gitbook.io/taalswap-docs-v-2-0/" target="_blank">
               <img src={gitbook_icon} alt="gitbook_icon" />
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="https://taalswap.medium.com/" target="_blank">
+            <Link href="https://github.com/taalswap" target="_blank">
               <img src={github_icon} alt="github_icon" />
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href="mailto:https://taalswap.finance@gmail.com/" target="_blank">
+            <Link href="mailto:taalswap.dev@gmail.com" target="_blank">
               <img src={mail_icon} alt="github_icon" />
             </Link>
           </div>
