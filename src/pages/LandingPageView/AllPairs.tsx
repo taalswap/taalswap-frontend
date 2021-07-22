@@ -25,7 +25,8 @@ const TitleStyle = styled.th`
   font-size: 12px;
 
     &:nth-child(1){
-      width:37% !important;
+      width:56% !important;
+      padding-right:0px;
     }
     &:nth-child(2){
       width:25% !important;
@@ -42,25 +43,22 @@ const TitleStyle = styled.th`
     padding: 24px 8px 24px 20px;
     font-size: 14px;
 
-    &:nth-child(1) {
-      width: 22% !important;
+    &:nth-child(1){
+      width:15% !important;
     }
     &:nth-child(2){
-      width:25% !important;
-      text-align:left;
+      width:21% !important;
     }
     &:nth-child(3){
-      width:25% !important;
-      text-align:left;
+      width:21% !important;
     }
-    &:nth-child(4) {
-      width: 10% !important;
+    &:nth-child(4){
+      width:10% !important;
     }
-    &:nth-child(5) {
-      width: 12.5% !important;
+    &:nth-child(5){
+      width:12.5% !important;
     }
   }
-
 `
 
 const TitleIconStyle = styled.th`
@@ -81,6 +79,9 @@ const TextStyle = styled.td`
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   font-size: 11px;
 
+  &:nth-child(1){
+    padding-right:0px;
+  }
   &:nth-child(2){
     text-align:right;
   }
@@ -90,7 +91,6 @@ const TextStyle = styled.td`
       justify-content:flex-end;
    }
   }
-
   > a {
     font-size: auto;
   }
@@ -98,28 +98,15 @@ const TextStyle = styled.td`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
-
-    > a {
-      font-size: auto;
-    }
   }
-
-
+  > a {
+    font-size: auto;
+  }
+ 
   ${({ theme }) => theme.mediaQueries.sm} {
-    &:nth-child(2){
-      text-align:left;
-      > div{
-        justify-content:flex-start;
-      }
-    }
-    &:nth-child(3){
-      text-align:left;
-      > div{
-        justify-content:flex-start;
-      }
-    }
+    
 
-  
+  }
 `
 
 const TextPairStyle = styled.div`
@@ -341,8 +328,8 @@ const AllPairs = () => {
             <TitleStyle style={{ width: '22%' }}>{t('Pair')}</TitleStyle>
             <TitleStyle style={{ width: '25%' }}>{t('Liquidity ($)')}</TitleStyle>
             <TitleStyle style={{ width: '25%' }}>{t('Vol.(24H)')}</TitleStyle>
-            <TitleIconStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleIconStyle>
-            <TitleIconStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleIconStyle>
+            <TitleStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleStyle>
+            <TitleStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleStyle>
           </tr>
           {pairTableRow()
             .sort((pairA, pairB) => pairB.volumn24h - pairA.volumn24h)
@@ -373,16 +360,16 @@ const AllPairs = () => {
                     <CardValue value={pair.volumn24h} decimals={0} fontSize="inherit" />
                   </div>
                 </TextStyle>
-                <TextIconStyle style={{ verticalAlign: 'middle' }}>
+                <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                   <IconButton onClick={() => linkToURL(pair.prices)} variant="text" scale="sm" ml="4px">
                     <SyncAltIcon width="18px" />
                   </IconButton>
-                </TextIconStyle>
-                <TextIconStyle style={{ verticalAlign: 'middle' }}>
+                </TextStyle>
+                <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                   <IconButton onClick={() => linkToURL(pair.deposit)} variant="text" scale="sm" ml="4px">
                     <AddIcon width="18px" />
                   </IconButton>
-                </TextIconStyle>
+                </TextStyle>
               </tr>
             ))}
         </tbody>
