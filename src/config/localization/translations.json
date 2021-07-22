@@ -836,5 +836,8 @@
   "# of Volume USD (24H)": "# of Volume USD (24H)",
   "Rewards starting in": "Audit in progress. Rewards will start soon.",
   "TAL Minted per block": "TAL Minted per block",
-  "Buy: %symbol%": "Buy %symbol%"
+  "Buy: %symbol%": "Buy %symbol%",
+  "Liquidity ($)": "Liquidity",
+  "Vol.(24H)": "Vol.(1d)",
+  "Price ($)": "Price($)"
 }
