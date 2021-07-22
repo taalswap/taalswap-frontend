@@ -10,6 +10,10 @@ const rpcUrl = getNodeUrl()
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
 // const injected = new InjectedConnector({ supportedChainIds: [chainId] })
+// TODO: Supporting multi-chains like klaytn
+//       all related codes should be modified at first (taalswap-sdk contract addresses, etc.)
+//       supportedChainIds: [1] = metamask wallet_switchEthereumChain API works to all others except mainnet
+// const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4] })
 const injected = new InjectedConnector({ supportedChainIds: [1] })
 
 const walletconnect = new WalletConnectConnector({
