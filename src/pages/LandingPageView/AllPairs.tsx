@@ -20,27 +20,24 @@ const TitleStyle = styled.th`
   color: ${({ theme }) => theme.colors.textSubtle};
   background: ${({ theme }) => theme.colors.tertiary};
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  padding: 24px 3px 24px 3px;
+  padding: 24px 6px 24px 6px;
   text-align: left;
   font-size: 12px;
 
     &:nth-child(1){
-      width:35% !important;
+      width:37% !important;
     }
     &:nth-child(2){
       width:25% !important;
+      text-align:right;
     }
     &:nth-child(3){
       width:25% !important;
+      text-align:right;
     }
-    &:nth-child(4){
-      width:7.5% !important;
-    }
-    &:nth-child(5){
-      width:7.5% !important;
-    }
-  
-  
+  ${({ theme }) => theme.mediaQueries.lg} {  
+    
+  }
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
@@ -50,9 +47,11 @@ const TitleStyle = styled.th`
     }
     &:nth-child(2){
       width:25% !important;
+      text-align:left;
     }
     &:nth-child(3){
       width:25% !important;
+      text-align:left;
     }
     &:nth-child(4){
       width:10% !important;
@@ -62,6 +61,7 @@ const TitleStyle = styled.th`
     }
   
   }
+
 `
 
 const TitleIconStyle = styled.th`
@@ -77,21 +77,50 @@ const TitleIconStyle = styled.th`
 
 const TextStyle = styled.td`
   color: ${({ theme }) => theme.colors.logoColor};
-  padding: 24px 3px 24px 3px;
+  padding: 24px 6px 24px 6px;
   text-align: left;
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  font-size: 10px;
+  font-size: 11px;
+
+  &:nth-child(2){
+    text-align:right;
+  }
+  &:nth-child(3){
+    text-align:right;
+    > div { 
+      justify-content:flex-end;
+   }
+  }
 
   > a {
-    font-size: 10px;
+    font-size: auto;
   }
+  
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
+
+    > a {
+      font-size: auto;
+    }
   }
-  > a {
-    font-size: 12px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    &:nth-child(2){
+      text-align:left;
+      > div{
+        justify-content:flex-start;
+      }
+    }
+    &:nth-child(3){
+      text-align:left;
+      > div{
+        justify-content:flex-start;
+      }
+    }
+
   }
+  
 `
 
 const TextPairStyle = styled.div`
@@ -313,7 +342,7 @@ const AllPairs = () => {
             <TitleStyle style={{ width: '22%' }}>{t('Pair')}</TitleStyle>
             <TitleStyle style={{ width: '25%' }}>{t('Liquidity ($)')}</TitleStyle>
             <TitleStyle style={{ width: '25%' }}>{t('Vol.(24H)')}</TitleStyle>
-            <TitleIconStyle style={{ width: '10%', textAlign: 'center' }}>{t('Swap')}</TitleIconStyle>
+            <TitleIconStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleIconStyle>
             <TitleIconStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleIconStyle>
           </tr>
           {pairTableRow()
@@ -323,8 +352,8 @@ const AllPairs = () => {
                 <TextStyle style={{ verticalAlign: 'middle' }}>
                   <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                     <TokenWrapper>
-                      <HigherLogo src={pair.baseSymbolPath} alt="test" width="24px" height="24px" />
-                      <CoveredLogo src={pair.quoteSymbolPath} alt="test" width="24px" height="24px" />
+                      <HigherLogo src={pair.baseSymbolPath} alt="test" width="19px" height="19px" />
+                      <CoveredLogo src={pair.quoteSymbolPath} alt="test" width="19px" height="19px" />
                     </TokenWrapper>
                     <TextPairStyle>{pair.name}</TextPairStyle>
                   </div>
