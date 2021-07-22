@@ -13,24 +13,35 @@ export const setupNetwork = async () => {
     const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     try {
       await provider.request({
-        method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: `0x${chainId.toString(16)}`,
-            chainName: 'Ethereum Mainnet',
-            nativeCurrency: {
-              name: 'ETH',
-              symbol: 'eth',
-              decimals: 18,
-            },
-            rpcUrls: nodes,
-            blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
-          },
-        ],
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: `0x${chainId.toString(16)}` }],
       })
       return true
     } catch (error) {
-      console.error(error)
+      // This error code indicates that the chain has not been added to MetaMask.
+      if (error.code === 4902) {
+        try {
+          await provider.request({
+            method: 'wallet_switchEthereumChain',
+            params: [
+              {
+                chainId: `0x${chainId.toString(16)}`,
+                chainName: 'Ethereum Mainnet',
+                nativeCurrency: {
+                  name: 'ETH',
+                  symbol: 'eth',
+                  decimals: 18,
+                },
+                rpcUrls: nodes,
+                blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
+              },
+            ],
+          });
+        } catch (addError) {
+          // handle "add" error
+          console.error(error)
+        }
+      }
       return false
     }
   } else {
