@@ -22,24 +22,64 @@ const TitleStyle = styled.th`
   color: ${({ theme }) => theme.colors.textSubtle};
   background: ${({ theme }) => theme.colors.tertiary};
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  padding: 24px 4px 24px 4px;
+  padding: 24px 6px 24px 6px;
   text-align: left;
   font-size: 12px;
+
+  &:nth-child(2){
+    text-align:right;
+  }
+  &:nth-child(3){
+    text-align:right;
+  }
   ${({ theme }) => theme.mediaQueries.lg} {
+    
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
+    &:nth-child(1){
+      width:22% !important;
+    }
+    &:nth-child(2){
+      width:25% !important;
+      text-align:left;
+    }
+    &:nth-child(3){
+      width:25% !important;
+      text-align:left;
+    }
+    &:nth-child(4){
+      width:10% !important;
+    }
+    &:nth-child(5){
+      width:12.5% !important;
+    }
   }
 `
 
 const TextStyle = styled.td`
   color: ${({ theme }) => theme.colors.logoColor};
-  padding: 24px 4px 24px 4px;
+  padding: 24px 6px 24px 6px;
   text-align: left;
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   font-size: 11px;
 
+  &:nth-child(2){
+    text-align:right;
+    > div{
+      justify-content:flex-end;
+    }
+  }
+  &:nth-child(3){
+    text-align:right;
+    > div{
+      justify-content:flex-end;
+    }
+  }
+
   > a {
-    font-size: 11px;
+    font-size: auto;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
@@ -48,6 +88,24 @@ const TextStyle = styled.td`
   > a {
     font-size: 12px;
   }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    &:nth-child(2){
+      text-align:left;
+      > div{
+        justify-content:flex-start;
+      }
+    }
+    &:nth-child(3){
+      text-align:left;
+      > div{
+        justify-content:flex-start;
+      }
+    }
+
+  }
+  
+
 `
 
 const TextIconStyle = styled.td`
@@ -190,7 +248,7 @@ const AllTokens = () => {
             <TitleStyle style={{ width: '22%' }}>{t('Name')} </TitleStyle>
             <TitleStyle style={{ width: '25%' }}>{t('Liquidity ($)')}</TitleStyle>
             <TitleStyle style={{ width: '25%' }}>{t('Price ($)')}</TitleStyle>
-            <TitleStyle style={{ width: '10%', textAlign: 'center' }}>{t('Swap')}</TitleStyle>
+            <TitleStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleStyle>
           </tr>
           {tokenTableRow().map((token) => (
