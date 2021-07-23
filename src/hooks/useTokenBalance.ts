@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Pair, Token, TokenAmount, JSBI } from 'taalswap-sdk'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { getBep20Contract, getCakeContract } from 'utils/contractHelpers'
@@ -6,6 +7,9 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import useWeb3 from './useWeb3'
 import useRefresh from './useRefresh'
 import useLastUpdated from './useLastUpdated'
+import multicall from '../utils/multicall'
+import erc20ABI from '../config/abi/erc20.json'
+import lpTokenABI from '../config/abi/lpToken.json'
 
 type UseTokenBalanceState = {
   balance: BigNumber
@@ -66,6 +70,89 @@ export const useTotalSupply = () => {
   }, [slowRefresh])
 
   return totalSupply
+}
+
+export const useTotalAssets = () => {
+  const { account } = useWeb3React()
+  const [totalAssets, setTotalAssets] = useState<number>()
+
+  useEffect(() => {
+    async function fetchPairs() {
+      const data = []
+      await fetch('https://taalswap-info-api-black.vercel.app/api/pairs', {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          Object.keys(response.data).forEach((key) => {
+            data.push(response.data[key])
+          })
+        })
+      return data
+    }
+
+    async function fetchTotalAssets() {
+      try {
+        const pairs = await fetchPairs()
+        const calls = await pairs.map((vt) => {
+          const lpContractAddress = vt.pair_address
+          return { address: lpContractAddress, name: 'balanceOf', params: [account] }
+        })
+        const rawLpBalances = await multicall(lpTokenABI, calls)
+        rawLpBalances.map((tokenBalance, idx) => {
+          pairs[idx].balance = new BigNumber(tokenBalance).toJSON()
+          return new BigNumber(tokenBalance).toJSON()
+        })
+        const filterdPairs = pairs.filter((pair) => pair.balance > 0)
+        const calls2 = filterdPairs.map((vt) => {
+          const lpContractAddress = vt.pair_address
+          return { address: lpContractAddress, name: 'totalSupply' }
+        })
+        const rawLpSupply = await multicall(erc20ABI, calls2)
+        rawLpSupply.map((supply, idx) => {
+          filterdPairs[idx].total_supply = new BigNumber(supply).toJSON()
+          return new BigNumber(supply).toJSON()
+        })
+        const calls3 = filterdPairs.map((vt) => {
+          const lpContractAddress = vt.pair_address
+          return { address: lpContractAddress, name: 'getReserves' }
+        })
+        const rawLpReserves = await multicall(lpTokenABI, calls3)
+        rawLpReserves.map((reserves, idx) => {
+          filterdPairs[idx].reserve0 = reserves._reserve0
+          filterdPairs[idx].reserve1 = reserves._reserve1
+          return reserves
+        })
+        let assets = 0
+        filterdPairs.forEach((pair, idx) => {
+          const token0 = new Token(1, pair.base_address, pair.base_decimals)
+          const token1 = new Token(1, pair.quote_address, pair.quote_decimals)
+          const lpPair: Pair = new Pair(new TokenAmount(token0, pair.reserve0.toString()), new TokenAmount(token1, pair.reserve1.toString()))
+
+          const lpToken = new Token(1, pair.pair_address, 18)
+          const totalSupply = new TokenAmount(lpToken, JSBI.BigInt(pair.total_supply))
+
+          const liquidity = new TokenAmount(lpToken, JSBI.BigInt(pair.balance))
+
+          const token0value = lpPair.getLiquidityValue(token0, totalSupply, liquidity, false)
+          const token1value = lpPair.getLiquidityValue(token1, totalSupply, liquidity, false)
+
+          const value = parseFloat(token0value.toSignificant(6)) * pair.base_price + parseFloat(token1value.toSignificant(6)) * pair.quote_price
+          assets =+ value
+        })
+        setTotalAssets(Number(assets))
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    fetchTotalAssets()
+  }, [account])
+
+  return totalAssets
 }
 
 export const useBurnedBalance = (tokenAddress: string) => {

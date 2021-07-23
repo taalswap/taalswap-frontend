@@ -20,7 +20,7 @@ import Balance from 'components/Balance'
 import BountyModal from 'views/Pools/components/BountyModal'
 import { useMasterchef } from 'hooks/useContract'
 import { harvest } from 'utils/callHelpers'
-import { useTotalSupply, useBurnedBalance, useDeployerBalance } from 'hooks/useTokenBalance'
+import { useTotalSupply, useBurnedBalance, useDeployerBalance, useTotalAssets } from 'hooks/useTokenBalance'
 import { getTaalAddress } from 'utils/addressHelpers'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -108,6 +108,7 @@ const SectionTop: React.FC = () => {
   const [transactions24, setTransactions24] = useState(0)
   const [volumeUSD24, setVolumeUSD24] = useState(0)
   const [pendingTx, setPendingTx] = useState(false)
+  const [myAssets, setMyAssets] = useState(0)
 
   const farmsWithBalance = useFarmsWithBalance()
   const masterChefContract = useMasterchef()
@@ -130,7 +131,7 @@ const SectionTop: React.FC = () => {
   const burnedBalance = getBalanceNumber(useBurnedBalance(getTaalAddress()))
   const deployerBalance = getBalanceNumber(useDeployerBalance(getTaalAddress()))
   const cakeSupply = getBalanceNumber(totalSupply) - burnedBalance - deployerBalance
-
+  const totalAssets = useTotalAssets()
   const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
 
   usePollFarmsData(isArchived)
@@ -150,6 +151,10 @@ const SectionTop: React.FC = () => {
   useEffect(() => {
     setStakedOnly(!isActive)
   }, [isActive])
+
+  useEffect(() => {
+    setMyAssets(totalAssets)
+  }, [totalAssets])
 
   const { pools: poolsWithoutAutoVault } = usePools(account)
   const pools = useMemo(() => {
@@ -313,16 +318,16 @@ const SectionTop: React.FC = () => {
     numberOfFarmsVisible,
   ])
 
-  const getTotalAssets = () => {
-    let result = 0
-
-    farmsStakedMemoized.forEach((farm) => {
-      if (farm.userData.earnings !== '0') {
-        result += Number(farm.liquidity)
-      }
-    })
-    return result
-  }
+  // const getTotalAssets = () => {
+  //   let result = 0
+  //
+  //   farmsStakedMemoized.forEach((farm) => {
+  //     if (farm.userData.earnings !== '0') {
+  //       result += Number(farm.liquidity)
+  //     }
+  //   })
+  //   return result
+  // }
 
   const getTotalEarned = () => {
     let result = 0
@@ -479,7 +484,7 @@ const SectionTop: React.FC = () => {
                 </div>
                 <div>
                   <Txtcolor className="info_num">
-                    <CardValue fontSize="29" value={getTotalAssets()} />
+                    <CardValue fontSize="29" value={myAssets} />
                   </Txtcolor>
                   <Titcolor className="info_name">USD</Titcolor>
                 </div>
