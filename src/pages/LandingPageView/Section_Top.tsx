@@ -322,7 +322,6 @@ const SectionTop: React.FC = () => {
 
   // const getTotalAssets = () => {
   //   let result = 0
-
   //   farmsStakedMemoized.forEach((farm) => {
   //     if (farm.userData.earnings !== '0') {
   //       result += Number(farm.liquidity)
@@ -402,6 +401,8 @@ const SectionTop: React.FC = () => {
     }
     setPendingTx(false)
   }, [account, balancesWithValue, masterChefContract])
+
+  console.log('=======>', myAssets)
 
   return (
     <div className="top_wrap">
@@ -489,16 +490,15 @@ const SectionTop: React.FC = () => {
                     <CardValue fontSize="29" value={myAssets} />
                   </Txtcolor>
                   <Titcolor className="info_name">USD</Titcolor> */}
-                  {account ? (
+                  {account && myAssets !== undefined ? (
                     <>
-                      {' '}
                       <Txtcolor className="info_num">
                         <CardValue fontSize="29" value={myAssets} />
                       </Txtcolor>
                       <Titcolor className="info_name">USD</Titcolor>
                     </>
                   ) : (
-                    <UnlockButton width="100%" />
+                    <UnlockButton style={{fontSize: "13px", padding: "10px"}} className="start_btn" width="100%" />
                   )}
                 </div>
               </li>
