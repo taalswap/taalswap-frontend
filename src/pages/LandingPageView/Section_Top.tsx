@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Text, Skeleton, Button, useModal } from 'taalswap-uikit'
-
+import UnlockButton from 'components/UnlockButton'
 import {
   useFarms,
   usePollFarmsData,
@@ -484,10 +484,21 @@ const SectionTop: React.FC = () => {
                   </Titcolor>
                 </div>
                 <div>
-                  <Txtcolor className="info_num">
+                  {/* <Txtcolor className="info_num">
                     <CardValue fontSize="29" value={myAssets} />
                   </Txtcolor>
-                  <Titcolor className="info_name">USD</Titcolor>
+                  <Titcolor className="info_name">USD</Titcolor> */}
+                  {account ? (
+                    <>
+                      {' '}
+                      <Txtcolor className="info_num">
+                        <CardValue fontSize="29" value={myAssets} />
+                      </Txtcolor>
+                      <Titcolor className="info_name">USD</Titcolor>
+                    </>
+                  ) : (
+                    <UnlockButton width="100%" />
+                  )}
                 </div>
               </li>
             </Usewrap>
