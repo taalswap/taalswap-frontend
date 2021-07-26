@@ -25,15 +25,15 @@ const TitleStyle = styled.th`
   font-size: 12px;
 
     &:nth-child(1){
-      width:56% !important;
+      width:30% !important;
       padding-right:0px;
     }
     &:nth-child(2){
-      width:25% !important;
+      width:20% !important;
       text-align:right;
     }
     &:nth-child(3){
-      width:25% !important;
+      width:20% !important;
       text-align:right;
     }
   ${({ theme }) => theme.mediaQueries.lg} {  
@@ -44,13 +44,13 @@ const TitleStyle = styled.th`
     font-size: 14px;
 
     &:nth-child(1){
-      width:15% !important;
+      width:20% !important;
     }
     &:nth-child(2){
-      width:21% !important;
+      width:17% !important;
     }
     &:nth-child(3){
-      width:21% !important;
+      width:17% !important;
     }
     &:nth-child(4){
       width:10% !important;
@@ -306,7 +306,7 @@ const AllPairs = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto', paddingBottom: '50px' }}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px',padding: '50px 20px 0px 10px'}}>
       <div
         style={{
           display: 'flex',
@@ -325,9 +325,9 @@ const AllPairs = () => {
       <TableWrap>
         <tbody>
           <tr>
-            <TitleStyle style={{ width: '22%' }}>{t('Pair')}</TitleStyle>
-            <TitleStyle style={{ width: '25%' }}>{t('Liquidity ($)')}</TitleStyle>
-            <TitleStyle style={{ width: '25%' }}>{t('Vol.(24H)')}</TitleStyle>
+            <TitleStyle>{t('Pair')}</TitleStyle>
+            <TitleStyle>{t('Liquidity ($)')}</TitleStyle>
+            <TitleStyle>{t('Vol.(24H)')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleStyle>
           </tr>
