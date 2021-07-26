@@ -127,7 +127,7 @@ export const useTotalAssets = () => {
           return reserves
         })
         let assets = 0
-        filterdPairs.forEach((pair, idx) => {
+        await filterdPairs.forEach((pair, idx) => {
           const token0 = new Token(1, pair.base_address, pair.base_decimals)
           const token1 = new Token(1, pair.quote_address, pair.quote_decimals)
           const lpPair: Pair = new Pair(new TokenAmount(token0, pair.reserve0.toString()), new TokenAmount(token1, pair.reserve1.toString()))
@@ -141,7 +141,7 @@ export const useTotalAssets = () => {
           const token1value = lpPair.getLiquidityValue(token1, totalSupply, liquidity, false)
 
           const value = parseFloat(token0value.toSignificant(6)) * pair.base_price + parseFloat(token1value.toSignificant(6)) * pair.quote_price
-          assets =+ value
+          assets += value
         })
         setTotalAssets(Number(assets))
       } catch (e) {
@@ -149,7 +149,8 @@ export const useTotalAssets = () => {
       }
     }
 
-    fetchTotalAssets()
+    if (account !== undefined)
+      fetchTotalAssets()
   }, [account])
 
   return totalAssets
