@@ -26,12 +26,19 @@ const TitleStyle = styled.th`
   text-align: left;
   font-size: 12px;
 
+  &:nth-child(1){
+    width:17% !important;
+  }
   &:nth-child(2){
-    width:25% !important;
+    width:17% !important;
     text-align:right;
   }
   &:nth-child(3){
     width:25% !important;
+    text-align:right;
+  }
+  &:nth-child(4){
+    width:18% !important;
     text-align:right;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -44,15 +51,21 @@ const TitleStyle = styled.th`
       width:15% !important;
     }
     &:nth-child(2){
-      width:21% !important;
+      width:10% !important;
+      text-align:right;
     }
     &:nth-child(3){
-      width:21% !important;
+      width:18% !important;
+      text-align:right;
     }
     &:nth-child(4){
-      width:10% !important;
+      width:15% !important;
+      text-align:right;
     }
     &:nth-child(5){
+      width:12.5% !important;
+    }
+    &:nth-child(6){
       width:12.5% !important;
     }
   }
@@ -72,6 +85,12 @@ const TextStyle = styled.td`
     }
   }
   &:nth-child(3){
+    text-align:right;
+    > div{
+      justify-content:flex-end;
+    }
+  }
+  &:nth-child(4){
     text-align:right;
     > div{
       justify-content:flex-end;
@@ -214,7 +233,7 @@ const AllTokens = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px',padding: '50px 10px 0px 20px'}}>
       <div
         style={{
           display: 'flex',
@@ -230,9 +249,10 @@ const AllTokens = () => {
       <TableWrap>
         <tbody>
           <tr>
-            <TitleStyle style={{ width: '22%' }}>{t('Name')} </TitleStyle>
-            <TitleStyle style={{ width: '25%' }}>{t('Liquidity ($)')}</TitleStyle>
-            <TitleStyle style={{ width: '25%' }}>{t('Price ($)')}</TitleStyle>
+            <TitleStyle>{t('Symbol')} </TitleStyle>
+            <TitleStyle>{t('Name')}</TitleStyle>
+            <TitleStyle>{t('Liquidity ($)')}</TitleStyle>
+            <TitleStyle>{t('Price ($)')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleStyle>
           </tr>
@@ -245,6 +265,11 @@ const AllTokens = () => {
                   </Inline>
                   {token.symbol}
                 </div>
+              </TextStyle>
+              <TextStyle style={{ verticalAlign: 'middle' }}>
+                <div style={{ display: 'flex', alignItems: 'left' }}>
+                  {token.symbol}
+                </div>  
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -263,7 +288,6 @@ const AllTokens = () => {
                   )}
                 </div>
               </TextStyle>
-
               <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 <IconButton onClick={() => linkToURL(token.prices)} variant="text" scale="sm" ml="4px">
                   <SyncAltIcon width="18px" />
