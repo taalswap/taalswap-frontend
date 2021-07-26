@@ -490,13 +490,14 @@ const SectionTop: React.FC = () => {
                   <Titcolor className="info_name">USD</Titcolor> */}
                   {account && myAssets !== undefined ? (
                     <>
+                      {' '}
                       <Txtcolor className="info_num">
                         <CardValue fontSize="29" value={myAssets} />
                       </Txtcolor>
                       <Titcolor className="info_name">USD</Titcolor>
                     </>
                   ) : (
-                    <UnlockButton style={{fontSize: "13px", padding: "10px"}} className="start_btn" width="100%" />
+                    <UnlockButton style={{ fontSize: '13px', padding: '10px' }} className="start_btn" width="100%" />
                   )}
                 </div>
               </li>
