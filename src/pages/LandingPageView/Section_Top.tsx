@@ -497,7 +497,7 @@ const SectionTop: React.FC = () => {
                       <Titcolor className="info_name">USD</Titcolor>
                     </>
                   ) : (
-                    <UnlockButton width="100%" />
+                    <UnlockButton style={{ fontSize: '13px', padding: '10px' }} className="start_btn" width="100%" />
                   )}
                 </div>
               </li>
