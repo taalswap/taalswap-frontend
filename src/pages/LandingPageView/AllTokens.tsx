@@ -246,7 +246,7 @@ const AllTokens = () => {
         <tbody>
           <tr>
             <TitleStyle>{t('Symbol')} </TitleStyle>
-            <TitleStyle>{t('Name')}</TitleStyle>
+            {/* <TitleStyle>{t('Name')}</TitleStyle> */}
             <TitleStyle>{t('Liquidity ($)')}</TitleStyle>
             <TitleStyle>{t('Price ($)')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleStyle>
@@ -262,9 +262,9 @@ const AllTokens = () => {
                   {token.symbol}
                 </div>
               </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
+              {/* <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'left' }}>{token.name}</div>
-              </TextStyle>
+              </TextStyle> */}
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   {/* <span style={{ marginRight: '5px' }}>$</span> */}
