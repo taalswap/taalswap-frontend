@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Text, Skeleton, Button, useModal } from 'taalswap-uikit'
-
+import UnlockButton from 'components/UnlockButton'
 import {
   useFarms,
   usePollFarmsData,
@@ -130,8 +130,10 @@ const SectionTop: React.FC = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getTaalAddress()))
   const deployerBalance = getBalanceNumber(useDeployerBalance(getTaalAddress()))
-  const cakeSupply = getBalanceNumber(totalSupply) - burnedBalance - deployerBalance
+  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+
   const totalAssets = useTotalAssets()
+
   const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
 
   usePollFarmsData(isArchived)
@@ -320,7 +322,6 @@ const SectionTop: React.FC = () => {
 
   // const getTotalAssets = () => {
   //   let result = 0
-  //
   //   farmsStakedMemoized.forEach((farm) => {
   //     if (farm.userData.earnings !== '0') {
   //       result += Number(farm.liquidity)
@@ -400,6 +401,8 @@ const SectionTop: React.FC = () => {
     }
     setPendingTx(false)
   }, [account, balancesWithValue, masterChefContract])
+
+  console.log('=======>', myAssets)
 
   return (
     <div className="top_wrap">
@@ -483,10 +486,20 @@ const SectionTop: React.FC = () => {
                   </Titcolor>
                 </div>
                 <div>
-                  <Txtcolor className="info_num">
+                  {/* <Txtcolor className="info_num">
                     <CardValue fontSize="29" value={myAssets} />
                   </Txtcolor>
-                  <Titcolor className="info_name">USD</Titcolor>
+                  <Titcolor className="info_name">USD</Titcolor> */}
+                  {account && myAssets !== undefined ? (
+                    <>
+                      <Txtcolor className="info_num">
+                        <CardValue fontSize="29" value={myAssets} />
+                      </Txtcolor>
+                      <Titcolor className="info_name">USD</Titcolor>
+                    </>
+                  ) : (
+                    <UnlockButton style={{fontSize: "13px", padding: "10px"}} className="start_btn" width="100%" />
+                  )}
                 </div>
               </li>
             </Usewrap>

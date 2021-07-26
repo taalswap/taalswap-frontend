@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
-import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon } from 'taalswap-uikit'
+import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, useMatchBreakpoints } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 
@@ -126,7 +126,7 @@ const Image = styled.img`
 const AllTokens = () => {
   const { t } = useTranslation()
   const [tokens, setTokens] = useState([])
-
+  const { isXl, isSm, isMd, isLg } = useMatchBreakpoints()
   const linkToURL = (url: string) => {
     window.location.href = url
   }
@@ -145,7 +145,7 @@ const AllTokens = () => {
       //   console.log(token)
       if (token.symbol !== 'TAL') {
         const symbol = token.symbol === 'WETH' ? 'ETH' : token.symbol
-
+        const name = token.name
         const price = token.price
 
         const liquidity = parseFloat(token.liquidity)
@@ -170,6 +170,7 @@ const AllTokens = () => {
         const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/0x00/${address}`
 
         const temp = {
+          name,
           path,
           symbol,
           price,
@@ -227,7 +228,9 @@ const AllTokens = () => {
       <TableWrap>
         <tbody>
           <tr>
-            <TitleStyle style={{ width: '22%' }}>{t('Name')} </TitleStyle>
+            <TitleStyle style={{ width: '22%' }}>{t('Symbol')} </TitleStyle>
+            {!isSm && <TitleStyle style={{ width: '22%' }}>{t('Name')} </TitleStyle>}
+
             <TitleStyle style={{ width: '25%' }}>{t('Liquidity ($)')}</TitleStyle>
             <TitleStyle style={{ width: '25%' }}>{t('Price ($)')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleStyle>
@@ -243,6 +246,8 @@ const AllTokens = () => {
                   {token.symbol}
                 </div>
               </TextStyle>
+              {!isSm && <TextStyle style={{ verticalAlign: 'middle' }}>{token.name}</TextStyle>}
+
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   {/* <span style={{ marginRight: '5px' }}>$</span> */}
