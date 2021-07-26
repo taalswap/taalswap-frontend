@@ -402,8 +402,6 @@ const SectionTop: React.FC = () => {
     setPendingTx(false)
   }, [account, balancesWithValue, masterChefContract])
 
-  console.log('=======>', myAssets)
-
   return (
     <div className="top_wrap">
       <div className="cont">
