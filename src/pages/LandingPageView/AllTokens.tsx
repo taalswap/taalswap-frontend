@@ -14,8 +14,6 @@ const TableWrap = styled.table`
   width: 100%;
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
-  // margin: 16px 0px;
-  // overflow: hidden;
 `
 
 const TitleStyle = styled.th`
@@ -26,20 +24,20 @@ const TitleStyle = styled.th`
   text-align: left;
   font-size: 12px;
 
-  &:nth-child(1){
-    width:17% !important;
+  &:nth-child(1) {
+    width: 17% !important;
   }
-  &:nth-child(2){
-    width:17% !important;
-    text-align:right;
+  &:nth-child(2) {
+    width: 17% !important;
+    text-align: right;
   }
-  &:nth-child(3){
-    width:25% !important;
-    text-align:right;
+  &:nth-child(3) {
+    width: 25% !important;
+    text-align: right;
   }
-  &:nth-child(4){
-    width:18% !important;
-    text-align:right;
+  &:nth-child(4) {
+    width: 18% !important;
+    text-align: right;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
   }
@@ -49,23 +47,23 @@ const TitleStyle = styled.th`
     &:nth-child(1) {
       width: 15% !important;
     }
-    &:nth-child(2){
-      width:10% !important;
-      text-align:right;
+    &:nth-child(2) {
+      width: 10% !important;
+      text-align: right;
     }
-    &:nth-child(3){
-      width:18% !important;
-      text-align:right;
+    &:nth-child(3) {
+      width: 18% !important;
+      text-align: right;
     }
-    &:nth-child(4){
-      width:15% !important;
-      text-align:right;
+    &:nth-child(4) {
+      width: 15% !important;
+      text-align: right;
     }
-    &:nth-child(5){
-      width:12.5% !important;
+    &:nth-child(5) {
+      width: 12.5% !important;
     }
-    &:nth-child(6){
-      width:12.5% !important;
+    &:nth-child(6) {
+      width: 12.5% !important;
     }
   }
 `
@@ -83,16 +81,16 @@ const TextStyle = styled.td`
       justify-content: flex-end;
     }
   }
-  &:nth-child(3){
-    text-align:right;
-    > div{
-      justify-content:flex-end;
+  &:nth-child(3) {
+    text-align: right;
+    > div {
+      justify-content: flex-end;
     }
   }
-  &:nth-child(4){
-    text-align:right;
-    > div{
-      justify-content:flex-end;
+  &:nth-child(4) {
+    text-align: right;
+    > div {
+      justify-content: flex-end;
     }
   }
   > a {
@@ -231,7 +229,7 @@ const AllTokens = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px',padding: '50px 10px 0px 20px'}}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', padding: '50px 10px 0px 20px' }}>
       <div
         style={{
           display: 'flex',
@@ -265,9 +263,7 @@ const AllTokens = () => {
                 </div>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
-                <div style={{ display: 'flex', alignItems: 'left' }}>
-                  {token.name}
-                </div>
+                <div style={{ display: 'flex', alignItems: 'left' }}>{token.name}</div>
               </TextStyle>
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
