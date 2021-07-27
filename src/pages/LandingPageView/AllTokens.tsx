@@ -24,46 +24,46 @@ const TitleStyle = styled.th`
   text-align: left;
   font-size: 12px;
 
-  &:nth-child(1){
-    width:17% !important;
+  &:nth-child(1) {
+    width: 17% !important;
   }
-  &:nth-child(2){
-    width:17% !important;
-    text-align:right;
+  &:nth-child(2) {
+    width: 17% !important;
+    text-align: right;
   }
-  &:nth-child(3){
-    width:25% !important;
-    text-align:right;
+  &:nth-child(3) {
+    width: 25% !important;
+    text-align: right;
   }
-  &:nth-child(4){
-    width:18% !important;
-    text-align:right;
+  &:nth-child(4) {
+    width: 18% !important;
+    text-align: right;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
   }
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
-    &:nth-child(1){
-      width:15% !important;
+    &:nth-child(1) {
+      width: 15% !important;
     }
-    &:nth-child(2){
-      width:10% !important;
-      text-align:right;
+    &:nth-child(2) {
+      width: 10% !important;
+      text-align: right;
     }
-    &:nth-child(3){
-      width:18% !important;
-      text-align:right;
+    &:nth-child(3) {
+      width: 18% !important;
+      text-align: right;
     }
-    &:nth-child(4){
-      width:15% !important;
-      text-align:right;
+    &:nth-child(4) {
+      width: 15% !important;
+      text-align: right;
     }
-    &:nth-child(5){
-      width:12.5% !important;
+    &:nth-child(5) {
+      width: 12.5% !important;
     }
-    &:nth-child(6){
-      width:12.5% !important;
+    &:nth-child(6) {
+      width: 12.5% !important;
     }
   }
 `
@@ -75,22 +75,22 @@ const TextStyle = styled.td`
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   font-size: 11px;
 
-  &:nth-child(2){
-    text-align:right;
-    > div{
-      justify-content:flex-end;
+  &:nth-child(2) {
+    text-align: right;
+    > div {
+      justify-content: flex-end;
     }
   }
-  &:nth-child(3){
-    text-align:right;
-    > div{
-      justify-content:flex-end;
+  &:nth-child(3) {
+    text-align: right;
+    > div {
+      justify-content: flex-end;
     }
   }
-  &:nth-child(4){
-    text-align:right;
-    > div{
-      justify-content:flex-end;
+  &:nth-child(4) {
+    text-align: right;
+    > div {
+      justify-content: flex-end;
     }
   }
   > a {
@@ -104,8 +104,6 @@ const TextStyle = styled.td`
     font-size: 12px;
   }
   ${({ theme }) => theme.mediaQueries.sm} {
-    
-
   }
 `
 
@@ -237,7 +235,7 @@ const AllTokens = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px',padding: '50px 10px 0px 20px'}}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', padding: '50px 10px 0px 20px' }}>
       <div
         style={{
           display: 'flex',
@@ -303,9 +301,13 @@ const AllTokens = () => {
             </tr>
           ))}
           <tr>
-            <TextStyle colSpan={6} style={{ verticalAlign: 'middle',padding: '0px'}}>
+            <TextStyle colSpan={6} style={{ verticalAlign: 'middle', padding: '0px' }}>
               <ScrollButtonContainer>
-                <Button variant="text" style={{justifyContent: 'center'}}>
+                <Button
+                  onClick={() => linkToURL('https://taalswap.info/tokens')}
+                  variant="text"
+                  style={{ justifyContent: 'center' }}
+                >
                   {t('More view')}
                   <ChevronUpIcon color="primary" />
                 </Button>
@@ -313,9 +315,7 @@ const AllTokens = () => {
             </TextStyle>
           </tr>
         </tbody>
-
       </TableWrap>
-
     </div>
   )
 }
