@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
-import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, useMatchBreakpoints } from 'taalswap-uikit'
+import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, ChevronUpIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 
@@ -24,46 +24,46 @@ const TitleStyle = styled.th`
   text-align: left;
   font-size: 12px;
 
-  &:nth-child(1) {
-    width: 17% !important;
+  &:nth-child(1){
+    width:17% !important;
   }
-  &:nth-child(2) {
-    width: 17% !important;
-    text-align: right;
+  &:nth-child(2){
+    width:17% !important;
+    text-align:right;
   }
-  &:nth-child(3) {
-    width: 25% !important;
-    text-align: right;
+  &:nth-child(3){
+    width:25% !important;
+    text-align:right;
   }
-  &:nth-child(4) {
-    width: 18% !important;
-    text-align: right;
+  &:nth-child(4){
+    width:18% !important;
+    text-align:right;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
   }
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
-    &:nth-child(1) {
-      width: 15% !important;
+    &:nth-child(1){
+      width:15% !important;
     }
-    &:nth-child(2) {
-      width: 10% !important;
-      text-align: right;
+    &:nth-child(2){
+      width:10% !important;
+      text-align:right;
     }
-    &:nth-child(3) {
-      width: 18% !important;
-      text-align: right;
+    &:nth-child(3){
+      width:18% !important;
+      text-align:right;
     }
-    &:nth-child(4) {
-      width: 15% !important;
-      text-align: right;
+    &:nth-child(4){
+      width:15% !important;
+      text-align:right;
     }
-    &:nth-child(5) {
-      width: 12.5% !important;
+    &:nth-child(5){
+      width:12.5% !important;
     }
-    &:nth-child(6) {
-      width: 12.5% !important;
+    &:nth-child(6){
+      width:12.5% !important;
     }
   }
 `
@@ -75,22 +75,22 @@ const TextStyle = styled.td`
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   font-size: 11px;
 
-  &:nth-child(2) {
-    text-align: right;
-    > div {
-      justify-content: flex-end;
+  &:nth-child(2){
+    text-align:right;
+    > div{
+      justify-content:flex-end;
     }
   }
-  &:nth-child(3) {
-    text-align: right;
-    > div {
-      justify-content: flex-end;
+  &:nth-child(3){
+    text-align:right;
+    > div{
+      justify-content:flex-end;
     }
   }
-  &:nth-child(4) {
-    text-align: right;
-    > div {
-      justify-content: flex-end;
+  &:nth-child(4){
+    text-align:right;
+    > div{
+      justify-content:flex-end;
     }
   }
   > a {
@@ -104,6 +104,8 @@ const TextStyle = styled.td`
     font-size: 12px;
   }
   ${({ theme }) => theme.mediaQueries.sm} {
+    
+
   }
 `
 
@@ -140,10 +142,16 @@ const Image = styled.img`
   }
 `
 
+const ScrollButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+`
+
 const AllTokens = () => {
   const { t } = useTranslation()
   const [tokens, setTokens] = useState([])
-  const { isXl, isSm, isMd, isLg } = useMatchBreakpoints()
   const linkToURL = (url: string) => {
     window.location.href = url
   }
@@ -229,7 +237,7 @@ const AllTokens = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', padding: '50px 10px 0px 20px' }}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px',padding: '50px 10px 0px 20px'}}>
       <div
         style={{
           display: 'flex',
@@ -257,7 +265,7 @@ const AllTokens = () => {
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                   <Inline>
-                    <Image alt={token.name} src={token.path} width="19px" height="19px" />
+                    <Image alt={token.name} src={token.path} width="24px" height="24px" />
                   </Inline>
                   {token.symbol}
                 </div>
@@ -294,8 +302,20 @@ const AllTokens = () => {
               </TextStyle>
             </tr>
           ))}
+          <tr>
+            <TextStyle colSpan={6} style={{ verticalAlign: 'middle',padding: '0px'}}>
+              <ScrollButtonContainer>
+                <Button variant="text" style={{justifyContent: 'center'}}>
+                  {t('More view')}
+                  <ChevronUpIcon color="primary" />
+                </Button>
+              </ScrollButtonContainer>
+            </TextStyle>
+          </tr>
         </tbody>
+
       </TableWrap>
+
     </div>
   )
 }
