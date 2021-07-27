@@ -24,39 +24,38 @@ const TitleStyle = styled.th`
   text-align: left;
   font-size: 12px;
 
-    &:nth-child(1){
-      width:30% !important;
-      padding-right:0px;
-    }
-    &:nth-child(2){
-      width:20% !important;
-      text-align:right;
-    }
-    &:nth-child(3){
-      width:20% !important;
-      text-align:right;
-    }
-  ${({ theme }) => theme.mediaQueries.lg} {  
-    
+  &:nth-child(1) {
+    width: 30% !important;
+    padding-right: 0px;
+  }
+  &:nth-child(2) {
+    width: 20% !important;
+    text-align: right;
+  }
+  &:nth-child(3) {
+    width: 20% !important;
+    text-align: right;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
   }
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
 
-    &:nth-child(1){
-      width:20% !important;
+    &:nth-child(1) {
+      width: 20% !important;
     }
-    &:nth-child(2){
-      width:17% !important;
+    &:nth-child(2) {
+      width: 17% !important;
     }
-    &:nth-child(3){
-      width:17% !important;
+    &:nth-child(3) {
+      width: 17% !important;
     }
-    &:nth-child(4){
-      width:10% !important;
+    &:nth-child(4) {
+      width: 10% !important;
     }
-    &:nth-child(5){
-      width:12.5% !important;
+    &:nth-child(5) {
+      width: 12.5% !important;
     }
   }
 `
@@ -79,22 +78,22 @@ const TextStyle = styled.td`
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   font-size: 11px;
 
-  &:nth-child(1){
-    padding-right:0px;
+  &:nth-child(1) {
+    padding-right: 0px;
   }
-  &:nth-child(2){
-    text-align:right;
+  &:nth-child(2) {
+    text-align: right;
   }
-  &:nth-child(3){
-    text-align:right;
-    > div { 
-      justify-content:flex-end;
-   }
+  &:nth-child(3) {
+    text-align: right;
+    > div {
+      justify-content: flex-end;
+    }
   }
   > a {
     font-size: auto;
   }
-  
+
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
     font-size: 14px;
@@ -102,10 +101,8 @@ const TextStyle = styled.td`
   > a {
     font-size: auto;
   }
- 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    
 
+  ${({ theme }) => theme.mediaQueries.sm} {
   }
 `
 
@@ -313,7 +310,7 @@ const AllPairs = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px',padding: '50px 20px 0px 10px'}}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', padding: '50px 20px 0px 10px' }}>
       <div
         style={{
           display: 'flex',
@@ -379,16 +376,20 @@ const AllPairs = () => {
                 </TextStyle>
               </tr>
             ))}
-            <tr>
-              <TextStyle colSpan={6} style={{ verticalAlign: 'middle',padding: '0px'}}>
-                <ScrollButtonContainer>
-                  <Button variant="text" style={{justifyContent: 'center'}}>
-                    {t('More view')}
-                    <ChevronUpIcon color="primary" />
-                  </Button>
-                </ScrollButtonContainer>
-              </TextStyle>
-            </tr>
+          <tr>
+            <TextStyle colSpan={6} style={{ verticalAlign: 'middle', padding: '0px' }}>
+              <ScrollButtonContainer>
+                <Button
+                  onClick={() => linkToURL('https://taalswap.info/pairs')}
+                  variant="text"
+                  style={{ justifyContent: 'center' }}
+                >
+                  {t('More view')}
+                  <ChevronUpIcon color="primary" />
+                </Button>
+              </ScrollButtonContainer>
+            </TextStyle>
+          </tr>
         </tbody>
       </TableWrap>
     </div>
