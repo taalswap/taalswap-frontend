@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
-import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon } from 'taalswap-uikit'
+import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, ChevronUpIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 
@@ -143,6 +143,13 @@ const Image = styled.img`
   ${({ theme }) => theme.mediaQueries.sm} {
     display: block;
   }
+`
+
+const ScrollButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 `
 
 const AllTokens = () => {
@@ -300,8 +307,20 @@ const AllTokens = () => {
               </TextStyle>
             </tr>
           ))}
+          <tr>
+            <TextStyle colSpan={6} style={{ verticalAlign: 'middle',padding: '0px'}}>
+              <ScrollButtonContainer>
+                <Button variant="text" style={{justifyContent: 'center'}}>
+                  {t('More view')}
+                  <ChevronUpIcon color="primary" />
+                </Button>
+              </ScrollButtonContainer>
+            </TextStyle>
+          </tr>
         </tbody>
+        
       </TableWrap>
+      
     </div>
   )
 }
