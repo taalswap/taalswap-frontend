@@ -839,5 +839,6 @@
   "Buy: %symbol%": "Buy %symbol%",
   "Liquidity ($)": "Liquidity",
   "Vol.(24H)": "Vol.(1d)",
-  "Price ($)": "Price($)"
+  "Price ($)": "Price($)",
+  "More view": "More view"
 }
