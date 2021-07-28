@@ -217,7 +217,7 @@ p,span,div,input{font-weight:600;}
 .footer_cont{flex-wrap:wrap;justify-content:center;padding:50px 0;}
 .footer_cont .footer_left{flex-wrap:wrap;justify-content:center;width:100%;}
 .footer_cont .footer_left p{text-align:center;margin:14px 0;font-size:13px;}
-.footer_cont .footer_menu{margin-top:10px;}
+.footer_cont .footer_menu{margin-top:20px;}
 .footer_cont .footer_menu div:nth-child(1){margin-left:0 !important;}
 
 .cont .input_wrap .taal_info ul{padding:24px;}
