@@ -308,7 +308,7 @@ const AllTokens = () => {
                   variant="text"
                   style={{ justifyContent: 'center' }}
                 >
-                  {t('More view')}
+                  {t('View All')}
                   <ChevronUpIcon color="primary" />
                 </Button>
               </ScrollButtonContainer>
