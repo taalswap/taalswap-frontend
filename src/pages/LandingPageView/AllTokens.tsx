@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
-import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, useMatchBreakpoints } from 'taalswap-uikit'
+import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, ChevronUpIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 
@@ -140,10 +140,16 @@ const Image = styled.img`
   }
 `
 
+const ScrollButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+`
+
 const AllTokens = () => {
   const { t } = useTranslation()
   const [tokens, setTokens] = useState([])
-  const { isXl, isSm, isMd, isLg } = useMatchBreakpoints()
   const linkToURL = (url: string) => {
     window.location.href = url
   }
@@ -257,7 +263,7 @@ const AllTokens = () => {
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                   <Inline>
-                    <Image alt={token.name} src={token.path} width="19px" height="19px" />
+                    <Image alt={token.name} src={token.path} width="24px" height="24px" />
                   </Inline>
                   {token.symbol}
                 </div>
@@ -294,6 +300,20 @@ const AllTokens = () => {
               </TextStyle>
             </tr>
           ))}
+          <tr>
+            <TextStyle colSpan={6} style={{ verticalAlign: 'middle', padding: '0px' }}>
+              <ScrollButtonContainer>
+                <Button
+                  onClick={() => linkToURL('https://taalswap.info/tokens')}
+                  variant="text"
+                  style={{ justifyContent: 'center' }}
+                >
+                  {t('More view')}
+                  <ChevronUpIcon color="primary" />
+                </Button>
+              </ScrollButtonContainer>
+            </TextStyle>
+          </tr>
         </tbody>
       </TableWrap>
     </div>
