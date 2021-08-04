@@ -75,22 +75,22 @@ const TextStyle = styled.td`
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   font-size: 11px;
 
-  &:nth-child(2) {
-    text-align: right;
-    > div {
-      justify-content: flex-end;
+  &:nth-child(2){
+    text-align:right;
+    > div{
+      justify-content:flex-end;
     }
   }
-  &:nth-child(3) {
-    text-align: right;
-    > div {
-      justify-content: flex-end;
+  &:nth-child(3){
+    text-align:right;
+    > div{
+      justify-content:flex-end;
     }
   }
-  &:nth-child(4) {
-    text-align: right;
-    > div {
-      justify-content: flex-end;
+  &:nth-child(4){
+    text-align:right;
+    > div{
+      justify-content:flex-end;
     }
   }
   > a {
@@ -132,6 +132,8 @@ const Inline = styled.div`
 `
 
 const Image = styled.img`
+  min-width:1.5rem;
+  max-width:1.5rem;
   background-color: white;
   border-radius: 50%;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
@@ -235,7 +237,7 @@ const AllTokens = () => {
   }, [])
 
   return (
-    <div className="farms_wrap user_section" style={{ maxWidth: '1280px', padding: '50px 10px 0px 20px' }}>
+    <div className="farms_wrap user_section" style={{ maxWidth: '1280px',padding: '50px 10px 0px 20px'}}>
       <div
         style={{
           display: 'flex',
@@ -301,14 +303,14 @@ const AllTokens = () => {
             </tr>
           ))}
           <tr>
-            <TextStyle colSpan={6} style={{ verticalAlign: 'middle', padding: '0px' }}>
+            <TextStyle colSpan={6} style={{ verticalAlign: 'middle',padding: '0px'}}>
               <ScrollButtonContainer>
                 <Button
                   onClick={() => linkToURL('https://taalswap.info/tokens')}
                   variant="text"
                   style={{ justifyContent: 'center' }}
                 >
-                  {t('More view')}
+                  {t('View All')}
                   <ChevronUpIcon color="primary" />
                 </Button>
               </ScrollButtonContainer>
