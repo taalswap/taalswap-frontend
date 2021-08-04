@@ -137,6 +137,8 @@ const Inline = styled.div`
 `
 
 const Image = styled.img`
+  min-width:1.5rem;
+  max-width:1.5rem;
   background-color: white;
   border-radius: 50%;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
@@ -257,7 +259,7 @@ const AllTokens = () => {
         <tbody>
           <tr>
             <TitleStyle>{t('Symbol')} </TitleStyle>
-            <TitleStyle>{t('Name')}</TitleStyle>
+            {/* <TitleStyle>{t('Name')}</TitleStyle> */}
             <TitleStyle>{t('Liquidity ($)')}</TitleStyle>
             <TitleStyle>{t('Price ($)')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleStyle>
@@ -273,11 +275,11 @@ const AllTokens = () => {
                   {token.symbol}
                 </div>
               </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
+              {/* <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'left' }}>
                   {token.symbol}
                 </div>  
-              </TextStyle>
+              </TextStyle> */}
               <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   {/* <span style={{ marginRight: '5px' }}>$</span> */}
