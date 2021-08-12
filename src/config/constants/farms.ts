@@ -9,7 +9,7 @@ const farms: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'TAL',
     lpAddresses: {
-      1: '0x90a4a420732907b3c38b11058f9aa02b3f4121df',
+      1: '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d',
       3: '0x2ccdf53b17cce1c1c37bdd0ff0f8320e8cea34ed',
       4: '0xe18e460d38441027b6672363d68c9088f3d773bf',    // TaalToken
       97: '0xb01258e6fb20bde11dab2b65b2ffa197d725c91c',
@@ -22,7 +22,7 @@ const farms: FarmConfig[] = [
     pid: 1,
     lpSymbol: 'TAL-ETH LP',
     lpAddresses: {
-      1: '0x1caa17dbc6ba52b74b81b00158b7d34b579fce4f',
+      1: '0x5adda6b4e4966f1d8d0498c97aab54829999d65e',
       3: '0x112ee1ffbaebc34e3131815f8f3772dc94ffb7f6',
       4: '0x98d2c51626bdac2a257dda01a60deb51cee2cee6',
       97: '0x74f8ee76936280e744c663b1d17b68e58a34cc29',
@@ -61,7 +61,7 @@ const farms: FarmConfig[] = [
     pid: 4,
     lpSymbol: 'TAL-USDC LP',
     lpAddresses: {
-      1: '0x648f94b68db9694ce3a34fd2dd7de5afe645bc52',
+      1: '0x0eff6a9fbcebec4257e44115b3048bd4f8215eb7',
       3: '0x93edb60a035a06dfa3224f6393e41d269bfebb0e',
       4: '0x036126bda6190605fadd2028caa8dd7be13c045a',
       97: '',
@@ -74,7 +74,7 @@ const farms: FarmConfig[] = [
     pid: 5,
     lpSymbol: 'TAL-USDT LP',
     lpAddresses: {
-      1: '0x93036ed88960b74294aef83608281a47057b804c',
+      1: '0xdfea645431b312aa0bbe41f23a31fac4f36517af',
       3: '0x16036778bd039b0fb538b4326db2093fd6422f87',
       4: '0xa17d74b8ae149f08c8a1db09e4a55e158163fed1',
       97: '',
