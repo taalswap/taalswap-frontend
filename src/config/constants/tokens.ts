@@ -24,7 +24,7 @@ const tokens = {
   taal: {
     symbol: 'TAL',
     address: {
-      1: '0x90a4a420732907b3c38b11058f9aa02b3f4121df',
+      1: '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d',
       3: '0x2ccdf53b17cce1c1c37bdd0ff0f8320e8cea34ed',
       4: '0xe18e460d38441027b6672363d68c9088f3d773bf',
       56: '',
@@ -60,7 +60,7 @@ const tokens = {
   syrup: {
     symbol: 'SYRUP',
     address: {
-      1: '0xb9e7696ec0a12afcd0be517d8e951acdfee892cc',
+      1: '0x6c49ff7da37991f080d1b170690b4bac5d0fc692',
       3: '0x532d2649554598c9074ff6aa441e4f91749b6466',
       4: '0x124bdb941df9fc548d99e21f727357e9c287772e',
       56: '',
