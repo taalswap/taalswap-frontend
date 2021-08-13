@@ -15,7 +15,7 @@ const pools: PoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
-    tokenPerBlock: '40',
+    tokenPerBlock: '40',    // TaalPerBlock 변경 시 변경 필요
     sortOrder: 1,
     isFinished: false,
   }
