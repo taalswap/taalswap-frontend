@@ -1,8 +1,10 @@
 /* eslint-disable no-param-reassign */
+import { useWeb3React } from '@web3-react/core'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import farmsConfig from 'config/constants/farms'
+import { farmsConfig, farmsConfigKlaytn } from 'config/constants/farms'
 import isArchivedPid from 'utils/farmHelpers'
 import priceHelperLpsConfig from 'config/constants/priceHelperLps'
+import { isUndefined, parseInt } from 'lodash'
 import fetchFarms from './fetchFarms'
 import fetchFarmsPrices from './fetchFarmsPrices'
 import {
@@ -13,25 +15,57 @@ import {
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
 
-const noAccountFarmConfig = farmsConfig.map((farm) => ({
-  ...farm,
-  userData: {
-    allowance: '0',
-    tokenBalance: '0',
-    stakedBalance: '0',
-    earnings: '0',
-  },
-}))
+// const { chainId } = useWeb3React()
+const chainIdStr = window.localStorage.getItem("chainId")
+const chainId = isUndefined(chainIdStr)
+  ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+  : parseInt(chainIdStr, 10)
+
+let noAccountFarmConfig
+if (chainId > 1000) {
+  noAccountFarmConfig = farmsConfigKlaytn.map((farm) => ({
+    ...farm,
+    userData: {
+      allowance: '0',
+      tokenBalance: '0',
+      stakedBalance: '0',
+      earnings: '0',
+    },
+  }))
+} else {
+  noAccountFarmConfig = farmsConfig.map((farm) => ({
+    ...farm,
+    userData: {
+      allowance: '0',
+      tokenBalance: '0',
+      stakedBalance: '0',
+      earnings: '0',
+    },
+  }))
+}
 
 const initialState: FarmsState = { data: noAccountFarmConfig, loadArchivedFarmsData: false, userDataLoaded: false }
 
-export const nonArchivedFarms = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
+// export const nonArchivedFarms = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
+let nonArchivedFarmsChainId
+if (chainId > 1000) {
+  nonArchivedFarmsChainId = farmsConfigKlaytn.filter(({ pid }) => !isArchivedPid(pid))
+} else {
+  nonArchivedFarmsChainId = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
+}
+export const nonArchivedFarms = nonArchivedFarmsChainId
 
 // Async thunks
 export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
-    const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
+    // const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
+    let farmsToFetch
+    if (chainId > 1000) {
+      farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
+    } else {
+      farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
+    }
 
     // Add price helper farms
     const farmsWithPriceHelpers = farmsToFetch.concat(priceHelperLpsConfig)
@@ -59,7 +93,13 @@ interface FarmUserDataResponse {
 export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], { account: string; pids: number[] }>(
   'farms/fetchFarmUserDataAsync',
   async ({ account, pids }) => {
-    const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
+    // const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
+    let farmsToFetch
+    if (chainId > 1000) {
+      farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
+    } else {
+      farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
+    }
     const userFarmAllowances = await fetchFarmUserAllowances(account, farmsToFetch)
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsToFetch)
     const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)

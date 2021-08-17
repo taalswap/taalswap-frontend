@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { connectorLocalStorageKey, ConnectorNames } from 'taalswap-uikit'
 import useAuth from 'hooks/useAuth'
+import { useWeb3React } from '@web3-react/core'
 
 const _binanceChainListener = async () =>
   new Promise<void>((resolve) =>
@@ -18,6 +19,7 @@ const _binanceChainListener = async () =>
 
 const useEagerConnect = () => {
   const { login } = useAuth()
+  const { chainId } = useWeb3React()
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem(connectorLocalStorageKey) as ConnectorNames
@@ -35,8 +37,9 @@ const useEagerConnect = () => {
       }
 
       login(connectorId)
+      window.localStorage.setItem("chainId", String(chainId))
     }
-  }, [login])
+  }, [login, chainId])
 }
 
 export default useEagerConnect

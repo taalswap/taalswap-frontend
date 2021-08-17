@@ -3,11 +3,12 @@ import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { ethers } from 'ethers'
 import { Pair, TokenAmount, Token } from 'taalswap-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
-import farms from 'config/constants/farms'
+import { farmsConfig, farmsConfigKlaytn } from 'config/constants/farms'
 import { getAddress, getTaalAddress } from 'utils/addressHelpers'
 import tokens from 'config/constants/tokens'
 import pools from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
+import { isUndefined, parseInt } from 'lodash'
 import multicall from './multicall'
 import { getWeb3NoAccount } from './web3'
 import { getBalanceAmount } from './formatBalance'
@@ -131,9 +132,19 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
     })
 }
 
-const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+// const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+const chainIdStr = window.localStorage.getItem("chainId")
+const chainId = isUndefined(chainIdStr)
+  ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+  : parseInt(chainIdStr, 10)
+
 const cakeBnbPid = 1  // 251 -> 1
-const cakeBnbFarm = farms.find((farm) => farm.pid === cakeBnbPid)
+let cakeBnbFarm
+if (chainId > 1000) {
+  cakeBnbFarm = farmsConfigKlaytn.find((farm) => farm.pid === cakeBnbPid)
+} else {
+  cakeBnbFarm = farmsConfig.find((farm) => farm.pid === cakeBnbPid)
+}
 
 const CAKE_TOKEN = new Token(chainId, getTaalAddress(), 18)
 const WBNB_TOKEN = new Token(chainId, tokens.weth.address[chainId], 18)

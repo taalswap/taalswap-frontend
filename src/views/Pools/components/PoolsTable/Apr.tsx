@@ -6,6 +6,7 @@ import Balance from 'components/Balance'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getAprData } from 'views/Pools/helpers'
+import { useWeb3React } from '@web3-react/core'
 
 interface AprProps extends FlexProps {
   pool: Pool
@@ -18,10 +19,14 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, performanceFee = 0, ...props 
   const { t } = useTranslation()
 
   const { apr: earningsPercentageToDisplay, roundingDecimals, compoundFrequency } = getAprData(pool, performanceFee)
+  const { chainId } = useWeb3React()
 
+  // const apyModalLink =
+  //   stakingToken.address &&
+  //   `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
   const apyModalLink =
     stakingToken.address &&
-    `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
+    `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[chainId]}`
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal

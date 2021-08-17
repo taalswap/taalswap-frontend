@@ -47,7 +47,7 @@ const Results = () => (
       </li>
       <li>
         <Link href="/" style={{ textDecoration: 'none' }}>
-          <span className="connect_icon">connect_icon</span>Coneect Wallet
+          <span className="connect_icon">connect_icon</span>Connect Wallet
         </Link>
       </li>
     </ul>

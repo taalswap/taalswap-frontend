@@ -14,10 +14,14 @@ const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 //       all related codes should be modified at first (taalswap-sdk contract addresses, etc.)
 //       supportedChainIds: [1] = metamask wallet_switchEthereumChain API works to all others except mainnet
 // const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4] })
-const injected = new InjectedConnector({ supportedChainIds: [1] })
+const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 8217, 1001] })
 
 const walletconnect = new WalletConnectConnector({
-  rpc: { [chainId]: rpcUrl },
+  rpc: {
+    [chainId]: rpcUrl,
+    // ['8217']: 'https://kaikas.cypress.klaytn.net:8651/',
+    // ['1001']: 'https://api.baobab.klaytn.net:8651'
+  },
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,

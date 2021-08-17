@@ -32,6 +32,18 @@ const tokens = {
       3: '0x2ccdf53b17cce1c1c37bdd0ff0f8320e8cea34ed',
       4: '0xe18e460d38441027b6672363d68c9088f3d773bf',
       8217: '',
+      1001: '0xe8e2f5117297f3a330fd06fac88928b63bb84b09',   // getTaalAddress()에서 사용
+    },
+    decimals: 18,
+    projectLink: 'https://taalswap.finance/',
+  },
+  ktaal: {
+    symbol: 'KTAL',
+    address: {
+      1: '',
+      3: '',
+      4: '',
+      8217: '',
       1001: '0xe8e2f5117297f3a330fd06fac88928b63bb84b09',
     },
     decimals: 18,
@@ -43,8 +55,8 @@ const tokens = {
       1: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
       3: '0x46884d7849223e057226a69e5f8215d6ff1b8bd6',
       4: '0x92ecacfc94588aa99fba837be1a98738290e3252',
-      8217: '',
-      1001: '',
+      8217: '0x5819b6af194a78511c79c85ea68d2377a7e9335f',
+      1001: '0xf223e26b018ae1917e84dd73b515620e36a75596',   // getWethAddress()에서 사용 ?
     },
     decimals: 18,
     projectLink: 'https://weth.io/',
@@ -59,7 +71,7 @@ const tokens = {
       97: '0xf223e26b018ae1917e84dd73b515620e36a75596',
     },
     decimals: 18,
-    projectLink: 'https://weth.io/',
+    projectLink: 'https://www.klaytn.com/',
   },
   usdc: {
     symbol: 'USDC',
@@ -103,6 +115,18 @@ const tokens = {
       1: '0xdac17f958d2ee523a2206206994597c13d831ec7',
       3: '0x897ad6a487bd9b490d537b3860860863ae414f1e',
       4: '0xc958c2ace36870471238319bc29018cc549c126d',
+      8217: '',
+      1001: ''
+    },
+    decimals: 6,
+    projectLink: 'https://tether.to/',
+  },
+  kusdt: {
+    symbol: 'KUSDT',
+    address: {
+      1: '',
+      3: '',
+      4: '',
       8217: '0xcee8faf64bb97a73bb51e115aa89c17ffa8dd167',
       1001: '0x06cb1c92cc93d617aed37811783708ac6370cca5',
     },
