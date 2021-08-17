@@ -6,6 +6,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBscScanAddressUrl } from 'utils/bscscan'
 import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
+import { useWeb3React } from '@web3-react/core'
 
 import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
@@ -188,7 +189,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
   })
-  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  // const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const { chainId } = useWeb3React()
+  const lpAddress = farm.lpAddresses[chainId]
   const bsc = getBscScanAddressUrl(lpAddress)
   const info = `https://taalswap.info/pair/${lpAddress}`
   const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'

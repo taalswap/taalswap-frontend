@@ -3,21 +3,30 @@ import { useWeb3React } from '@web3-react/core'
 import multicall from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import masterChefABI from 'config/abi/masterchef.json'
-import { farmsConfig } from 'config/constants'
+import { farmsConfig, farmsConfigKlaytn } from 'config/constants'
 import useRefresh from './useRefresh'
 
 const useAllEarnings = () => {
   const [balances, setBalance] = useState([])
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
+    let calls
     const fetchAllBalances = async () => {
-      const calls = farmsConfig.map((farm) => ({
-        address: getMasterChefAddress(),
-        name: 'pendingTaal',
-        params: [farm.pid, account],
-      }))
+      if (chainId > 1000) {
+        calls = farmsConfigKlaytn.map((farm) => ({
+          address: getMasterChefAddress(),
+          name: 'pendingTaal',
+          params: [farm.pid, account],
+        }))
+      } else {
+        calls = farmsConfig.map((farm) => ({
+          address: getMasterChefAddress(),
+          name: 'pendingTaal',
+          params: [farm.pid, account],
+        }))
+      }
 
       const res = await multicall(masterChefABI, calls)
 
@@ -27,7 +36,7 @@ const useAllEarnings = () => {
     if (account) {
       fetchAllBalances()
     }
-  }, [account, fastRefresh])
+  }, [account, fastRefresh, chainId])
 
   return balances
 }

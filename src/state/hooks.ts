@@ -3,10 +3,10 @@ import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
-import { orderBy } from 'lodash'
+import { isUndefined, orderBy, parseInt } from 'lodash'
 import { Team } from 'config/constants/types'
 import Nfts from 'config/constants/nfts'
-import { farmsConfig } from 'config/constants'
+import { farmsConfig, farmsConfigKlaytn } from 'config/constants'
 import { getWeb3NoAccount } from 'utils/web3'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -38,7 +38,18 @@ export const usePollFarmsData = (includeArchive = false) => {
   const { account } = useWeb3React()
 
   useEffect(() => {
-    const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
+    const chainIdStr = window.localStorage.getItem("chainId")
+    const chainId = isUndefined(chainIdStr)
+      ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+      : parseInt(chainIdStr, 10)
+
+    // const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
+    let farmsToFetch
+    if (chainId > 1000) {
+      farmsToFetch = includeArchive ? farmsConfigKlaytn : nonArchivedFarms
+    } else {
+      farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
+    }
     const pids = farmsToFetch.map((farmToFetch) => farmToFetch.pid)
 
     dispatch(fetchFarmsPublicDataAsync(pids))

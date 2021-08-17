@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js/bignumber'
 import { BIG_TEN } from 'utils/bigNumber'
+import { ChainId } from 'taalswap-sdk'
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -33,3 +34,10 @@ export const LOTTERY_TICKET_PRICE = 1
 export const DEFAULT_TOKEN_DECIMAL = BIG_TEN.pow(18)
 export const DEFAULT_GAS_LIMIT = 3000000
 export const DEFAULT_GAS_PRICE = 5
+export const SCAN_URL = {
+  [ChainId.MAINNET]: 'https://etherscan.io',
+  [ChainId.ROPSTEN]: 'https://ropsten.etherscan.io',
+  [ChainId.RINKEBY]: 'https://rinkeby.etherscan.io',
+  [ChainId.KLAYTN]: 'https://scope.klaytn.com',
+  [ChainId.BAOBAB]: 'https://baobab.scope.klaytn.com',
+}

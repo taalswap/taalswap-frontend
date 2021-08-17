@@ -361,11 +361,6 @@
         "internalType": "contract IBEP20",
         "name": "_lpToken",
         "type": "address"
-      },
-      {
-        "internalType": "bool",
-        "name": "_withUpdate",
-        "type": "bool"
       }
     ],
     "name": "add",
@@ -384,11 +379,6 @@
         "internalType": "uint256",
         "name": "_allocPoint",
         "type": "uint256"
-      },
-      {
-        "internalType": "bool",
-        "name": "_withUpdate",
-        "type": "bool"
       }
     ],
     "name": "set",

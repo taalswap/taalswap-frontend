@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Flex, Text, Skeleton } from 'taalswap-uikit'
+import { useWeb3React } from '@web3-react/core'
 import { Farm } from 'state/types'
 import { provider as ProviderType } from 'web3-core'
 import { getBscScanAddressUrl } from 'utils/bscscan'
@@ -100,8 +101,10 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
     tokenAddress: farm.token.address,
   })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
-  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
-  const isPromotedFarm = farm.token.symbol === 'TAL'
+  const { chainId } = useWeb3React()
+  // const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const lpAddress = farm.lpAddresses[chainId]
+  const isPromotedFarm = farm.token.symbol === 'TAL' || farm.token.symbol === 'KTAL'
 
   return (
     <FCard isPromotedFarm={isPromotedFarm}>
@@ -141,7 +144,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
       <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
           removed={removed}
-          bscScanAddress={getBscScanAddressUrl(farm.lpAddresses[process.env.REACT_APP_CHAIN_ID])}
+          bscScanAddress={getBscScanAddressUrl(farm.lpAddresses[chainId])}   // process.env.REACT_APP_CHAIN_ID -> chainId
           infoAddress={`https://taalswap.info/pair/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}
