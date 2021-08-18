@@ -26,7 +26,7 @@ const Footer = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '18.5px' }}>
-            <Link href="https://t.me/TaalSwapOfficial" target="_blank">
+            <Link href="https://t.me/TaalSwap_kr" target="_blank">
               <img src={page_icon} alt="page_icon" />
             </Link>
           </div>
