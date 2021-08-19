@@ -12,6 +12,8 @@ import github_icon from './images/github_icon_w.svg'
 import mail_icon from './images/mail_icon_w.svg'
 
 const Footer = () => {
+  const currentLang = localStorage.getItem('taalswap_language')
+
   return (
     <div className="footer_wrap">
       <div className="footer_cont">
@@ -26,9 +28,15 @@ const Footer = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '18.5px' }}>
-            <Link href="https://t.me/TaalSwapOfficial" target="_blank">
-              <img src={page_icon} alt="page_icon" />
-            </Link>
+            {currentLang === 'ko-KR' ? (
+              <Link href="https://t.me/TaalSwap_kr" target="_blank">
+                <img src={page_icon} alt="page_icon" />
+              </Link>
+            ) : (
+              <Link href="https://t.me/TaalSwapOfficial" target="_blank">
+                <img src={page_icon} alt="page_icon" />
+              </Link>
+            )}
           </div>
           <div style={{ marginLeft: '18.5px' }}>
             <Link href="https://taalswap.medium.com" target="_blank">
