@@ -30,19 +30,16 @@ import { getCanClaim } from './predictions/helpers'
 import { transformPool } from './pools/helpers'
 import { fetchPoolsStakingLimitsAsync } from './pools'
 import { fetchFarmUserDataAsync, nonArchivedFarms } from './farms'
+import getChainId from '../utils/getChainId'
 
 export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
   const web3 = getWeb3NoAccount()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
 
   useEffect(() => {
-    const chainIdStr = window.localStorage.getItem("chainId")
-    const chainId = isUndefined(chainIdStr)
-      ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-      : parseInt(chainIdStr, 10)
-
+    // const chainId = getChainId()
     // const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
     let farmsToFetch
     if (chainId > 1000) {
@@ -57,7 +54,7 @@ export const usePollFarmsData = (includeArchive = false) => {
     if (account) {
       dispatch(fetchFarmUserDataAsync({ account, pids }))
     }
-  }, [includeArchive, dispatch, slowRefresh, web3, account])
+  }, [includeArchive, dispatch, slowRefresh, web3, account, chainId])
 }
 
 /**

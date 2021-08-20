@@ -2,7 +2,7 @@ import { isUndefined, parseInt } from 'lodash'
 import { BASE_BSC_SCAN_URL, SCAN_URL } from 'config'
 
 const chainIdStr = window.localStorage.getItem("chainId")
-const chainId = isUndefined(chainIdStr)
+const chainId = chainIdStr === 'undefined'
   ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   : parseInt(chainIdStr, 10)
 

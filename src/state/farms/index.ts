@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { farmsConfig, farmsConfigKlaytn } from 'config/constants/farms'
 import isArchivedPid from 'utils/farmHelpers'
 import priceHelperLpsConfig from 'config/constants/priceHelperLps'
-import { isUndefined, parseInt } from 'lodash'
+import { chain, isUndefined, parseInt } from 'lodash'
 import fetchFarms from './fetchFarms'
 import fetchFarmsPrices from './fetchFarmsPrices'
 import {
@@ -17,7 +17,7 @@ import { FarmsState, Farm } from '../types'
 
 // const { chainId } = useWeb3React()
 const chainIdStr = window.localStorage.getItem("chainId")
-const chainId = isUndefined(chainIdStr)
+const chainId = chainIdStr === 'undefined'
   ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   : parseInt(chainIdStr, 10)
 

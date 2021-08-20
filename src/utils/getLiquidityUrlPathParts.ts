@@ -6,7 +6,7 @@ import { getWethAddress } from './addressHelpers'
 const getLiquidityUrlPathParts = ({ quoteTokenAddress, tokenAddress }) => {
   // const chainId = process.env.REACT_APP_CHAIN_ID
   const chainIdStr = window.localStorage.getItem("chainId")
-  const chainId = isUndefined(chainIdStr)
+  const chainId = chainIdStr === 'undefined'
     ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     : parseInt(chainIdStr, 10)
 

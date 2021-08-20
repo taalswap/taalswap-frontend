@@ -12,7 +12,7 @@ import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
-import { orderBy } from 'lodash'
+import { chain, orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
 import PageHeader from 'components/PageHeader'
@@ -25,6 +25,7 @@ import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import Teaser from '../../pages/LandingPageView/Teaser_page'
+import getChainId from '../../utils/getChainId'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -193,10 +194,12 @@ const Farms: React.FC = () => {
 
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
+  const chainId = getChainId()
 
   const farmsStakedMemoized = useMemo(() => {
     let farmsStaked = []
 
+    console.log(chainId)
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'apr':
@@ -245,6 +248,7 @@ const Farms: React.FC = () => {
     stakedOnly,
     stakedOnlyFarms,
     numberOfFarmsVisible,
+    chainId
   ])
 
   useEffect(() => {

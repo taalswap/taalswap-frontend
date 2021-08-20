@@ -178,36 +178,36 @@ const farmsConfigKlaytn: FarmConfig[] = [
     token: tokens.kusdt,
     quoteToken: tokens.wklay,
   },
-  {
-    pid: 4,
-    lpSymbol: 'KTAL-KDAI LP',
-    lpAddresses: {
-      8217: '',
-      1001: '',
-    },
-    token: tokens.ktaal,
-    quoteToken: tokens.kdai,
-  },
-  {
-    pid: 5,
-    lpSymbol: 'KTAL-KUSDT LP',
-    lpAddresses: {
-      8217: '',
-      1001: '',
-    },
-    token: tokens.ktaal,
-    quoteToken: tokens.kusdt,
-  },
-  {
-    pid: 6,
-    lpSymbol: 'KUSDT-DAI LP',
-    lpAddresses: {
-      8217: '',
-      1001: '',
-    },
-    token: tokens.kusdt,
-    quoteToken: tokens.kdai,
-  },
+  // {
+  //   pid: 4,
+  //   lpSymbol: 'KTAL-KDAI LP',
+  //   lpAddresses: {
+  //     8217: '',
+  //     1001: '',
+  //   },
+  //   token: tokens.ktaal,
+  //   quoteToken: tokens.kdai,
+  // },
+  // {
+  //   pid: 5,
+  //   lpSymbol: 'KTAL-KUSDT LP',
+  //   lpAddresses: {
+  //     8217: '',
+  //     1001: '',
+  //   },
+  //   token: tokens.ktaal,
+  //   quoteToken: tokens.kusdt,
+  // },
+  // {
+  //   pid: 6,
+  //   lpSymbol: 'KUSDT-DAI LP',
+  //   lpAddresses: {
+  //     8217: '',
+  //     1001: '',
+  //   },
+  //   token: tokens.kusdt,
+  //   quoteToken: tokens.kdai,
+  // },
 ]
 
 // export default farms

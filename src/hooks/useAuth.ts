@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core'
 import { NoBscProviderError } from '@binance-chain/bsc-connector'
 import {
+  InjectedConnector,
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
 } from '@web3-react/injected-connector'
@@ -16,6 +17,7 @@ import useToast from 'hooks/useToast'
 import { profileClear } from 'state/profile'
 import { useAppDispatch } from 'state'
 import { useTranslation } from 'contexts/Localization'
+import getChainId from '../utils/getChainId'
 
 const useAuth = () => {
   const { t } = useTranslation()
@@ -23,12 +25,16 @@ const useAuth = () => {
   const { activate, deactivate } = useWeb3React()
   const { toastError } = useToast()
 
-  const login = useCallback((connectorID: ConnectorNames) => {
+  const login = useCallback(async (connectorID: ConnectorNames) => {
+    const chainId = getChainId()
+    const refresh = window.localStorage.getItem("refresh")
     const connector = connectorsByName[connectorID]
+
     if (connector) {
-      activate(connector, async (error: Error) => {
+      if (refresh === 'true') await setupNetwork(chainId)
+      await activate(connector, async (error: Error) => {
         if (error instanceof UnsupportedChainIdError) {
-          const hasSetup = await setupNetwork()
+          const hasSetup = await setupNetwork(chainId)
           if (hasSetup) {
             activate(connector)
           }
@@ -50,6 +56,11 @@ const useAuth = () => {
           }
         }
       })
+
+      if (refresh === 'true') {
+        window.location.reload()
+        window.localStorage.setItem("refresh", 'false')
+      }
     } else {
       toastError(t('Unable to find connector'), t('The connector config is wrong'))
     }

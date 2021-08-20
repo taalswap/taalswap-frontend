@@ -134,7 +134,7 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
 
 // const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 const chainIdStr = window.localStorage.getItem("chainId")
-const chainId = isUndefined(chainIdStr)
+const chainId = chainIdStr === 'undefined'
   ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   : parseInt(chainIdStr, 10)
 
