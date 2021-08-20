@@ -17,6 +17,7 @@ import AllPairs from './AllPairs'
 import './App.css'
 import AllTokens from './AllTokens'
 
+
 const LandingPageView = () => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
