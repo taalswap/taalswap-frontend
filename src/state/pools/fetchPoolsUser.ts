@@ -22,7 +22,6 @@ export const fetchPoolsAllowance = async (account) => {
     name: 'allowance',
     params: [account, getAddress(p.contractAddress)],
   }))
-  console.log('=============>', calls)
 
   const allowances = await multicall(erc20ABI, calls)
   return nonBnbPools.reduce(
