@@ -8,7 +8,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.taal,
     contractAddress: {
       1: '0x226b1eaf01a78396e190ebd9893b0d5a120aa678',
-      3: '0x9c4e0e5f046edd7bc65523b87e15b2490bff3f87',
+      3: '0x0994abd73141cac0768f61cd7b01e4f010d81aa2',
       4: '0x37d9a669338aD2f9e5ae553017CD03d423b03b59',
       8217: '',     // MasterChef
       1001: '0xab482a006d312d6796277d539fe87609065a2b93',

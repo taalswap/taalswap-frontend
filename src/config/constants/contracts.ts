@@ -1,14 +1,14 @@
 export default {
   masterChef: {
     1: '0x226b1eaf01a78396e190ebd9893b0d5a120aa678',
-    3: '0x9c4e0e5f046edd7bc65523b87e15b2490bff3f87',
+    3: '0x0994abd73141cac0768f61cd7b01e4f010d81aa2',
     4: '0x37d9a669338aD2f9e5ae553017CD03d423b03b59',
     56: '',
     1001: '0xab482a006d312d6796277d539fe87609065a2b93'
   },
   sousChef: {
     1: '0x8eaf1a122fadee20bd6c7fc5a6a8bc610d2368e9',
-    3: '0x90ed63c4768cd9e8202656ee3c1173e3a59abaec',
+    3: '0x7c92ab70dfa5970c8d0fd5994d7c0e3e4df9781e',
     4: '',
     56: '',
     1001: '0xb11a2c9a2be296c744333aa3a487b7ea3c4177fe'
@@ -36,7 +36,7 @@ export default {
   },
   multiCall: {
     1: '0xc72160167f700f842ddf553e06bc44186f42b929',
-    3: '0xe81bff6533419dca61cabcd26252eafec782ac00',
+    3: '0xE81BFF6533419DCA61cabCd26252EaFEc782aC00',
     4: '0x9B1265E5a12DED869CBe1934828aCe8388FA1362',
     8217: '',
     1001: '0x6943fa156da5a68c74696837666ae49c95712431'
@@ -99,7 +99,7 @@ export default {
   },
   cakeVault: {
     1: '0xe402ad1cce49e0b750ec9beb3a24c9e908f9c598',
-    3: '0xa847f6f15e6230e52b3ccf80b07db326aa4015b1',
+    3: '0xb2bd237e7f8357025d3f9a30abf638f6633c90e8',
     4: '0x07991dE7A71a77C591b3F2A35a994B3B81C5851B',
     8217: '',
     1001: '0xd444f9f6325b2f295b4fc5975058a368bde5e740'

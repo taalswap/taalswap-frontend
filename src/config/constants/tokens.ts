@@ -29,7 +29,7 @@ const tokens = {
     symbol: 'TAL',
     address: {
       1: '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d',
-      3: '0x2ccdf53b17cce1c1c37bdd0ff0f8320e8cea34ed',
+      3: '0xebd87e7c13b3aca572665140b6b12349112f0ce0',
       4: '0xe18e460d38441027b6672363d68c9088f3d773bf',
       8217: '',
       1001: '0xe8e2f5117297f3a330fd06fac88928b63bb84b09',   // getTaalAddress()에서 사용
@@ -77,7 +77,7 @@ const tokens = {
     symbol: 'USDC',
     address: {
       1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
-      3: '0x9c8fa1ee532f8afe9f2e27f06fd836f3c9572f71',
+      3: '0x2e3aa7718a95a48424c086e6f594c04624a798de',
       4: '0xd16431da4eafe953b4f34923cdb8d833fb1b2e7c',
       8217: '',
       1001: '',
@@ -101,7 +101,7 @@ const tokens = {
     symbol: 'SYRUP',
     address: {
       1: '0x6c49ff7da37991f080d1b170690b4bac5d0fc692',
-      3: '0x532d2649554598c9074ff6aa441e4f91749b6466',
+      3: '0x9e5daec08ad770a52e2ca740ea19788fef85ea32',
       4: '0x124bdb941df9fc548d99e21f727357e9c287772e',
       8217: '',
       1001: '0xca6e89be8c0033ebac09826d4c632af86f379cda',
@@ -113,7 +113,7 @@ const tokens = {
     symbol: 'USDT',
     address: {
       1: '0xdac17f958d2ee523a2206206994597c13d831ec7',
-      3: '0x897ad6a487bd9b490d537b3860860863ae414f1e',
+      3: '0x66b007ea82040320eff7d37bf31a2f7086c27d11',
       4: '0xc958c2ace36870471238319bc29018cc549c126d',
       8217: '',
       1001: ''
