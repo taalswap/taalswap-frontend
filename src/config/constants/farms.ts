@@ -10,7 +10,7 @@ const farmsConfig: FarmConfig[] = [
     lpSymbol: 'TAL',
     lpAddresses: {
       1: '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d',
-      3: '0x2ccdf53b17cce1c1c37bdd0ff0f8320e8cea34ed',
+      3: '0xebd87e7c13b3aca572665140b6b12349112f0ce0',
       4: '0xe18e460d38441027b6672363d68c9088f3d773bf',    // TaalToken
     },
     token: tokens.syrup,
@@ -21,7 +21,7 @@ const farmsConfig: FarmConfig[] = [
     lpSymbol: 'TAL-ETH LP',
     lpAddresses: {
       1: '0x5adda6b4e4966f1d8d0498c97aab54829999d65e',
-      3: '0x112ee1ffbaebc34e3131815f8f3772dc94ffb7f6',
+      3: '0xd849f4f9fd23708f849cf2d7f9f2069a24158793',
       4: '0x98d2c51626bdac2a257dda01a60deb51cee2cee6',
     },
     token: tokens.taal,
@@ -32,7 +32,7 @@ const farmsConfig: FarmConfig[] = [
     lpSymbol: 'USDC-ETH LP',
     lpAddresses: {
       1: '0x2d22e163ae5fd9c7b529e0864b69c204a895bc30',
-      3: '0x65f1eb2bcb4b1d9a043366de732f0f7e055d2fab',
+      3: '0xc34fd134bdd68ad96e8bb80bb85cf5f51e6ceb1f',
       4: '0x73b1501e0ab88dc81d95f8ed9aa67938afabda4b',
     },
     token: tokens.usdc,
@@ -43,7 +43,7 @@ const farmsConfig: FarmConfig[] = [
     lpSymbol: 'USDT-ETH LP',
     lpAddresses: {
       1: '0x5fee0c80d26cc393e48f0774a56f0362e82b76e4',
-      3: '0xaddb08d7f1c5c29243f85e7b400be6aacd3298f2',
+      3: '0x8c84586ce82795f592d41ae4ee5c32932068a992',
       4: '0x1a7bab68f22eb8f84e8920b120bec8130efd6db8',
     },
     token: tokens.usdt,
@@ -54,7 +54,7 @@ const farmsConfig: FarmConfig[] = [
     lpSymbol: 'TAL-USDC LP',
     lpAddresses: {
       1: '0x0eff6a9fbcebec4257e44115b3048bd4f8215eb7',
-      3: '0x93edb60a035a06dfa3224f6393e41d269bfebb0e',
+      3: '0x588492dc4c48d664975d0ed691bdebf9b71d9ccd',
       4: '0x036126bda6190605fadd2028caa8dd7be13c045a',
     },
     token: tokens.taal,
@@ -65,7 +65,7 @@ const farmsConfig: FarmConfig[] = [
     lpSymbol: 'TAL-USDT LP',
     lpAddresses: {
       1: '0xdfea645431b312aa0bbe41f23a31fac4f36517af',
-      3: '0x16036778bd039b0fb538b4326db2093fd6422f87',
+      3: '0x0951dbf1f71e26e1c480a27ed5593618e1f059bd',
       4: '0xa17d74b8ae149f08c8a1db09e4a55e158163fed1',
     },
     token: tokens.taal,
@@ -76,7 +76,7 @@ const farmsConfig: FarmConfig[] = [
     lpSymbol: 'USDT-USDC LP',
     lpAddresses: {
       1: '0x73a0ac4498ac839c6a93d36967638759da2be952',
-      3: '0xa066d6cb3c5ac43367a8fb548a78000d342492b0',
+      3: '0xc002144ff412f745350f4243a6c0b88a26ce3edc',
       4: '0xbac68c775b94b2999e8e2fdcda3ea5e57bbb9176',
     },
     token: tokens.usdt,
@@ -153,7 +153,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     lpSymbol: 'KTAL-KLAY LP',
     lpAddresses: {
       8217: '',
-      1001: '0x00c16cf4f9351eef2502c740cee3cdef713d4a7f',
+      1001: '0x87fe2963f988dcf8ce8d4b4e6b8596749e0ff890',
     },
     token: tokens.ktaal,
     quoteToken: tokens.wklay,
