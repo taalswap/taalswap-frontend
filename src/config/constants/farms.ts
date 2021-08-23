@@ -153,7 +153,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     lpSymbol: 'KTAL-KLAY LP',
     lpAddresses: {
       8217: '',
-      1001: '0x0e94264cb93aef1a87b8f2f45e8056b7890b7b7d',
+      1001: '0x00c16cf4f9351eef2502c740cee3cdef713d4a7f',
     },
     token: tokens.ktaal,
     quoteToken: tokens.wklay,
@@ -163,7 +163,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     lpSymbol: 'KLAY-KDAI LP',
     lpAddresses: {
       8217: '',
-      1001: '0x8781cf7cefd9755ed92fc810b118b328183d79ce'
+      1001: '0x16ed834606a8ccf4262fb13a59871602290fedf4'
     },
     token: tokens.kdai,
     quoteToken: tokens.wklay,
@@ -173,7 +173,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     lpSymbol: 'KLAY-KUSDT LP',
     lpAddresses: {
       8217: '',
-      1001: '0xd059f1854ea26b108ff06627dcf02833cca4246d',
+      1001: '0x0a8bb177be98f92cd899382d3d84a8120c4af8c5',
     },
     token: tokens.kusdt,
     quoteToken: tokens.wklay,
