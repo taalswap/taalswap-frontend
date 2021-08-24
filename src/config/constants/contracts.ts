@@ -36,8 +36,8 @@ export default {
   },
   multiCall: {
     1: '0xc72160167f700f842ddf553e06bc44186f42b929',
-    3: '0xE81BFF6533419DCA61cabCd26252EaFEc782aC00',
-    4: '0x9B1265E5a12DED869CBe1934828aCe8388FA1362',
+    3: '0xe81bff6533419dca61cabcd26252eafec782ac00',
+    4: '0x9b1265e5a12ded869cbe1934828ace8388fa1362',
     8217: '',
     1001: '0x6943fa156da5a68c74696837666ae49c95712431'
   },
