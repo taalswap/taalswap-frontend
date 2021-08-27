@@ -199,7 +199,6 @@ const Farms: React.FC = () => {
   const farmsStakedMemoized = useMemo(() => {
     let farmsStaked = []
 
-    console.log(chainId)
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'apr':
@@ -247,8 +246,7 @@ const Farms: React.FC = () => {
     stakedInactiveFarms,
     stakedOnly,
     stakedOnlyFarms,
-    numberOfFarmsVisible,
-    chainId
+    numberOfFarmsVisible
   ])
 
   useEffect(() => {

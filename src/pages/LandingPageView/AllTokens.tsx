@@ -167,7 +167,6 @@ const AllTokens = () => {
   const tokenTableRow = () => {
     const resultRow = []
     tokens.forEach((token) => {
-      //   console.log(token)
       if (token.symbol !== 'TAL') {
         const symbol = token.symbol === 'WETH' ? 'ETH' : token.symbol
         const name = token.name

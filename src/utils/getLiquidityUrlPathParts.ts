@@ -9,13 +9,19 @@ const getLiquidityUrlPathParts = ({ quoteTokenAddress, tokenAddress }) => {
   const chainId = chainIdStr === 'undefined'
     ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     : parseInt(chainIdStr, 10)
+  let CURRENCY
+  if (chainId > 1000) {
+    CURRENCY = 'KLAY'
+  } else {
+    CURRENCY = 'ETH'
+  }
 
   const wBNBAddressString = getWethAddress()
   const quoteTokenAddressString: string = quoteTokenAddress ? quoteTokenAddress[chainId] : null
   const tokenAddressString: string = tokenAddress ? tokenAddress[chainId] : null
   const firstPart =
-    !quoteTokenAddressString || quoteTokenAddressString === wBNBAddressString ? 'ETH' : quoteTokenAddressString
-  const secondPart = !tokenAddressString || tokenAddressString === wBNBAddressString ? 'ETH' : tokenAddressString
+    !quoteTokenAddressString || quoteTokenAddressString === wBNBAddressString ? CURRENCY : quoteTokenAddressString
+  const secondPart = !tokenAddressString || tokenAddressString === wBNBAddressString ? CURRENCY : tokenAddressString
   return `${firstPart}/${secondPart}`
 }
 
