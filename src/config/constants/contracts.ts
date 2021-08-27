@@ -11,7 +11,7 @@ export default {
     3: '0x7c92ab70dfa5970c8d0fd5994d7c0e3e4df9781e',
     4: '',
     8217: '',
-    1001: '0xb11a2c9a2be296c744333aa3a487b7ea3c4177fe'
+    1001: '0x3C353fb8c69Ba8B09808AFECBEbA510415B7a031'
   },
   lottery: {
     1: '',
