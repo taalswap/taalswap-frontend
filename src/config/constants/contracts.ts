@@ -3,14 +3,14 @@ export default {
     1: '0x226b1eaf01a78396e190ebd9893b0d5a120aa678',
     3: '0x0994abd73141cac0768f61cd7b01e4f010d81aa2',
     4: '0x37d9a669338aD2f9e5ae553017CD03d423b03b59',
-    56: '',
-    1001: '0xab482a006d312d6796277d539fe87609065a2b93'
+    8217: '',
+    1001: '0xD49a8fF2D69Bb6e564603c2F759094a74BEe1B57'
   },
   sousChef: {
     1: '0x8eaf1a122fadee20bd6c7fc5a6a8bc610d2368e9',
     3: '0x7c92ab70dfa5970c8d0fd5994d7c0e3e4df9781e',
     4: '',
-    56: '',
+    8217: '',
     1001: '0xb11a2c9a2be296c744333aa3a487b7ea3c4177fe'
   },
   lottery: {
@@ -102,7 +102,7 @@ export default {
     3: '0xb2bd237e7f8357025d3f9a30abf638f6633c90e8',
     4: '0x07991dE7A71a77C591b3F2A35a994B3B81C5851B',
     8217: '',
-    1001: '0xd444f9f6325b2f295b4fc5975058a368bde5e740'
+    1001: '0x4986aAe14209045CD53AcF8D15852A543900B5cb'
   },
   predictions: {
     1: '',

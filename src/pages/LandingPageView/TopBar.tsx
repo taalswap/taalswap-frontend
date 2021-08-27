@@ -19,7 +19,6 @@ const TopBar = () => {
   useEffect(() => {
     window.addEventListener('scroll', updateScroll)
   })
-  console.log(account)
   return (
     <div className={scrollPosition < 50 ? 'original_header' : 'change_header'}>
       <div className="tabbar_wrap">

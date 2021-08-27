@@ -32,7 +32,7 @@ const tokens = {
       3: '0xebd87e7c13b3aca572665140b6b12349112f0ce0',
       4: '0xe18e460d38441027b6672363d68c9088f3d773bf',
       8217: '',
-      1001: '0xe8e2f5117297f3a330fd06fac88928b63bb84b09',   // getTaalAddress()에서 사용
+      1001: '0x6C27d9F6C4067212797794CD931596C2917F7Bf7',   // getTaalAddress()에서 사용
     },
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
@@ -44,7 +44,7 @@ const tokens = {
       3: '',
       4: '',
       8217: '',
-      1001: '0xe8e2f5117297f3a330fd06fac88928b63bb84b09',
+      1001: '0x6C27d9F6C4067212797794CD931596C2917F7Bf7',
     },
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
@@ -104,7 +104,7 @@ const tokens = {
       3: '0x9e5daec08ad770a52e2ca740ea19788fef85ea32',
       4: '0x124bdb941df9fc548d99e21f727357e9c287772e',
       8217: '',
-      1001: '0xca6e89be8c0033ebac09826d4c632af86f379cda',
+      1001: '0xDc3eB77A4BCdb4603E4b2fd4BF30BDa67442C3d4',
     },
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
