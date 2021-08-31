@@ -357,7 +357,7 @@
   "unstaking fee until": "다음까지 예치 취소 수수료:",
   "unstaking fee if withdrawn within 72h": "72시간 내에 인출하는 경우 예치 취소 수수료",
   "%fee%% Unstaking Fee": "예치 취소 수수료 %fee%%",
-  "%fee%% unstaking fee until": "다음까지 예치 취소 수수료 %fee%%",
+  "%fee%% unstaking fee until": "3일 이내 예치 취소 수수료 : %fee%%",
   "%fee%% unstaking fee if withdrawn within 72h": "72시간 내에 인출할 경우 수수료 %fee%% 부과",
   "Unstaking fee: %fee%%": "예치 취소 수수료: %fee%%",
   "Performance Fee": "성과 수수료",
