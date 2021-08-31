@@ -57,10 +57,10 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
 
   const getRowText = (fee: number | '-') => {
     if (noFeeToPay) {
-      return t('Unstaking Fee').toLowerCase()
+      return t('%fee%% Unstaking Fee', { fee }).toLowerCase()
     }
     if (shouldShowTimer) {
-      return t('unstaking fee until')
+      return t('%fee%% unstaking fee until', { fee })
     }
     return t('%fee%% unstaking fee if withdrawn within 72h', { fee })
   }

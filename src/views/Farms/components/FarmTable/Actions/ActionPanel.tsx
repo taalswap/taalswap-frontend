@@ -60,7 +60,7 @@ const Container = styled.div<{ expanded }>`
   width: 100%;
   flex-direction: column-reverse;
   padding: 24px;
-  position:relative;
+  position: relative;
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
     padding: 16px 32px;
@@ -76,16 +76,16 @@ const StyledLinkExternalCSS = styled.div`
 
 const StyledLinkExternal = styled.div`
   font-weight: 400;
-  cursor:pointer;
-  display:flex;
-  justify-content:center;
-  margin-right:16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-right: 16px;
 `
 const StyledLinkExternal2 = styled.div`
   font-weight: 400;
-  cursor:pointer;
-  display:flex;
-  justify-content:center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
 `
 
 const StakeContainer = styled.div`
@@ -133,28 +133,28 @@ const ActionContainer = styled.div`
 `
 
 const InfoContainer = styled.div`
-  width:100%;
-  display:flex;
-  justify-content:space-evenly;
-  margin-top:24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 24px;
   ${({ theme }) => theme.mediaQueries.lg} {
-    width:auto;
+    width: auto;
     min-width: 160px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:initial;
-  margin-top:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: initial;
+    margin-top: 0;
   }
 `
 
 const ValueContainer = styled.div`
   display: block;
   background: ${({ theme }) => theme.colors.backgroundAlt};
-  margin:0 16px;
-  border-radius:8px;
-  box-sizing:border-box;
-  padding:16px;
+  margin: 0 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 16px;
   ${({ theme }) => theme.mediaQueries.lg} {
     display: none;
   }
@@ -163,10 +163,10 @@ const ValueContainer = styled.div`
 const ValueWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content:flex-end;
+  justify-content: flex-end;
   margin: 4px 0px;
-  > div{
-    justify-content:flex-end;
+  > div {
+    justify-content: flex-end;
   }
 `
 
@@ -223,7 +223,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <LpIcon2 />
             {isShown2 && (
               <div style={{ position: 'absolute', marginTop: '34px', color: '#00ab55', fontSize: '13px' }}>
-                View Contract
+                {t('View Contract')}
               </div>
             )}
           </StyledLinkExternal>
@@ -232,9 +232,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <StyledLinkExternal2 onMouseEnter={() => setIsShown3(true)} onMouseLeave={() => setIsShown3(false)}>
             <LpIcon3 />
             {isShown3 && (
-
-              <div style={{position:"absolute",marginTop:"34px",color:"#00ab55",fontSize:'13px'}}>
-                See Pair Info
+              <div style={{ position: 'absolute', marginTop: '34px', color: '#00ab55', fontSize: '13px' }}>
+                {t('See Pair Info')}
               </div>
             )}
           </StyledLinkExternal2>

@@ -86,7 +86,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
           <Text fontSize="14px">{inputTitle}</Text>
           <Text fontSize="14px">{t('Balance: %balance%', { balance: displayBalance(max) })}</Text>
         </Flex>
-        <Flex alignItems="flex-end" justifyContent="space-around">
+        <Flex alignItems="flex-end" justifyContent="space-around" alignContent="center">
           <StyledInput
             pattern="^[0-9]*[.,]?[0-9]*$"
             inputMode="decimal"
@@ -99,7 +99,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
           <Button scale="sm" onClick={onSelectMax} mr="8px">
             {t('Max')}
           </Button>
-          <Text fontSize="16px">{symbol}</Text>
+          <Text fontSize="14px">{symbol}</Text>
         </Flex>
       </StyledTokenInput>
       {isBalanceZero && (
