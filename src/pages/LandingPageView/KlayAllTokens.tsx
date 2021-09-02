@@ -213,7 +213,7 @@ const KlayAllTokens = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://api.taalswap.info/api/tokens', {
+      await fetch('https://api.taalswap.info/api/tokens ', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -301,7 +301,7 @@ const KlayAllTokens = () => {
               </TextStyle>
             </tr>
           ))}
-          <tr>
+          {/* <tr>
             <TextStyle colSpan={6} style={{ verticalAlign: 'middle', padding: '0px' }}>
               <ScrollButtonContainer>
                 <Button
@@ -314,7 +314,7 @@ const KlayAllTokens = () => {
                 </Button>
               </ScrollButtonContainer>
             </TextStyle>
-          </tr>
+          </tr> */}
         </tbody>
       </TableWrap>
     </div>

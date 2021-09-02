@@ -376,7 +376,7 @@ const KlayAllPairs = () => {
                 </TextStyle>
               </tr>
             ))}
-          <tr>
+          {/* <tr>
             <TextStyle colSpan={6} style={{ verticalAlign: 'middle', padding: '0px' }}>
               <ScrollButtonContainer>
                 <Button
@@ -389,7 +389,7 @@ const KlayAllPairs = () => {
                 </Button>
               </ScrollButtonContainer>
             </TextStyle>
-          </tr>
+          </tr> */}
         </tbody>
       </TableWrap>
     </div>
