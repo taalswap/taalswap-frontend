@@ -286,7 +286,7 @@ const KlayAllPairs = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('http://192.168.10.128:4000/api/pairs', {
+      await fetch('https://api.taalswap.info/api/pairs', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',

@@ -238,7 +238,7 @@ const SectionTop: React.FC = () => {
     async function fetchKlayTvlData() {
       let result = 0
       getTalStaked()
-      fetch('http://192.168.10.128:4000/api/tvl', {
+      fetch('https://api.taalswap.info/api/tvl', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',

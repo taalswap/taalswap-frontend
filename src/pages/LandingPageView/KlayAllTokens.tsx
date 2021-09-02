@@ -213,7 +213,7 @@ const KlayAllTokens = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('http://192.168.10.128:4000/api/tokens', {
+      await fetch('https://api.taalswap.info/api/tokens', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
