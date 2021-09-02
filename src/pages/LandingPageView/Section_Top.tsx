@@ -15,6 +15,7 @@ import {
   useFetchCakeVault,
   useFetchPublicPoolsData,
 } from 'state/hooks'
+
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import Balance from 'components/Balance'
 import BountyModal from 'views/Pools/components/BountyModal'
@@ -45,18 +46,44 @@ import info2Img04 from './images/info2_icon04.png'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
-const StyledTvlDic = styled.div`
+const StyledTotalTvlDiv = styled.div`
   display: flex;
   justify-content: flex-start;
   align-content: center;
   // align-items: center;
   color: red;
+  margin-bottom: 10px;
   ${({ theme }) => theme.mediaQueries.lg} {
     display: flex;
     justify-content: flex-start;
     color: blue;
   }
 `
+
+const StyledTvlItemsWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    flex-direction: row;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+`
+
+const StyledTvlItemDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 12px;
+  margin-right: 1.5rem;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    flex-direction: row;
+    font-size: 16px;
+  }
+`
+
 const Usewrap = styled.ul`
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
 `
@@ -96,12 +123,15 @@ const SectionTop: React.FC = () => {
     totalPendingCakeHarvest,
     fees: { callFee },
   } = useCakeVault()
+
   const { data: farmsLP, userDataLoaded } = useFarms()
   const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const [talTvl, setTalTvl] = useState(0)
+  const [ethTvl, setEthTvl] = useState(0)
+  const [klayTvl, setKlayTvl] = useState(0)
   const [talPrice, setTalPrice] = useState(0)
   const [talStakedTotal, setTalStakedTotal] = useState(0)
   const [maxApr, setMaxApr] = useState(0)
@@ -139,6 +169,7 @@ const SectionTop: React.FC = () => {
   usePollFarmsData(isArchived)
   useFetchPublicPoolsData()
   useFetchCakeVault()
+
   // Users with no wallet connected should see 0 as Earned amount
   // Connected users should see loading indicator until first userData has loaded
   const userDataReady = !account || (!!account && userDataLoaded)
@@ -182,7 +213,7 @@ const SectionTop: React.FC = () => {
   }, [pools, totalCakeInVault])
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchEthTvlData() {
       let result = 0
       getTalStaked()
       fetch('https://taalswap-info-api-black.vercel.app/api/tvl', {
@@ -198,10 +229,34 @@ const SectionTop: React.FC = () => {
           } else {
             result = parseFloat(response.data.tvl) + talStakedTotal * cakePrice.toNumber()
           }
-          setTalTvl(result)
+          setEthTvl(result)
         })
 
       setTalPrice(cakePrice.toNumber())
+    }
+
+    async function fetchKlayTvlData() {
+      let result = 0
+      getTalStaked()
+      fetch('http://192.168.10.128:4000/api/tvl', {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          result = parseFloat(response.data.tvl)
+
+          // if (cakePrice.isNaN()) {
+          //   result = parseFloat(response.data.tvl)
+          // } else {
+          //   result = parseFloat(response.data.tvl) + talStakedTotal * cakePrice.toNumber()
+          // }
+          setKlayTvl(result)
+        })
+
+      // setTalPrice(cakePrice.toNumber())
     }
 
     async function fetchData24h() {
@@ -218,9 +273,10 @@ const SectionTop: React.FC = () => {
         })
     }
 
-    fetchData()
+    fetchEthTvlData()
+    fetchKlayTvlData()
     fetchData24h()
-  }, [talTvl, setTalTvl, cakePrice, setTalPrice, talStakedTotal, getTalStaked])
+  }, [ethTvl, setEthTvl, cakePrice, setTalPrice, talStakedTotal, getTalStaked])
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
@@ -419,13 +475,28 @@ const SectionTop: React.FC = () => {
           </div>
           <div className="top_buyline">
             <p className="buy_name">{t('Total Value Locked (TVL)')}</p>
-            <StyledTvlDic className="buy_num">
+            <StyledTotalTvlDiv className="buy_num">
               <div>$</div>
               <div>
-                <CardValue value={talTvl} color="#005046" fontSize="45" decimals={0} />
+                <CardValue value={ethTvl + klayTvl} color="#005046" fontSize="45" decimals={0} />
               </div>
-            </StyledTvlDic>
-
+            </StyledTotalTvlDiv>
+            <StyledTvlItemsWrap>
+              <StyledTvlItemDiv>
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <span style={{ color: '#00ab55', marginRight: '5px' }}>Ethereum : </span>
+                  <span>$</span>
+                  <CardValue value={ethTvl} color="#005046" fontSize="45" decimals={0} />
+                </div>
+              </StyledTvlItemDiv>
+              <StyledTvlItemDiv>
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <span style={{ color: '#00ab55', marginRight: '5px' }}>Klaytn : </span>
+                  <span>$</span>
+                  <CardValue value={klayTvl} color="#005046" fontSize="45" decimals={0} />
+                </div>
+              </StyledTvlItemDiv>
+            </StyledTvlItemsWrap>
             <div className="buy_btnwrap">
               <Button
                 value={t('Buy TAL')}

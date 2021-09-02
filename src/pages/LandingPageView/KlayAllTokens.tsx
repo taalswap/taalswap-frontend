@@ -149,7 +149,7 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 
-const AllTokens = () => {
+const KlayAllTokens = () => {
   const { t } = useTranslation()
   const [tokens, setTokens] = useState([])
   const linkToURL = (url: string) => {
@@ -213,7 +213,7 @@ const AllTokens = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://taalswap-info-api-black.vercel.app/api/tokens', {
+      await fetch('http://192.168.10.128:4000/api/tokens', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -245,7 +245,7 @@ const AllTokens = () => {
         }}
       >
         <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
-          Ethereum All Tokens
+          Klaytn All Tokens
         </Txtcolor>
       </div>
 
@@ -305,7 +305,7 @@ const AllTokens = () => {
             <TextStyle colSpan={6} style={{ verticalAlign: 'middle', padding: '0px' }}>
               <ScrollButtonContainer>
                 <Button
-                  onClick={() => linkToURL('https://taalswap.info/tokens')}
+                  // onClick={() => linkToURL('https://taalswap.info/tokens')}
                   variant="text"
                   style={{ justifyContent: 'center' }}
                 >
@@ -321,4 +321,4 @@ const AllTokens = () => {
   )
 }
 
-export default AllTokens
+export default KlayAllTokens

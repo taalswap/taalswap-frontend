@@ -172,7 +172,7 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 
-const AllPairs = () => {
+const KlayAllPairs = () => {
   const { t } = useTranslation()
   const [pairs, setPairs] = useState([])
   const [pairsArray, setPairsArray] = useState([])
@@ -286,7 +286,7 @@ const AllPairs = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://taalswap-info-api-black.vercel.app/api/pairs', {
+      await fetch('http://192.168.10.128:4000/api/pairs', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -322,7 +322,7 @@ const AllPairs = () => {
         }}
       >
         <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
-          Ethereum All Pairs
+          Klaytn All Pairs
         </Txtcolor>
       </div>
 
@@ -380,7 +380,7 @@ const AllPairs = () => {
             <TextStyle colSpan={6} style={{ verticalAlign: 'middle', padding: '0px' }}>
               <ScrollButtonContainer>
                 <Button
-                  onClick={() => linkToURL('https://taalswap.info/pairs')}
+                  // onClick={() => linkToURL('https://taalswap.info/pairs')}
                   variant="text"
                   style={{ justifyContent: 'center' }}
                 >
@@ -396,4 +396,4 @@ const AllPairs = () => {
   )
 }
 
-export default AllPairs
+export default KlayAllPairs

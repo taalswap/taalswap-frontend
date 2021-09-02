@@ -16,6 +16,8 @@ import SubSection from './Sub_Section'
 import AllPairs from './AllPairs'
 import './App.css'
 import AllTokens from './AllTokens'
+import KlayAllTokens from './KlayAllTokens'
+import KlayAllPairs from './KlayAllPairs'
 
 const LandingPageView = () => {
   const { account } = useWeb3React()
@@ -42,6 +44,10 @@ const LandingPageView = () => {
       <div className="areafarms">
         <AllTokens />
         <AllPairs />
+      </div>
+      <div className="areafarms">
+        <KlayAllTokens />
+        <KlayAllPairs />
       </div>
       <SectionBottom />
       <SubSection />
