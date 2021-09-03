@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="145" height="140" viewBox="0 0 145 140">
+  <defs>
+    <radialGradient id="radial-gradient" cx="1" cy="1" r="1.414" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#00ae87"/>
+      <stop offset="1" stop-color="#0767b2"/>
+    </radialGradient>
+  </defs>
+  <g id="그룹_1002" data-name="그룹 1002" transform="translate(-1198 -41.063)">
+    <g id="ic_kusdt" transform="translate(1238 75.063)">
+      <path id="패스_528" data-name="패스 528" d="M0,0H95V96H0Z" transform="translate(5 7)" fill="none"/>
+      <g id="그룹_986" data-name="그룹 986" transform="translate(0)">
+        <rect id="Rectangle" width="105" height="106" rx="52.5" transform="translate(0)" fill="#fff"/>
+        <g id="usdt_icon" transform="translate(20.925 24.045)">
+          <path id="Fill-1" d="M31.183,31.383C15.065,31.383,2,29.028,2,26.122c0-2.508,9.738-4.6,22.768-5.132V30.53c2.056.083,4.221.128,6.416.128,2.178,0,4.324-.046,6.366-.128V20.988c13.055.524,22.817,2.622,22.817,5.134,0,2.906-13.066,5.26-29.184,5.26m31.183-4.962c0-2.9-10.64-5.32-24.8-5.888V12.372H56.338V0H6.028V12.372H24.8v8.161C10.64,21.1,0,23.521,0,26.421s10.64,5.319,24.8,5.888V58.368H37.565V32.309c14.16-.568,24.8-2.988,24.8-5.888" fill="#4fae95"/>
+          <g id="ORC" transform="translate(33.075 30.955)">
+            <circle id="Oval" cx="20" cy="20" r="20" fill="url(#radial-gradient)"/>
+            <path id="Combined-Shape" d="M6.58,17.144a1.077,1.077,0,0,1,1.074,1.08v.008H7.66s0,0,0,0a9.984,9.984,0,0,0,9.985,10.046h.05a1.08,1.08,0,0,1,0,2.16h-.044A12.14,12.14,0,0,1,5.508,18.413v-.189A1.077,1.077,0,0,1,6.58,17.144Zm11.36-6.65a7.481,7.481,0,1,1-7.46,7.482A7.471,7.471,0,0,1,17.94,10.494Zm0,3.163a4.319,4.319,0,1,0,4.306,4.319A4.312,4.312,0,0,0,17.94,13.657Zm10.776,6.258a1.108,1.108,0,1,1-1.105,1.109A1.107,1.107,0,0,1,28.716,19.915ZM18.235,5.506a12.173,12.173,0,0,1,12.137,12l0,.2c0,.005,0,.01,0,.016a1.074,1.074,0,1,1-2.148,0v-.016A10.021,10.021,0,0,0,18.4,7.668h-.215a1.08,1.08,0,0,1,0-2.16h.05ZM7.164,13.819a1.108,1.108,0,1,1-1.105,1.108A1.107,1.107,0,0,1,7.164,13.819Z" transform="translate(2.432 2.557)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g id="ic_klay" transform="translate(1198 41.063)">
+      <path id="패스_527" data-name="패스 527" d="M0,0H69.937V69.937H0Z" transform="translate(0.063 0.063)" fill="none"/>
+      <g id="그룹_985" data-name="그룹 985">
+        <rect id="Rectangle-2" data-name="Rectangle" width="69.79" height="69.79" fill="none"/>
+        <g id="_64_64" data-name="64*64" transform="translate(0.121 0.123)">
+          <path id="패스_172" d="M24.856,31.129l23.7,23.953a34.347,34.347,0,0,0,9.272-23.953A36.039,36.039,0,0,0,48.551,7.177Z" transform="translate(11.717 3.383)" fill="#6f6558"/>
+          <path id="패스_173" d="M31.14,24.681,7.7,48.119,31.14,57.906l23.438-9.787Z" transform="translate(3.631 11.634)" fill="#6f6558"/>
+          <path id="패스_174" d="M29.624,33.74,53.835,9.272,31.427,0,9.277,54.344Z" transform="translate(4.373)" fill="#6f6558"/>
+          <path id="패스_175" d="M0,34.017a34.889,34.889,0,0,0,9.272,23.7L32.71,1.05Z" transform="translate(0 0.495)" fill="#6f6558"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
