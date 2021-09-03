@@ -149,7 +149,9 @@ const InfoContainer = styled.div`
 `
 
 const ValueContainer = styled.div`
-  display: block;
+  // display: block;
+  display: flex;
+  justify-content: space-around;
   background: ${({ theme }) => theme.colors.backgroundAlt};
   margin: 0 16px;
   border-radius: 8px;
@@ -164,7 +166,8 @@ const ValueWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: 4px 0px;
+  // margin: 4px 0px;
+  // border: 1px solid red;
   > div {
     justify-content: flex-end;
   }

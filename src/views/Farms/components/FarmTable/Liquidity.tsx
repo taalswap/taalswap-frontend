@@ -13,10 +13,10 @@ export interface LiquidityProps {
 }
 
 const LiquidityWrapper = styled.div`
-  min-width: 85px;
+  // min-width: 85px;
   font-weight: 600;
   text-align: right;
-  font-size:14px;
+  font-size: 14px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     text-align: left;
@@ -37,15 +37,17 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
       <Skeleton width={60} />
     )
   const { t } = useTranslation()
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t('The total amount of liquidity in this farm'),
-    { placement: 'top-end', tooltipOffset: [20, 10] },
-  )
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('The total amount of liquidity in this farm'), {
+    placement: 'top-end',
+    tooltipOffset: [20, 10],
+  })
 
   return (
     <Container>
       <LiquidityWrapper>
-        <Text style={{fontSize:'14px'}}fontWeight='600'>{displayLiquidity}</Text>
+        <Text style={{ fontSize: '14px' }} fontWeight="600">
+          {displayLiquidity}
+        </Text>
       </LiquidityWrapper>
       <ReferenceElement ref={targetRef}>
         <HelpIcon color="textSubtle" />

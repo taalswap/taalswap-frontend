@@ -14,8 +14,8 @@ export interface MultiplierProps {
 
 const MultiplierWrapper = styled.div`
   color: ${({ theme }) => theme.colors.text};
-  width: 90px;
-
+  // width: 90px;
+  // border: 1px solid red;
   ${({ theme }) => theme.mediaQueries.lg} {
     margin-right: 0;
   }
@@ -26,9 +26,13 @@ const Container = styled.div`
   align-items: center;
 `
 
-const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier ,multiplierAvg}) => {
-  const count = multiplier!== undefined ? parseInt(multiplier.replace('X', '')) :0
-  const displayMultiplier = multiplier ? `${multiplier.toLowerCase()} (${((count/multiplierAvg)*100).toFixed(2)}%)` : <Skeleton width={30} />
+const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier, multiplierAvg }) => {
+  const count = multiplier !== undefined ? parseInt(multiplier.replace('X', '')) : 0
+  const displayMultiplier = multiplier ? (
+    `${multiplier.toLowerCase()} (${((count / multiplierAvg) * 100).toFixed(2)}%)`
+  ) : (
+    <Skeleton width={30} />
+  )
   const { t } = useTranslation()
   const tooltipContent = (
     <div>
