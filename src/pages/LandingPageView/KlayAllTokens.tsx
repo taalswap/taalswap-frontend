@@ -176,7 +176,6 @@ const KlayAllTokens = () => {
 
         const liquidity = parseFloat(token.liquidity)
 
-        // 토큰 icon address
         let path
         const tokenIcon = token.address.toLowerCase()
         if (
@@ -185,11 +184,13 @@ const KlayAllTokens = () => {
           // tokenIcon === '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d' ||
           // tokenIcon === '0x086b00cf35e8873636384cd2b424c39ae875a8a9'
         ) {
-          path = `https://taalswap.info/images/coins/${token.address.toLowerCase()}.png`
+          // path = `https://taalswap.info/images/coins/${token.address.toLowerCase()}.png`
+          path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.png`
         } else {
-          path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
-            token.address,
-          )}/logo.png`
+          // path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
+          //   token.address,
+          // )}/logo.png`
+          path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.svg`
         }
 
         const address = token.symbol === 'WETH' ? 'ETH' : token.address

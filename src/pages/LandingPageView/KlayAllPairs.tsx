@@ -192,21 +192,15 @@ const KlayAllPairs = () => {
     }
   }
 
-  const getTokenIconPath = (address) => {
+  const getTokenIconPath = (symbol) => {
     // 토큰 icon address
     let path
-    const tokenIcon = address.toLowerCase()
-    if (
-      tokenIcon === TAL_ADDRESS[ChainId.KLAYTN] ||
-      tokenIcon === TAL_ADDRESS[ChainId.BAOBAB]
-      // tokenIcon === '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d' ||
-      // tokenIcon === '0x086b00cf35e8873636384cd2b424c39ae875a8a9'
-    ) {
-      path = `https://taalswap.info/images/coins/${address.toLowerCase()}.png`
+
+    const tokenIcon = symbol.toLowerCase()
+    if (tokenIcon === TAL_ADDRESS[ChainId.KLAYTN] || tokenIcon === TAL_ADDRESS[ChainId.BAOBAB]) {
+      path = `${process.env.REACT_APP_INTERFACE}/images/coins/${symbol.toLowerCase()}.png`
     } else {
-      path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
-        address,
-      )}/logo.png`
+      path = `${process.env.REACT_APP_INTERFACE}/images/coins/${symbol.toLowerCase()}.svg`
     }
 
     return path
@@ -215,6 +209,7 @@ const KlayAllPairs = () => {
   const pairTableRow = () => {
     const resultRow = []
     pairs.forEach((pair) => {
+      console.log(pair)
       if (pair.base_symbol !== 'TAL' && pair.quote_symbol !== 'TAL') {
         const base_symbol = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_symbol
         const quote_symbol = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_symbol
@@ -240,8 +235,8 @@ const KlayAllPairs = () => {
 
         const volumn24h = pair.previous24hVolumeUSD
 
-        const baseSymbolPath = getTokenIconPath(pair.base_address)
-        const quoteSymbolPath = getTokenIconPath(pair.quote_address)
+        const baseSymbolPath = getTokenIconPath(pair.base_symbol)
+        const quoteSymbolPath = getTokenIconPath(pair.quote_symbol)
 
         // let prices = ''
         // if (pair.base_symbol === 'TSHP') {
