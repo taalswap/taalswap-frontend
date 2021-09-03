@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
-import TAL_ADDRESS from 'config/constants/taal';
+import TAL_ADDRESS from 'config/constants/taal'
 import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, ChevronUpIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
@@ -236,8 +236,8 @@ const AllPairs = () => {
 
         const deposit =
           quoteDeposit === 'ETH'
-            ? `${process.env.REACT_APP_INTERFACE}/#/add/${quoteDeposit}/${baseDeposit}`
-            : `${process.env.REACT_APP_INTERFACE}/#/add/${baseDeposit}/${quoteDeposit}`
+            ? `${process.env.REACT_APP_INTERFACE}/#/add/3/${quoteDeposit}/${baseDeposit}`
+            : `${process.env.REACT_APP_INTERFACE}/#/add/3/${baseDeposit}/${quoteDeposit}`
 
         const volumn24h = pair.previous24hVolumeUSD
 
@@ -254,7 +254,7 @@ const AllPairs = () => {
         //       : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
         // }
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${quoteDeposit}/${baseDeposit}`
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/3/${quoteDeposit}/${baseDeposit}`
 
         const temp = {
           name,
@@ -311,7 +311,7 @@ const AllPairs = () => {
     }
 
     // fetchETHPrice()
-      fetchData()
+    fetchData()
   }, [])
 
   return (

@@ -152,6 +152,7 @@ const ScrollButtonContainer = styled.div`
 const AllTokens = () => {
   const { t } = useTranslation()
   const [tokens, setTokens] = useState([])
+  const chainId = localStorage.getItem('chainId') === undefined ? '3' : localStorage.getItem('chainId')
   const linkToURL = (url: string) => {
     window.location.href = url
   }
@@ -190,8 +191,8 @@ const AllTokens = () => {
 
         const address = token.symbol === 'WETH' ? 'ETH' : token.address
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/0x00/${address}`
-        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/0x00/${address}`
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/3/0x00/${address}`
+        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/3/0x00/${address}`
 
         const temp = {
           name,

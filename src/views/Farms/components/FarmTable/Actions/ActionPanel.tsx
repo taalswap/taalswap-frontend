@@ -195,6 +195,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   // const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const { chainId } = useWeb3React()
   const lpAddress = farm.lpAddresses[chainId]
+  const curChainId = localStorage.getItem('chainId')
   const bsc = getBscScanAddressUrl(lpAddress)
   const info = `https://taalswap.info/pair/${lpAddress}`
   const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
@@ -209,7 +210,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         {isActive && (
           <StakeContainer>
             {/* <StyledLinkExternalNoIcon href={`http://localhost:3000/#/add/${liquidityUrlPathParts}`}> */}
-            <StyledLinkExternalNoIcon href={`${interfaceBaseUrl}/#/add/${liquidityUrlPathParts}`}>
+            <StyledLinkExternalNoIcon href={`${interfaceBaseUrl}/#/add/${curChainId}/${liquidityUrlPathParts}`}>
               <StyledLinkExternal onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
                 <LpIcon />
                 {isShown && (

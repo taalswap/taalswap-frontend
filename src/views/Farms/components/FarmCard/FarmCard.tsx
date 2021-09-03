@@ -101,6 +101,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
     tokenAddress: farm.token.address,
   })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+
   const { chainId } = useWeb3React()
   // const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const lpAddress = farm.lpAddresses[chainId]
@@ -144,7 +145,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
       <ExpandingWrapper expanded={showExpandableSection}>
         <DetailsSection
           removed={removed}
-          bscScanAddress={getBscScanAddressUrl(farm.lpAddresses[chainId])}   // process.env.REACT_APP_CHAIN_ID -> chainId
+          bscScanAddress={getBscScanAddressUrl(farm.lpAddresses[chainId])} // process.env.REACT_APP_CHAIN_ID -> chainId
           infoAddress={`https://taalswap.info/pair/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}

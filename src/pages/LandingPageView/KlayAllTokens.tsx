@@ -190,8 +190,8 @@ const KlayAllTokens = () => {
 
         const address = token.symbol === 'WETH' ? 'ETH' : token.address
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/0x00/${address}`
-        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/0x00/${address}`
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/1001/0x00/${address}`
+        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/1001/0x00/${address}`
 
         const temp = {
           name,

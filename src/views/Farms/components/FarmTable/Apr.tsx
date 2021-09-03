@@ -22,7 +22,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.text};
-  width:100px;
+  width: 100px;
   button {
     width: 20px;
     height: 20px;
@@ -49,6 +49,7 @@ const Apr: React.FC<AprProps> = ({
   hideButton = false,
 }) => {
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAddress, tokenAddress })
+
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   return originalValue !== 0 ? (

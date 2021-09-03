@@ -5,10 +5,8 @@ import { getWethAddress } from './addressHelpers'
 
 const getLiquidityUrlPathParts = ({ quoteTokenAddress, tokenAddress }) => {
   // const chainId = process.env.REACT_APP_CHAIN_ID
-  const chainIdStr = window.localStorage.getItem("chainId")
-  const chainId = chainIdStr === 'undefined'
-    ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-    : parseInt(chainIdStr, 10)
+  const chainIdStr = window.localStorage.getItem('chainId')
+  const chainId = chainIdStr === 'undefined' ? parseInt(process.env.REACT_APP_CHAIN_ID, 10) : parseInt(chainIdStr, 10)
   let CURRENCY
   if (chainId > 1000) {
     CURRENCY = 'KLAY'
@@ -22,7 +20,7 @@ const getLiquidityUrlPathParts = ({ quoteTokenAddress, tokenAddress }) => {
   const firstPart =
     !quoteTokenAddressString || quoteTokenAddressString === wBNBAddressString ? CURRENCY : quoteTokenAddressString
   const secondPart = !tokenAddressString || tokenAddressString === wBNBAddressString ? CURRENCY : tokenAddressString
-  return `${firstPart}/${secondPart}`
+  return `${chainId}/${firstPart}/${secondPart}`
 }
 
 export default getLiquidityUrlPathParts
