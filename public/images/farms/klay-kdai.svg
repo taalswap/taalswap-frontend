@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="145" height="140" viewBox="0 0 145 140">
+  <defs>
+    <linearGradient id="linear-gradient" x2="1.02" y2="1.01" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ec79ff"/>
+      <stop offset="1" stop-color="#6b99ff"/>
+    </linearGradient>
+  </defs>
+  <g id="그룹_1003" data-name="그룹 1003" transform="translate(-1364 -173)">
+    <g id="ic_klay" transform="translate(1364 173)">
+      <path id="패스_527" data-name="패스 527" d="M0,0H69.937V69.937H0Z" transform="translate(0.063 0.063)" fill="none"/>
+      <g id="그룹_985" data-name="그룹 985">
+        <rect id="Rectangle" width="69.79" height="69.79" fill="none"/>
+        <g id="_64_64" data-name="64*64" transform="translate(0.121 0.123)">
+          <path id="패스_172" d="M24.856,31.129l23.7,23.953a34.347,34.347,0,0,0,9.272-23.953A36.039,36.039,0,0,0,48.551,7.177Z" transform="translate(11.717 3.383)" fill="#6f6558"/>
+          <path id="패스_173" d="M31.14,24.681,7.7,48.119,31.14,57.906l23.438-9.787Z" transform="translate(3.631 11.634)" fill="#6f6558"/>
+          <path id="패스_174" d="M29.624,33.74,53.835,9.272,31.427,0,9.277,54.344Z" transform="translate(4.373)" fill="#6f6558"/>
+          <path id="패스_175" d="M0,34.017a34.889,34.889,0,0,0,9.272,23.7L32.71,1.05Z" transform="translate(0 0.495)" fill="#6f6558"/>
+        </g>
+      </g>
+    </g>
+    <g id="Page-1" transform="translate(1404 207)">
+      <g id="crypto">
+        <g id="kdai_icon">
+          <rect id="Rectangle-2" data-name="Rectangle" width="105" height="106" rx="52.5" fill="url(#linear-gradient)"/>
+          <path id="Fill-1" d="M64.047,44.513a17.956,17.956,0,0,1-.23,2.736H31.355V41.84H63.826a17.955,17.955,0,0,1,.221,2.673Zm-17.5,17.318H31.355V52.894H61.7a17.365,17.365,0,0,1-15.15,8.937ZM31.12,27.023H46.408A17.515,17.515,0,0,1,61.7,35.96H31.12ZM72.749,35.93H68.188A23.306,23.306,0,0,0,46.5,21.143H25.4V35.93H17.714v5.857H25.4v5.341H17.714v5.859H25.4V67.711H46.5A23.312,23.312,0,0,0,68.167,52.987h4.582V47.129H69.644a21.543,21.543,0,0,0,.009-5.341h3.1Z" transform="translate(7.414 8.219)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -200,7 +200,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
   },
   {
     pid: 6,
-    lpSymbol: 'KUSDT-DAI LP',
+    lpSymbol: 'KUSDT-KDAI LP',
     lpAddresses: {
       8217: '',
       1001: '0x506876e566637789BF88716230F0502CA5af5F88',

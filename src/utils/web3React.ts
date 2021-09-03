@@ -20,7 +20,7 @@ const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 8217, 1001
 const walletconnect = new WalletConnectConnector({
   rpc: {
     [ChainId.MAINNET]: rpcUrl,
-    [ChainId.KLAYTN]: 'https://kaikas.cypress.klaytn.net:8651/',
+    [ChainId.KLAYTN]: 'https://klaytn.taalswap.info:8651',
     [ChainId.BAOBAB]: 'https://api.baobab.klaytn.net:8651'
   },
   bridge: 'https://bridge.walletconnect.org',
