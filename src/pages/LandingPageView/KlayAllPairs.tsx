@@ -207,7 +207,6 @@ const KlayAllPairs = () => {
   }
 
   const pairTableRow = () => {
-    const curChainId = localStorage.getItem('chainId')
     const resultRow = []
     pairs.forEach((pair) => {
       if (pair.base_symbol !== 'TAL' && pair.quote_symbol !== 'TAL') {
@@ -230,8 +229,8 @@ const KlayAllPairs = () => {
 
         const deposit =
           quoteDeposit === 'ETH'
-            ? `${process.env.REACT_APP_INTERFACE}/#/add/${curChainId}/${quoteDeposit}/${baseDeposit}`
-            : `${process.env.REACT_APP_INTERFACE}/#/add/${curChainId}/${baseDeposit}/${quoteDeposit}`
+            ? `${process.env.REACT_APP_INTERFACE}/#/add/8217/${quoteDeposit}/${baseDeposit}`
+            : `${process.env.REACT_APP_INTERFACE}/#/add/8217/${baseDeposit}/${quoteDeposit}`
 
         const volumn24h = pair.previous24hVolumeUSD
 
@@ -248,7 +247,7 @@ const KlayAllPairs = () => {
         //       : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
         // }
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${curChainId}/${quoteDeposit}/${baseDeposit}`
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/8217/${quoteDeposit}/${baseDeposit}`
 
         const temp = {
           name,

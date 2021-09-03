@@ -167,7 +167,6 @@ const KlayAllTokens = () => {
   }
 
   const tokenTableRow = () => {
-    const curChainId = localStorage.getItem('chainId')
     const resultRow = []
     tokens.forEach((token) => {
       if (token.symbol !== 'TAL') {
@@ -196,8 +195,8 @@ const KlayAllTokens = () => {
 
         const address = token.symbol === 'WETH' ? 'ETH' : token.address
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${curChainId}/0x00/${address}`
-        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/${curChainId}/0x00/${address}`
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/8217/0x00/${address}`
+        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/8217/0x00/${address}`
 
         const temp = {
           name,
