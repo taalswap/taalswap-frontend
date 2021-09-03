@@ -4,6 +4,8 @@ import { ethers } from 'ethers'
 import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, ChevronUpIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
+import { ChainId } from 'taalswap-sdk'
+import TAL_ADDRESS from '../../config/constants/taal'
 
 const Txtcolor = styled.p`
   color: ${({ theme }) => theme.colors.logoColor};
@@ -178,8 +180,11 @@ const AllTokens = () => {
         let path
         const tokenIcon = token.address.toLowerCase()
         if (
-          tokenIcon === '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d' ||
-          tokenIcon === '0x086b00cf35e8873636384cd2b424c39ae875a8a9'
+          tokenIcon === TAL_ADDRESS[ChainId.MAINNET] ||
+          tokenIcon === TAL_ADDRESS[ChainId.ROPSTEN] ||
+          tokenIcon === TAL_ADDRESS[ChainId.RINKEBY]
+          // tokenIcon === '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d' ||
+          // tokenIcon === '0x086b00cf35e8873636384cd2b424c39ae875a8a9'
         ) {
           path = `https://taalswap.info/images/coins/${token.address.toLowerCase()}.png`
         } else {
