@@ -154,7 +154,7 @@ const ScrollButtonContainer = styled.div`
 const AllTokens = () => {
   const { t } = useTranslation()
   const [tokens, setTokens] = useState([])
-  const chainId = localStorage.getItem('chainId') === undefined ? '3' : localStorage.getItem('chainId')
+  const chainId = localStorage.getItem('chainId') === undefined ? process.env.EACT_APP_CHAIN_ID : localStorage.getItem('chainId')
   const linkToURL = (url: string) => {
     window.location.href = url
   }

@@ -145,7 +145,7 @@ const SectionTop: React.FC = () => {
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
   const cakePriceBusd = usePriceCakeBusd()
 
-  const curChainId = localStorage.getItem('chainId') === undefined ? '3' : localStorage.getItem('chainId')
+  const curChainId = localStorage.getItem('chainId') === undefined ? process.env.EACT_APP_CHAIN_ID : localStorage.getItem('chainId')
 
   const estimatedDollarBountyReward = useMemo(() => {
     return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)

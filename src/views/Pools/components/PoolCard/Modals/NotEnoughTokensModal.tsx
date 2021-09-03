@@ -17,7 +17,7 @@ const StyledLink = styled(Link)`
 const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol, onDismiss }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
-  const curChainId = localStorage.getItem('chainId') === undefined ? '3' : localStorage.getItem('chainId')
+  const curChainId = localStorage.getItem('chainId') === undefined ? process.env.REACT_APP_CHAIN_ID : localStorage.getItem('chainId')
 
   return (
     <Modal
