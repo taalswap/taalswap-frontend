@@ -67,7 +67,7 @@ export const setupNetwork = async (chainId: number) => {
                     symbol: 'KLAY',
                     decimals: 18,
                   },
-                  rpcUrls: ['https://kaikas.cypress.klaytn.net:8651'],
+                  rpcUrls: ['https://klaytn.taalswap.info:8651'],
                   blockExplorerUrls: ['https://scope.klaytn.com/'],
                 },
               ],
