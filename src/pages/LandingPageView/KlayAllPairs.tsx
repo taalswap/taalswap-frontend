@@ -98,7 +98,7 @@ const TextStyle = styled.td`
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
-    font-size: 14px;
+    font-size: 13px;
   }
   > a {
     font-size: auto;
@@ -209,7 +209,6 @@ const KlayAllPairs = () => {
   const pairTableRow = () => {
     const resultRow = []
     pairs.forEach((pair) => {
-      console.log(pair)
       if (pair.base_symbol !== 'TAL' && pair.quote_symbol !== 'TAL') {
         const base_symbol = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_symbol
         const quote_symbol = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_symbol
@@ -349,13 +348,6 @@ const KlayAllPairs = () => {
                 </TextStyle>
                 <TextStyle style={{ verticalAlign: 'middle' }}>
                   <CardValue value={pair.liquidity} decimals={0} fontSize="inherit" />
-                  {/* <div style={{ display: 'flex', alignItems: 'center' }}>
-                    {pair.price >= 1 ? (
-                      <CardValue value={pair.liquidity} decimals={2} fontSize="14px" />
-                    ) : (
-                      <CardValue value={pair.price} decimals={8} fontSize="14px" />
-                    )}
-                  </div> */}
                 </TextStyle>
                 <TextStyle style={{ verticalAlign: 'middle' }}>
                   <div style={{ display: 'flex', alignItems: 'center' }}>

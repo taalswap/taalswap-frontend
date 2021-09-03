@@ -98,7 +98,7 @@ const TextStyle = styled.td`
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
-    font-size: 14px;
+    font-size: 13px;
   }
   > a {
     font-size: auto;
