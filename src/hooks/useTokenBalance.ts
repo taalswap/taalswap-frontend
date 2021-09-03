@@ -10,6 +10,7 @@ import useLastUpdated from './useLastUpdated'
 import multicall from '../utils/multicall'
 import erc20ABI from '../config/abi/erc20.json'
 import lpTokenABI from '../config/abi/lpToken.json'
+import getChainId from '../utils/getChainId'
 
 type UseTokenBalanceState = {
   balance: BigNumber
@@ -75,6 +76,7 @@ export const useTotalSupply = () => {
 export const useTotalAssets = () => {
   const { account } = useWeb3React()
   const [totalAssets, setTotalAssets] = useState<number>()
+  const chainId = getChainId()
 
   useEffect(() => {
     async function fetchPairs() {
@@ -94,9 +96,32 @@ export const useTotalAssets = () => {
       return data
     }
 
+    async function fetchKlayPairs() {
+      const data = []
+      await fetch('https://api.taalswap.info/api/pairs', {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          Object.keys(response.data).forEach((key) => {
+            data.push(response.data[key])
+          })
+        })
+      return data
+    }
+
     async function fetchTotalAssets() {
       try {
-        const pairs = await fetchPairs()
+        // const pairs = await fetchPairs()
+        let pairs
+        if (chainId > 1000) {
+          pairs = await fetchKlayPairs()
+        } else {
+          pairs = await fetchPairs()
+        }
         const calls = await pairs.map((vt) => {
           const lpContractAddress = vt.pair_address
           return { address: lpContractAddress, name: 'balanceOf', params: [account] }
@@ -155,7 +180,7 @@ export const useTotalAssets = () => {
     }
 
     if (account !== undefined) fetchTotalAssets()
-  }, [account])
+  }, [account, chainId])
 
   return totalAssets
 }
@@ -186,7 +211,7 @@ export const useDeployerBalance = (tokenAddress: string) => {
   useEffect(() => {
     const fetchBalance = async () => {
       const contract = getBep20Contract(tokenAddress, web3)
-      const res = await contract.methods.balanceOf('0x1539e0A3Bb88cE47914C06c739862D7dAE6BB164').call()
+      const res = await contract.methods.balanceOf('0x1539e0A3Bb88cE47914C06c739862D7dAE6BB164').call()   // Tezor 01
       setBalance(new BigNumber(res))
     }
 
