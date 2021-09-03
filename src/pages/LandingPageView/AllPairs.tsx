@@ -215,6 +215,7 @@ const AllPairs = () => {
 
   const pairTableRow = () => {
     const resultRow = []
+    const curChainId = localStorage.getItem('chainId')
     pairs.forEach((pair) => {
       if (pair.base_symbol !== 'TAL' && pair.quote_symbol !== 'TAL') {
         const base_symbol = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_symbol
@@ -236,8 +237,8 @@ const AllPairs = () => {
 
         const deposit =
           quoteDeposit === 'ETH'
-            ? `${process.env.REACT_APP_INTERFACE}/#/add/3/${quoteDeposit}/${baseDeposit}`
-            : `${process.env.REACT_APP_INTERFACE}/#/add/3/${baseDeposit}/${quoteDeposit}`
+            ? `${process.env.REACT_APP_INTERFACE}/#/add/${curChainId}/${quoteDeposit}/${baseDeposit}`
+            : `${process.env.REACT_APP_INTERFACE}/#/add/${curChainId}/${baseDeposit}/${quoteDeposit}`
 
         const volumn24h = pair.previous24hVolumeUSD
 
@@ -254,7 +255,7 @@ const AllPairs = () => {
         //       : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
         // }
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/3/${quoteDeposit}/${baseDeposit}`
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${curChainId}/${quoteDeposit}/${baseDeposit}`
 
         const temp = {
           name,
