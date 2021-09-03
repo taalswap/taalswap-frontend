@@ -145,7 +145,7 @@ const SectionTop: React.FC = () => {
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
   const cakePriceBusd = usePriceCakeBusd()
 
-  const chainId = localStorage.getItem('chainId') === undefined ? '3' : localStorage.getItem('chainId')
+  const curChainId = localStorage.getItem('chainId') === undefined ? '3' : localStorage.getItem('chainId')
 
   const estimatedDollarBountyReward = useMemo(() => {
     return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)
@@ -502,7 +502,11 @@ const SectionTop: React.FC = () => {
             <div className="buy_btnwrap">
               <Button
                 value={t('Buy TAL')}
-                onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap/ETH/0x0`)}
+                onClick={() =>
+                  curChainId === '3'
+                    ? linkToURL(`${interfaceBaseUrl}/#/swap/3/ETH/0x00`)
+                    : linkToURL(`${interfaceBaseUrl}/#/swap/1001/KLAY/0x00`)
+                }
                 className="buy_Btn"
               >
                 {t('Buy')}

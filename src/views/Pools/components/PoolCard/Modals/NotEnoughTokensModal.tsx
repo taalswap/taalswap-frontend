@@ -17,6 +17,7 @@ const StyledLink = styled(Link)`
 const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol, onDismiss }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
+  const curChainId = localStorage.getItem('chainId') === undefined ? '3' : localStorage.getItem('chainId')
 
   return (
     <Modal
@@ -33,7 +34,7 @@ const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol
           symbol: tokenSymbol,
         })}
       </Text>
-      <Button mt="24px" as="a" external href={BASE_EXCHANGE_URL}>
+      <Button mt="24px" as="a" external href={`${BASE_EXCHANGE_URL}/#/swap`}>
         {t('Buy')} {tokenSymbol}
       </Button>
       {/* <StyledLink href="https://yieldwatch.net" external>
