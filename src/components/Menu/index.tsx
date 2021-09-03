@@ -36,7 +36,7 @@ const Menu = (props) => {
         showPip: !profile?.username,
       }}
       blockchaiun={process.env.REACT_APP_CHAIN_ID}
-      Klaytn={process.env.REACT_APP_KLAYTN_ID}
+      klaytn={process.env.REACT_APP_KLAYTN_ID}
       {...props}
     />
   )
