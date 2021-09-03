@@ -503,9 +503,9 @@ const SectionTop: React.FC = () => {
               <Button
                 value={t('Buy TAL')}
                 onClick={() =>
-                  curChainId === '3' || '1' || '4'
-                    ? linkToURL(`${interfaceBaseUrl}/#/swap/3/ETH/0x00`)
-                    : linkToURL(`${interfaceBaseUrl}/#/swap/1001/KLAY/0x00`)
+                  parseInt(curChainId) < 1000
+                    ? linkToURL(`${interfaceBaseUrl}/#/swap/${curChainId}/ETH/0x00`)
+                    : linkToURL(`${interfaceBaseUrl}/#/swap/${curChainId}/KLAY/0x00`)
                 }
                 className="buy_Btn"
               >

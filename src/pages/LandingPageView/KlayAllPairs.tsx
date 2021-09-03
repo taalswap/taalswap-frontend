@@ -210,8 +210,8 @@ const KlayAllPairs = () => {
     const resultRow = []
     pairs.forEach((pair) => {
       if (pair.base_symbol !== 'TAL' && pair.quote_symbol !== 'TAL') {
-        const base_symbol = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_symbol
-        const quote_symbol = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_symbol
+        const base_symbol = pair.base_symbol === 'WKLAY' ? 'KLAY' : pair.base_symbol
+        const quote_symbol = pair.quote_symbol === 'WKLAY' ? 'KLAY' : pair.quote_symbol
 
         const name = `${base_symbol}-${quote_symbol}`
 
@@ -224,13 +224,10 @@ const KlayAllPairs = () => {
 
         const liquidity = parseFloat(pair.liquidity)
 
-        const baseDeposit = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_address
-        const quoteDeposit = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_address
+        const baseDeposit = pair.base_symbol === 'WKLAY' ? 'KLAY' : pair.base_address
+        const quoteDeposit = pair.quote_symbol === 'WKLAY' ? 'KLAU' : pair.quote_address
 
-        const deposit =
-          quoteDeposit === 'ETH'
-            ? `${process.env.REACT_APP_INTERFACE}/#/add/8217/${quoteDeposit}/${baseDeposit}`
-            : `${process.env.REACT_APP_INTERFACE}/#/add/8217/${baseDeposit}/${quoteDeposit}`
+        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/${process.env.REACT_APP_KLAYTN_ID}/${baseDeposit}/${quoteDeposit}`
 
         const volumn24h = pair.previous24hVolumeUSD
 
@@ -247,7 +244,7 @@ const KlayAllPairs = () => {
         //       : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
         // }
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/8217/${quoteDeposit}/${baseDeposit}`
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${process.env.REACT_APP_KLAYTN_ID}/${quoteDeposit}/${baseDeposit}`
 
         const temp = {
           name,

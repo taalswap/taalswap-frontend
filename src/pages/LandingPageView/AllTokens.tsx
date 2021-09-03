@@ -197,8 +197,8 @@ const AllTokens = () => {
 
         const address = token.symbol === 'WETH' ? 'ETH' : token.address
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/1/0x00/${address}`
-        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/1/0x00/${address}`
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${process.env.REACT_APP_CHAIN_ID}/0x00/${address}`
+        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/${process.env.REACT_APP_CHAIN_ID}/0x00/${address}`
 
         const temp = {
           name,
