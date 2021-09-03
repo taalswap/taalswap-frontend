@@ -11,6 +11,7 @@ import multicall from '../utils/multicall'
 import erc20ABI from '../config/abi/erc20.json'
 import lpTokenABI from '../config/abi/lpToken.json'
 import getChainId from '../utils/getChainId'
+import getKlaytnApiUrl from '../utils/getKlaytnApiUrl'
 
 type UseTokenBalanceState = {
   balance: BigNumber
@@ -98,7 +99,7 @@ export const useTotalAssets = () => {
 
     async function fetchKlayPairs() {
       const data = []
-      await fetch('https://api.taalswap.info/api/pairs', {
+      await fetch(`${getKlaytnApiUrl()}/pairs`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',

@@ -6,6 +6,7 @@ import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, ChevronUpIcon } f
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 import { ChainId } from 'taalswap-sdk'
+import getKlaytnApiUrl from '../../utils/getKlaytnApiUrl'
 
 const Txtcolor = styled.p`
   color: ${({ theme }) => theme.colors.logoColor};
@@ -266,7 +267,7 @@ const KlayAllPairs = () => {
 
   useEffect(() => {
     async function fetchKLAYPrice() {
-      await fetch('https://api.taalswap.info/api/ethprice', {
+      await fetch(`${getKlaytnApiUrl()}/ethprice`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -281,7 +282,7 @@ const KlayAllPairs = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://api.taalswap.info/api/pairs', {
+      await fetch(`${getKlaytnApiUrl()}/pairs`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',

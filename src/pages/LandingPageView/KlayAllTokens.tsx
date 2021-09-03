@@ -6,6 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 import { ChainId } from 'taalswap-sdk'
 import TAL_ADDRESS from '../../config/constants/taal'
+import getKlaytnApiUrl from '../../utils/getKlaytnApiUrl'
 
 const Txtcolor = styled.p`
   color: ${({ theme }) => theme.colors.logoColor};
@@ -218,7 +219,7 @@ const KlayAllTokens = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://api.taalswap.info/api/tokens', {
+      await fetch(`${getKlaytnApiUrl()}/tokens`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',

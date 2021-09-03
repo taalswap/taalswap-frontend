@@ -78,6 +78,8 @@ export const setupNetwork = async (chainId: number) => {
           console.error(error)
           return false
         }
+      } else if (error.code === 4001) {
+        return false
       }
       return true
     }

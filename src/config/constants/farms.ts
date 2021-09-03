@@ -142,7 +142,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'KTAL',
     lpAddresses: {
-      8217: '',   // TaalToken
+      8217: '0x90a4a420732907b3c38b11058f9aa02b3f4121df',   // TaalToken
       1001: '0x6C27d9F6C4067212797794CD931596C2917F7Bf7',
     },
     token: tokens.syrup,
@@ -152,7 +152,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     pid: 1,
     lpSymbol: 'KTAL-KLAY LP',
     lpAddresses: {
-      8217: '',
+      8217: '0xc7e285914833d8e5e58b01fcd22e967fe91a3a97',
       1001: '0xf9abb3377EBC845a9e1878A0180af50E4D0Eed1b',
     },
     token: tokens.ktaal,
@@ -162,7 +162,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     pid: 2,
     lpSymbol: 'KLAY-KDAI LP',
     lpAddresses: {
-      8217: '',
+      8217: '0xb21f3305a5b35b46a875d3629751901bdd76b807',
       1001: '0x60746098CE92f2d166944216A5e9472C53C1e972'
     },
     token: tokens.kdai,
@@ -172,7 +172,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     pid: 3,
     lpSymbol: 'KLAY-KUSDT LP',
     lpAddresses: {
-      8217: '',
+      8217: '0x9c0e78bee9639396c85142a95a7569372f649c9a',
       1001: '0x282664424406814715E2D4AED9b8FB4a90102265',
     },
     token: tokens.kusdt,
@@ -182,7 +182,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     pid: 4,
     lpSymbol: 'KTAL-KDAI LP',
     lpAddresses: {
-      8217: '',
+      8217: '0xca74d757a5ca00080f87434fca85fbfb1c3b9a3a',
       1001: '0x0F3b8Bc13BdD1f71ae46781e6fC36917E32DFA92',
     },
     token: tokens.ktaal,
@@ -192,7 +192,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     pid: 5,
     lpSymbol: 'KTAL-KUSDT LP',
     lpAddresses: {
-      8217: '',
+      8217: '0x6965e1e6d4f107c311264e5f1906daeda0311473',
       1001: '0xB12474BE2b21114f9578F01032A8a650Ab0E1022',
     },
     token: tokens.ktaal,
@@ -202,7 +202,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
     pid: 6,
     lpSymbol: 'KUSDT-KDAI LP',
     lpAddresses: {
-      8217: '',
+      8217: '0xedb390f35d162272239e6b2c40e1320412eeff93',
       1001: '0x506876e566637789BF88716230F0502CA5af5F88',
     },
     token: tokens.kusdt,

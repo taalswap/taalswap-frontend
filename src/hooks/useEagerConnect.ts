@@ -37,10 +37,10 @@ const useEagerConnect = () => {
         return
       }
 
-      const chainIdConfig = window.localStorage.getItem("chainId")
-      if (chainIdConfig === 'undefined') {
-        window.localStorage.setItem("chainId", String(chainId))
-      }
+      const chainIdConfig = getChainId()
+      console.log('2============>', chainIdConfig)
+      window.localStorage.setItem("chainId", chainIdConfig.toString())
+
       login(connectorId)
     }
   }, [login, chainId])

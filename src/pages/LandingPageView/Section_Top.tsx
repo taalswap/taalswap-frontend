@@ -43,6 +43,7 @@ import info2Img01 from './images/info2_icon01.png'
 import info2Img02 from './images/info2_icon02.png'
 import info2Img03 from './images/info2_icon03.png'
 import info2Img04 from './images/info2_icon04.png'
+import getKlaytnApiUrl from '../../utils/getKlaytnApiUrl'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
@@ -240,7 +241,7 @@ const SectionTop: React.FC = () => {
     async function fetchKlayTvlData() {
       let result = 0
       getTalStaked()
-      fetch('https://api.taalswap.info/api/tvl', {
+      fetch(`${getKlaytnApiUrl()}/tvl`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
