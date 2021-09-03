@@ -28,6 +28,7 @@ const NotFound = lazy(() => import('./views/NotFound'))
 // const TradingCompetition = lazy(() => import('./views/TradingCompetition'))
 // const Predictions = lazy(() => import('./views/Predictions'))
 
+
 // This config is required for number formatting
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -105,7 +106,7 @@ const App: React.FC = () => {
                 <Route path="/prediction">
                   <Predictions />
                 </Route>
-                
+
 
                 <Route path="/syrup">
                   <Redirect to="/staking" />
