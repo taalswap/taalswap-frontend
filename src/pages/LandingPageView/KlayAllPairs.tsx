@@ -229,8 +229,8 @@ const KlayAllPairs = () => {
 
         const deposit =
           quoteDeposit === 'ETH'
-            ? `${process.env.REACT_APP_INTERFACE}/#/add/1001/${quoteDeposit}/${baseDeposit}`
-            : `${process.env.REACT_APP_INTERFACE}/#/add/1001/${baseDeposit}/${quoteDeposit}`
+            ? `${process.env.REACT_APP_INTERFACE}/#/add/8217/${quoteDeposit}/${baseDeposit}`
+            : `${process.env.REACT_APP_INTERFACE}/#/add/8217/${baseDeposit}/${quoteDeposit}`
 
         const volumn24h = pair.previous24hVolumeUSD
 
@@ -247,7 +247,7 @@ const KlayAllPairs = () => {
         //       : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
         // }
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/1001/${quoteDeposit}/${baseDeposit}`
+        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/8217/${quoteDeposit}/${baseDeposit}`
 
         const temp = {
           name,
