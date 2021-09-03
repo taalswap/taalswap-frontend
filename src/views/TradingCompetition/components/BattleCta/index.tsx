@@ -63,7 +63,7 @@ const BattleCta: React.FC<CompetitionProps> = ({
 }) => {
   const { t } = useTranslation()
   const { login, logout } = useAuth()
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, process.env.REACT_APP_CHAIN_ID, process.env.REACT_APP_KLAYTN_ID)
   const [onPresentRegisterModal] = useModal(
     <RegisterModal profile={profile} onRegisterSuccess={onRegisterSuccess} />,
     false,
