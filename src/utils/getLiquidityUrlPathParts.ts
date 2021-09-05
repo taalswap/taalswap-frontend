@@ -2,11 +2,12 @@
 // Each part of the url represents a different side of the LP pair.
 import { isUndefined, parseInt } from 'lodash'
 import { getWethAddress } from './addressHelpers'
+import getChainId from './getChainId'
 
 const getLiquidityUrlPathParts = ({ quoteTokenAddress, tokenAddress }) => {
   // const chainId = process.env.REACT_APP_CHAIN_ID
   const chainIdStr = window.localStorage.getItem('chainId')
-  const chainId = chainIdStr === 'undefined' ? parseInt(process.env.REACT_APP_CHAIN_ID, 10) : parseInt(chainIdStr, 10)
+  const chainId = getChainId()
   let CURRENCY
   if (chainId > 1000) {
     CURRENCY = 'KLAY'

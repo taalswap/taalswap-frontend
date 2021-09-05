@@ -2,14 +2,12 @@ import addresses from 'config/constants/contracts'
 import tokens from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
 import { isUndefined, parseInt } from 'lodash'
+import getChainId from './getChainId'
 
 export const getAddress = (address: Address): string => {
   const mainNetChainId = 1
   // const chainId = process.env.REACT_APP_CHAIN_ID
-  const chainIdStr = window.localStorage.getItem("chainId")
-  const chainId = chainIdStr === 'undefined'
-    ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-    : parseInt(chainIdStr, 10)
+  const chainId = getChainId()
   return address[chainId] ? address[chainId] : address[mainNetChainId]
 }
 

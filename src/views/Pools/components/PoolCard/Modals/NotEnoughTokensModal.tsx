@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Modal, Text, Button, OpenNewIcon, Link } from 'taalswap-uikit'
 import { BASE_EXCHANGE_URL } from 'config'
 import useTheme from 'hooks/useTheme'
+import getChainId from '../../../../../utils/getChainId'
 
 interface NotEnoughTokensModalProps {
   tokenSymbol: string
@@ -17,7 +18,7 @@ const StyledLink = styled(Link)`
 const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol, onDismiss }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
-  const curChainId = localStorage.getItem('chainId') === undefined ? process.env.REACT_APP_CHAIN_ID : localStorage.getItem('chainId')
+  const curChainId = getChainId()
 
   return (
     <Modal

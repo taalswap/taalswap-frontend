@@ -14,12 +14,11 @@ import {
   fetchFarmUserStakedBalances,
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
+import getChainId from '../../utils/getChainId'
 
 // const { chainId } = useWeb3React()
 const chainIdStr = window.localStorage.getItem("chainId")
-const chainId = chainIdStr === 'undefined'
-  ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-  : parseInt(chainIdStr, 10)
+const chainId = getChainId()
 
 let noAccountFarmConfig
 if (chainId > 1000) {

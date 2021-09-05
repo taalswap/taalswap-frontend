@@ -13,6 +13,7 @@ import multicall from './multicall'
 import { getWeb3NoAccount } from './web3'
 import { getBalanceAmount } from './formatBalance'
 import { BIG_TEN, BIG_ZERO } from './bigNumber'
+import getChainId from './getChainId'
 
 export const approve = async (lpContract, masterChefContract, account) => {
   return lpContract.methods
@@ -134,9 +135,7 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
 
 // const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 const chainIdStr = window.localStorage.getItem("chainId")
-const chainId = (chainIdStr === 'undefined' || !chainIdStr)
-  ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-  : parseInt(chainIdStr, 10)
+const chainId = getChainId()
 
 const cakeBnbPid = 1  // 251 -> 1
 let cakeBnbFarm

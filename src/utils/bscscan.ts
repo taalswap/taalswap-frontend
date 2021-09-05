@@ -1,10 +1,9 @@
 import { isUndefined, parseInt } from 'lodash'
 import { BASE_BSC_SCAN_URL, SCAN_URL } from 'config'
+import getChainId from './getChainId'
 
 const chainIdStr = window.localStorage.getItem("chainId")
-const chainId = chainIdStr === 'undefined'
-  ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-  : parseInt(chainIdStr, 10)
+const chainId = getChainId()
 
 export const getBscScanAddressUrl = (address: string) => {
   // return `${BASE_BSC_SCAN_URL}/address/${address}`

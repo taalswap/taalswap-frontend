@@ -37,6 +37,7 @@ const LandingPageView = () => {
         isDark={isDark}
         toggleTheme={toggleTheme}
         blockchain={process.env.REACT_APP_CHAIN_ID}
+        klaytn={process.env.REACT_APP_KLAYTN_ID}
       />
       <SectionTop />
       {/* <TableWrap />

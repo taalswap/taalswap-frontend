@@ -10,7 +10,6 @@ import { nodes } from './getRpcUrl'
 export const setupNetwork = async (chainId: number) => {
   const provider = (window as WindowChain).ethereum
   if (provider) {
-    // const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
