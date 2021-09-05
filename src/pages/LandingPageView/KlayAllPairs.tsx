@@ -226,7 +226,7 @@ const KlayAllPairs = () => {
         const liquidity = parseFloat(pair.liquidity)
 
         const baseDeposit = pair.base_symbol === 'WKLAY' ? 'KLAY' : pair.base_address
-        const quoteDeposit = pair.quote_symbol === 'WKLAY' ? 'KLAU' : pair.quote_address
+        const quoteDeposit = pair.quote_symbol === 'WKLAY' ? 'KLAY' : pair.quote_address
 
         const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/${process.env.REACT_APP_KLAYTN_ID}/${baseDeposit}/${quoteDeposit}`
 
