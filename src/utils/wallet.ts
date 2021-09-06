@@ -20,8 +20,7 @@ const addNetwork = async (chainId: number) => {
                 decimals: 18,
               },
               rpcUrls: [`${process.env.REACT_APP_NETWORK_URL}`],
-              blockExplorerUrls: [`${SCAN_URL[chainId]}/`],
-              chainType: "TaalSwap"
+              blockExplorerUrls: [`${SCAN_URL[chainId]}/`]
             },
           ],
         });
@@ -38,8 +37,7 @@ const addNetwork = async (chainId: number) => {
                 decimals: 18,
               },
               rpcUrls: ['https://api.baobab.klaytn.net:8651'],
-              blockExplorerUrls: ['https://baobab.scope.klaytn.com/'],
-              chainType: "TaalSwap"
+              blockExplorerUrls: ['https://baobab.scope.klaytn.com/']
             },
           ],
         });
@@ -56,8 +54,7 @@ const addNetwork = async (chainId: number) => {
                 decimals: 18,
               },
               rpcUrls: ['https://klaytn.taalswap.info:8651'],
-              blockExplorerUrls: ['https://scope.klaytn.com/'],
-              chainType: "TaalSwap"
+              blockExplorerUrls: ['https://scope.klaytn.com/']
             },
           ],
         });
