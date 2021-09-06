@@ -1,15 +1,13 @@
-import { ChainId } from 'taalswap-sdk'
-import getChainId from './getChainId'
 
 const getKlaytnApiUrl = () => {
-  const chainId = getChainId()
+  const chainId = process.env.REACT_APP_KLAYTN_ID
   let apiUrl
 
   switch(chainId) {
-    case ChainId.BAOBAB:
+    case "1001":
       apiUrl = 'https://api.taalswap.info/baobab/api'
       break
-    case ChainId.KLAYTN:
+    case "8217":
     default:
       apiUrl = 'https://api.taalswap.info/cypress/api'
       break
