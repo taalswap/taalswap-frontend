@@ -33,12 +33,10 @@ const useAuth = () => {
 
     if (connector) {
       if (refresh === 'true') {
-        console.log('1111111111111111111111', chainId)
         changeNet = await setupNetwork(chainId)
       }
       await activate(connector, async (error: Error) => {
         if (error instanceof UnsupportedChainIdError) {
-          console.log('22222222222222222')
           changeNet = await setupNetwork(chainId)
           if (changeNet) {
             activate(connector)
@@ -62,11 +60,9 @@ const useAuth = () => {
         }
       })
 
-      if (refresh === 'true') {
-        if (changeNet) {
+      if (refresh === 'true' && changeNet) {
           window.location.reload()
           window.localStorage.setItem("refresh", 'false')
-        }
       }
     } else {
       toastError(t('Unable to find connector'), t('The connector config is wrong'))

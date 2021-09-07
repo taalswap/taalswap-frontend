@@ -13,7 +13,6 @@ export const addNetwork = async (chainId: number) => {
   if (provider && provider.request) {
     try {
       if (chainId === ChainId.MAINNET || chainId === ChainId.ROPSTEN || chainId === ChainId.RINKEBY) {
-        console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
         await provider.request({
           method: 'wallet_addEthereumChain',
           params: [
@@ -31,7 +30,6 @@ export const addNetwork = async (chainId: number) => {
           ],
         })
       } else if (chainId === ChainId.BAOBAB) {
-        console.log('%%%%%%%%%%%%%%%%%%%%%')
         await provider.request({
           method: 'wallet_addEthereumChain',
           params: [
@@ -68,11 +66,9 @@ export const addNetwork = async (chainId: number) => {
       }
     } catch (addError) {
       // handle "add" error
-      console.error('================>', addError.code)
-      // if (addError === '-32602') return true
+      console.error(addError)
       switch (addError.code) {
         case -32602:
-          console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
           return true;
           break;
         default:
@@ -99,7 +95,6 @@ export const setupNetwork = async (chainId: number) => {
 
   if (provider) {
     try {
-      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
       await provider.request({
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: `0x${chainId.toString(16)}` }],
@@ -109,7 +104,6 @@ export const setupNetwork = async (chainId: number) => {
       if (error.code === 4902) {
         result = await addNetwork(chainId)
       } else if (error.code === 4001 || error instanceof UserRejectedRequestError) {
-        console.log('@@@@@@@@@@@@@@ recover')
         recoverChainId()
         return false
       }
