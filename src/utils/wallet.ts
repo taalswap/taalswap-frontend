@@ -1,13 +1,19 @@
 // Set of helper functions to facilitate wallet setup
 import { ChainId } from 'taalswap-sdk'
 import { BASE_BSC_SCAN_URL, SCAN_URL, NETWORK_NAME } from 'config'
-import { nodes } from './getRpcUrl'
+import { UserRejectedRequestError } from '@web3-react/injected-connector'
 
-const addNetwork = async (chainId: number) => {
+const recoverChainId = () => {
+  const prevChainId = window.localStorage.getItem('prevChainId')
+  window.localStorage.setItem('chainId', prevChainId)
+}
+
+export const addNetwork = async (chainId: number) => {
   const provider = (window as WindowChain).ethereum
   if (provider && provider.request) {
     try {
       if (chainId === ChainId.MAINNET || chainId === ChainId.ROPSTEN || chainId === ChainId.RINKEBY) {
+        console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
         await provider.request({
           method: 'wallet_addEthereumChain',
           params: [
@@ -23,8 +29,9 @@ const addNetwork = async (chainId: number) => {
               blockExplorerUrls: [`${SCAN_URL[chainId]}/`]
             },
           ],
-        });
+        })
       } else if (chainId === ChainId.BAOBAB) {
+        console.log('%%%%%%%%%%%%%%%%%%%%%')
         await provider.request({
           method: 'wallet_addEthereumChain',
           params: [
@@ -61,8 +68,17 @@ const addNetwork = async (chainId: number) => {
       }
     } catch (addError) {
       // handle "add" error
-      console.error(addError)
-      return false
+      console.error('================>', addError.code)
+      // if (addError === '-32602') return true
+      switch (addError.code) {
+        case -32602:
+          console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+          return true;
+          break;
+        default:
+          break;
+      }
+      return false;
     }
   } else {
     console.error("Can't setup the ethereum mainnet on metamask because window.ethereum is undefined")
@@ -77,27 +93,32 @@ const addNetwork = async (chainId: number) => {
  */
 export const setupNetwork = async (chainId: number) => {
   const provider = (window as WindowChain).ethereum
+  let result
+
+  result = await addNetwork(chainId)   // Talken
+
   if (provider) {
     try {
-      await addNetwork(chainId)   // Talken
+      console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
       await provider.request({
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: `0x${chainId.toString(16)}` }],
       })
-      return true
     } catch (error) {
       // This error code indicates that the chain has not been added to MetaMask.
       if (error.code === 4902) {
-        await addNetwork(chainId)
-      } else if (error.code === 4001) {
+        result = await addNetwork(chainId)
+      } else if (error.code === 4001 || error instanceof UserRejectedRequestError) {
+        console.log('@@@@@@@@@@@@@@ recover')
+        recoverChainId()
         return false
       }
-      return true
     }
   } else {
     console.error("Can't setup the ethereum mainnet on metamask because window.ethereum is undefined")
     return false
   }
+  return result
 }
 
 /**

@@ -41,6 +41,7 @@ const useEagerConnect = () => {
       console.log('2============>', chainIdConfig)
       window.localStorage.setItem("chainId", chainIdConfig.toString())
 
+      console.log('33333333333333333333')
       login(connectorId)
     }
   }, [login, chainId])

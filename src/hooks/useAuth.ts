@@ -19,11 +19,6 @@ import { useAppDispatch } from 'state'
 import { useTranslation } from 'contexts/Localization'
 import getChainId from '../utils/getChainId'
 
-const recoverChainId = () => {
-  const prevChainId = window.localStorage.getItem('prevChainId')
-  window.localStorage.setItem('chainId', prevChainId)
-}
-
 const useAuth = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
@@ -34,16 +29,18 @@ const useAuth = () => {
     const chainId = getChainId()
     const refresh = window.localStorage.getItem("refresh")
     const connector = connectorsByName[connectorID]
-    let changeNet = true
+    let changeNet
 
     if (connector) {
       if (refresh === 'true') {
+        console.log('1111111111111111111111', chainId)
         changeNet = await setupNetwork(chainId)
       }
       await activate(connector, async (error: Error) => {
         if (error instanceof UnsupportedChainIdError) {
-          const hasSetup = await setupNetwork(chainId)
-          if (hasSetup) {
+          console.log('22222222222222222')
+          changeNet = await setupNetwork(chainId)
+          if (changeNet) {
             activate(connector)
           }
         } else {
@@ -65,12 +62,11 @@ const useAuth = () => {
         }
       })
 
-      if (refresh === 'true' && changeNet) {
-        window.location.reload()
-        window.localStorage.setItem("refresh", 'false')
-      }
-      if (!changeNet) {
-        recoverChainId()
+      if (refresh === 'true') {
+        if (changeNet) {
+          window.location.reload()
+          window.localStorage.setItem("refresh", 'false')
+        }
       }
     } else {
       toastError(t('Unable to find connector'), t('The connector config is wrong'))

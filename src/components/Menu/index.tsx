@@ -35,7 +35,7 @@ const Menu = (props) => {
         noProfileLink: '/profile',
         showPip: !profile?.username,
       }}
-      blockchaiun={process.env.REACT_APP_CHAIN_ID}
+      blockchain={process.env.REACT_APP_CHAIN_ID}
       klaytn={process.env.REACT_APP_KLAYTN_ID}
       {...props}
     />

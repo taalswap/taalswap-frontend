@@ -3,7 +3,8 @@
 interface WindowChain {
   ethereum?: {
     isMetaMask?: true
-    request?: (...args: any[]) => void
+    chainId?: number
+    request?: (...args: any[]) => Promise<string[]>
     on?: (...args: any[]) => void
     removeListener?: (...args: any[]) => void
   }
