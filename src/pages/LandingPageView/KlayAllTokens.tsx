@@ -250,9 +250,16 @@ const KlayAllTokens = () => {
           borderBottom: '3px solid #00ab55',
         }}
       >
-        <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
-          Klaytn All Tokens
-        </Txtcolor>
+        <Inline className="section_tit">
+          <Image
+            alt="eth"
+            src={`${process.env.REACT_APP_INTERFACE}/images/coins/wklay.svg`}
+            width="24px"
+            height="24px"
+            style={{ marginRight: '10px' }}
+          />
+          <Txtcolor style={{ fontSize: '16px' }}>Klaytn All Tokens</Txtcolor>
+        </Inline>
       </div>
 
       <TableWrap>

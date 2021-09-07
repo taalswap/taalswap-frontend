@@ -154,7 +154,8 @@ const ScrollButtonContainer = styled.div`
 const AllTokens = () => {
   const { t } = useTranslation()
   const [tokens, setTokens] = useState([])
-  const chainId = localStorage.getItem('chainId') === undefined ? process.env.EACT_APP_CHAIN_ID : localStorage.getItem('chainId')
+  const chainId =
+    localStorage.getItem('chainId') === undefined ? process.env.EACT_APP_CHAIN_ID : localStorage.getItem('chainId')
   const linkToURL = (url: string) => {
     window.location.href = url
   }
@@ -249,11 +250,19 @@ const AllTokens = () => {
           display: 'flex',
           justifyContent: 'flex-start',
           borderBottom: '3px solid #00ab55',
+          alignItems: 'center',
         }}
       >
-        <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
-          Ethereum All Tokens
-        </Txtcolor>
+        <Inline className="section_tit">
+          <Image
+            alt="eth"
+            src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+            width="24px"
+            height="24px"
+            style={{ marginRight: '10px' }}
+          />
+          <Txtcolor style={{ fontSize: '16px' }}>Ethereum All Tokens</Txtcolor>
+        </Inline>
       </div>
 
       <TableWrap>

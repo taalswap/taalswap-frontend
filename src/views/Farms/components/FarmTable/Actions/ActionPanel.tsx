@@ -210,7 +210,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         {isActive && (
           <StakeContainer>
             {/* <StyledLinkExternalNoIcon href={`http://localhost:3000/#/add/${liquidityUrlPathParts}`}> */}
-            <StyledLinkExternalNoIcon href={`${interfaceBaseUrl}/#/add/${curChainId}/${liquidityUrlPathParts}`}>
+            <StyledLinkExternalNoIcon href={`${interfaceBaseUrl}/#/add/${liquidityUrlPathParts}`}>
               <StyledLinkExternal onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
                 <LpIcon />
                 {isShown && (
