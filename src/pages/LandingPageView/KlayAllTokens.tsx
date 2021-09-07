@@ -171,7 +171,7 @@ const KlayAllTokens = () => {
     const resultRow = []
     tokens.forEach((token) => {
       if (token.symbol !== 'TAL') {
-        const symbol = token.symbol === 'WETH' ? 'ETH' : token.symbol
+        const symbol = token.symbol === 'WKLAY' ? 'KLAY' : token.symbol
         const name = token.name
         const price = token.price
 
@@ -194,7 +194,7 @@ const KlayAllTokens = () => {
           path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.svg`
         }
 
-        const address = token.symbol === 'WETH' ? 'ETH' : token.address
+        const address = token.symbol === 'WKLAY' ? 'KLAY' : token.address
 
         const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
         const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
