@@ -187,11 +187,13 @@ const KlayAllTokens = () => {
         ) {
           // path = `https://taalswap.info/images/coins/${token.address.toLowerCase()}.png`
           path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.png`
+        } else if (token.symbol.toLowerCase() === 'ktalk') {
+          path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.png`
         } else {
-          // path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
-          //   token.address,
-          // )}/logo.png`
-          path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.svg`
+            // path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
+            //   token.address,
+            // )}/logo.png`
+            path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.svg`
         }
 
         const address = token.symbol === 'WKLAY' ? 'KLAY' : token.address
