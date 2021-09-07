@@ -73,6 +73,17 @@ const TitleIconStyle = styled.th`
   }
 `
 
+const Image = styled.img`
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: block;
+  }
+`
+
 const TextStyle = styled.td`
   color: ${({ theme }) => theme.colors.logoColor};
   padding: 24px 6px 24px 6px;
@@ -113,6 +124,13 @@ const TextPairStyle = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 20px;
   }
+`
+
+const Inline = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: center;
+  margin-right: 10px;
 `
 
 const TextIconStyle = styled.td`
@@ -324,9 +342,16 @@ const AllPairs = () => {
           // paddingBottom: '0px',
         }}
       >
-        <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
-          Ethereum All Pairs
-        </Txtcolor>
+        <Inline className="section_tit">
+          <Image
+            alt="eth"
+            src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+            width="24px"
+            height="24px"
+            style={{ marginRight: '10px' }}
+          />
+          <Txtcolor style={{ fontSize: '16px' }}>Ethereum All Pairs</Txtcolor>
+        </Inline>
       </div>
 
       <TableWrap>

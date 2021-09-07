@@ -174,6 +174,23 @@ const ScrollButtonContainer = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
 `
+const Inline = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: center;
+  margin-right: 10px;
+`
+
+const Image = styled.img`
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: block;
+  }
+`
 
 const KlayAllPairs = () => {
   const { t } = useTranslation()
@@ -317,9 +334,16 @@ const KlayAllPairs = () => {
           // paddingBottom: '0px',
         }}
       >
-        <Txtcolor className="section_tit" style={{ fontSize: '16px' }}>
-          Klaytn All Pairs
-        </Txtcolor>
+        <Inline className="section_tit">
+          <Image
+            alt="eth"
+            src={`${process.env.REACT_APP_INTERFACE}/images/coins/wklay.svg`}
+            width="24px"
+            height="24px"
+            style={{ marginRight: '10px' }}
+          />
+          <Txtcolor style={{ fontSize: '16px' }}>Klaytn All Pairs</Txtcolor>
+        </Inline>
       </div>
 
       <TableWrap>
