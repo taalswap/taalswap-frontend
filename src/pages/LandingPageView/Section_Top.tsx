@@ -137,7 +137,11 @@ const SectionTop: React.FC = () => {
   const [talStakedTotal, setTalStakedTotal] = useState(0)
   const [maxApr, setMaxApr] = useState(0)
   const [transactions24, setTransactions24] = useState(0)
+  const [transactions24Eth, setTransactions24Eth] = useState(0)
+  const [transactions24Klay, setTransactions24Klay] = useState(0)
   const [volumeUSD24, setVolumeUSD24] = useState(0)
+  const [volumeUSD24Eth, setVolumeUSD24Eth] = useState(0)
+  const [volumeUSD24Klay, setVolumeUSD24Klay] = useState(0)
   const [pendingTx, setPendingTx] = useState(false)
   const [myAssets, setMyAssets] = useState(0)
 
@@ -146,7 +150,8 @@ const SectionTop: React.FC = () => {
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
   const cakePriceBusd = usePriceCakeBusd()
 
-  const curChainId = localStorage.getItem('chainId') === undefined ? process.env.EACT_APP_CHAIN_ID : localStorage.getItem('chainId')
+  const curChainId =
+    localStorage.getItem('chainId') === undefined ? process.env.EACT_APP_CHAIN_ID : localStorage.getItem('chainId')
 
   const estimatedDollarBountyReward = useMemo(() => {
     return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)
@@ -262,8 +267,13 @@ const SectionTop: React.FC = () => {
       // setTalPrice(cakePrice.toNumber())
     }
 
+    fetchEthTvlData()
+    fetchKlayTvlData()
+  }, [ethTvl, setEthTvl, cakePrice, setTalPrice, talStakedTotal, getTalStaked])
+
+  useEffect(() => {
     async function fetchData24h() {
-      fetch('https://taalswap-info-api-black.vercel.app/api/daily', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/daily', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -271,15 +281,28 @@ const SectionTop: React.FC = () => {
       })
         .then((response) => response.json())
         .then((response) => {
-          setTransactions24(response.data.transactions)
-          setVolumeUSD24(response.data.volumeUSD)
+          setTransactions24Eth(response.data.transactions)
+          setVolumeUSD24Eth(response.data.volumeUSD)
         })
+
+      await fetch(`${getKlaytnApiUrl()}/daily`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setTransactions24Klay(response.data.transactions)
+          setVolumeUSD24Klay(response.data.volumeUSD)
+        })
+
+      setTransactions24(transactions24Eth + transactions24Klay)
+      setVolumeUSD24(Math.floor(volumeUSD24Eth) + Math.floor(volumeUSD24Klay))
     }
 
-    fetchEthTvlData()
-    fetchKlayTvlData()
     fetchData24h()
-  }, [ethTvl, setEthTvl, cakePrice, setTalPrice, talStakedTotal, getTalStaked])
+  }, [transactions24Eth, transactions24Klay, volumeUSD24Eth, volumeUSD24Klay])
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
