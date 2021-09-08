@@ -275,48 +275,50 @@ const AllTokens = () => {
             <TitleStyle style={{ textAlign: 'center' }}>{t('Swap')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('LP')}</TitleStyle>
           </tr>
-          {tokenTableRow().map((token) => (
-            <tr key={token.symbol}>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
-                <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                  <Inline>
-                    <Image alt={token.name} src={token.path} width="24px" height="24px" />
-                  </Inline>
-                  {token.symbol}
-                </div>
-              </TextStyle>
-              {/* <TextStyle style={{ verticalAlign: 'middle' }}>
+          {tokenTableRow()
+            .sort((tokenA, tokenB) => tokenB.liquidity - tokenA.liquidity)
+            .map((token) => (
+              <tr key={token.symbol}>
+                <TextStyle style={{ verticalAlign: 'middle' }}>
+                  <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                    <Inline>
+                      <Image alt={token.name} src={token.path} width="24px" height="24px" />
+                    </Inline>
+                    {token.symbol}
+                  </div>
+                </TextStyle>
+                {/* <TextStyle style={{ verticalAlign: 'middle' }}>
                 <div style={{ display: 'flex', alignItems: 'left' }}>{token.name}</div>
               </TextStyle> */}
-              <TextStyle style={{ verticalAlign: 'middle' }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {/* <span style={{ marginRight: '5px' }}>$</span> */}
-                  <CardValue value={token.liquidity} decimals={0} fontSize="inherit" />
-                </div>
-              </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle' }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {/* <span style={{ marginRight: '5px' }}>$</span> */}
-                  {/* <CardValue value={parseFloat(formattedNum(token.price))} decimals={2} fontSize="14px" /> */}
-                  {token.price >= 1 ? (
-                    <CardValue value={token.price} decimals={2} fontSize="inherit" />
-                  ) : (
-                    <CardValue value={token.price} decimals={4} fontSize="inherit" />
-                  )}
-                </div>
-              </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                <IconButton onClick={() => linkToURL(token.prices)} variant="text" scale="sm" ml="4px">
-                  <SyncAltIcon width="18px" />
-                </IconButton>
-              </TextStyle>
-              <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                <IconButton onClick={() => linkToURL(token.deposit)} variant="text" scale="sm" ml="4px">
-                  <AddIcon width="18px" />
-                </IconButton>
-              </TextStyle>
-            </tr>
-          ))}
+                <TextStyle style={{ verticalAlign: 'middle' }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <span style={{ marginRight: '5px' }}>$</span> */}
+                    <CardValue value={token.liquidity} decimals={0} fontSize="inherit" />
+                  </div>
+                </TextStyle>
+                <TextStyle style={{ verticalAlign: 'middle' }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <span style={{ marginRight: '5px' }}>$</span> */}
+                    {/* <CardValue value={parseFloat(formattedNum(token.price))} decimals={2} fontSize="14px" /> */}
+                    {token.price >= 1 ? (
+                      <CardValue value={token.price} decimals={2} fontSize="inherit" />
+                    ) : (
+                      <CardValue value={token.price} decimals={4} fontSize="inherit" />
+                    )}
+                  </div>
+                </TextStyle>
+                <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                  <IconButton onClick={() => linkToURL(token.prices)} variant="text" scale="sm" ml="4px">
+                    <SyncAltIcon width="18px" />
+                  </IconButton>
+                </TextStyle>
+                <TextStyle style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                  <IconButton onClick={() => linkToURL(token.deposit)} variant="text" scale="sm" ml="4px">
+                    <AddIcon width="18px" />
+                  </IconButton>
+                </TextStyle>
+              </tr>
+            ))}
           <tr>
             <TextStyle colSpan={6} style={{ verticalAlign: 'middle', padding: '0px' }}>
               <ScrollButtonContainer>
