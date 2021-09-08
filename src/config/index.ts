@@ -32,8 +32,9 @@ export const BASE_BSC_SCAN_URL = 'https://etherscan.io'
 export const LOTTERY_MAX_NUMBER_OF_TICKETS = 50
 export const LOTTERY_TICKET_PRICE = 1
 export const DEFAULT_TOKEN_DECIMAL = BIG_TEN.pow(18)
-export const DEFAULT_GAS_LIMIT = 50000000000   // 50000000000
-export const DEFAULT_GAS_PRICE = 25         // 50
+export const DEFAULT_GAS_LIMIT = 200000   // 50000000000
+
+export const DEFAULT_GAS_PRICE = 300         // 50
 export const SCAN_URL = {
   [ChainId.MAINNET]: 'https://etherscan.io',
   [ChainId.ROPSTEN]: 'https://ropsten.etherscan.io',
