@@ -211,16 +211,15 @@ export const useTotalAssets = () => {
         })
         let assets = 0
         await filterdPairs.forEach((pair, idx) => {
-          const token0 = new Token(1, pair.base_address, pair.base_decimals)
-          const token1 = new Token(1, pair.quote_address, pair.quote_decimals)
+          const token0 = new Token(8217, pair.base_address, pair.base_decimals)
+          const token1 = new Token(8217, pair.quote_address, pair.quote_decimals)
           const lpPair: Pair = new Pair(
             new TokenAmount(token0, pair.reserve0.toString()),
             new TokenAmount(token1, pair.reserve1.toString()),
           )
 
-          const lpToken = new Token(1, pair.pair_address, 18)
+          const lpToken = new Token(8217, pair.pair_address, 18)
           const totalSupply = new TokenAmount(lpToken, JSBI.BigInt(pair.total_supply))
-
           const liquidity = new TokenAmount(lpToken, JSBI.BigInt(pair.balance))
 
           const token0value = lpPair.getLiquidityValue(token0, totalSupply, liquidity, false)
@@ -231,7 +230,7 @@ export const useTotalAssets = () => {
             parseFloat(token1value.toSignificant(6)) * pair.quote_price
           assets += value
         })
-        setTotalAssets(assets)
+        return assets
       } catch (e) {
         console.log(e)
       }
