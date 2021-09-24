@@ -109,7 +109,7 @@ const TextStyle = styled.td`
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
-    font-size: 13px;
+    font-size: 14px;
   }
   > a {
     font-size: auto;
@@ -175,6 +175,12 @@ const HigherLogo = styled.img`
   background-color: white;
   border-radius: 50%;
   border: 1px solid #e3e1e1;
+
+  @media screen and (max-width:500px){
+    display:inline-block;
+    max-width: 19px !important;
+    max-height: 19px !important;
+  }
 `
 
 const CoveredLogo = styled.img`
@@ -370,8 +376,8 @@ const AllPairs = () => {
                 <TextStyle style={{ verticalAlign: 'middle' }}>
                   <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                     <TokenWrapper>
-                      <HigherLogo src={pair.baseSymbolPath} alt="test" width="19px" height="19px" />
-                      <CoveredLogo src={pair.quoteSymbolPath} alt="test" width="19px" height="19px" />
+                      <HigherLogo src={pair.baseSymbolPath} alt="test" width="19px" height="19px" style={{ maxHeight:"19px", }}/>
+                      <CoveredLogo src={pair.quoteSymbolPath} alt="test" width="19px" height="19px" style={{ maxHeight:"19px", }}/>
                     </TokenWrapper>
                     <TextPairStyle>{pair.name}</TextPairStyle>
                   </div>
