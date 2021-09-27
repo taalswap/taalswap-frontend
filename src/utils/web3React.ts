@@ -15,7 +15,7 @@ const rpcUrl = getNodeUrl()
 //       all related codes should be modified at first (taalswap-sdk contract addresses, etc.)
 //       supportedChainIds: [1] = metamask wallet_switchEthereumChain API works to all others except mainnet
 // const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4] })
-const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 8217, 1001] })
+export const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 8217, 1001] })
 
 const walletconnect = new WalletConnectConnector({
   rpc: {

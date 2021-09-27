@@ -2,7 +2,7 @@ import React, { lazy } from 'react'
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import { ResetCSS } from 'taalswap-uikit'
 import BigNumber from 'bignumber.js'
-import useEagerConnect from 'hooks/useEagerConnect'
+import { useEagerConnect, useInactiveListenerNew } from 'hooks/useEagerConnect'
 import { usePollCoreFarmData, useFetchProfile, usePollBlockNumber } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -37,6 +37,8 @@ BigNumber.config({
 const App: React.FC = () => {
   usePollBlockNumber()
   useEagerConnect()
+  // When turn off Metamask listener just comment out the below line
+  useInactiveListenerNew(false)
   useFetchProfile()
   usePollCoreFarmData()
 
