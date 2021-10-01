@@ -120,9 +120,9 @@ const TextStyle = styled.td`
 `
 
 const TextPairStyle = styled.div`
-  margin-left: 17.5px;
+  margin-left: 10px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 `
 
@@ -161,34 +161,58 @@ const BTextStyle = styled.td`
   width: 100%;
 `
 
-const TokenWrapper = styled.div`
-  position: relative;
+const TokenParentWrapper = styled.div`
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+  @media screen and (max-width:500px){
+   
+  }
+`;
+
+const TokenWrapper = styled.div`
+  //position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   flex-direction: row;
+  
   ${({ theme }) => theme.mediaQueries.sm} {
     display: flex;
   }
 `
 
 const HigherLogo = styled.img`
-  z-index: 2;
+  width: 19px;
+  height: 19px;
+  max-width: none;  
   background-color: white;
   border-radius: 50%;
   border: 1px solid #e3e1e1;
+  z-index: 2;
 
-  @media screen and (max-width:500px){
-    display:inline-block;
-    max-width: 19px !important;
-    max-height: 19px !important;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 24px;
+    height: 24px;
   }
 `
 
 const CoveredLogo = styled.img`
-  position: absolute;
-  left: 15px;
+  //position: absolute;
+  //left: 15px;
+  width: 19px;
+  height: 19px;
+  max-width: none;  
   background-color: white;
   border-radius: 50%;
   border: 1px solid #e3e1e1;
+  margin-left: -7px;
+  z-index: 1;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 24px;
+    height: 24px;
+  }
 `
 
 const ScrollButtonContainer = styled.div`
@@ -374,13 +398,13 @@ const AllPairs = () => {
             .map((pair) => (
               <tr key={pair.name}>
                 <TextStyle style={{ verticalAlign: 'middle' }}>
-                  <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                  <TokenParentWrapper>
                     <TokenWrapper>
-                      <HigherLogo src={pair.baseSymbolPath} alt="test" width="19px" height="19px" style={{ maxHeight:"19px", }}/>
-                      <CoveredLogo src={pair.quoteSymbolPath} alt="test" width="19px" height="19px" style={{ maxHeight:"19px", }}/>
+                      <HigherLogo src={pair.baseSymbolPath} alt="test" />
+                      <CoveredLogo src={pair.quoteSymbolPath} alt="test"/>
                     </TokenWrapper>
                     <TextPairStyle>{pair.name}</TextPairStyle>
-                  </div>
+                  </TokenParentWrapper>
                 </TextStyle>
                 <TextStyle style={{ verticalAlign: 'middle' }}>
                   <CardValue value={pair.liquidity} decimals={0} fontSize="inherit" />
