@@ -27,15 +27,15 @@ const StyledCell = styled(BaseCell)`
 const IconImageBody = styled.div`
   display:flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   position: relative;
 
   > div:nth-child(1) {
-      z-index: 2;
+      z-index: 1;
     }
   > div:nth-child(2) {
-      margin-left: -15px;
-      z-index: 1;
+      margin-left: -21px;
+      z-index: 2;
     }
 `;
 
@@ -47,6 +47,19 @@ const IconImage = styled(Image)`
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 40px;
     height: 40px;
+  }
+  */
+`
+
+const IconImageSmall = styled(Image)`
+  width: 13px;
+  height: 13px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  /*
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 13px;
+    height: 13px;
   }
   */
 `
@@ -87,7 +100,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
       {/* <Image src={`/images/pools/${iconFile}`} alt="icon" width={40} height={40} mr="8px" /> */}
       <IconImageBody>
         <IconImage src={CoinImg01} alt="icon" width={40} height={40} mr="8px" />
-        <IconImage src={CoinImg02} alt="icon" width={40} height={40} mr="8px" />
+        <IconImageSmall src={CoinImg02} alt="icon" width={13} height={13} mr="8px" />
       </IconImageBody>
       <CellContent>
         {showStakedTag && (
