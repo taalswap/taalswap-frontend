@@ -7,6 +7,8 @@ import { useCakeVault } from 'state/hooks'
 import { Pool } from 'state/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import BaseCell, { CellContent } from './BaseCell'
+import CoinImg01 from '../../../../../pages/LandingPageView/images/coin_eth_icon.svg'
+import CoinImg02 from '../../../../../pages/LandingPageView/images/coin_taal_icon.svg'
 
 interface NameCellProps {
   pool: Pool
@@ -20,6 +22,33 @@ const StyledCell = styled(BaseCell)`
   ${({ theme }) => theme.mediaQueries.sm} {
     flex: 1 0 130px;
   }
+`
+
+const IconImageBody = styled.div`
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  > div:nth-child(1) {
+      z-index: 2;
+    }
+  > div:nth-child(2) {
+      margin-left: -15px;
+      z-index: 1;
+    }
+`;
+
+const IconImage = styled(Image)`
+  width: 24px;
+  height: 24px;
+
+  /*
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 40px;
+    height: 40px;
+  }
+  */
 `
 
 const NameCell: React.FC<NameCellProps> = ({ pool }) => {
@@ -55,7 +84,11 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   return (
     <StyledCell role="cell">
-      <Image src={`/images/pools/${iconFile}`} alt="icon" width={40} height={40} mr="8px" />
+      {/* <Image src={`/images/pools/${iconFile}`} alt="icon" width={40} height={40} mr="8px" /> */}
+      <IconImageBody>
+        <IconImage src={CoinImg01} alt="icon" width={40} height={40} mr="8px" />
+        <IconImage src={CoinImg02} alt="icon" width={40} height={40} mr="8px" />
+      </IconImageBody>
       <CellContent>
         {showStakedTag && (
           <Text fontSize="12px" bold color={isFinished ? 'failure' : 'secondary'} textTransform="uppercase">
