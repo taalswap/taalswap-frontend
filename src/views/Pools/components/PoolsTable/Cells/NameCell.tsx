@@ -25,19 +25,19 @@ const StyledCell = styled(BaseCell)`
 `
 
 const IconImageBody = styled.div`
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: baseline;
   position: relative;
 
   > div:nth-child(1) {
-      z-index: 1;
-    }
+    z-index: 1;
+  }
   > div:nth-child(2) {
-      margin-left: -21px;
-      z-index: 2;
-    }
-`;
+    margin-left: -21px;
+    z-index: 2;
+  }
+`
 
 const IconImage = styled(Image)`
   width: 24px;
@@ -75,6 +75,9 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   const stakingTokenSymbol = stakingToken.symbol
   const earningTokenSymbol = earningToken.symbol
+
+  const stakingTokenIconPath = `http://133.186.150.213/coins/${stakingToken.symbol.toLowerCase()}.png`
+  const earningTokenIconPath = `http://133.186.150.213/coins/${earningToken.symbol.toLowerCase()}.png`
   const iconFile = `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
 
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
@@ -99,8 +102,8 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
     <StyledCell role="cell">
       {/* <Image src={`/images/pools/${iconFile}`} alt="icon" width={40} height={40} mr="8px" /> */}
       <IconImageBody>
-        <IconImage src={CoinImg01} alt="icon" width={40} height={40} mr="8px" />
-        <IconImageSmall src={CoinImg02} alt="icon" width={13} height={13} mr="8px" />
+        <IconImage src={stakingTokenIconPath} alt="" width={40} height={40} mr="8px" />
+        <IconImageSmall src={earningTokenIconPath} alt="" width={13} height={13} mr="8px" />
       </IconImageBody>
       <CellContent>
         {showStakedTag && (
@@ -108,7 +111,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
             {t('Staked')}
           </Text>
         )}
-        <Text bold={!isXs && !isSm} small={isXs || isSm} fontSize='14px'>
+        <Text bold={!isXs && !isSm} small={isXs || isSm} fontSize="14px">
           {title}
         </Text>
         {showSubtitle && (
