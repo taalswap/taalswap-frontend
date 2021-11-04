@@ -493,7 +493,7 @@ const SectionTop: React.FC = () => {
               Boost your assets the way <br />
               you&apos;ve never imagined
             </p>
-            <p className="home_subtit">A multi-chain AMM protocol to safeguard and increase your assets</p>
+            <p className="home_subtit">A cross-chain AMM protocol to safeguard and increase your assets</p>
             {/* <Button className="start_btn" onClick={() => linkToURL('http://localhost:3000/#/swap')}> */}
             <Button className="start_btn" onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap`)}>
               {t('Swap')}
