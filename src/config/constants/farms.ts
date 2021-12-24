@@ -140,7 +140,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
    */
   {
     pid: 0,
-    lpSymbol: 'KTAL',
+    lpSymbol: 'TAL',
     lpAddresses: {
       8217: '0x90a4a420732907b3c38b11058f9aa02b3f4121df',   // TaalToken
       1001: '0x6C27d9F6C4067212797794CD931596C2917F7Bf7',
@@ -150,7 +150,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
   },
   {
     pid: 1,
-    lpSymbol: 'KTAL-KLAY LP',
+    lpSymbol: 'TAL-KLAY LP',
     lpAddresses: {
       8217: '0xc7e285914833d8e5e58b01fcd22e967fe91a3a97',
       1001: '0xf9abb3377EBC845a9e1878A0180af50E4D0Eed1b',
@@ -180,7 +180,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
   },
   {
     pid: 4,
-    lpSymbol: 'KTAL-KDAI LP',
+    lpSymbol: 'TAL-KDAI LP',
     lpAddresses: {
       8217: '0xca74d757a5ca00080f87434fca85fbfb1c3b9a3a',
       1001: '0x0F3b8Bc13BdD1f71ae46781e6fC36917E32DFA92',
@@ -190,7 +190,7 @@ const farmsConfigKlaytn: FarmConfig[] = [
   },
   {
     pid: 5,
-    lpSymbol: 'KTAL-KUSDT LP',
+    lpSymbol: 'TAL-KUSDT LP',
     lpAddresses: {
       8217: '0x6965e1e6d4f107c311264e5f1906daeda0311473',
       1001: '0xB12474BE2b21114f9578F01032A8a650Ab0E1022',

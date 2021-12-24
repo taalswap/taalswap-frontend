@@ -38,7 +38,7 @@ const tokens = {
     projectLink: 'https://taalswap.finance/',
   },
   ktaal: {
-    symbol: 'KTAL',
+    symbol: 'TAL',
     address: {
       1: '',
       3: '',
@@ -103,7 +103,7 @@ const tokens = {
       1: '0x6c49ff7da37991f080d1b170690b4bac5d0fc692',
       3: '0x9e5daec08ad770a52e2ca740ea19788fef85ea32',
       4: '0x124bdb941df9fc548d99e21f727357e9c287772e',
-      8217: '',
+      8217: '0xc1dc53378f06331ce3f98701b0b9a0ecbd9230e7',
       1001: '0xDc3eB77A4BCdb4603E4b2fd4BF30BDa67442C3d4',
     },
     decimals: 18,

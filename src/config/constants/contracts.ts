@@ -10,7 +10,7 @@ export default {
     1: '0x8eaf1a122fadee20bd6c7fc5a6a8bc610d2368e9',
     3: '0x7c92ab70dfa5970c8d0fd5994d7c0e3e4df9781e',
     4: '',
-    8217: '',
+    8217: '0xDB979748FBD10A18C397Ec7FE40dEE79A5D59977',
     1001: '0x3C353fb8c69Ba8B09808AFECBEbA510415B7a031'
   },
   lottery: {
