@@ -40,8 +40,8 @@ const LandingPageView = () => {
         klaytn={process.env.REACT_APP_KLAYTN_ID}
       />
       <SectionTop />
-      {/* <TableWrap />
-      <StakingWrap /> */}
+      <TableWrap />
+      <StakingWrap />
       <div className="areafarms">
         <AllTokens />
         <AllPairs />

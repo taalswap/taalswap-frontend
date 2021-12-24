@@ -72,12 +72,17 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
     userData: { userShares },
   } = useCakeVault()
   const hasVaultShares = userShares && userShares.gt(0)
+  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
 
   const stakingTokenSymbol = stakingToken.symbol
   const earningTokenSymbol = earningToken.symbol
 
-  const stakingTokenIconPath = `http://133.186.150.213/coins/${stakingToken.symbol.toLowerCase()}.png`
-  const earningTokenIconPath = `http://133.186.150.213/coins/${earningToken.symbol.toLowerCase()}.png`
+  const stakingTokenIconPath = `${interfaceBaseUrl}/images/coins/${stakingToken.symbol.toLowerCase()}.png`
+  const earningTokenIconPath = `${interfaceBaseUrl}/images/coins/${earningToken.symbol.toLowerCase()}.png`
+
+  // const stakingTokenIconPath = `https://swap.taalswap.finance/images/coins/${stakingToken.symbol.toLowerCase()}.png`
+  // const earningTokenIconPath = `https://swap.taalswap.finance/images/coins/${earningToken.symbol.toLowerCase()}.png`
+
   const iconFile = `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
 
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO

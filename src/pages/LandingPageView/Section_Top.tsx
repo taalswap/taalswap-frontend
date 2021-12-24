@@ -402,15 +402,15 @@ const SectionTop: React.FC = () => {
     numberOfFarmsVisible,
   ])
 
-  // const getTotalAssets = () => {
-  //   let result = 0
-  //   farmsStakedMemoized.forEach((farm) => {
-  //     if (farm.userData.earnings !== '0') {
-  //       result += Number(farm.liquidity)
-  //     }
-  //   })
-  //   return result
-  // }
+  const getTotalAssets = () => {
+    let result = 0
+    farmsStakedMemoized.forEach((farm) => {
+      if (farm.userData.earnings !== '0') {
+        result += Number(farm.liquidity)
+      }
+    })
+    return result
+  }
 
   const getTotalEarned = () => {
     let result = 0
@@ -538,8 +538,9 @@ const SectionTop: React.FC = () => {
             </div>
           </div>
         </div>
+
         {/* ----------------------------- 임시 ------------------------------ */}
-        <div
+        {/* <div
           className="input_wrap"
           style={{
             display: 'flex',
@@ -584,10 +585,6 @@ const SectionTop: React.FC = () => {
                   </Titcolor>
                 </div>
                 <div>
-                  {/* <Txtcolor className="info_num">
-                    <CardValue fontSize="29" value={myAssets} />
-                  </Txtcolor>
-                  <Titcolor className="info_name">USD</Titcolor> */}
                   {account && myAssets !== undefined ? (
                     <>
                       {' '}
@@ -603,12 +600,12 @@ const SectionTop: React.FC = () => {
               </li>
             </Usewrap>
           </TempDiv>
-        </div>
+        </div> */}
 
         {/* ----------------------------- 임시 끝 ------------------------------ */}
 
         {/* ----------------------------- 원본 시작 ------------------------------ */}
-        {/* <div className="input_wrap">
+        <div className="input_wrap">
           <div className="taal_info info01">
             <Usewrap>
               <li>
@@ -809,7 +806,6 @@ const SectionTop: React.FC = () => {
             </Usewrap>
           </div>
         </div>
-      */}
       </div>
     </div>
   )
