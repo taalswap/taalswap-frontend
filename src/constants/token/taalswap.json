@@ -1,0 +1,186 @@
+{
+  "name": "TaalSwap Default List",
+  "timestamp": "2021-03-17T09:56:23Z",
+  "version": {
+    "major": 2,
+    "minor": 10,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "https://taalswap.finance/static/symbol/taalswap_coinsymbol.svg",
+  "keywords": [
+    "taalswap",
+    "default"
+  ],
+  "tokens": [
+    {
+      "name": "WETH Token",
+      "symbol": "WETH",
+      "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/weth.png"
+    },
+    {
+      "name": "USDC Token",
+      "symbol": "USDC",
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "chainId": 1,
+      "decimals": 6,
+      "logoURI": "https://swap.taalswap.finance/images/coins/usdc.png"
+    },
+    {
+      "name": "TaalSwap Token",
+      "symbol": "TAL",
+      "address": "0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/tal.png"
+    },
+    {
+      "name": "USDT Token",
+      "symbol": "USDT",
+      "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "chainId": 1,
+      "decimals": 6,
+      "logoURI": "https://swap.taalswap.finance/images/coins/usdt.png"
+    },
+    {
+      "name": "TENA Token",
+      "symbol": "TENA",
+      "address": "0x086b00cf35e8873636384cd2b424c39ae875a8a9",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/0x086b00cf35e8873636384cd2b424c39ae875a8a9.png"
+    },
+    {
+      "name": "PANTHEON X Token",
+      "symbol": "XPN",
+      "address": "0x3b9e094d56103611f0acefdab43182347ba60df4",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/0x3b9e094d56103611f0acefdab43182347ba60df4.png"
+    },
+    {
+      "name": "12Ships Token",
+      "symbol": "TSHP",
+      "address": "0x525794473f7ab5715c81d06d10f52d11cc052804",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/0x525794473f7ab5715c81d06d10f52d11cc052804.png"
+    },
+    {
+      "name": "12Ships",
+      "symbol": "DVP",
+      "address": "0x8e30ea2329d95802fd804f4291220b0e2f579812",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/0x8e30ea2329d95802fd804f4291220b0e2f579812.png"
+    },
+    {
+      "name": "WETH Token",
+      "symbol": "WETH",
+      "address": "0x46884d7849223e057226a69e5f8215d6ff1b8bd6",
+      "chainId": 3,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/weth.png"
+    },
+    {
+      "name": "USDC Token",
+      "symbol": "USDC",
+      "address": "0x2e3aa7718a95a48424c086e6f594c04624a798de",
+      "chainId": 3,
+      "decimals": 6,
+      "logoURI": "https://swap.taalswap.finance/images/coins/usdc.png"
+    },
+    {
+      "name": "TaalSwap Token",
+      "symbol": "TAL",
+      "address": "0xebd87e7c13b3aca572665140b6b12349112f0ce0",
+      "chainId": 3,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/tal.png"
+    },
+    {
+      "name": "USDT Token",
+      "symbol": "USDT",
+      "address": "0x66b007ea82040320eff7d37bf31a2f7086c27d11",
+      "chainId": 3,
+      "decimals": 6,
+      "logoURI": "https://swap.taalswap.finance/images/coins/usdt.png"
+    },
+    {
+      "name": "Wraapped KLAY",
+      "symbol": "WKLAY",
+      "address": "0xf223e26b018ae1917e84dd73b515620e36a75596",
+      "chainId": 1001,
+      "decimals": 18,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4256.png"
+    },
+    {
+      "name": "Klaytn Dai",
+      "symbol": "KDAI",
+      "address": "0xa76639d69cfdbff27abf1d0abc22d5e30e73a07f",
+      "chainId": 1001,
+      "decimals": 18,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"
+    },
+    {
+      "name": "TaalSwap Token",
+      "symbol": "TAL",
+      "address": "0x6C27d9F6C4067212797794CD931596C2917F7Bf7",
+      "chainId": 1001,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/tal.png"
+    },
+    {
+      "name": "Orbit Bridge Klaytn USD Tether",
+      "symbol": "KUSDT",
+      "address": "0x06cb1c92cc93d617aed37811783708ac6370cca5",
+      "chainId": 1001,
+      "decimals": 6,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"
+    },
+    {
+      "name": "Wraapped KLAY",
+      "symbol": "WKLAY",
+      "address": "0x67fd18cc70a7f8c26508c59c906b39b2a079866d",
+      "chainId": 8217,
+      "decimals": 18,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4256.png"
+    },
+    {
+      "name": "Klaytn Dai",
+      "symbol": "KDAI",
+      "address": "0x5c74070fdea071359b86082bd9f9b3deaafbe32b",
+      "chainId": 8217,
+      "decimals": 18,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"
+    },
+    {
+      "name": "TaalSwap Token",
+      "symbol": "TAL",
+      "address": "0x90a4a420732907b3c38b11058f9aa02b3f4121df",
+      "chainId": 8217,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/tal.png"
+    },
+    {
+      "name": "Orbit Bridge Klaytn USD Tether",
+      "symbol": "KUSDT",
+      "address": "0xcee8faf64bb97a73bb51e115aa89c17ffa8dd167",
+      "chainId": 8217,
+      "decimals": 6,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"
+    },
+    {
+      "name": "Orbit Bridge Klaytn Talken",
+      "symbol": "KTALK",
+      "address": "0xa6e559f2954c7e2c017bbbea85d8513f34d03d75",
+      "chainId": 8217,
+      "decimals": 18,
+      "logoURI": "https://swap.taalswap.finance/images/coins/ktalk.png"
+    }
+  ]
+}
+
