@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ChainId } from 'taalswap-sdk';
 import { useActiveWeb3React } from '../../hooks'
-import { useMulticallContract } from '../../hooks/useContract'
+import { useMulticallContract } from '../../hooks/useContract2'
 import useDebounce from '../../hooks/useDebounce'
 import chunkArray from '../../utils/chunkArray'
 import { CancelledError, retry, RetryableError } from '../../utils/retry'

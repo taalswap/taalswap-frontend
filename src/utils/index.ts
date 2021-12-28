@@ -112,7 +112,9 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
       contract = new Contract(address, ABI, crossChainProvider);
     }
   } else {
-    contract = new Contract(address, ABI, getProviderOrSigner(library, account) as any);
+    // TODO : 정리 필요
+    // contract = new Contract(address, ABI, getProviderOrSigner(library, account) as any);
+    contract = new Contract(address, ABI, library.getSigner(account).connectUnchecked())
   }
   return contract;
 }

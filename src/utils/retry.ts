@@ -36,7 +36,9 @@ export function retry<T>(
   // eslint-disable-next-line no-async-promise-executor
   const promise = new Promise<T>(async (resolve, reject) => {
     rejectCancelled = reject
+    // TODO : 원인 확인
     // eslint-disable-next-line no-constant-condition
+    /* eslint-disable no-await-in-loop */
     while (true) {
       let result: T
       try {
@@ -59,6 +61,7 @@ export function retry<T>(
       }
       await waitRandom(minWait, maxWait)
     }
+    /* eslint-enable no-await-in-loop */
   })
   return {
     promise,

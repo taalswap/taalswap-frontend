@@ -1,7 +1,7 @@
 import { Token, TokenAmount } from 'taalswap-sdk'
 import { useMemo } from 'react'
 
-import { useTokenContract } from '../hooks/useContract'
+import { useTokenContract } from '../hooks/useContract2'
 import { useSingleCallResult } from '../state/multicall/hooks'
 
 export function useTokenAllowance(token?: Token, owner?: string, spender?: string): TokenAmount | undefined {

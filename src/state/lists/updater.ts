@@ -53,30 +53,31 @@ export default function Updater(): null {
           case VersionUpgrade.NONE:
             throw new Error('unexpected no version bump')
           case VersionUpgrade.PATCH:
-          case VersionUpgrade.MINOR:
+          case VersionUpgrade.MINOR: {
             const min = minVersionBump(list.current.tokens, list.pendingUpdate.tokens)
             // automatically update minor/patch as long as bump matches the min update
             if (bump >= min) {
               dispatch(acceptListUpdate(listUrl))
               dispatch(
-                addPopup({
-                  key: listUrl,
-                  content: {
-                    listUpdate: {
-                      listUrl,
-                      oldList: list.current,
-                      newList: list.pendingUpdate,
-                      auto: true,
+                  addPopup({
+                    key: listUrl,
+                    content: {
+                      listUpdate: {
+                        listUrl,
+                        oldList: list.current,
+                        newList: list.pendingUpdate,
+                        auto: true,
+                      },
                     },
-                  },
-                })
+                  })
               )
             } else {
               console.error(
-                `List at url ${listUrl} could not automatically update because the version bump was only PATCH/MINOR while the update had breaking changes and should have been MAJOR`
+                  `List at url ${listUrl} could not automatically update because the version bump was only PATCH/MINOR while the update had breaking changes and should have been MAJOR`
               )
             }
             break
+          }
 
           case VersionUpgrade.MAJOR:
             dispatch(
@@ -93,6 +94,10 @@ export default function Updater(): null {
                 removeAfterMs: null,
               })
             )
+            break
+
+          default:
+            break
         }
       }
     })

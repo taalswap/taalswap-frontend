@@ -8,7 +8,7 @@ import { useUserAddedTokens } from '../state/user/hooks'
 import { isAddress } from '../utils'
 
 import { useActiveWeb3React } from './index'
-import { useBytes32TokenContract, useTokenContract } from './useContract'
+import { useBytes32TokenContract, useTokenContract } from './useContract2'
 
 export function useAllTokensXswap(selectedChainId?: ChainId): { [address: string]: Token } {
   let { chainId } = useActiveWeb3React()

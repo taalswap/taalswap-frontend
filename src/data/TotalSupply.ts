@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { Token, TokenAmount } from 'taalswap-sdk'
-import { useTokenContract } from '../hooks/useContract'
+import { useTokenContract } from '../hooks/useContract2'
 import { useSingleCallResult } from '../state/multicall/hooks'
 
 // returns undefined if input token is undefined, or fails to get token contract,

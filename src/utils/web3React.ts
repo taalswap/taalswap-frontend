@@ -3,6 +3,7 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import { ConnectorNames } from 'taalswap-uikit'
 import Web3 from 'web3'
+import {ethers} from "ethers";
 import { ChainId } from 'taalswap-sdk'
 import getNodeUrl from './getRpcUrl'
 
@@ -37,6 +38,13 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.BSC]: bscConnector,
 }
 
-export const getLibrary = (provider): Web3 => {
-  return provider
+// TODO : 차이 확인
+// export const getLibrary = (provider): Web3 => {
+//   return provider
+// }
+
+export const getLibrary = (provider): ethers.providers.Web3Provider => {
+  const library = new ethers.providers.Web3Provider(provider)
+  library.pollingInterval = POLLING_INTERVAL
+  return library
 }

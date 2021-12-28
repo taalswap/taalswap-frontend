@@ -4,7 +4,7 @@ import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { useCurrencyBalance } from '../state/wallet/hooks'
 import { useActiveWeb3React } from './index'
-import { useWETHContract } from './useContract'
+import { useWETHContract } from './useContract2'
 import { useTranslation } from '../contexts/Localization'
 
 export enum WrapType {
