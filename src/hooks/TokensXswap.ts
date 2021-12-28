@@ -1,5 +1,5 @@
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHER, Token, currencyEquals, KLAYTN, ChainId } from 'taalswap-sdk';
+import { Currency, ETHER, Token, currencyEquals, KLAYTN, ChainId } from 'taalswap-sdk'
 import { useMemo } from 'react'
 import { useSelectedTokenList } from '../state/lists/hooks'
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
@@ -30,7 +30,7 @@ export function useAllTokensXswap(selectedChainId?: ChainId): { [address: string
           },
           // must make a copy because reduce modifies the map, and we do not
           // want to make a copy in every iteration
-          { ...allTokens[chainId] }
+          { ...allTokens[chainId] },
         )
     )
   }, [chainId, userAddedTokens, allTokens])
@@ -48,8 +48,8 @@ function parseStringOrBytes32(str: string | undefined, bytes32: string | undefin
   return str && str.length > 0
     ? str
     : bytes32 && BYTES32_REGEX.test(bytes32)
-      ? parseBytes32String(bytes32)
-      : defaultValue
+    ? parseBytes32String(bytes32)
+    : defaultValue
 }
 
 // undefined if invalid or does not exist
@@ -72,7 +72,7 @@ export function useTokenXswap(tokenAddress?: string): Token | undefined | null {
     token ? undefined : tokenContractBytes32,
     'name',
     undefined,
-    NEVER_RELOAD
+    NEVER_RELOAD,
   )
   const symbol = useSingleCallResult(token ? undefined : tokenContract, 'symbol', undefined, NEVER_RELOAD)
   const symbolBytes32 = useSingleCallResult(token ? undefined : tokenContractBytes32, 'symbol', undefined, NEVER_RELOAD)
@@ -88,7 +88,7 @@ export function useTokenXswap(tokenAddress?: string): Token | undefined | null {
         address,
         decimals.result[0],
         parseStringOrBytes32(symbol.result?.[0], symbolBytes32.result?.[0], 'UNKNOWN'),
-        parseStringOrBytes32(tokenName.result?.[0], tokenNameBytes32.result?.[0], 'Unknown Token')
+        parseStringOrBytes32(tokenName.result?.[0], tokenNameBytes32.result?.[0], 'Unknown Token'),
       )
     }
     return undefined
@@ -110,5 +110,5 @@ export function useTokenXswap(tokenAddress?: string): Token | undefined | null {
 export function useCurrencyXswap(currencyId: string | undefined): Currency | null | undefined {
   const isBNB = currencyId?.toUpperCase() === 'ETH' || currencyId?.toUpperCase() === 'KLAY'
   const token = useTokenXswap(isBNB ? undefined : currencyId)
-  return isBNB ? currencyId?.toUpperCase() === 'ETH' ? ETHER : KLAYTN : token
+  return isBNB ? (currencyId?.toUpperCase() === 'ETH' ? ETHER : KLAYTN) : token
 }

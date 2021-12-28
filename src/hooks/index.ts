@@ -9,12 +9,13 @@ import { isMobile } from 'react-device-detect'
 // import { setupNetwork } from 'utils/wallet'
 import { injected } from '../connectors'
 import { NetworkContextName } from '../constants'
-import getChainId from '../utils/getChainId';
+import getChainId from '../utils/getChainId'
 
 export function useActiveWeb3React(): Web3ReactContextInterface<Web3Provider> & { chainId?: ChainId } {
   const context = useWeb3ReactCore<Web3Provider>()
-  const contextNetwork = useWeb3ReactCore<Web3Provider>(NetworkContextName)
-  const activeContext = context.active ? context : contextNetwork
+  // const contextNetwork = useWeb3ReactCore<Web3Provider>(NetworkContextName)
+  // const activeContext = context.active ? context : contextNetwork
+  const activeContext = context
 
   const xSwapCurrency = window.localStorage.getItem('xSwapCurrency')
   const crossChain = window.localStorage.getItem('crossChain') ?? ''
@@ -33,29 +34,29 @@ export function useEagerConnect() {
   const { activate, active } = useWeb3ReactCore() // specifically using useWeb3ReactCore because of what this hook does
   const [tried, setTried] = useState(false)
   const defaultChain = process.env.REACT_APP_CHAIN_ID ?? ''
-  const chainIdStr = window.localStorage.getItem("chainId") ?? defaultChain
+  const chainIdStr = window.localStorage.getItem('chainId') ?? defaultChain
   const chainId = parseInt(chainIdStr, 10)
   const { ethereum } = window as WindowChain
 
-  useEffect( () => {
+  useEffect(() => {
     injected.isAuthorized().then(async (isAuthorized) => {
       const hasSignedIn = window.localStorage.getItem(connectorLocalStorageKey)
       if (isAuthorized && hasSignedIn) {
         // const hasSetup = await setupNetwork(chainId)
         // if (hasSetup) {
-          activate(injected, undefined, true).catch((error) => {
-            setTried(true)
-          })
+        activate(injected, undefined, true).catch((error) => {
+          setTried(true)
+        })
         // }
       } else if (isMobile && ethereum && hasSignedIn) {
         // const hasSetup = await setupNetwork(chainId)
         // if (hasSetup) {
-          activate(injected, undefined, true).catch((error) => {
-            setTried(true)
-          })
+        activate(injected, undefined, true).catch((error) => {
+          setTried(true)
+        })
         // }
       } else {
-          setTried(true)
+        setTried(true)
       }
     })
   }, [activate, chainId, ethereum]) // intentionally only running on mount (make sure it's only mounted once :))
@@ -69,7 +70,6 @@ export function useEagerConnect() {
 
   return tried
 }
-
 
 /**
  * Use for network and injected - logs user in

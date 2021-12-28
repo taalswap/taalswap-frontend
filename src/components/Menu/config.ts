@@ -42,7 +42,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('X-Swap'),
     icon: 'TradeIcon',
     // href: 'http://localhost:3000/#/swap',
-    href: `${interfaceBaseUrl}/#/xswap`,
+    href: `${frontendBaseUrl}/swap`,
   },
   {
     label: t('Liquidity'),
