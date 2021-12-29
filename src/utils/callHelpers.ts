@@ -16,27 +16,23 @@ import { BIG_TEN, BIG_ZERO } from './bigNumber'
 import getChainId from './getChainId'
 
 export const approve = async (lpContract, masterChefContract, account) => {
-  return lpContract.methods
-    .approve(masterChefContract.options.address, ethers.constants.MaxUint256)
-    .send({ from: account })
+  const result = await lpContract
+    .approve(masterChefContract.address, ethers.constants.MaxUint256, { from: account })
+  return result
 }
 
 export const stake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
-    return masterChefContract.methods
-      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    const tx = await masterChefContract
+      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gas: DEFAULT_GAS_LIMIT })
+    const receipt = await tx.wait()
+    return receipt.transactionHash
   }
 
-  return masterChefContract.methods
-    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await masterChefContract
+    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gas: DEFAULT_GAS_LIMIT })
+  const receipt = await tx.wait()
+  return receipt.transactionHash
 }
 
 export const sousStake = async (sousChefContract, amount, decimals = 18, account) => {

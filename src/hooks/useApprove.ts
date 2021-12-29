@@ -20,6 +20,7 @@ export const useApprove = (lpContract: Contract) => {
       const tx = await approve(lpContract, masterChefContract, account)
       return tx
     } catch (e) {
+      console.log(e)
       return false
     }
   }, [account, lpContract, masterChefContract])
