@@ -48,7 +48,7 @@ import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import Loader from 'components/Loader'
 import useI18n from 'hooks/useI18n'
-import PageHeader from 'components/PageHeader'
+import InterfacePageHeader from 'components/InterfacePageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import V2ExchangeRedirectModal from 'components/V2ExchangeRedirectModal'
 import getAPIUrl from 'utils/getAPIUrl'
@@ -592,7 +592,7 @@ function Swap({
       <SafeMoonWarningModal isOpen={transactionWarning.selectedToken === 'SAFEMOON'} onConfirm={handleConfirmWarning} />
       {/* <CardNav /> */}
 
-      <PageHeader title={t('Swap')} description={t('Trade your token on the spot')} />
+      <InterfacePageHeader title={t('Swap')} description={t('Trade your token on the spot')} />
       <SwapBody>
         <Wrapper id="swap-page">
           <ConfirmSwapModal

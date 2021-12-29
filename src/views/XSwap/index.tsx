@@ -36,7 +36,7 @@ import SyrupWarningModal from 'components/SyrupWarningModal'
 import SafeMoonWarningModal from 'components/SafeMoonWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
 import Container from 'components/Container'
-
+import InterfacePageHeader from 'components/InterfacePageHeader'
 import { INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
@@ -58,7 +58,6 @@ import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { computeTradePriceBreakdown, computeTradeXPriceBreakdown, warningSeverity } from 'utils/prices'
 import Loader from 'components/Loader'
 import useI18n from 'hooks/useI18n'
-import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import V2ExchangeRedirectModal from 'components/V2ExchangeRedirectModal'
 import getAPIUrl from 'utils/getAPIUrl'
@@ -698,7 +697,7 @@ function XSwap({
       />
       <SafeMoonWarningModal isOpen={transactionWarning.selectedToken === 'SAFEMOON'} onConfirm={handleConfirmWarning} />
       {/* <CardNav /> */}
-      <PageHeader title={t('X-Swap')} description={t('Trade your token on the spot')} />
+      <InterfacePageHeader title={t('X-Swap')} description={t('Trade your token on the spot')} />
       <SwapBody>
         <Wrapper id="swap-page">
           <ConfirmSwapModal
