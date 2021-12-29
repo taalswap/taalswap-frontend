@@ -75,9 +75,8 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
   const cakeContract = useCake()
 
   const handleApprove = () => {
-    cakeContract.methods
-      .approve(cakeVaultContract.options.address, ethers.constants.MaxUint256)
-      .send({ from: account })
+    cakeContract
+      .approve(cakeVaultContract.options.address, ethers.constants.MaxUint256, { from: account })
       .on('sending', () => {
         setRequestedApproval(true)
       })
@@ -105,7 +104,7 @@ export const useCheckVaultApprovalStatus = () => {
   useEffect(() => {
     const checkApprovalStatus = async () => {
       try {
-        const response = await cakeContract.methods.allowance(account, cakeVaultContract.options.address).call()
+        const response = await cakeContract.allowance(account, cakeVaultContract.options.address)
         const currentAllowance = new BigNumber(response)
         setIsVaultApproved(currentAllowance.gt(0))
       } catch (error) {
@@ -141,7 +140,7 @@ export const useLotteryApprove = () => {
 export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) => {
   const { account } = useWeb3React()
   const onApprove = useCallback(async () => {
-    const tx = await tokenContract.methods.approve(spenderAddress, ethers.constants.MaxUint256).send({ from: account })
+    const tx = await tokenContract.approve(spenderAddress, ethers.constants.MaxUint256, { from: account })
     return tx
   }, [account, spenderAddress, tokenContract])
 

@@ -100,7 +100,6 @@ export const getCakeContract = (signer?: ethers.Signer | ethers.providers.Provid
   return getContract(cakeAbi, getTaalAddress(), signer)
 }
 export const getProfileContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  console.log('2222', getPancakeProfileAddress())
   return getContract(profileABI, getPancakeProfileAddress(), signer)
 }
 export const getPancakeRabbitContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
