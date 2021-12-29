@@ -5,6 +5,7 @@ import BigNumber from 'bignumber.js'
 import { useEagerConnect, useInactiveListenerNew } from 'hooks/useEagerConnect'
 import { usePollCoreFarmData, useFetchProfile, usePollBlockNumber } from 'state/hooks'
 import Swap from 'views/Swap'
+import XSwap from 'views/XSwap'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
@@ -74,6 +75,7 @@ const App: React.FC = () => {
                 ) : (
                   <>
                     <Route exact strict path="/swap" component={Swap} />
+                    <Route exact strict path="/xswap" component={XSwap} />
                     <Route path="/farms">
                       <Farms />
                     </Route>

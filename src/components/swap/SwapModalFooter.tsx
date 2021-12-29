@@ -1,26 +1,26 @@
-import { Trade, TradeType } from 'taalswap-sdk';
-import React, { useMemo, useState } from 'react';
-import styled from 'styled-components';
-import { Button, HelpIcon, Text, useTooltip } from 'taalswap-uikit';
-import { Repeat } from 'react-feather';
+import { Trade, TradeType } from 'taalswap-sdk'
+import React, { useMemo, useState } from 'react'
+import styled from 'styled-components'
+import { Button, HelpIcon, Text, useTooltip } from 'taalswap-uikit'
+import { Repeat } from 'react-feather'
 
-import { Field } from '../../state/swap/actions';
+import { Field } from '../../state/swap/actions'
 import {
   computeSlippageAdjustedAmounts,
   computeTradePriceBreakdown,
   formatExecutionPrice,
   warningSeverity,
-} from '../../utils/prices';
-import { AutoColumn } from '../Column';
-import { AutoRow, RowBetween, RowFixed } from '../Row';
-import FormattedPriceImpact from './FormattedPriceImpact';
-import { StyledBalanceMaxMini, SwapCallbackError } from './styleds';
-import { useTranslation } from '../../contexts/Localization';
+} from '../../utils/prices'
+import { AutoColumn } from '../Column'
+import { AutoRow, RowBetween, RowFixed } from '../Row'
+import FormattedPriceImpact from './FormattedPriceImpact'
+import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
+import { useTranslation } from '../../contexts/Localization'
 
 const ReferenceElement = styled.div`
   display: inline-block;
   margin-left: 0.3rem;
-`;
+`
 
 export default function SwapModalFooter({
   trade,
@@ -30,37 +30,32 @@ export default function SwapModalFooter({
   swapErrorMessage,
   disabledConfirm,
 }: {
-  trade: Trade;
-  tradeX: Trade | undefined;
-  allowedSlippage: number;
-  onConfirm: () => void;
-  swapErrorMessage: string | undefined;
-  disabledConfirm: boolean;
+  trade: Trade
+  tradeX: Trade | undefined
+  allowedSlippage: number
+  onConfirm: () => void
+  swapErrorMessage: string | undefined
+  disabledConfirm: boolean
 }) {
-  const [showInverted, setShowInverted] = useState<boolean>(false);
-  const [showOutpuInverted, setShowOutputInverted] = useState<boolean>(false);
+  const [showInverted, setShowInverted] = useState<boolean>(false)
+  const [showOutpuInverted, setShowOutputInverted] = useState<boolean>(false)
   const slippageAdjustedAmounts = useMemo(
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
-    [allowedSlippage, trade]
-  );
+    [allowedSlippage, trade],
+  )
   const ouputSlippageAdjustedAmounts = useMemo(
     () => computeSlippageAdjustedAmounts(tradeX, allowedSlippage),
-    [allowedSlippage, tradeX]
-  );
-  const { priceImpactWithoutFee, realizedLPFee } = useMemo(
-    () => computeTradePriceBreakdown(trade),
-    [trade]
-  );
-  const severity = warningSeverity(priceImpactWithoutFee);
-  const { t } = useTranslation();
+    [allowedSlippage, tradeX],
+  )
+  const { priceImpactWithoutFee, realizedLPFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
+  const severity = warningSeverity(priceImpactWithoutFee)
+  const { t } = useTranslation()
 
   const TipReceived = () => {
     const { targetRef, tooltip, tooltipVisible } = useTooltip(
-      t(
-        'Your transaction will revert if there is a large, unfavorable price movement before it is confirmed.'
-      ),
-      { placement: 'right-end', tooltipOffset: [20, 10] }
-    );
+      t('Your transaction will revert if there is a large, unfavorable price movement before it is confirmed.'),
+      { placement: 'right-end', tooltipOffset: [20, 10] },
+    )
 
     return (
       <div>
@@ -69,16 +64,14 @@ export default function SwapModalFooter({
         </ReferenceElement>
         {tooltipVisible && tooltip}
       </div>
-    );
-  };
+    )
+  }
 
   const TipImpact = () => {
     const { targetRef, tooltip, tooltipVisible } = useTooltip(
-      t(
-        'The difference between the market price and your price due to trade size.'
-      ),
-      { placement: 'right-end', tooltipOffset: [20, 10] }
-    );
+      t('The difference between the market price and your price due to trade size.'),
+      { placement: 'right-end', tooltipOffset: [20, 10] },
+    )
 
     return (
       <div>
@@ -87,8 +80,8 @@ export default function SwapModalFooter({
         </ReferenceElement>
         {tooltipVisible && tooltip}
       </div>
-    );
-  };
+    )
+  }
 
   const TipFee = () => {
     const { targetRef, tooltip, tooltipVisible } = useTooltip(
@@ -98,8 +91,8 @@ export default function SwapModalFooter({
         <Text>{t('- 0.03% to the Treasury')}</Text>
         <Text>{t('- 0.05% towards TAL buyback & burn')}</Text>
       </>,
-      { placement: 'right-end', tooltipOffset: [20, 10] }
-    );
+      { placement: 'right-end', tooltipOffset: [20, 10] },
+    )
 
     return (
       <div>
@@ -108,24 +101,23 @@ export default function SwapModalFooter({
         </ReferenceElement>
         {tooltipVisible && tooltip}
       </div>
-    );
-  };
+    )
+  }
 
-  const chainId = parseInt(window.localStorage.getItem('chainId') ?? '1');
-  const crossChain = parseInt(window.localStorage.getItem('crossChain') ?? '1');
+  const chainId = parseInt(window.localStorage.getItem('chainId') ?? '1')
+  const crossChain = parseInt(window.localStorage.getItem('crossChain') ?? '1')
 
   const enabledCheck = () => {
-    const result =
-      chainId !== crossChain && tradeX === undefined ? true : disabledConfirm;
+    const result = chainId !== crossChain && tradeX === undefined ? true : disabledConfirm
 
-    return result;
-  };
+    return result
+  }
 
-  let FEE = 'ETH';
+  let FEE = 'ETH'
   if (trade.inputAmount.currency.symbol === 'ETH') {
-    if (chainId > 1000) FEE = 'KLAY';
+    if (chainId > 1000) FEE = 'KLAY'
   } else {
-    FEE = trade.inputAmount.currency.symbol ?? '';
+    FEE = trade.inputAmount.currency.symbol ?? ''
   }
   return (
     <>
@@ -145,9 +137,7 @@ export default function SwapModalFooter({
               }}
             >
               {formatExecutionPrice(trade, showInverted)}
-              <StyledBalanceMaxMini
-                onClick={() => setShowInverted(!showInverted)}
-              >
+              <StyledBalanceMaxMini onClick={() => setShowInverted(!showInverted)}>
                 <Repeat size={14} />
               </StyledBalanceMaxMini>
             </Text>
@@ -164,9 +154,7 @@ export default function SwapModalFooter({
                 }}
               >
                 {formatExecutionPrice(tradeX, showOutpuInverted)}
-                <StyledBalanceMaxMini
-                  onClick={() => setShowOutputInverted(!showOutpuInverted)}
-                >
+                <StyledBalanceMaxMini onClick={() => setShowOutputInverted(!showOutpuInverted)}>
                   <Repeat size={14} />
                 </StyledBalanceMaxMini>
               </Text>
@@ -176,9 +164,7 @@ export default function SwapModalFooter({
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">
-              {trade.tradeType === TradeType.EXACT_INPUT
-                ? t('Minimum received')
-                : t('Maximum sold')}
+              {trade.tradeType === TradeType.EXACT_INPUT ? t('Minimum received') : t('Maximum sold')}
             </Text>
             <TipReceived />
           </RowFixed>
@@ -186,10 +172,8 @@ export default function SwapModalFooter({
             <RowFixed>
               <Text fontSize="14px">
                 {trade.tradeType === TradeType.EXACT_INPUT
-                  ? slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4) ??
-                    '-'
-                  : slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4) ??
-                    '-'}
+                  ? slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4) ?? '-'
+                  : slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4) ?? '-'}
               </Text>
               <Text fontSize="14px" marginLeft="4px">
                 {trade.tradeType === TradeType.EXACT_INPUT
@@ -201,12 +185,8 @@ export default function SwapModalFooter({
               <RowFixed>
                 <Text fontSize="14px">
                   {tradeX.tradeType === TradeType.EXACT_INPUT
-                    ? ouputSlippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(
-                        4
-                      ) ?? '-'
-                    : ouputSlippageAdjustedAmounts[Field.INPUT]?.toSignificant(
-                        4
-                      ) ?? '-'}
+                    ? ouputSlippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4) ?? '-'
+                    : ouputSlippageAdjustedAmounts[Field.INPUT]?.toSignificant(4) ?? '-'}
                 </Text>
                 <Text fontSize="14px" marginLeft="4px">
                   {tradeX.tradeType === TradeType.EXACT_INPUT
@@ -229,9 +209,7 @@ export default function SwapModalFooter({
             <Text fontSize="14px">{t('Liquidity Provider Fee')}</Text>
             <TipFee />
           </RowFixed>
-          <Text fontSize="14px">
-            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${FEE}` : '-'}
-          </Text>
+          <Text fontSize="14px">{realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${FEE}` : '-'}</Text>
         </RowBetween>
       </AutoColumn>
 
@@ -247,10 +225,8 @@ export default function SwapModalFooter({
           {severity > 2 ? t('Swap Anyway') : t('Confirm Swap')}
         </Button>
 
-        {swapErrorMessage ? (
-          <SwapCallbackError error={swapErrorMessage} />
-        ) : null}
+        {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
       </AutoRow>
     </>
-  );
+  )
 }
