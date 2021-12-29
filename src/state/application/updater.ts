@@ -6,6 +6,7 @@ import { useActiveWeb3React } from '../../hooks';
 import useDebounce from '../../hooks/useDebounce';
 import useIsWindowVisible from '../../hooks/useIsWindowVisible';
 import { updateBlockNumber } from './actions';
+import {getWeb3NoAccount} from "../../utils/web3";
 
 export default function Updater(): null {
   const { library, chainId } = useActiveWeb3React()
@@ -54,10 +55,15 @@ export default function Updater(): null {
 
     setState({ chainId, blockNumber: null })
 
-    library
-      .getBlockNumber()
-      .then(blockNumberCallback)
-      .catch((error) => console.error(`Failed to get block number for chainId: ${chainId}`, error))
+    const web3 = getWeb3NoAccount()
+    web3.eth.getBlockNumber()
+        .then(blockNumberCallback)
+        .catch((error) => console.error(`Failed to get block number for chainId: ${chainId}`, error))
+
+    // library
+    //   .getBlockNumber()
+    //   .then(blockNumberCallback)
+    //   .catch((error) => console.error(`Failed to get block number for chainId: ${chainId}`, error))
 
     if (chainId > 1000) {
       let crossChainProvider
