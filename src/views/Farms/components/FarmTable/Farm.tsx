@@ -58,7 +58,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
   const { t } = useTranslation()
   const [icons, setIcons] = useState([])
 
-  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
+  const frontendBaseUrl = process.env.REACT_APP_FRONTEND || 'http://localhost:3001'
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const chainId = window.localStorage.getItem('chainId')
@@ -91,13 +91,13 @@ const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
       //   url = `${process.env.REACT_APP_INTERFACE}/images/coins/${symbol.toLowerCase()}.svg`
       // }
       // url = `https://swap.taalswap.finance/images/coins/${symbol.toLowerCase()}.png`
-      url = `${interfaceBaseUrl}/images/coins/${symbol.toLowerCase()}.png`
+      url = `${frontendBaseUrl}/images/coins/${symbol.toLowerCase()}.png`
       return url
     })
 
     // setIcons(iconPath)
     return iconPath
-  }, [label, interfaceBaseUrl])
+  }, [label, frontendBaseUrl])
 
   return (
     <Container>

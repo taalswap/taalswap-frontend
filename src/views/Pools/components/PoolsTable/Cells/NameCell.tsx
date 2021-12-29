@@ -72,7 +72,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
     userData: { userShares },
   } = useCakeVault()
   const hasVaultShares = userShares && userShares.gt(0)
-  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
+  const interfaceBaseUrl = process.env.REACT_APP_FRONTEND || 'http://localhost:3001'
 
   const stakingTokenSymbol = stakingToken.symbol
   const earningTokenSymbol = earningToken.symbol

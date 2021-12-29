@@ -172,7 +172,7 @@ const SectionTop: React.FC = () => {
 
   const totalAssets = useTotalAssets()
 
-  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
+  const frontendBaseUrl = process.env.REACT_APP_FRONTEND || 'http://localhost:3001'
 
   usePollFarmsData(isArchived)
   useFetchPublicPoolsData()
@@ -494,8 +494,7 @@ const SectionTop: React.FC = () => {
               you&apos;ve never imagined
             </p>
             <p className="home_subtit">A cross-chain AMM protocol to safeguard and increase your assets</p>
-            {/* <Button className="start_btn" onClick={() => linkToURL('http://localhost:3000/#/swap')}> */}
-            <Button className="start_btn" onClick={() => linkToURL(`${interfaceBaseUrl}/#/swap`)}>
+            <Button className="start_btn" onClick={() => linkToURL(`${frontendBaseUrl}/swap`)}>
               {t('Swap')}
             </Button>
           </div>
@@ -528,8 +527,8 @@ const SectionTop: React.FC = () => {
                 value={t('Buy TAL')}
                 onClick={() =>
                   parseInt(curChainId) < 1000
-                    ? linkToURL(`${interfaceBaseUrl}/#/swap/${curChainId}/ETH/0x00`)
-                    : linkToURL(`${interfaceBaseUrl}/#/swap/${curChainId}/KLAY/0x00`)
+                    ? linkToURL(`${frontendBaseUrl}/swap/${curChainId}/ETH/0x00`)
+                    : linkToURL(`${frontendBaseUrl}/swap/${curChainId}/KLAY/0x00`)
                 }
                 className="buy_Btn"
               >

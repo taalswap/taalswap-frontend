@@ -3,7 +3,6 @@ import { Target } from 'react-feather'
 import { Link } from 'taalswap-uikit'
 
 const frontendBaseUrl = process.env.REACT_APP_FRONTEND || 'http://localhost:3001'
-const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
 
 const Search = () => {
   const [show, toggleShow] = React.useState(true)
@@ -26,12 +25,12 @@ const Results = () => (
         </Link>
       </li>
       <li>
-        <Link href={`${interfaceBaseUrl}/#/swap`} style={{ textDecoration: 'none' }}>
+        <Link href={`${frontendBaseUrl}/swap`} style={{ textDecoration: 'none' }}>
           <span className="swap_icon">swap_icon</span>Swap
         </Link>
       </li>
       <li>
-        <Link href={`${interfaceBaseUrl}/#/liquidity`} style={{ textDecoration: 'none' }}>
+        <Link href={`${frontendBaseUrl}/liquidity`} style={{ textDecoration: 'none' }}>
           <span className="liquidity_icon">liquidity_icon</span>Liquidity
         </Link>
       </li>

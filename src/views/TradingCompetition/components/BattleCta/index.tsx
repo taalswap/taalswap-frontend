@@ -63,7 +63,12 @@ const BattleCta: React.FC<CompetitionProps> = ({
 }) => {
   const { t } = useTranslation()
   const { login, logout } = useAuth()
-  const { onPresentConnectModal } = useWalletModal(login, logout, process.env.REACT_APP_CHAIN_ID, process.env.REACT_APP_KLAYTN_ID)
+  const { onPresentConnectModal } = useWalletModal(
+    login,
+    logout,
+    process.env.REACT_APP_CHAIN_ID,
+    process.env.REACT_APP_KLAYTN_ID,
+  )
   const [onPresentRegisterModal] = useModal(
     <RegisterModal profile={profile} onRegisterSuccess={onRegisterSuccess} />,
     false,
@@ -74,7 +79,7 @@ const BattleCta: React.FC<CompetitionProps> = ({
   )
   const { hasRegistered, hasUserClaimed } = userTradingInformation
   const registeredAndNotStarted = hasRegistered && !isCompetitionLive && !hasCompetitionEnded
-  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
+  const frontendBaseUrl = process.env.FRONTEND || 'http://localhost:3001'
 
   const isButtonDisabled = Boolean(
     isLoading ||
@@ -163,8 +168,7 @@ const BattleCta: React.FC<CompetitionProps> = ({
     }
     // Registered and competition is live
     if (hasRegistered && isCompetitionLive) {
-      // window.location.href = 'http://localhost:3000/#/swap'
-      window.location.href = `${interfaceBaseUrl}/#/swap`
+      window.location.href = `${frontendBaseUrl}/#/swap`
     }
     // Registered and competition has finished
     if (hasRegistered && hasCompetitionEnded) {

@@ -198,7 +198,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const curChainId = localStorage.getItem('chainId')
   const bsc = getBscScanAddressUrl(lpAddress)
   const info = `https://taalswap.info/pair/${lpAddress}`
-  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
+  const frontendBaseUrl = process.env.REACT_APP_FRONTEND || 'http://localhost:3001'
 
   const [isShown, setIsShown] = useState(false)
   const [isShown2, setIsShown2] = useState(false)
@@ -209,8 +209,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <InfoContainer>
         {isActive && (
           <StakeContainer>
-            {/* <StyledLinkExternalNoIcon href={`http://localhost:3000/#/add/${liquidityUrlPathParts}`}> */}
-            <StyledLinkExternalNoIcon href={`${interfaceBaseUrl}/#/add/${liquidityUrlPathParts}`}>
+            <StyledLinkExternalNoIcon href={`${frontendBaseUrl}/add/${liquidityUrlPathParts}`}>
               <StyledLinkExternal onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
                 <LpIcon />
                 {isShown && (

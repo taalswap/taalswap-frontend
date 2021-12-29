@@ -11,7 +11,6 @@ const TopBar = () => {
   const [scrollPosition, setScrollPosition] = useState(0)
 
   const frontendBaseUrl = process.env.REACT_APP_FRONTEND || 'http://localhost:3001'
-  const interfaceBaseUrl = process.env.REACT_APP_INTERFACE || 'http://localhost:3000'
 
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop)
@@ -35,12 +34,12 @@ const TopBar = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href={`${interfaceBaseUrl}/#/swap`} style={{ textDecoration: 'none', fontSize: '14px' }}>
+            <Link href={`${frontendBaseUrl}/swap`} style={{ textDecoration: 'none', fontSize: '14px' }}>
               Swap
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href={`${interfaceBaseUrl}/#/liquidity`} style={{ textDecoration: 'none', fontSize: '14px' }}>
+            <Link href={`${frontendBaseUrl}/liquidity`} style={{ textDecoration: 'none', fontSize: '14px' }}>
               Liquidity
             </Link>
           </div>

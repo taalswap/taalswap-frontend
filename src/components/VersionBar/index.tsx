@@ -1,13 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import {
-  Button,
-  ButtonMenu,
-  ButtonMenuItem,
-  HelpIcon,
-  Link,
-  Text,
-} from 'taalswap-uikit';
+import React from 'react'
+import styled from 'styled-components'
+import { Button, ButtonMenu, ButtonMenuItem, HelpIcon, Link, Text } from 'taalswap-uikit'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -24,10 +17,9 @@ const Wrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 240px;
   }
-`;
+`
 
-const interfaceBaseUrl =
-  process.env.REACT_APP_INTERFACE || 'http://localhost:3000';
+const frontendBaseUrl = process.env.REACT_APP_FRONTEND || 'http://localhost:3001'
 
 const VersionBar = () => {
   return (
@@ -36,8 +28,7 @@ const VersionBar = () => {
         Version:
       </Text>
       <ButtonMenu variant="primary" scale="sm" activeIndex={1}>
-        {/* <ButtonMenuItem as='a' href='http://localhost:3000/'> */}
-        <ButtonMenuItem as="a" href={`${interfaceBaseUrl}`}>
+        <ButtonMenuItem as="a" href={`${frontendBaseUrl}`}>
           V2
         </ButtonMenuItem>
         <ButtonMenuItem as="a" href="https://v1exchange.pancakeswap.finance/#/">
@@ -55,7 +46,7 @@ const VersionBar = () => {
         Help
       </Button>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default VersionBar;
+export default VersionBar

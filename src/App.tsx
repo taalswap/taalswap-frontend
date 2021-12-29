@@ -84,18 +84,18 @@ const App: React.FC = () => {
                     <Route exact strict path="/xswap" component={XSwap} />
                     <Route exact strict path="/liquidity" component={Pool} />
                     <Route exact path="/add" component={AddLiquidity} />
-                    <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
-
-                    {/* Redirection: These old routes are still used in the code base */}
-                    <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
-                    <Route exact path="/add/:chainId/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
-                    <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
                     <Route path="/farms">
                       <Farms />
                     </Route>
                     <Route path="/staking">
                       <Pools />
                     </Route>
+
+                    {/* Redirection: These old routes are still used in the code base */}
+                    <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
+                    <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+                    <Route exact path="/add/:chainId/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
+                    <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
                   </>
                 )}
 
