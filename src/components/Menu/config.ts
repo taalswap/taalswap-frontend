@@ -54,7 +54,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Liquidity'),
     icon: 'LiquidityIcon',
     // href: 'http://localhost:3000/#/liquidity',
-    href: `${interfaceBaseUrl}/#/liquidity`,
+    href: `${frontendBaseUrl}/liquidity`,
   },
   {
     label: t('Farms'),

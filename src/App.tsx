@@ -6,6 +6,9 @@ import { useEagerConnect, useInactiveListenerNew } from 'hooks/useEagerConnect'
 import { usePollCoreFarmData, useFetchProfile, usePollBlockNumber } from 'state/hooks'
 import Swap from 'views/Swap'
 import XSwap from 'views/XSwap'
+import Pool from 'views/Pool'
+import AddLiquidity from 'views/AddLiquidity'
+import RemoveLiquidity from 'views/RemoveLiquidity'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
@@ -15,6 +18,9 @@ import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import history from './routerHistory'
 import LandingPageView from './pages/LandingPageView'
+
+import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './views/AddLiquidity/redirects'
+import { RedirectOldRemoveLiquidityPathStructure } from './views/RemoveLiquidity/redirects'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
@@ -76,6 +82,14 @@ const App: React.FC = () => {
                   <>
                     <Route exact strict path="/swap" component={Swap} />
                     <Route exact strict path="/xswap" component={XSwap} />
+                    <Route exact strict path="/liquidity" component={Pool} />
+                    <Route exact path="/add" component={AddLiquidity} />
+                    <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
+
+                    {/* Redirection: These old routes are still used in the code base */}
+                    <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+                    <Route exact path="/add/:chainId/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
+                    <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
                     <Route path="/farms">
                       <Farms />
                     </Route>
