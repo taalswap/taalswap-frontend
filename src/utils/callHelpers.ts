@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
+import { parseUnits } from '@ethersproject/units'
 import { ethers } from 'ethers'
 import { Pair, TokenAmount, Token } from 'taalswap-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
@@ -24,109 +25,90 @@ export const approve = async (lpContract, masterChefContract, account) => {
 export const stake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
     const tx = await masterChefContract
-      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gas: DEFAULT_GAS_LIMIT })
+      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
     const receipt = await tx.wait()
     return receipt.transactionHash
   }
 
   const tx = await masterChefContract
-    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gas: DEFAULT_GAS_LIMIT })
+    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
   const receipt = await tx.wait()
   return receipt.transactionHash
 }
 
 export const sousStake = async (sousChefContract, amount, decimals = 18, account) => {
-  return sousChefContract.methods
-    .deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString())
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = await sousChefContract
+    .deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
+  const receipt = await tx.wait()
+  return receipt.transactionHash
 }
 
 export const sousStakeBnb = async (sousChefContract, amount, account) => {
-  return sousChefContract.methods
-    .deposit()
-    .send({
+  const tx = sousChefContract
+    .deposit({
       from: account,
-      gas: DEFAULT_GAS_LIMIT,
+      gasPrice: parseUnits('10', 'gwei').toString(),
+      gasLimit: 200000,
       value: new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(),
     })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const receipt = await tx.wait()
+  return receipt.transactionHash
 }
 
 export const unstake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
-    return masterChefContract.methods
-      .leaveStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    const tx = masterChefContract
+      .leaveStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
+    const receipt = await tx.wait()
+    return receipt.transactionHash
   }
 
-  return masterChefContract.methods
-    .withdraw(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = masterChefContract
+    .withdraw(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
+  const receipt = await tx.wait()
+  return receipt.transactionHash
 }
 
 export const sousUnstake = async (sousChefContract, amount, decimals, account) => {
-  return sousChefContract.methods
-    .withdraw(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString())
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = sousChefContract
+    .withdraw(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
+  const receipt = await tx.wait()
+  return receipt.transactionHash
 }
 
 export const sousEmergencyUnstake = async (sousChefContract, account) => {
-  return sousChefContract.methods
-    .emergencyWithdraw()
-    .send({ from: account })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = sousChefContract
+    .emergencyWithdraw({ from: account })
+  const receipt = await tx.wait()
+  return receipt.transactionHash
 }
 
 export const harvest = async (masterChefContract, pid, account) => {
   if (pid === 0) {
-    return masterChefContract.methods
-      .leaveStaking('0')
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    const tx = masterChefContract
+      .leaveStaking('0', { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
+    const receipt = await tx.wait()
+    return receipt.transactionHash
   }
 
-  return masterChefContract.methods
-    .deposit(pid, '0')
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = masterChefContract
+    .deposit(pid, '0', { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
+  const receipt = await tx.wait()
+  return receipt.transactionHash
 }
 
 export const soushHarvest = async (sousChefContract, account) => {
-  return sousChefContract.methods
-    .deposit('0')
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = sousChefContract
+    .deposit('0', { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
+  const receipt = await tx.wait()
+  return receipt.transactionHash
 }
 
 export const soushHarvestBnb = async (sousChefContract, account) => {
-  return sousChefContract.methods
-    .deposit()
-    .send({ from: account, gas: DEFAULT_GAS_LIMIT, value: BIG_ZERO })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  const tx = sousChefContract
+    .deposit({ from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000, value: BIG_ZERO })
+  const receipt = await tx.wait()
+  return receipt.transactionHash
 }
 
 // const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
