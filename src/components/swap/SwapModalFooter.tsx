@@ -108,8 +108,7 @@ export default function SwapModalFooter({
   const crossChain = parseInt(window.localStorage.getItem('crossChain') ?? '1')
 
   const enabledCheck = () => {
-    const result = chainId !== crossChain && tradeX === undefined ? true : disabledConfirm
-
+    const result = chainId !== crossChain && tradeX === undefined ? false : disabledConfirm
     return result
   }
 
