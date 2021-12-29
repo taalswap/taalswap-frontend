@@ -45,8 +45,8 @@ export default {
     1: '',
     3: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
     4: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
-    8217:'',
-    1001: ''
+    8217:'0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
+    1001: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a'
   },
   pancakeRabbits: {
     1: '',
