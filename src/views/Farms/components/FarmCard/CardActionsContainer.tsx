@@ -14,6 +14,7 @@ import { useApprove } from 'hooks/useApprove'
 import UnlockButton from 'components/UnlockButton'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
+import useActiveWeb3React from '../../../../hooks/useActiveWeb3React'
 
 const Action = styled.div`
   padding-top: 16px;
@@ -46,10 +47,10 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   const lpAddress = getAddress(lpAddresses)
   const lpName = farm.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
-  const web3 = useWeb3()
+  const { library } = useActiveWeb3React()
   const dispatch = useAppDispatch()
 
-  const lpContract = getBep20Contract(lpAddress, web3)
+  const lpContract = getBep20Contract(lpAddress, library)
 
   const { onApprove } = useApprove(lpContract)
 

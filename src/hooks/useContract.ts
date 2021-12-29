@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import useWeb3 from 'hooks/useWeb3'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   getBep20Contract,
   getCakeContract,
@@ -25,119 +25,124 @@ import {
   getLotteryV2Contract,
 } from 'utils/contractHelpers'
 
+import { getContract, getProviderOrSigner } from '../utils'
+
 /**
  * Helper hooks to get specific contracts (by ABI)
  */
 
 export const useIfoV1Contract = (address: string) => {
-  const web3 = useWeb3()
-  return useMemo(() => getIfoV1Contract(address, web3), [address, web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getIfoV1Contract(address, library.getSigner()), [address, library])
 }
 
 export const useIfoV2Contract = (address: string) => {
-  const web3 = useWeb3()
-  return useMemo(() => getIfoV2Contract(address, web3), [address, web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getIfoV2Contract(address, library.getSigner()), [address, library])
 }
 
-export const useERC20 = (address: string) => {
-  const web3 = useWeb3()
-  return useMemo(() => getBep20Contract(address, web3), [address, web3])
+export const useERC20 = (address: string, withSignerIfPossible = true) => {
+  const { library, account } = useActiveWeb3React()
+  return useMemo(
+    () => getBep20Contract(address, withSignerIfPossible ? getProviderOrSigner(library, account) : null),
+    [account, address, library, withSignerIfPossible],
+  )
 }
 
 /**
  * @see https://docs.openzeppelin.com/contracts/3.x/api/token/erc721
  */
 export const useERC721 = (address: string) => {
-  const web3 = useWeb3()
-  return useMemo(() => getErc721Contract(address, web3), [address, web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getErc721Contract(address, library.getSigner()), [address, library])
 }
 
 export const useCake = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getCakeContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getCakeContract(library.getSigner()), [library])
 }
 
 export const useBunnyFactory = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getBunnyFactoryContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getBunnyFactoryContract(library.getSigner()), [library])
 }
 
 export const usePancakeRabbits = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getPancakeRabbitContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getPancakeRabbitContract(library.getSigner()), [library])
 }
 
 export const useProfile = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getProfileContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getProfileContract(library.getSigner()), [library])
 }
 
 export const useLottery = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getLotteryContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getLotteryContract(library.getSigner()), [library])
 }
 
 export const useLotteryTicket = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getLotteryTicketContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getLotteryTicketContract(library.getSigner()), [library])
 }
 
 export const useLotteryV2Contract = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getLotteryV2Contract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getLotteryV2Contract(library.getSigner()), [library])
 }
 
 export const useMasterchef = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getMasterchefContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getMasterchefContract(library.getSigner()), [library])
 }
 
 export const useSousChef = (id) => {
-  const web3 = useWeb3()
-  return useMemo(() => getSouschefContract(id, web3), [id, web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getSouschefContract(id, library.getSigner()), [id, library])
 }
 
 export const useSousChefV2 = (id) => {
-  const web3 = useWeb3()
-  return useMemo(() => getSouschefV2Contract(id, web3), [id, web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getSouschefV2Contract(id, library.getSigner()), [id, library])
 }
 
 export const usePointCenterIfoContract = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getPointCenterIfoContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getPointCenterIfoContract(library.getSigner()), [library])
 }
 
 export const useBunnySpecialContract = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getBunnySpecialContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getBunnySpecialContract(library.getSigner()), [library])
 }
 
 export const useClaimRefundContract = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getClaimRefundContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getClaimRefundContract(library.getSigner()), [library])
 }
 
 export const useTradingCompetitionContract = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getTradingCompetitionContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getTradingCompetitionContract(library.getSigner()), [library])
 }
 
 export const useEasterNftContract = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getEasterNftContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getEasterNftContract(library.getSigner()), [library])
 }
 
 export const useCakeVaultContract = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getCakeVaultContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getCakeVaultContract(library.getSigner()), [library])
 }
 
 export const usePredictionsContract = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getPredictionsContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getPredictionsContract(library.getSigner()), [library])
 }
 
 export const useChainlinkOracleContract = () => {
-  const web3 = useWeb3()
-  return useMemo(() => getChainlinkOracleContract(web3), [web3])
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getChainlinkOracleContract(library.getSigner()), [library])
 }

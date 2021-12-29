@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Pair, Token, TokenAmount, JSBI } from 'taalswap-sdk'
+import { ethers } from 'ethers'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { getBep20Contract, getCakeContract } from 'utils/contractHelpers'
@@ -14,6 +15,8 @@ import getChainId from '../utils/getChainId'
 import getKlaytnApiUrl from '../utils/getKlaytnApiUrl'
 import multicallEth from '../utils/multicallEth'
 import multicallKlaytn from '../utils/multicallKlaytn'
+import useActiveWeb3React from './useActiveWeb3React'
+
 
 type UseTokenBalanceState = {
   balance: BigNumber
@@ -32,13 +35,13 @@ const useTokenBalance = (tokenAddress: string) => {
     balance: BIG_ZERO,
     fetchStatus: NOT_FETCHED,
   })
-  const web3 = useWeb3()
+  const { library } = useActiveWeb3React()
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const contract = getBep20Contract(tokenAddress, web3)
+      const contract = getBep20Contract(tokenAddress, library.getSigner())
       try {
         const res = await contract.methods.balanceOf(account).call()
         setBalanceState({ balance: new BigNumber(res), fetchStatus: SUCCESS })
@@ -54,7 +57,7 @@ const useTokenBalance = (tokenAddress: string) => {
     if (account) {
       fetchBalance()
     }
-  }, [account, tokenAddress, web3, fastRefresh, SUCCESS, FAILED])
+  }, [account, tokenAddress, library, fastRefresh, SUCCESS, FAILED])
 
   return balanceState
 }
@@ -66,7 +69,7 @@ export const useTotalSupply = () => {
   useEffect(() => {
     async function fetchTotalSupply() {
       const cakeContract = getCakeContract()
-      const supply = await cakeContract.methods.totalSupply().call()
+      const supply = await cakeContract.totalSupply()
       setTotalSupply(new BigNumber(supply))
     }
 
@@ -252,17 +255,16 @@ export const useTotalAssets = () => {
 export const useBurnedBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(BIG_ZERO)
   const { slowRefresh } = useRefresh()
-  const web3 = useWeb3()
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const contract = getBep20Contract(tokenAddress, web3)
-      const res = await contract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call()
+      const contract = getBep20Contract(tokenAddress)
+      const res = await contract.balanceOf('0x000000000000000000000000000000000000dEaD')
       setBalance(new BigNumber(res))
     }
 
     fetchBalance()
-  }, [web3, tokenAddress, slowRefresh])
+  }, [tokenAddress, slowRefresh])
 
   return balance
 }
@@ -270,17 +272,15 @@ export const useBurnedBalance = (tokenAddress: string) => {
 export const useDeployerBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(BIG_ZERO)
   const { slowRefresh } = useRefresh()
-  const web3 = useWeb3()
-
   useEffect(() => {
     const fetchBalance = async () => {
-      const contract = getBep20Contract(tokenAddress, web3)
-      const res = await contract.methods.balanceOf('0x1539e0A3Bb88cE47914C06c739862D7dAE6BB164').call()   // Tezor 01
+      const contract = getBep20Contract(tokenAddress)
+      const res = await contract.balanceOf(ethers.utils.getAddress('0x0994abd73141cac0768f61cd7b01e4f010d81aa2'))   // Tezor 01
       setBalance(new BigNumber(res))
     }
 
     fetchBalance()
-  }, [web3, tokenAddress, slowRefresh])
+  }, [tokenAddress, slowRefresh])
 
   return balance
 }

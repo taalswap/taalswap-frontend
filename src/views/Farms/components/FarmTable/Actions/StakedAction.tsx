@@ -21,6 +21,7 @@ import useWeb3 from 'hooks/useWeb3'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
 import { ActionContainer, ActionTitles, ActionContent, Earned, Title, Subtle } from './styles'
+import useActiveWeb3React from '../../../../../hooks/useActiveWeb3React'
 
 const IconButtonWrapper = styled.div`
   display: flex;
@@ -44,7 +45,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const { onStake } = useStake(pid)
   const { onUnstake } = useUnstake(pid)
-  const web3 = useWeb3()
+  const { library } = useActiveWeb3React()
   const location = useLocation()
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)
@@ -81,7 +82,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const [onPresentWithdraw] = useModal(
     <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} />,
   )
-  const lpContract = getBep20Contract(lpAddress, web3)
+  const lpContract = getBep20Contract(lpAddress, library.getSigner())
   const dispatch = useAppDispatch()
   const { onApprove } = useApprove(lpContract)
 

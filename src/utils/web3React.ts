@@ -41,16 +41,16 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
 
 // TODO : 차이 확인
 // taalswap-frontend 기본
-export const getLibrary = (provider): Web3 => {
-  return provider
-}
+// export const getLibrary = (provider): Web3 => {
+//   return provider
+// }
 
 // pancake-swap 신규
-// export const getLibrary = (provider): ethers.providers.Web3Provider => {
-//   const library = new ethers.providers.Web3Provider(provider)
-//   library.pollingInterval = POLLING_INTERVAL
-//   return library
-// }
+export const getLibrary = (provider): ethers.providers.Web3Provider => {
+  const library = new ethers.providers.Web3Provider(provider)
+  library.pollingInterval = POLLING_INTERVAL
+  return library
+}
 
 // taalswap-interface 기본
 // export const getLibrary = (provider: any): Web3Provider => {
