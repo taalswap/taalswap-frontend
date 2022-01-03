@@ -238,6 +238,7 @@ const AllTokens = () => {
           })
           setTokens(data)
         })
+        .catch((error) => console.log(error))
     }
 
     fetchData()

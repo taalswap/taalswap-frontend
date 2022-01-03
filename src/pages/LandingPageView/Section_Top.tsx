@@ -239,6 +239,7 @@ const SectionTop: React.FC = () => {
           }
           setEthTvl(result)
         })
+        .catch((err) => console.log(err))
 
       setTalPrice(cakePrice.toNumber())
     }
