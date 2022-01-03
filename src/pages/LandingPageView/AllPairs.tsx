@@ -165,11 +165,10 @@ const TokenParentWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  
-  @media screen and (max-width:500px){
-   
+
+  @media screen and (max-width: 500px) {
   }
-`;
+`
 
 const TokenWrapper = styled.div`
   //position: relative;
@@ -177,7 +176,7 @@ const TokenWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
-  
+
   ${({ theme }) => theme.mediaQueries.sm} {
     display: flex;
   }
@@ -186,7 +185,7 @@ const TokenWrapper = styled.div`
 const HigherLogo = styled.img`
   width: 19px;
   height: 19px;
-  max-width: none;  
+  max-width: none;
   background-color: white;
   border-radius: 50%;
   border: 1px solid #e3e1e1;
@@ -203,7 +202,7 @@ const CoveredLogo = styled.img`
   //left: 15px;
   width: 19px;
   height: 19px;
-  max-width: none;  
+  max-width: none;
   background-color: white;
   border-radius: 50%;
   border: 1px solid #e3e1e1;
@@ -283,7 +282,7 @@ const AllPairs = () => {
         const baseDeposit = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_address
         const quoteDeposit = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_address
 
-        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/${process.env.REACT_APP_CHAIN_ID}/${baseDeposit}/${quoteDeposit}`
+        const deposit = `${process.env.REACT_APP_FRONTEND}/#/add/${process.env.REACT_APP_CHAIN_ID}/${baseDeposit}/${quoteDeposit}`
 
         const volumn24h = pair.previous24hVolumeUSD
 
@@ -292,15 +291,15 @@ const AllPairs = () => {
 
         // let prices = ''
         // if (pair.base_symbol === 'TSHP') {
-        //   prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/${pair.base_address}`
+        //   prices = `${process.env.REACT_APP_FRONTEND}/#/swap/${pair.quote_address}/${pair.base_address}`
         // } else {
         //   prices =
         //     baseDeposit === 'ETH'
-        //       ? `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/ETH`
-        //       : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
+        //       ? `${process.env.REACT_APP_FRONTEND}/#/swap/${pair.quote_address}/ETH`
+        //       : `${process.env.REACT_APP_FRONTEND}/#/swap/ETH/${pair.base_address}`
         // }
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${process.env.REACT_APP_CHAIN_ID}/${quoteDeposit}/${baseDeposit}`
+        const prices = `${process.env.REACT_APP_FRONTEND}/#/swap/${process.env.REACT_APP_CHAIN_ID}/${quoteDeposit}/${baseDeposit}`
 
         const temp = {
           name,
@@ -401,7 +400,7 @@ const AllPairs = () => {
                   <TokenParentWrapper>
                     <TokenWrapper>
                       <HigherLogo src={pair.baseSymbolPath} alt="test" />
-                      <CoveredLogo src={pair.quoteSymbolPath} alt="test"/>
+                      <CoveredLogo src={pair.quoteSymbolPath} alt="test" />
                     </TokenWrapper>
                     <TextPairStyle>{pair.name}</TextPairStyle>
                   </TokenParentWrapper>
