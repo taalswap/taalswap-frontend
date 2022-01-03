@@ -7,7 +7,6 @@ import { useUserSlippageTolerance } from 'state/user/hooks'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from 'utils/prices'
 import { useTranslation } from 'contexts/Localization'
 import { AutoColumn } from '../Column'
-// import QuestionHelper from '../QuestionHelper';
 import { RowBetween, RowFixed } from '../Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { SectionBreak } from './styleds'

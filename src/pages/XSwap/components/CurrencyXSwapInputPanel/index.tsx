@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Currency, Pair } from 'taalswap-sdk'
 import { Button, ChevronDownIcon, Text } from 'taalswap-uikit'
 import styled from 'styled-components'

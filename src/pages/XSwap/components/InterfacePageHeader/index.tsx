@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, HistoryIcon, IconButton, Text, TuneIcon, useModal } from 'taalswap-uikit'
+import { Flex, Heading, IconButton, Text, useModal } from 'taalswap-uikit'
 import OptionIcon from 'views/Swap/images/option_icon.svg'
 import Disclosure from 'views/Swap/images/disclosure.svg'
 import Bridge from 'views/XSwap/images/bridge.svg'

@@ -3,7 +3,6 @@ import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 import { Box, Button, Flex, HelpIcon, Input, Text, useTooltip } from 'taalswap-uikit'
 import { useUserSlippageTolerance } from 'state/user/hooks'
-// import QuestionHelper from '../QuestionHelper'
 
 const MAX_SLIPPAGE = 5000
 const RISKY_SLIPPAGE_LOW = 50

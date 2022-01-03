@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react'
-import { CheckmarkCircleIcon, ErrorIcon, Flex, Link, LinkExternal, Modal, Text } from 'taalswap-uikit'
+import { CheckmarkCircleIcon, ErrorIcon, Flex, Link, Modal, Text } from 'taalswap-uikit'
 import { useActiveWeb3React } from 'hooks'
 import { useTheme } from 'styled-components'
 // import { getBscScanLink } from 'utils'
