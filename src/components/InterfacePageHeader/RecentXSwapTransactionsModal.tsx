@@ -207,7 +207,7 @@ const RecentXSwapTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTr
       {account &&
         chainId &&
         // sortedRecentTransactions.map((sortedRecentTransaction) => {
-        allXSwapTransactions.map((xswapTransaction) => {
+        allXSwapTransactions.map((xswapTransaction, index) => {
           const { txHash, xTxHash, token, xToken, formattedAmount, formattedXAmount, fromChain, toChain, to, xFrom } =
             xswapTransaction
 
@@ -215,7 +215,7 @@ const RecentXSwapTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTr
           const toSymbol = getSymbolByAddress(xToken, toChain)
 
           return (
-            <>
+            <div key={txHash}>
               <Flex key={txHash} alignItems="center" justifyContent="space-between" mb="4px">
                 {getSummary(
                   fromSymbol,
@@ -230,7 +230,7 @@ const RecentXSwapTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTr
                   xFrom,
                 )}
               </Flex>
-            </>
+            </div>
           )
         })}
     </Modal>
