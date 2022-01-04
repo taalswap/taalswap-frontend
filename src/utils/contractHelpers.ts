@@ -25,6 +25,7 @@ import {
   getCakeVaultAddress,
   getPredictionsAddress,
   getChainlinkOracleAddress,
+  getMulticall2Address
 } from 'utils/addressHelpers'
 
 // ABI
@@ -52,6 +53,8 @@ import easterNftAbi from 'config/abi/easterNft.json'
 import cakeVaultAbi from 'config/abi/cakeVault.json'
 import predictionsAbi from 'config/abi/predictions.json'
 import chainlinkOracleAbi from 'config/abi/chainlinkOracle.json'
+import MultiCall2Abi from 'config/abi/Multicall2.json'
+
 import { DEFAULT_GAS_PRICE } from 'config'
 import { getSettings, getGasPriceInWei } from './settings'
 
@@ -66,11 +69,19 @@ import { getSettings, getGasPriceInWei } from './settings'
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   const signerOrProvider = signer ?? simpleRpcProvider
+  if (!signer) {
+    console.log('~~~~~', signerOrProvider)
+  }
   return new ethers.Contract(address, abi, signerOrProvider)
 }
 
 export const getBep20Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(bep20Abi, address, signer)
+}
+export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  const contract = getContract(MultiCall2Abi, getMulticall2Address(), signer)
+  console.log(contract)
+  return contract
 }
 export const getErc721Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(erc721Abi, address, signer)
