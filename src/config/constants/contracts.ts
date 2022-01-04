@@ -46,7 +46,7 @@ export default {
     3: '0x392782e576aa1d4de18e1fe05bf4de9a0f3f0545',
     4: '',
     8217: '',
-    1001: ''
+    1001: '0x8a7d522c485224245d29d177bcc5fea771e5dc8c'
   },
   pancakeProfile: {
     1: '',
