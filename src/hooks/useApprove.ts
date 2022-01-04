@@ -74,22 +74,36 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
   const cakeVaultContract = useCakeVaultContract()
   const cakeContract = useCake()
 
-  const handleApprove = () => {
-    cakeContract
-      .approve(cakeVaultContract.options.address, ethers.constants.MaxUint256, { from: account })
-      .on('sending', () => {
-        setRequestedApproval(true)
-      })
-      .on('receipt', () => {
+  const handleApprove = async () => {
+    const tx = await cakeContract
+      .approve(cakeVaultContract.address, ethers.constants.MaxUint256, { from: account })
+    try {
+      setRequestedApproval(true)
+      const receipt = await tx.wait()
+      if (receipt.status) {
         toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% vault!', { symbol: 'TAL' }))
         setLastUpdated()
         setRequestedApproval(false)
-      })
-      .on('error', (error) => {
-        console.error(error)
-        toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
-        setRequestedApproval(false)
-      })
+      }
+    } catch (e) {
+      console.error(e)
+      toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+      setRequestedApproval(false)
+    }
+
+      // .on('sending', () => {
+      //   setRequestedApproval(true)
+      // })
+      // .on('receipt', () => {
+      //   toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% vault!', { symbol: 'TAL' }))
+      //   setLastUpdated()
+      //   setRequestedApproval(false)
+      // })
+      // .on('error', (error) => {
+      //   console.error(error)
+      //   toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+      //   setRequestedApproval(false)
+      // })
   }
 
   return { handleApprove, requestedApproval }
