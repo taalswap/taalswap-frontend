@@ -80,45 +80,43 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
     const isWithdrawingAll = sharesRemaining.lte(triggerWithdrawAllThreshold)
 
     if (isWithdrawingAll) {
-      cakeVaultContract.methods
-        .withdrawAll()
-        .send({ from: account })
-        .on('sending', () => {
-          setPendingTx(true)
-        })
-        .on('receipt', () => {
+      const tx = await cakeVaultContract
+        .withdrawAll({ from: account })
+      try {
+        setPendingTx(true)
+        const receipt = await tx.wait()
+        if (receipt.status) {
           toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
           setPendingTx(false)
           onDismiss()
           dispatch(fetchCakeVaultUserData({ account }))
-        })
-        .on('error', (error) => {
-          console.error(error)
-          // Remove message from toast before prod
-          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-          setPendingTx(false)
-        })
+        }
+      } catch (error) {
+        console.error(error)
+        // Remove message from toast before prod
+        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        setPendingTx(false)
+      }
     } else {
-      cakeVaultContract.methods
-        .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString())
+      const tx = await cakeVaultContract
+        .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString(), { from: account })
         // .toString() being called to fix a BigNumber error in prod
         // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-        .send({ from: account })
-        .on('sending', () => {
-          setPendingTx(true)
-        })
-        .on('receipt', () => {
+      try {
+        setPendingTx(true)
+        const receipt = await tx.wait()
+        if (receipt.status) {
           toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
           setPendingTx(false)
           onDismiss()
           dispatch(fetchCakeVaultUserData({ account }))
-        })
-        .on('error', (error) => {
-          console.error(error)
-          // Remove message from toast before prod
-          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-          setPendingTx(false)
-        })
+        }
+      } catch (error) {
+        console.error(error)
+        // Remove message from toast before prod
+        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        setPendingTx(false)
+      }
     }
   }
 
@@ -142,22 +140,6 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
       setPendingTx(false)
     }
-
-      // .on('sending', () => {
-      //   setPendingTx(true)
-      // })
-      // .on('receipt', () => {
-      //   toastSuccess(t('Staked!'), t('Your funds have been staked in the pool'))
-      //   setPendingTx(false)
-      //   onDismiss()
-      //   dispatch(fetchCakeVaultUserData({ account }))
-      // })
-      // .on('error', (error) => {
-      //   console.error(error)
-      //   // Remove message from toast before prod
-      //   toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-      //   setPendingTx(false)
-      // })
   }
 
   const handleConfirmClick = async () => {

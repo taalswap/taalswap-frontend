@@ -49,28 +49,27 @@ const BountyModal: React.FC<BountyModalProps> = ({
     tooltipPadding: { right: 15 },
   })
   const btnColor = theme.isDark ? "#fff" : "#212b36";
-  
+
   const handleConfirmClick = async () => {
-    cakeVaultContract.methods
-      .harvest()
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
-      .on('sending', () => {
-        setPendingTx(true)
-      })
-      .on('receipt', () => {
+    const tx = await cakeVaultContract
+      .harvest({ from: account, gas: DEFAULT_GAS_LIMIT })
+    try {
+      setPendingTx(true)
+      const receipt = await tx.wait()
+      if (receipt.status) {
         toastSuccess(t('Bounty collected!'), t('TAL bounty has been sent to your wallet.'))
         setPendingTx(false)
         onDismiss()
-      })
-      .on('error', (error) => {
-        console.error(error)
-        toastError(
-          t('Could not be collected'),
-          t('There may be an issue with your transaction, or another user claimed the bounty first.'),
-        )
-        setPendingTx(false)
-        onDismiss()
-      })
+      }
+    } catch (error) {
+      console.error(error)
+      toastError(
+        t('Could not be collected'),
+        t('There may be an issue with your transaction, or another user claimed the bounty first.'),
+      )
+      setPendingTx(false)
+      onDismiss()
+    }
   }
 
   return (
