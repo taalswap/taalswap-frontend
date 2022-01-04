@@ -88,7 +88,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
       //       ? `https://taalswap.info/images/coins/${symbol}.png`
       //       : `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${symbol}/logo.png`
       // } else {
-      //   url = `${process.env.REACT_APP_INTERFACE}/images/coins/${symbol.toLowerCase()}.svg`
+      //   url = `${process.env.REACT_APP_FRONTEND}/images/coins/${symbol.toLowerCase()}.svg`
       // }
       // url = `https://swap.taalswap.finance/images/coins/${symbol.toLowerCase()}.png`
       url = `${frontendBaseUrl}/images/coins/${symbol.toLowerCase()}.png`

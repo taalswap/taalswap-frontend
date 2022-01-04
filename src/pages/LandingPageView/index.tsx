@@ -6,6 +6,7 @@ import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { TopBar } from 'taalswap-uikit'
+import XSwap from 'pages/XSwap'
 import SectionTop from './Section_Top'
 import TableWrap from './Table_Wrap'
 import SectionBottom from './Section_Bottom'
@@ -40,6 +41,7 @@ const LandingPageView = () => {
         klaytn={process.env.REACT_APP_KLAYTN_ID}
       />
       <SectionTop />
+      <XSwap />
       <TableWrap />
       <StakingWrap />
       <div className="areafarms">

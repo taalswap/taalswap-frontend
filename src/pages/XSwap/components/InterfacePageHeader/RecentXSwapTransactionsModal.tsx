@@ -1,16 +1,16 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react'
-import { Button, CheckmarkCircleIcon, ErrorIcon, Flex, Link, LinkExternal, Modal, Text } from 'taalswap-uikit'
+import { CheckmarkCircleIcon, ErrorIcon, Flex, Link, Modal, Text } from 'taalswap-uikit'
 import { useActiveWeb3React } from 'hooks'
 import { useTheme } from 'styled-components'
-import { getBscScanLink } from 'utils'
+// import { getBscScanLink } from 'utils'
 import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks'
 import { TransactionDetails } from 'state/transactions/reducer'
-import Loader from 'components/Loader'
 import axios from 'axios'
-import { useTranslation } from '../../contexts/Localization'
-import TOKEN_LIST from '../../constants/token/taalswap.json'
-import { SCAN_URL } from '../../config'
-import { BRIDGE_ADDRESS } from '../../constants/index'
+import { useTranslation } from 'contexts/Localization'
+import TOKEN_LIST from 'constants/token/taalswap.json'
+import { SCAN_URL } from 'config'
+import { BRIDGE_ADDRESS } from 'constants/index'
+import Loader from '../Loader'
 
 type RecentTransactionsModalProps = {
   onDismiss?: () => void

@@ -248,9 +248,9 @@ const KlayAllPairs = () => {
       tokenIcon === TAL_ADDRESS[ChainId.BAOBAB] ||
       symbol.toLowerCase() === 'ktalk'
     ) {
-      path = `${process.env.REACT_APP_INTERFACE}/images/coins/${symbol.toLowerCase()}.png`
+      path = `${process.env.REACT_APP_FRONTEND}/images/coins/${symbol.toLowerCase()}.png`
     } else {
-      path = `${process.env.REACT_APP_INTERFACE}/images/coins/${symbol.toLowerCase()}.svg`
+      path = `${process.env.REACT_APP_FRONTEND}/images/coins/${symbol.toLowerCase()}.svg`
     }
 
     return path
@@ -277,7 +277,7 @@ const KlayAllPairs = () => {
         const baseDeposit = pair.base_symbol === 'WKLAY' ? 'KLAY' : pair.base_address
         const quoteDeposit = pair.quote_symbol === 'WKLAY' ? 'KLAY' : pair.quote_address
 
-        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/${process.env.REACT_APP_KLAYTN_ID}/${baseDeposit}/${quoteDeposit}`
+        const deposit = `${process.env.REACT_APP_FRONTEND}/#/add/${process.env.REACT_APP_KLAYTN_ID}/${baseDeposit}/${quoteDeposit}`
 
         const volumn24h = pair.previous24hVolumeUSD
 
@@ -286,15 +286,15 @@ const KlayAllPairs = () => {
 
         // let prices = ''
         // if (pair.base_symbol === 'TSHP') {
-        //   prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/${pair.base_address}`
+        //   prices = `${process.env.REACT_APP_FRONTEND}/#/swap/${pair.quote_address}/${pair.base_address}`
         // } else {
         //   prices =
         //     baseDeposit === 'ETH'
-        //       ? `${process.env.REACT_APP_INTERFACE}/#/swap/${pair.quote_address}/ETH`
-        //       : `${process.env.REACT_APP_INTERFACE}/#/swap/ETH/${pair.base_address}`
+        //       ? `${process.env.REACT_APP_FRONTEND}/#/swap/${pair.quote_address}/ETH`
+        //       : `${process.env.REACT_APP_FRONTEND}/#/swap/ETH/${pair.base_address}`
         // }
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${process.env.REACT_APP_KLAYTN_ID}/${quoteDeposit}/${baseDeposit}`
+        const prices = `${process.env.REACT_APP_FRONTEND}/#/swap/${process.env.REACT_APP_KLAYTN_ID}/${quoteDeposit}/${baseDeposit}`
 
         const temp = {
           name,
@@ -369,7 +369,7 @@ const KlayAllPairs = () => {
         <Inline className="section_tit">
           <Image
             alt="eth"
-            src={`${process.env.REACT_APP_INTERFACE}/images/coins/wklay.svg`}
+            src={`${process.env.REACT_APP_FRONTEND}/images/coins/wklay.svg`}
             width="24px"
             height="24px"
             style={{ marginRight: '10px' }}

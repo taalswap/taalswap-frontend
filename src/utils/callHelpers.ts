@@ -15,6 +15,7 @@ import { getWeb3NoAccount } from './web3'
 import { getBalanceAmount } from './formatBalance'
 import { BIG_TEN, BIG_ZERO } from './bigNumber'
 import getChainId from './getChainId'
+import getGasPrice from "./getGasPrice";
 
 export const approve = async (lpContract, masterChefContract, account) => {
   const result = await lpContract
@@ -23,9 +24,10 @@ export const approve = async (lpContract, masterChefContract, account) => {
 }
 
 export const stake = async (masterChefContract, pid, amount, account) => {
+  const gasPrice = getGasPrice()
   if (pid === 0) {
     const tx = await masterChefContract
-      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { from: account, gasPrice: parseUnits('10', 'gwei').toString(), gasLimit: 200000 })
+      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { gasPrice, gasLimit: 200000 })
     const receipt = await tx.wait()
     return receipt.transactionHash
   }

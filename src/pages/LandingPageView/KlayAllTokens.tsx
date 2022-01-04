@@ -186,20 +186,20 @@ const KlayAllTokens = () => {
           // tokenIcon === '0x086b00cf35e8873636384cd2b424c39ae875a8a9'
         ) {
           // path = `https://taalswap.info/images/coins/${token.address.toLowerCase()}.png`
-          path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.png`
+          path = `${process.env.REACT_APP_FRONTEND}/images/coins/${token.symbol.toLowerCase()}.png`
         } else if (token.symbol.toLowerCase() === 'ktalk') {
-          path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.png`
+          path = `${process.env.REACT_APP_FRONTEND}/images/coins/${token.symbol.toLowerCase()}.png`
         } else {
           // path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
           //   token.address,
           // )}/logo.png`
-          path = `${process.env.REACT_APP_INTERFACE}/images/coins/${token.symbol.toLowerCase()}.svg`
+          path = `${process.env.REACT_APP_FRONTEND}/images/coins/${token.symbol.toLowerCase()}.svg`
         }
 
         const address = token.symbol === 'WKLAY' ? 'KLAY' : token.address
 
-        const prices = `${process.env.REACT_APP_INTERFACE}/#/swap/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
-        const deposit = `${process.env.REACT_APP_INTERFACE}/#/add/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
+        const prices = `${process.env.REACT_APP_FRONTEND}/#/swap/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
+        const deposit = `${process.env.REACT_APP_FRONTEND}/#/add/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
 
         const temp = {
           name,
@@ -255,7 +255,7 @@ const KlayAllTokens = () => {
         <Inline className="section_tit">
           <Image
             alt="eth"
-            src={`${process.env.REACT_APP_INTERFACE}/images/coins/wklay.svg`}
+            src={`${process.env.REACT_APP_FRONTEND}/images/coins/wklay.svg`}
             width="24px"
             height="24px"
             style={{ marginRight: '10px' }}

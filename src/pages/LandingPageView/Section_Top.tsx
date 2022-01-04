@@ -239,6 +239,7 @@ const SectionTop: React.FC = () => {
           }
           setEthTvl(result)
         })
+        .catch((err) => console.log(err))
 
       setTalPrice(cakePrice.toNumber())
     }
@@ -256,11 +257,11 @@ const SectionTop: React.FC = () => {
         .then((response) => {
           result = parseFloat(response.data.tvl)
 
-          // if (cakePrice.isNaN()) {
-          //   result = parseFloat(response.data.tvl)
-          // } else {
-          //   result = parseFloat(response.data.tvl) + talStakedTotal * cakePrice.toNumber()
-          // }
+          if (cakePrice.isNaN()) {
+            result = parseFloat(response.data.tvl)
+          } else {
+            result = parseFloat(response.data.tvl) + talStakedTotal * cakePrice.toNumber()
+          }
           setKlayTvl(result)
         })
 
