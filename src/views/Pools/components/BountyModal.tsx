@@ -11,6 +11,8 @@ import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import UnlockButton from 'components/UnlockButton'
 import Balance from 'components/Balance'
+import { parseUnits } from '@ethersproject/units'
+import getGasPrice from '../../../utils/getGasPrice'
 
 interface BountyModalProps {
   cakeBountyToDisplay: number
@@ -51,8 +53,9 @@ const BountyModal: React.FC<BountyModalProps> = ({
   const btnColor = theme.isDark ? "#fff" : "#212b36";
 
   const handleConfirmClick = async () => {
+    const gasPrice = getGasPrice()
     const tx = await cakeVaultContract
-      .harvest({ from: account, gas: DEFAULT_GAS_LIMIT })
+      .harvest({ from: account, gasPrice, gasLimit: 300000  })
     try {
       setPendingTx(true)
       const receipt = await tx.wait()
