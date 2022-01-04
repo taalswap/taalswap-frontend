@@ -118,8 +118,8 @@ export const useCheckVaultApprovalStatus = () => {
   useEffect(() => {
     const checkApprovalStatus = async () => {
       try {
-        const response = await cakeContract.allowance(account, cakeVaultContract.options.address)
-        const currentAllowance = new BigNumber(response)
+        const response = await cakeContract.allowance(account, cakeVaultContract.address)
+        const currentAllowance = new BigNumber(response, 16)
         setIsVaultApproved(currentAllowance.gt(0))
       } catch (error) {
         setIsVaultApproved(false)
