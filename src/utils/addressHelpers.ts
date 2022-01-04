@@ -20,6 +20,9 @@ export const getMasterChefAddress = () => {
 export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
+export const getMulticall2Address = () => {
+  return getAddress(addresses.multiCall2)
+}
 export const getWethAddress = () => {
   return getAddress(tokens.weth.address)
 }

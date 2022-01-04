@@ -41,6 +41,13 @@ export default {
     8217: '0x5ba315e48b40f8512b86e1795781f312d330c5fc',
     1001: '0x6943fa156da5a68c74696837666ae49c95712431'
   },
+  multiCall2: {
+    1: '',
+    3: '0x392782e576aa1d4de18e1fe05bf4de9a0f3f0545',
+    4: '',
+    8217: '',
+    1001: ''
+  },
   pancakeProfile: {
     1: '',
     3: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
