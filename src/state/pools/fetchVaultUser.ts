@@ -1,22 +1,17 @@
 import BigNumber from 'bignumber.js'
 import { getCakeVaultContract } from 'utils/contractHelpers'
-import web3NoAccount from "../../utils/web3";
-import cakeVaultAbi from "../../config/abi/cakeVault.json";
-import {getCakeVaultAddress} from "../../utils/addressHelpers";
 
-// const cakeVaultContract = getCakeVaultContract()
-// @ts-ignore
-const cakeVaultContract = new web3NoAccount.eth.Contract(cakeVaultAbi, getCakeVaultAddress())
+const cakeVaultContract = getCakeVaultContract()
 
 const fetchVaultUser = async (account: string) => {
   try {
-    const userContractResponse = await cakeVaultContract.methods.userInfo(account).call()
+    const userContractResponse = await cakeVaultContract.userInfo(account)
     return {
       isLoading: false,
-      userShares: new BigNumber(userContractResponse.shares).toJSON(),
-      lastDepositedTime: userContractResponse.lastDepositedTime as string,
-      lastUserActionTime: userContractResponse.lastUserActionTime as string,
-      taalAtLastUserAction: new BigNumber(userContractResponse.taalAtLastUserAction).toJSON(),
+      userShares: new BigNumber(userContractResponse.shares.toString()).toJSON(),
+      lastDepositedTime: userContractResponse.lastDepositedTime.toString(),
+      lastUserActionTime: userContractResponse.lastUserActionTime.toString(),
+      taalAtLastUserAction: new BigNumber(userContractResponse.taalAtLastUserAction.toString()).toJSON(),
     }
   } catch (error) {
     return {
