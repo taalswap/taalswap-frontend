@@ -1,7 +1,12 @@
 import BigNumber from 'bignumber.js'
 import { getCakeVaultContract } from 'utils/contractHelpers'
+import web3NoAccount from "../../utils/web3";
+import cakeVaultAbi from "../../config/abi/cakeVault.json";
+import {getCakeVaultAddress} from "../../utils/addressHelpers";
 
-const cakeVaultContract = getCakeVaultContract()
+// const cakeVaultContract = getCakeVaultContract()
+// @ts-ignore
+const cakeVaultContract = new web3NoAccount.eth.Contract(cakeVaultAbi, getCakeVaultAddress())
 
 const fetchVaultUser = async (account: string) => {
   try {
