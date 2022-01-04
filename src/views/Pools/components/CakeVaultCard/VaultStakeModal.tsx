@@ -123,26 +123,41 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
   }
 
   const handleDeposit = async (convertedStakeAmount: BigNumber) => {
-    cakeVaultContract.methods
-      .deposit(convertedStakeAmount.toString())
+    const tx = await cakeVaultContract
+      .deposit(convertedStakeAmount.toString(), { from: account })
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-      .send({ from: account })
-      .on('sending', () => {
-        setPendingTx(true)
-      })
-      .on('receipt', () => {
+    try {
+      setPendingTx(true)
+      const receipt = await tx.wait()
+      if (receipt.status) {
         toastSuccess(t('Staked!'), t('Your funds have been staked in the pool'))
         setPendingTx(false)
         onDismiss()
         dispatch(fetchCakeVaultUserData({ account }))
-      })
-      .on('error', (error) => {
-        console.error(error)
-        // Remove message from toast before prod
-        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-        setPendingTx(false)
-      })
+      }
+    } catch (error) {
+      console.error(error)
+      // Remove message from toast before prod
+      toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+      setPendingTx(false)
+    }
+
+      // .on('sending', () => {
+      //   setPendingTx(true)
+      // })
+      // .on('receipt', () => {
+      //   toastSuccess(t('Staked!'), t('Your funds have been staked in the pool'))
+      //   setPendingTx(false)
+      //   onDismiss()
+      //   dispatch(fetchCakeVaultUserData({ account }))
+      // })
+      // .on('error', (error) => {
+      //   console.error(error)
+      //   // Remove message from toast before prod
+      //   toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+      //   setPendingTx(false)
+      // })
   }
 
   const handleConfirmClick = async () => {
