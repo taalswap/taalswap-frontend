@@ -1,12 +1,14 @@
 import { ChainId } from 'taalswap-sdk'
 import store from 'state'
 import { parseUnits } from 'ethers/lib/utils'
+import getChainId from './getChainId'
 
 export enum GAS_PRICE {
   default = '5',
   fast = '6',
   instant = '7',
   testnet = '10',
+  klaytn = '25'
 }
 
 export const GAS_PRICE_GWEI = {
@@ -14,6 +16,7 @@ export const GAS_PRICE_GWEI = {
   fast: parseUnits(GAS_PRICE.fast, 'gwei').toString(),
   instant: parseUnits(GAS_PRICE.instant, 'gwei').toString(),
   testnet: parseUnits(GAS_PRICE.testnet, 'gwei').toString(),
+  klaytn: parseUnits(GAS_PRICE.klaytn, 'gwei').toString(),
 }
 
 /**
@@ -23,6 +26,10 @@ const getGasPrice = (): string => {
   const chainId = process.env.REACT_APP_CHAIN_ID
   const state = store.getState()
   const userGas = GAS_PRICE_GWEI.default
+  const currentChainId = getChainId()
+  if (currentChainId > 1000) {
+    return GAS_PRICE_GWEI.klaytn
+  }
   return chainId === ChainId.MAINNET.toString() ? userGas : GAS_PRICE_GWEI.testnet
 }
 
