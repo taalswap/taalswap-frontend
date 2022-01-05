@@ -1,8 +1,9 @@
 import { parseInt } from 'lodash'
+import { ChainId } from 'taalswap-sdk'
 
 const getChainId = () => {
   const chainIdStr = window.localStorage.getItem("chainId")
-  if (chainIdStr === 'null') {
+  if (chainIdStr === 'null' || ChainId[chainIdStr] === undefined) {
       window.localStorage.setItem('chainId', process.env.REACT_APP_CHAIN_ID)
   }
   const chainId = (!chainIdStr || chainIdStr === 'undefined' || chainIdStr === 'NaN' || chainIdStr === 'null')
