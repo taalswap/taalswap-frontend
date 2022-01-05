@@ -28,7 +28,8 @@ class SuspenseWithChunkError extends React.Component<SuspenseProps, State> {
     if (isChunkLoadError && !isRecoveringFromChunkError) {
       const nextState = { ...window.history.state, isRecoveringFromChunkError: true }
       window.history.replaceState(nextState, '')
-      window.location.reload()
+      // Todo page reload
+      // window.location.reload()
       return
     }
 
