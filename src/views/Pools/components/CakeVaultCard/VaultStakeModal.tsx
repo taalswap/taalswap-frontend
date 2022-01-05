@@ -17,6 +17,8 @@ import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
 import { convertCakeToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
+import getChainId from '../../../../utils/getChainId'
+import getGasPrice from '../../../../utils/getGasPrice'
 
 interface VaultStakeModalProps {
   pool: Pool
@@ -80,8 +82,9 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
     const isWithdrawingAll = sharesRemaining.lte(triggerWithdrawAllThreshold)
 
     if (isWithdrawingAll) {
+      const gasPrice = getGasPrice()
       const tx = await cakeVaultContract
-        .withdrawAll({ from: account })
+        .withdrawAll({ from: account, gasPrice, gasLimit: 200000 })
       try {
         setPendingTx(true)
         const receipt = await tx.wait()
@@ -93,13 +96,16 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         }
       } catch (error) {
         console.error(error)
-        // Remove message from toast before prod
-        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        if (getChainId() < 1000) {
+          // Remove message from toast before prod
+          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        }
         setPendingTx(false)
       }
     } else {
+      const gasPrice = getGasPrice()
       const tx = await cakeVaultContract
-        .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString(), { from: account })
+        .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString(), { from: account , gasPrice, gasLimit: 200000 })
         // .toString() being called to fix a BigNumber error in prod
         // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
       try {
@@ -113,8 +119,10 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         }
       } catch (error) {
         console.error(error)
-        // Remove message from toast before prod
-        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        if (getChainId() < 1000) {
+          // Remove message from toast before prod
+          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        }
         setPendingTx(false)
       }
     }
@@ -136,14 +144,17 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       }
     } catch (error) {
       console.error(error)
-      // Remove message from toast before prod
-      toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+      if (getChainId() < 1000) {
+        // Remove message from toast before prod
+        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+      }
       setPendingTx(false)
     }
   }
 
   const handleConfirmClick = async () => {
     const convertedStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), stakingToken.decimals)
+    console.log('1111', convertedStakeAmount)
     setPendingTx(true)
     // unstaking
     if (isRemovingStake) {

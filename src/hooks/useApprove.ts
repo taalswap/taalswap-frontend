@@ -9,6 +9,7 @@ import { useTranslation } from 'contexts/Localization'
 import { useMasterchef, useCake, useSousChef, useLottery, useCakeVaultContract } from './useContract'
 import useToast from './useToast'
 import useLastUpdated from './useLastUpdated'
+import getChainId from '../utils/getChainId'
 
 // Approve a Farm
 export const useApprove = (lpContract: Contract) => {
@@ -87,7 +88,9 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
       }
     } catch (e) {
       console.error(e)
-      toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+      if (getChainId() < 1000) {
+        toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+      }
       setRequestedApproval(false)
     }
 

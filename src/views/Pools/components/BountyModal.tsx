@@ -13,6 +13,7 @@ import UnlockButton from 'components/UnlockButton'
 import Balance from 'components/Balance'
 import { parseUnits } from '@ethersproject/units'
 import getGasPrice from '../../../utils/getGasPrice'
+import getChainId from '../../../utils/getChainId'
 
 interface BountyModalProps {
   cakeBountyToDisplay: number
@@ -66,10 +67,12 @@ const BountyModal: React.FC<BountyModalProps> = ({
       }
     } catch (error) {
       console.error(error)
-      toastError(
-        t('Could not be collected'),
-        t('There may be an issue with your transaction, or another user claimed the bounty first.'),
-      )
+      if (getChainId() < 1000) {
+        toastError(
+          t('Could not be collected'),
+          t('There may be an issue with your transaction, or another user claimed the bounty first.'),
+        )
+      }
       setPendingTx(false)
       onDismiss()
     }
