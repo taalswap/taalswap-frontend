@@ -99,6 +99,9 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         if (getChainId() < 1000) {
           // Remove message from toast before prod
           toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        } else {
+          onDismiss()
+          dispatch(fetchCakeVaultUserData({ account }))
         }
         setPendingTx(false)
       }
@@ -122,6 +125,9 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         if (getChainId() < 1000) {
           // Remove message from toast before prod
           toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        } else {
+          onDismiss()
+          dispatch(fetchCakeVaultUserData({ account }))
         }
         setPendingTx(false)
       }
@@ -147,6 +153,9 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       if (getChainId() < 1000) {
         // Remove message from toast before prod
         toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+      } else {
+        onDismiss()
+        dispatch(fetchCakeVaultUserData({ account }))
       }
       setPendingTx(false)
     }
