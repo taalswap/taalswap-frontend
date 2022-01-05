@@ -27,7 +27,7 @@ const useAuth = () => {
 
   const login = useCallback(async (connectorID: ConnectorNames) => {
     const chainId = getChainId()
-    const refresh = window.localStorage.getItem("refresh")
+    const refresh = window.localStorage.getItem('refresh')
     const connector = connectorsByName[connectorID]
     let changeNet
 
@@ -61,8 +61,9 @@ const useAuth = () => {
       })
 
       if (refresh === 'true' && changeNet) {
-          window.location.reload()
-          window.localStorage.setItem("refresh", 'false')
+        // Todo page reload
+        // window.location.reload()
+        window.localStorage.setItem('refresh', 'false')
       }
     } else {
       toastError(t('Unable to find connector'), t('The connector config is wrong'))

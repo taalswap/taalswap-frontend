@@ -39,7 +39,7 @@ export const useEagerConnect = () => {
       }
 
       const chainIdConfig = getChainId()
-      window.localStorage.setItem("chainId", chainIdConfig.toString())
+      window.localStorage.setItem('chainId', chainIdConfig.toString())
 
       login(connectorId)
     }
@@ -61,7 +61,8 @@ export const useInactiveListenerNew = (suppress = false) => {
         window.localStorage.setItem('chainId', curChainId)
         window.localStorage.setItem('prevChainId', prevChainId ?? curChainId)
         // window.localStorage.setItem('refresh', 'true')
-        window.location.reload()
+        // Todo page reload
+        // window.location.reload()
 
         activate(injected, undefined, true).catch((e) => {
           console.error('Failed to activate after chain changed', e)
