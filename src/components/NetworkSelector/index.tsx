@@ -81,7 +81,6 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
     }
 
     if (id === 'swap-currency-output' && crossChainId !== null) {
-      console.log(crossChainId)
       setSelectedChainId(crossChainId)
       onSetCrossChain(crossChainId)
       window.localStorage.setItem('crossChain', crossChainId?.toString())
