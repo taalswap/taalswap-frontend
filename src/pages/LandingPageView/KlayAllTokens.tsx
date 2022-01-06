@@ -198,8 +198,8 @@ const KlayAllTokens = () => {
 
         const address = token.symbol === 'WKLAY' ? 'KLAY' : token.address
 
-        const prices = `${process.env.REACT_APP_FRONTEND}/#/swap/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
-        const deposit = `${process.env.REACT_APP_FRONTEND}/#/add/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
+        const prices = `${process.env.REACT_APP_FRONTEND}/xswap/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
+        const deposit = `${process.env.REACT_APP_FRONTEND}/add/${process.env.REACT_APP_KLAYTN_ID}/0x00/${address}`
 
         const temp = {
           name,

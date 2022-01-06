@@ -495,7 +495,7 @@ const SectionTop: React.FC = () => {
               you&apos;ve never imagined
             </p>
             <p className="home_subtit">A cross-chain AMM protocol to safeguard and increase your assets</p>
-            <Button className="start_btn" onClick={() => linkToURL(`${frontendBaseUrl}/swap`)}>
+            <Button className="start_btn" onClick={() => linkToURL(`${frontendBaseUrl}/xswap`)}>
               {t('Swap')}
             </Button>
           </div>
@@ -528,8 +528,8 @@ const SectionTop: React.FC = () => {
                 value={t('Buy TAL')}
                 onClick={() =>
                   parseInt(curChainId) < 1000
-                    ? linkToURL(`${frontendBaseUrl}/swap/${curChainId}/ETH/0x00`)
-                    : linkToURL(`${frontendBaseUrl}/swap/${curChainId}/KLAY/0x00`)
+                    ? linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/ETH/0x00`)
+                    : linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/KLAY/0x00`)
                 }
                 className="buy_Btn"
               >

@@ -34,8 +34,8 @@ const TopBar = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>
-            <Link href={`${frontendBaseUrl}/swap`} style={{ textDecoration: 'none', fontSize: '14px' }}>
-              Swap
+            <Link href={`${frontendBaseUrl}/xswap`} style={{ textDecoration: 'none', fontSize: '14px' }}>
+              XSwap
             </Link>
           </div>
           <div style={{ marginLeft: '30px' }}>

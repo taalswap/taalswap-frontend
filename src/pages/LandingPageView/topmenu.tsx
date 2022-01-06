@@ -25,8 +25,8 @@ const Results = () => (
         </Link>
       </li>
       <li>
-        <Link href={`${frontendBaseUrl}/swap`} style={{ textDecoration: 'none' }}>
-          <span className="swap_icon">swap_icon</span>Swap
+        <Link href={`${frontendBaseUrl}/xswap`} style={{ textDecoration: 'none' }}>
+          <span className="swap_icon">swap_icon</span>XSwap
         </Link>
       </li>
       <li>

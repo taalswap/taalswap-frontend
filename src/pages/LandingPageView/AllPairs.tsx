@@ -282,7 +282,7 @@ const AllPairs = () => {
         const baseDeposit = pair.base_symbol === 'WETH' ? 'ETH' : pair.base_address
         const quoteDeposit = pair.quote_symbol === 'WETH' ? 'ETH' : pair.quote_address
 
-        const deposit = `${process.env.REACT_APP_FRONTEND}/#/add/${process.env.REACT_APP_CHAIN_ID}/${baseDeposit}/${quoteDeposit}`
+        const deposit = `${process.env.REACT_APP_FRONTEND}/add/${process.env.REACT_APP_CHAIN_ID}/${baseDeposit}/${quoteDeposit}`
 
         const volumn24h = pair.previous24hVolumeUSD
 
@@ -299,7 +299,7 @@ const AllPairs = () => {
         //       : `${process.env.REACT_APP_FRONTEND}/#/swap/ETH/${pair.base_address}`
         // }
 
-        const prices = `${process.env.REACT_APP_FRONTEND}/#/swap/${process.env.REACT_APP_CHAIN_ID}/${quoteDeposit}/${baseDeposit}`
+        const prices = `${process.env.REACT_APP_FRONTEND}/xswap/${process.env.REACT_APP_CHAIN_ID}/${quoteDeposit}/${baseDeposit}`
 
         const temp = {
           name,

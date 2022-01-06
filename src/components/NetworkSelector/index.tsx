@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { ChainId } from 'taalswap-sdk';
-import styled from 'styled-components';
-import { useSwapState } from 'state/swap/hooks';
-import { useActiveWeb3React } from 'hooks';
+import React, { useCallback, useEffect, useState } from 'react'
+import { ChainId } from 'taalswap-sdk'
+import styled from 'styled-components'
+import { useSwapState } from 'state/swap/hooks'
+import { useActiveWeb3React } from 'hooks'
 
 const NetworkSelectBox = styled.select`
   width: 180px;
@@ -18,28 +18,25 @@ const NetworkSelectBox = styled.select`
     margin-left: 0px;
     margin-bottom: 10px;
   }
-`;
+`
 
 const NetworkSelector = ({ onSetCrossChain, id }) => {
-  const { crossChain } = useSwapState();
-  const { chainId } = useActiveWeb3React();
+  const { crossChain } = useSwapState()
+  const { chainId } = useActiveWeb3React()
 
   if (window.localStorage.getItem('chainId') === null && chainId !== undefined)
-    window.localStorage.setItem('chainId', chainId?.toString());
+    window.localStorage.setItem('chainId', chainId?.toString())
 
-  const currentChainId = window.localStorage.getItem('chainId');
-  const crossChainId = window.localStorage.getItem('crossChain') ?? 0;
-  const crossChainConf = parseInt(
-    process.env.REACT_APP_KLAYTN_ID ?? '',
-    10
-  ) as ChainId;
+  const currentChainId = window.localStorage.getItem('chainId')
+  const crossChainId = window.localStorage.getItem('crossChain') ?? chainId
+  const crossChainConf = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '', 10) as ChainId
   // const [selectedChainId, setSelectedChainId] = useState(() =>
   //   id === 'swap-currency-input' ? currentChainId : 0
   // );
 
   const [selectedChainId, setSelectedChainId] = useState(() =>
-    id === 'swap-currency-input' ? currentChainId : crossChainId
-  );
+    id === 'swap-currency-input' ? currentChainId : crossChainId,
+  )
   const networkList = [
     {
       id: 0,
@@ -56,39 +53,41 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
       name: 'Klaytn',
       chainId: crossChainConf,
     },
-  ];
+  ]
 
   const handleSelect = (e) => {
     if (id === 'swap-currency-output') {
       // setSelectedChainId(parseInt(e.target.value));
-      setSelectedChainId(e.target.value);
-      onSetCrossChain(parseInt(e.target.value));
-      window.localStorage.setItem('crossChain', e.target.value);
+      setSelectedChainId(e.target.value)
+      onSetCrossChain(parseInt(e.target.value))
+      window.localStorage.setItem('crossChain', e.target.value)
     }
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener('beforeunload', removeCrossChainId);
+    window.addEventListener('beforeunload', removeCrossChainId)
     return () => {
-      window.removeEventListener('beforeunload', removeCrossChainId);
-    };
-  }, []);
+      window.removeEventListener('beforeunload', removeCrossChainId)
+    }
+  }, [])
 
   const removeCrossChainId = (e) => {
-    window.localStorage.removeItem('crossChain');
-  };
+    window.localStorage.removeItem('crossChain')
+  }
 
   useEffect(() => {
     if (id === 'swap-currency-input') {
-      setSelectedChainId(currentChainId);
+      setSelectedChainId(currentChainId)
     }
 
     if (id === 'swap-currency-output' && crossChainId !== null) {
-      setSelectedChainId(crossChainId);
-      onSetCrossChain(crossChainId);
-      window.localStorage.setItem('prevChainId', crossChainId?.toString());
+      console.log(crossChainId)
+      setSelectedChainId(crossChainId)
+      onSetCrossChain(crossChainId)
+      window.localStorage.setItem('crossChain', crossChainId?.toString())
+      window.localStorage.setItem('prevChainId', crossChainId?.toString())
     }
-  }, [currentChainId, crossChainId, onSetCrossChain, id]);
+  }, [currentChainId, crossChainId, onSetCrossChain, id])
 
   // useEffect(() => {
   //   return () => {
@@ -101,18 +100,15 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
       <NetworkSelectBox
         onChange={handleSelect}
         disabled={id === 'swap-currency-input'}
-        value={selectedChainId !== null ? selectedChainId : 0}
+        // value={selectedChainId !== null ? selectedChainId : 0}
+        value={selectedChainId}
       >
         {networkList.map((network) => (
-          <option
-            key={network.id}
-            value={network.chainId}
-            label={network.name}
-          />
+          <option key={network.id} value={network.chainId} label={network.name} />
         ))}
       </NetworkSelectBox>
     </>
-  );
-};
+  )
+}
 
-export default NetworkSelector;
+export default NetworkSelector

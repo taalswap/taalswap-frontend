@@ -11,6 +11,7 @@ import AddLiquidity from 'views/AddLiquidity'
 import RemoveLiquidity from 'views/RemoveLiquidity'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
+import { RedirectPathToXSwapOnly, RedirectXSwapTokenIds } from './views/XSwap/redirects'
 // import SuspenseWithChunkError from './components/SuspenseWithChunkError'
 import ToastListener from './components/ToastListener'
 // import PageLoader from './components/PageLoader'
@@ -76,6 +77,7 @@ const App: React.FC = () => {
                   <Route path="/staking" component={Pools} />
 
                   {/* Redirection: These old routes are still used in the code base */}
+                  <Route exact path="/xswap/:chainId/:currencyIdA/:currencyIdB" component={RedirectXSwapTokenIds} />
                   <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
                   <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
                   <Route exact path="/add/:chainId/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
