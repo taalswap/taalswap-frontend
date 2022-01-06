@@ -4,10 +4,10 @@ import { Flex, Heading, IconButton, Text, useModal } from 'taalswap-uikit'
 import OptionIcon from 'views/Swap/images/option_icon.svg'
 import Disclosure from 'views/Swap/images/disclosure.svg'
 import Bridge from 'views/XSwap/images/bridge.svg'
+import RecentXSwapTransactionsModal from 'components/InterfacePageHeader/RecentXSwapTransactionsModal'
 import SettingsModal from './SettingsModal'
 import RecentTransactionsModal from './RecentTransactionsModal'
 import { useTranslation } from '../../../../contexts/Localization'
-import RecentXSwapTransactionsModal from './RecentXSwapTransactionsModal'
 
 interface PageHeaderProps {
   title: ReactNode

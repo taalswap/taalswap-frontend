@@ -140,9 +140,15 @@ const RecentXSwapTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTr
           formattedAmount?.toFixed(10),
         )} ${fromSymbol}`}</Link>
         <div style={{ marginRight: '0.3rem' }}>for</div>
-        <Link style={{ marginRight: '0.3rem' }} href={getUrl(xTxHash, xFrom, toChain)} target="_blank">{`${parseFloat(
-          formattedXAmount?.toFixed(10),
-        )} ${toSymbol}`}</Link>
+        {toSymbol === undefined ? (
+          <Link style={{ marginRight: '0.3rem' }} href={getUrl(xTxHash, xFrom, toChain)} target="_blank">
+            (Processing)
+          </Link>
+        ) : (
+          <Link style={{ marginRight: '0.3rem' }} href={getUrl(xTxHash, xFrom, toChain)} target="_blank">{`${parseFloat(
+            formattedXAmount?.toFixed(10),
+          )} ${toSymbol}`}</Link>
+        )}
       </div>
     )
   }
@@ -204,6 +210,7 @@ const RecentXSwapTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTr
           </div>
         </Flex>
       )}
+
       {account &&
         chainId &&
         // sortedRecentTransactions.map((sortedRecentTransaction) => {
