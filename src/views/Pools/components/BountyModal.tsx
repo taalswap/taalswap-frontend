@@ -67,12 +67,10 @@ const BountyModal: React.FC<BountyModalProps> = ({
       }
     } catch (error) {
       console.error(error)
-      if (getChainId() < 1000) {
-        toastError(
-          t('Could not be collected'),
-          t('There may be an issue with your transaction, or another user claimed the bounty first.'),
-        )
-      }
+      toastError(
+        t('Could not be collected'),
+        t('There may be an issue with your transaction, or another user claimed the bounty first.'),
+      )
       setPendingTx(false)
       onDismiss()
     }

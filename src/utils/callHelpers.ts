@@ -33,7 +33,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
     try {
       receipt = await tx.wait()
     } catch (e) {
-      console.log('12345', e)
+      console.log(e)
     }
     return receipt
   }
@@ -43,7 +43,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
   try {
     receipt = await tx.wait()
   } catch (e) {
-    console.log('12345', e)
+    console.log(e)
   }
   return receipt
 }
@@ -56,7 +56,7 @@ export const sousStake = async (sousChefContract, amount, decimals = 18, account
   try {
     receipt = await tx.wait()
   } catch (e) {
-    console.log('12345', e)
+    console.log(e)
   }
   return receipt
 }
@@ -74,7 +74,7 @@ export const sousStakeBnb = async (sousChefContract, amount, account) => {
   try {
     receipt = await tx.wait()
   } catch (e) {
-    console.log('12345', e)
+    console.log(e)
   }
   return receipt
 }
@@ -88,7 +88,7 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
     try {
       receipt = await tx.wait()
     } catch (e) {
-      console.log('12345', e)
+      console.log(e)
     }
     return receipt
   }
@@ -99,7 +99,7 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
   try {
     receipt = await tx.wait()
   } catch (e) {
-    console.log('12345', e)
+    console.log(e)
   }
   return receipt
 }
@@ -112,7 +112,7 @@ export const sousUnstake = async (sousChefContract, amount, decimals, account) =
   try {
     receipt = await tx.wait()
   } catch (e) {
-    console.log('12345', e)
+    console.log(e)
   }
   return receipt
 }
@@ -125,7 +125,7 @@ export const sousEmergencyUnstake = async (sousChefContract, account) => {
   try {
     receipt = await tx.wait()
   } catch (e) {
-    console.log('12345', e)
+    console.log(e)
   }
   return receipt
 }
@@ -139,7 +139,7 @@ export const harvest = async (masterChefContract, pid, account) => {
     try {
       receipt = await tx.wait()
     } catch (e) {
-      console.log('12345', e)
+      console.log(e)
     }
     return receipt
   }
@@ -150,7 +150,7 @@ export const harvest = async (masterChefContract, pid, account) => {
   try {
     receipt = await tx.wait()
   } catch (e) {
-    console.log('12345', e)
+    console.log(e)
   }
   return receipt
 }
@@ -163,7 +163,7 @@ export const soushHarvest = async (sousChefContract, account) => {
   try {
     receipt = await tx.wait()
   } catch (e) {
-    console.log('12345', e)
+    console.log(e)
   }
   return receipt
 }
@@ -176,7 +176,7 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
   try {
     receipt = await tx.wait()
   } catch (e) {
-    console.log('12345', e)
+    console.log(e)
   }
   return receipt
 }

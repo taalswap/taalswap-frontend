@@ -96,13 +96,8 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         }
       } catch (error) {
         console.error(error)
-        if (getChainId() < 1000) {
-          // Remove message from toast before prod
-          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-        } else {
-          onDismiss()
-          dispatch(fetchCakeVaultUserData({ account }))
-        }
+        // Remove message from toast before prod
+        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
         setPendingTx(false)
       }
     } else {
@@ -122,13 +117,8 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         }
       } catch (error) {
         console.error(error)
-        if (getChainId() < 1000) {
-          // Remove message from toast before prod
-          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-        } else {
-          onDismiss()
-          dispatch(fetchCakeVaultUserData({ account }))
-        }
+        // Remove message from toast before prod
+        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
         setPendingTx(false)
       }
     }
@@ -150,20 +140,14 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       }
     } catch (error) {
       console.error(error)
-      if (getChainId() < 1000) {
-        // Remove message from toast before prod
-        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-      } else {
-        onDismiss()
-        dispatch(fetchCakeVaultUserData({ account }))
-      }
+      // Remove message from toast before prod
+      toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
       setPendingTx(false)
     }
   }
 
   const handleConfirmClick = async () => {
     const convertedStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), stakingToken.decimals)
-    console.log('1111', convertedStakeAmount)
     setPendingTx(true)
     // unstaking
     if (isRemovingStake) {

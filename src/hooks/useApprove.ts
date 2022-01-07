@@ -88,9 +88,7 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
       }
     } catch (e) {
       console.error(e)
-      if (getChainId() < 1000) {
-        toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
-      }
+      toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
       setRequestedApproval(false)
     }
 
