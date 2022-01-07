@@ -3,7 +3,7 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import { ConnectorNames } from 'taalswap-uikit'
 import Web3 from 'web3'
-import {ethers} from "ethers";
+import {ethers} from "taalswap-ethers";
 import { Web3Provider } from '@ethersproject/providers'
 import { ChainId } from 'taalswap-sdk'
 import getNodeUrl from './getRpcUrl'
