@@ -14,6 +14,7 @@ import Balance from 'components/Balance'
 import { parseUnits } from '@ethersproject/units'
 import getGasPrice from '../../../utils/getGasPrice'
 import getChainId from '../../../utils/getChainId'
+import {calculateGasMargin} from "../../../utils";
 
 interface BountyModalProps {
   cakeBountyToDisplay: number
@@ -59,7 +60,7 @@ const BountyModal: React.FC<BountyModalProps> = ({
       const gasLimit = await cakeVaultContract.estimateGas
         .harvest()
       const tx = await cakeVaultContract
-        .harvest({ from: account, gasPrice, gasLimit })
+        .harvest({ from: account, gasPrice, gasLimit: calculateGasMargin(gasLimit) })
       setPendingTx(true)
       const receipt = await tx.wait()
       if (receipt.status) {

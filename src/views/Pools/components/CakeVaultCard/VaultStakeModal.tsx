@@ -18,6 +18,7 @@ import { Pool } from 'state/types'
 import { convertCakeToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
 import getGasPrice from '../../../../utils/getGasPrice'
+import {calculateGasMargin} from "../../../../utils";
 
 interface VaultStakeModalProps {
   pool: Pool
@@ -86,7 +87,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         const gasLimit = await cakeVaultContract.estimateGas
           .withdrawAll()
         const tx = await cakeVaultContract
-          .withdrawAll({ from: account, gasPrice, gasLimit })
+          .withdrawAll({ from: account, gasPrice, gasLimit: calculateGasMargin(gasLimit) })
         setPendingTx(true)
         const receipt = await tx.wait()
         if (receipt.status) {
@@ -107,7 +108,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         const gasLimit = await cakeVaultContract.estimateGas
           .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toFixed(0))
         const tx = await cakeVaultContract
-          .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toFixed(0), { from: account , gasPrice, gasLimit })
+          .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toFixed(0), { from: account , gasPrice, gasLimit: calculateGasMargin(gasLimit) })
         // .toString() being called to fix a BigNumber error in prod
         // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
         setPendingTx(true)
@@ -132,7 +133,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       const gasLimit = await cakeVaultContract.estimateGas
         .deposit(convertedStakeAmount.toString())
       const tx = await cakeVaultContract
-        .deposit(convertedStakeAmount.toString(), { from: account, gasLimit })
+        .deposit(convertedStakeAmount.toString(), { from: account, gasLimit: calculateGasMargin(gasLimit) })
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
       setPendingTx(true)
