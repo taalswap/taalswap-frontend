@@ -10,39 +10,38 @@ export const nodesBaobab = 'https://api.baobab.klaytn.net:8651'
 const getNodeUrl = () => {
   const randomIndex = random(0, nodes.length - 1)
   const chainId = getChainId()
-  switch(chainId) {
+  switch (chainId) {
     case ChainId.MAINNET:
       return nodes[randomIndex]
-      break;
+      break
     case ChainId.KLAYTN:
       return nodesCypress
-      break;
+      break
     case ChainId.BAOBAB:
       return nodesBaobab
-      break;
+      break
     default:
       return nodes[randomIndex]
-      break;
+      break
   }
   // return nodes[randomIndex]
 }
 
 export const getSelectedNodeUrl = (chainId) => {
   const randomIndex = random(0, nodes.length - 1)
-  switch(parseInt(chainId)) {
+  switch (parseInt(chainId)) {
     case ChainId.MAINNET:
       return nodes[randomIndex]
-      break;
+      break
     case ChainId.KLAYTN:
       return nodesCypress
-      break;
+      break
     case ChainId.BAOBAB:
       return nodesBaobab
-      break;
+      break
     default:
-      console.log('12345', chainId)
       return nodes[randomIndex]
-      break;
+      break
   }
   // return nodes[randomIndex]
 }
