@@ -168,7 +168,7 @@ const BattleCta: React.FC<CompetitionProps> = ({
     }
     // Registered and competition is live
     if (hasRegistered && isCompetitionLive) {
-      window.location.href = `${frontendBaseUrl}/#/swap`
+      window.location.href = `${frontendBaseUrl}/xswap`
     }
     // Registered and competition has finished
     if (hasRegistered && hasCompetitionEnded) {

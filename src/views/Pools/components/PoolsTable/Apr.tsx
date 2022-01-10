@@ -25,8 +25,7 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, performanceFee = 0, ...props 
   //   stakingToken.address &&
   //   `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
   const apyModalLink =
-    stakingToken.address &&
-    `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[chainId]}`
+    stakingToken.address && `${BASE_EXCHANGE_URL}/xswap?outputCurrency=${stakingToken.address[chainId]}`
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal

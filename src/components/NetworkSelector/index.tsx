@@ -30,13 +30,17 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
   const currentChainId = window.localStorage.getItem('chainId')
   const crossChainId = window.localStorage.getItem('crossChain') ?? chainId
   const crossChainConf = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '', 10) as ChainId
-  // const [selectedChainId, setSelectedChainId] = useState(() =>
-  //   id === 'swap-currency-input' ? currentChainId : 0
-  // );
 
-  const [selectedChainId, setSelectedChainId] = useState(() =>
-    id === 'swap-currency-input' ? currentChainId : crossChainId,
-  )
+  // ------------------------------
+  // support only swap
+  const [selectedChainId, setSelectedChainId] = useState(currentChainId)
+
+  // ------------------------------
+  // support xswap
+  // const [selectedChainId, setSelectedChainId] = useState(() =>
+  //   id === 'swap-currency-input' ? currentChainId : crossChainId,
+  // )
+
   const networkList = [
     {
       id: 0,
@@ -76,16 +80,25 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
   }
 
   useEffect(() => {
-    if (id === 'swap-currency-input') {
-      setSelectedChainId(currentChainId)
-    }
+    // ------------------------------
+    // support only swap
+    setSelectedChainId(currentChainId)
+    window.localStorage.setItem('crossChain', currentChainId?.toString())
+    window.localStorage.setItem('prevChainId', currentChainId?.toString())
 
-    if (id === 'swap-currency-output' && crossChainId !== null) {
-      setSelectedChainId(crossChainId)
-      onSetCrossChain(crossChainId)
-      window.localStorage.setItem('crossChain', crossChainId?.toString())
-      window.localStorage.setItem('prevChainId', crossChainId?.toString())
-    }
+    // ------------------------------
+    // support xswap
+    // if (id === 'swap-currency-input') {
+    //   setSelectedChainId(currentChainId)
+    // }
+    //
+    // if (id === 'swap-currency-output' && crossChainId !== null) {
+    //   setSelectedChainId(crossChainId)
+    //   onSetCrossChain(crossChainId)
+    //   window.localStorage.setItem('crossChain', crossChainId?.toString())
+    //   window.localStorage.setItem('prevChainId', crossChainId?.toString())
+    // }
+    // ------------------------------
   }, [currentChainId, crossChainId, onSetCrossChain, id])
 
   // useEffect(() => {
@@ -98,7 +111,8 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
     <>
       <NetworkSelectBox
         onChange={handleSelect}
-        disabled={id === 'swap-currency-input'}
+        disabled
+        // disabled={id === 'swap-currency-input'}
         // value={selectedChainId !== null ? selectedChainId : 0}
         value={selectedChainId}
       >
