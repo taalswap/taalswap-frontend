@@ -11,12 +11,13 @@ import { getCakeVaultAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getCakeVaultContract } from '../../utils/contractHelpers'
 import makeBatchRequest from '../../utils/makeBatchRequest'
-import web3NoAccount from '../../utils/web3'
-
-// @ts-ignore
-const cakeVaultContract = new web3NoAccount.eth.Contract(cakeVaultAbi, getCakeVaultAddress())
+import {getWeb3NoAccount} from '../../utils/web3'
 
 export const fetchPublicVaultData = async () => {
+  const noAccount = getWeb3NoAccount()
+
+// @ts-ignore
+  const cakeVaultContract = new noAccount.eth.Contract(cakeVaultAbi, getCakeVaultAddress())
   try {
     const [sharePrice, shares, estimatedCakeBountyReward, totalPendingCakeHarvest] = await makeBatchRequest([
       cakeVaultContract.methods.getPricePerFullShare().call,
@@ -46,6 +47,10 @@ export const fetchPublicVaultData = async () => {
 }
 
 export const fetchVaultFees = async () => {
+  const noAccount = getWeb3NoAccount()
+
+// @ts-ignore
+  const cakeVaultContract = new noAccount.eth.Contract(cakeVaultAbi, getCakeVaultAddress())
   try {
     const [performanceFee, callFee, withdrawalFee, withdrawalFeePeriod] = await makeBatchRequest([
       cakeVaultContract.methods.performanceFee().call,

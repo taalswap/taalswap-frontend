@@ -27,4 +27,24 @@ const getNodeUrl = () => {
   // return nodes[randomIndex]
 }
 
+export const getSelectedNodeUrl = (chainId) => {
+  const randomIndex = random(0, nodes.length - 1)
+  switch(parseInt(chainId)) {
+    case ChainId.MAINNET:
+      return nodes[randomIndex]
+      break;
+    case ChainId.KLAYTN:
+      return nodesCypress
+      break;
+    case ChainId.BAOBAB:
+      return nodesBaobab
+      break;
+    default:
+      console.log('12345', chainId)
+      return nodes[randomIndex]
+      break;
+  }
+  // return nodes[randomIndex]
+}
+
 export default getNodeUrl
