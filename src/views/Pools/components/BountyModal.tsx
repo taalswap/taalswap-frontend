@@ -55,9 +55,11 @@ const BountyModal: React.FC<BountyModalProps> = ({
 
   const handleConfirmClick = async () => {
     const gasPrice = getGasPrice()
-    const tx = await cakeVaultContract
-      .harvest({ from: account, gasPrice, gasLimit: 300000  })
     try {
+      const gasLimit = await cakeVaultContract.estimateGas
+        .harvest()
+      const tx = await cakeVaultContract
+        .harvest({ from: account, gasPrice, gasLimit })
       setPendingTx(true)
       const receipt = await tx.wait()
       if (receipt.status) {

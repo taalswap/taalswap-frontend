@@ -17,7 +17,6 @@ import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
 import { convertCakeToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
-import getChainId from '../../../../utils/getChainId'
 import getGasPrice from '../../../../utils/getGasPrice'
 
 interface VaultStakeModalProps {
@@ -83,9 +82,11 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
 
     if (isWithdrawingAll) {
       const gasPrice = getGasPrice()
-      const tx = await cakeVaultContract
-        .withdrawAll({ from: account, gasPrice, gasLimit: 200000 })
       try {
+        const gasLimit = await cakeVaultContract.estimateGas
+          .withdrawAll()
+        const tx = await cakeVaultContract
+          .withdrawAll({ from: account, gasPrice, gasLimit })
         setPendingTx(true)
         const receipt = await tx.wait()
         if (receipt.status) {
@@ -102,11 +103,13 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       }
     } else {
       const gasPrice = getGasPrice()
-      const tx = await cakeVaultContract
-        .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toFixed(0), { from: account , gasPrice, gasLimit: 200000 })
+      try {
+        const gasLimit = await cakeVaultContract.estimateGas
+          .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toFixed(0))
+        const tx = await cakeVaultContract
+          .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toFixed(0), { from: account , gasPrice, gasLimit })
         // .toString() being called to fix a BigNumber error in prod
         // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-      try {
         setPendingTx(true)
         const receipt = await tx.wait()
         if (receipt.status) {
@@ -125,11 +128,13 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
   }
 
   const handleDeposit = async (convertedStakeAmount: BigNumber) => {
-    const tx = await cakeVaultContract
-      .deposit(convertedStakeAmount.toString(), { from: account })
+    try {
+      const gasLimit = await cakeVaultContract.estimateGas
+        .deposit(convertedStakeAmount.toString())
+      const tx = await cakeVaultContract
+        .deposit(convertedStakeAmount.toString(), { from: account, gasLimit })
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-    try {
       setPendingTx(true)
       const receipt = await tx.wait()
       if (receipt.status) {
