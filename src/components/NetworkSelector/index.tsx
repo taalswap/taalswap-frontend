@@ -98,7 +98,8 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
     <>
       <NetworkSelectBox
         onChange={handleSelect}
-        disabled={id === 'swap-currency-input'}
+        disabled
+        // disabled={id === 'swap-currency-input'}
         // value={selectedChainId !== null ? selectedChainId : 0}
         value={selectedChainId}
       >
