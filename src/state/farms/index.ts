@@ -54,10 +54,8 @@ const initialState: FarmsState = {
 let nonArchivedFarmsChainId
 if (getChainId() > 1000) {
   nonArchivedFarmsChainId = farmsConfigKlaytn.filter(({ pid }) => !isArchivedPid(pid))
-  console.log(nonArchivedFarmsChainId)
 } else {
   nonArchivedFarmsChainId = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
-  console.log(nonArchivedFarmsChainId)
 }
 
 export const nonArchivedFarms = nonArchivedFarmsChainId
