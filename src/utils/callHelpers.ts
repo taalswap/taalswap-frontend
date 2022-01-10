@@ -29,7 +29,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
   let receipt
   if (pid === 0) {
     const tx = await masterChefContract
-      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { gasPrice, gasLimit: 200000 })
+      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), { gasPrice, gasLimit: 2000000 })
     try {
       receipt = await tx.wait()
     } catch (e) {
