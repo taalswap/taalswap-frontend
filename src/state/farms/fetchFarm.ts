@@ -2,9 +2,14 @@ import { Farm } from 'state/types'
 import fetchPublicFarmData from './fetchPublicFarmData'
 
 const fetchFarm = async (farm: Farm): Promise<Farm> => {
-  const farmPublicData = await fetchPublicFarmData(farm)
+  try {
+    const farmPublicData = await fetchPublicFarmData(farm)
 
-  return { ...farm, ...farmPublicData }
+    return { ...farm, ...farmPublicData }
+  } catch (err) {
+    console.log(err)
+    return null
+  }
 }
 
 export default fetchFarm

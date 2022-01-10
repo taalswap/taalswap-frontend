@@ -16,12 +16,14 @@ import {
 import { FarmsState, Farm } from '../types'
 import getChainId from '../../utils/getChainId'
 
-// const { chainId } = useWeb3React()
-const chainIdStr = window.localStorage.getItem("chainId")
-const chainId = getChainId()
+// const chainId = window.localStorage.getItem('chainId')
+
+// const chainId = getChainId()
+
+// export const changeChainId = () => {}
 
 let noAccountFarmConfig
-if (chainId > 1000) {
+if (getChainId() > 1000) {
   noAccountFarmConfig = farmsConfigKlaytn.map((farm) => ({
     ...farm,
     userData: {
@@ -43,15 +45,21 @@ if (chainId > 1000) {
   }))
 }
 
-const initialState: FarmsState = { data: noAccountFarmConfig, loadArchivedFarmsData: false, userDataLoaded: false }
-
+const initialState: FarmsState = {
+  data: noAccountFarmConfig,
+  loadArchivedFarmsData: false,
+  userDataLoaded: false,
+}
 // export const nonArchivedFarms = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
 let nonArchivedFarmsChainId
-if (chainId > 1000) {
+if (getChainId() > 1000) {
   nonArchivedFarmsChainId = farmsConfigKlaytn.filter(({ pid }) => !isArchivedPid(pid))
+  console.log(nonArchivedFarmsChainId)
 } else {
   nonArchivedFarmsChainId = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
+  console.log(nonArchivedFarmsChainId)
 }
+
 export const nonArchivedFarms = nonArchivedFarmsChainId
 
 // Async thunks
@@ -59,8 +67,9 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
     // const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
+
     let farmsToFetch
-    if (chainId > 1000) {
+    if (getChainId() > 1000) {
       farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else {
       farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
@@ -68,15 +77,18 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
 
     // Add price helper farms
     const farmsWithPriceHelpers = farmsToFetch.concat(priceHelperLpsConfig)
-
+    console.log('1')
     const farms = await fetchFarms(farmsWithPriceHelpers)
+    console.log('2')
     const farmsWithPrices = await fetchFarmsPrices(farms)
+    console.log('3')
 
     // Filter out price helper LP config farms
     const farmsWithoutHelperLps = farmsWithPrices.filter((farm: Farm) => {
+      console.log('4')
       return farm.pid || farm.pid === 0
     })
-
+    console.log('5')
     return farmsWithoutHelperLps
   },
 )
@@ -94,7 +106,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
   async ({ account, pids }) => {
     // const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
     let farmsToFetch
-    if (chainId > 1000) {
+    if (getChainId() > 1000) {
       farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else {
       farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
@@ -127,22 +139,30 @@ export const farmsSlice = createSlice({
   },
   extraReducers: (builder) => {
     // Update farms with live data
-    builder.addCase(fetchFarmsPublicDataAsync.fulfilled, (state, action) => {
-      state.data = state.data.map((farm) => {
-        const liveFarmData = action.payload.find((farmData) => farmData.pid === farm.pid)
-        return { ...farm, ...liveFarmData }
+    builder
+      .addCase(fetchFarmsPublicDataAsync.fulfilled, (state, action) => {
+        state.data = state.data.map((farm) => {
+          const liveFarmData = action.payload.find((farmData) => farmData.pid === farm.pid)
+          return { ...farm, ...liveFarmData }
+        })
       })
-    })
+      .addCase(fetchFarmsPublicDataAsync.rejected, (state, action) => {
+        console.log(action)
+      })
 
     // Update farms with user data
-    builder.addCase(fetchFarmUserDataAsync.fulfilled, (state, action) => {
-      action.payload.forEach((userDataEl) => {
-        const { pid } = userDataEl
-        const index = state.data.findIndex((farm) => farm.pid === pid)
-        state.data[index] = { ...state.data[index], userData: userDataEl }
+    builder
+      .addCase(fetchFarmUserDataAsync.fulfilled, (state, action) => {
+        action.payload.forEach((userDataEl) => {
+          const { pid } = userDataEl
+          const index = state.data.findIndex((farm) => farm.pid === pid)
+          state.data[index] = { ...state.data[index], userData: userDataEl }
+        })
+        state.userDataLoaded = true
       })
-      state.userDataLoaded = true
-    })
+      .addCase(fetchFarmUserDataAsync.rejected, (state, action) => {
+        console.log(action)
+      })
   },
 })
 
