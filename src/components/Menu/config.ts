@@ -7,7 +7,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Home'),
     icon: 'HomeIcon',
-    href: `${frontendBaseUrl}`,
+    href: `/`,
   },
   // {
   //   label: t('Trade'),
