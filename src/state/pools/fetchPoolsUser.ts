@@ -13,8 +13,6 @@ import BigNumber from 'bignumber.js'
 const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'ETH' && p.stakingToken.symbol !== 'KLAY')
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'ETH' || p.stakingToken.symbol === 'KLAY')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
-const web3 = getWeb3NoAccount()
-const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as AbiItem, getMasterChefAddress())
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({
@@ -31,6 +29,7 @@ export const fetchPoolsAllowance = async (account) => {
 }
 
 export const fetchUserBalances = async (account) => {
+  const web3 = getWeb3NoAccount()
   // Non ETH pools
   const calls = nonBnbPools.map((p) => ({
     address: getAddress(p.stakingToken.address),
@@ -54,6 +53,8 @@ export const fetchUserBalances = async (account) => {
 }
 
 export const fetchUserStakeBalances = async (account) => {
+  const web3 = getWeb3NoAccount()
+  const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as AbiItem, getMasterChefAddress())
   const calls = nonMasterPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'userInfo',
@@ -75,6 +76,8 @@ export const fetchUserStakeBalances = async (account) => {
 }
 
 export const fetchUserPendingRewards = async (account) => {
+  const web3 = getWeb3NoAccount()
+  const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as AbiItem, getMasterChefAddress())
   const calls = nonMasterPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'pendingReward',
