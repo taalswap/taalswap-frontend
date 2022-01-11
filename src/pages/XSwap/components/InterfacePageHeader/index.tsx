@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, IconButton, Text, useModal } from 'taalswap-uikit'
+import { Flex, IconButton, Text, useModal } from 'taalswap-uikit'
 import OptionIcon from 'views/Swap/images/option_icon.svg'
 import Disclosure from 'views/Swap/images/disclosure.svg'
 import Bridge from 'views/XSwap/images/bridge.svg'
@@ -17,9 +17,13 @@ interface PageHeaderProps {
 /* to do */
 const StyledPageHeader = styled.div`
   border-bottom: 0px solid ${({ theme }) => theme.colors.disabled};
-  padding: 0px 0px 24px 0px;
+  padding: 0px 20px 24px;
   width: 100%;
-  max-width: 1070px;
+  max-width: 1280px;
+
+  @media screen and (max-width: 960px){
+    padding: 0px 0px 24px 0px;
+  }
 
   @media screen and (max-width: 500px) {
     padding-bottom: 0.6875rem;
@@ -29,6 +33,14 @@ const StyledPageHeader = styled.div`
 const Details = styled.div`
   flex: 1;
 `
+
+const Heading = styled.h2`
+  margin-bottom: 8px;
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight:600;
+`
+
 
 const PageHeader = ({ title, description, children }: PageHeaderProps) => {
   const { t } = useTranslation()
@@ -40,7 +52,7 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
     <StyledPageHeader>
       <Flex alignItems="center">
         <Details>
-          <Heading mb="8px">{title}</Heading>
+          <Heading>{title}</Heading>
           {description && (
             <Text color="#a7b2b3" fontSize="14px">
               {description}

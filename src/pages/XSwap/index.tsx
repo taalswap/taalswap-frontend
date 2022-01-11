@@ -84,6 +84,7 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-position: bottom 24px center;
   background-size: 90%;
+  
 
   ${({ theme }) => theme.mediaQueries.xs} {
     background-size: auto;
@@ -91,7 +92,7 @@ const Container = styled.div`
 
   ${({ theme }) => theme.mediaQueries.lg} {
     // background-image: url('/images/arch-${({ theme }) =>
-      theme.isDark ? 'dark' : 'light'}.svg'), url('/images/left-pancake.svg'), url('/images/right-pancake.svg');
+    theme.isDark ? 'dark' : 'light'}.svg'), url('/images/left-pancake.svg'), url('/images/right-pancake.svg');
     background-repeat: no-repeat;
     background-position: center 420px, 10% 230px, 90% 230px;
     background-size: contain, 266px, 266px;
@@ -106,8 +107,9 @@ const StyledLink = styled(Link)`
 
 const SwapBody = styled(UICard)`
   position: relative;
-  max-width: 1070px;
+  max-width: 1240px;
   width: 100%;
+  border : 2px solid rgb(0, 171, 85);
 
   /* z-index: ; */
 `
@@ -417,13 +419,13 @@ function XSwap() {
 
   const parsedAmounts = showWrap
     ? {
-        [Field.INPUT]: parsedAmount,
-        [Field.OUTPUT]: parsedAmount,
-      }
+      [Field.INPUT]: parsedAmount,
+      [Field.OUTPUT]: parsedAmount,
+    }
     : {
-        [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
-        [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : tradeX?.outputAmount,
-      }
+      [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
+      [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : tradeX?.outputAmount,
+    }
 
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient, onSetCrossChain } =
     useSwapActionHandlers()
@@ -918,8 +920,8 @@ function XSwap() {
                       ? t('Price Impact Too High')
                       : // : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
                       priceImpactSeverity > 2
-                      ? t('Swap Anyway')
-                      : t('Swap')}
+                        ? t('Swap Anyway')
+                        : t('Swap')}
                   </Button>
                 </RowBetween>
               ) : (
@@ -943,6 +945,7 @@ function XSwap() {
                   }
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   width="100%"
+                  
                 >
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
@@ -950,8 +953,8 @@ function XSwap() {
                       : //  : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
 
                       priceImpactSeverity > 2
-                      ? t('Swap Anyway')
-                      : t('Swap'))}
+                        ? t('Swap Anyway')
+                        : t('Swap'))}
                 </Button>
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
