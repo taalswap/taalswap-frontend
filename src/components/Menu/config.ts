@@ -35,27 +35,27 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Swap'),
     icon: 'TradeIcon',
-    href: `${frontendBaseUrl}/swap`,
+    href: `/swap`,
   },
   {
     label: t('X-Swap'),
     icon: 'TradeIcon',
-    href: `${frontendBaseUrl}/xswap`,
+    href: `/xswap`,
   },
   {
     label: t('Liquidity'),
     icon: 'LiquidityIcon',
-    href: `${frontendBaseUrl}/liquidity`,
+    href: `/liquidity`,
   },
   {
     label: t('Farms'),
     icon: 'FarmIcon',
-    href: `${frontendBaseUrl}/farms`,
+    href: `/farms`,
   },
   {
     label: t('Staking'),
     icon: 'PoolIcon',
-    href: `${frontendBaseUrl}/staking`,
+    href: `/staking`,
   },
   {
     label: t('Info'),
