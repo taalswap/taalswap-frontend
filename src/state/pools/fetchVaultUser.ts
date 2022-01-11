@@ -1,10 +1,9 @@
 import BigNumber from 'bignumber.js'
 import { getCakeVaultContract } from 'utils/contractHelpers'
 
-const cakeVaultContract = getCakeVaultContract()
-
 const fetchVaultUser = async (account: string) => {
   try {
+    const cakeVaultContract = getCakeVaultContract()
     const userContractResponse = await cakeVaultContract.userInfo(account)
     return {
       isLoading: false,
