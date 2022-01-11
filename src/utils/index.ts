@@ -120,9 +120,9 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 }
 
 // account is optional
-export function getRouterContract(chainId: ChainId, library: Web3Provider, account?: string): Contract {
+export function getRouterContract(chainId: ChainId, library: Web3Provider, account?: string, useRouter?: boolean): Contract {
   const crossChain = window.localStorage.getItem('crossChain') ?? chainId.toString();
-  if (crossChain !== chainId.toString()) {
+  if (crossChain !== chainId.toString() && !useRouter) {
     // TODO : change IUniswapV2Router02ABI to Bridge contract ABI
     return getContract(BRIDGE_ADDRESS[chainId], BRIDGE_ABI, library, account, chainId, false);
   }
