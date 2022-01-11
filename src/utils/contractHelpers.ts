@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import { AbiItem } from 'web3-utils'
 // import web3NoAccount from 'utils/web3'
 import { ethers } from 'ethers'
-import { simpleRpcProvider } from 'utils/providers'
+import { getSimpleRpcProvider } from 'utils/providers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
@@ -68,7 +68,7 @@ import { getSettings, getGasPriceInWei } from './settings'
 // }
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
-  const signerOrProvider = signer ?? simpleRpcProvider
+  const signerOrProvider = signer ?? getSimpleRpcProvider()
   // TODO: check when address is undefined...
   if (address === undefined) return null
   return new ethers.Contract(address, abi, signerOrProvider)
@@ -79,7 +79,7 @@ export const getBep20Contract = (address: string, signer?: ethers.Signer | ether
 }
 export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   const contract = getContract(MultiCall2Abi, getMulticall2Address(), signer)
-  console.log(contract)
+  // console.log(contract)
   return contract
 }
 export const getErc721Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
