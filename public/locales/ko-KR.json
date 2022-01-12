@@ -861,5 +861,10 @@
   "Liquidity ($)": "유동성($)",
   "Vol.(24H)": "거래량(1일)",
   "View All": "모두 보기",
-  "X-Swap": "X-스왑"
+  "X-Swap": "X-스왑",
+  "Symbol": "토큰심볼",
+  "All Tokens on Ethereum": "전체 이더리움 토큰",
+  "All Tokens on Klaytn": "전체 클레이튼 토큰",
+  "All Pairs on Ethereum": "전체 이더리움 토큰페어",
+  "All Pairs on Klaytn": "전체 클레이튼 토큰페어"
 }

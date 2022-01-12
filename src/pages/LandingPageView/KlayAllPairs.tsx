@@ -374,7 +374,7 @@ const KlayAllPairs = () => {
             height="24px"
             style={{ marginRight: '10px' }}
           />
-          <Txtcolor style={{ fontSize: '16px' }}>Klaytn All Pairs</Txtcolor>
+          <Txtcolor style={{ fontSize: '16px' }}>{t('All Pairs on Klaytn')}</Txtcolor>
         </Inline>
       </div>
 

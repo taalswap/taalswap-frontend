@@ -379,7 +379,7 @@ const AllPairs = () => {
             height="24px"
             style={{ marginRight: '10px' }}
           />
-          <Txtcolor style={{ fontSize: '16px' }}>Ethereum All Pairs</Txtcolor>
+          <Txtcolor style={{ fontSize: '16px' }}>{t('All Pairs on Ethereum')}</Txtcolor>
         </Inline>
       </div>
 
