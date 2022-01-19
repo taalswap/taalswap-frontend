@@ -70,7 +70,7 @@ export const useTotalSupply = () => {
     async function fetchTotalSupply() {
       const cakeContract = getCakeContract()
       const supply = await cakeContract.totalSupply()
-      setTotalSupply(new BigNumber(supply))
+      setTotalSupply(supply)
     }
 
     fetchTotalSupply()
