@@ -17,6 +17,7 @@ const Usewrap = styled.li`
   justify-content: center;
   align-items: center;
   height: 155px;
+  margin: 0 10px;
 `
 
 const Txtcolor = styled.p`
@@ -49,8 +50,6 @@ const LandingPageView = () => {
               <img src={AgencyLogo02} alt="LogoImg" style={{ width: '100%', maxWidth: '146px' }} />
             </a>
           </Usewrap>
-        </ul>
-        <ul style={{ marginTop: '40px' }}>
           <Usewrap>
             <a
               href="https://taalswap.gitbook.io/taalswap-docs-v-2-0/taalswap-security/audit"
