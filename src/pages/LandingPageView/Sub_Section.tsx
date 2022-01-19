@@ -32,7 +32,7 @@ const LandingPageView = () => {
         <ul>
           <Usewrap>
             <a
-              href="https://taalswap.gitbook.io/taalswap-docs-v-2-0/taalswap-security/audit"
+              href="https://docs.taalswap.finance/taalswap-docs/taalswap-security/audit"
               target="_blank"
               rel="noreferrer"
               style={{ width: '100%', display: 'block' }}
@@ -42,7 +42,7 @@ const LandingPageView = () => {
           </Usewrap>
           <Usewrap>
             <a
-              href="https://taalswap.gitbook.io/taalswap-docs-v-2-0/taalswap-security/audit"
+              href="https://docs.taalswap.finance/taalswap-docs/taalswap-security/audit"
               target="_blank"
               rel="noreferrer"
               style={{ width: '100%', display: 'block' }}
@@ -52,7 +52,7 @@ const LandingPageView = () => {
           </Usewrap>
           <Usewrap>
             <a
-              href="https://taalswap.gitbook.io/taalswap-docs-v-2-0/taalswap-security/audit"
+              href="https://docs.taalswap.finance/taalswap-docs/taalswap-security/audit"
               target="_blank"
               rel="noreferrer"
               style={{ width: '100%', display: 'block' }}

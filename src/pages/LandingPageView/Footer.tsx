@@ -44,7 +44,7 @@ const Footer = () => {
             </Link>
           </div>
           <div style={{ marginLeft: '18.5px' }}>
-            <Link href="https://taalswap.gitbook.io/taalswap-docs-v-2-0/" target="_blank">
+            <Link href="https://docs.taalswap.finance/taalswap-docs/" target="_blank">
               <img src={gitbook_icon} alt="gitbook_icon" />
             </Link>
           </div>

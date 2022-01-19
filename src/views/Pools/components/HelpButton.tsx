@@ -26,7 +26,7 @@ const StyledLink = styled(Link)`
 const HelpButton = () => {
   const { t } = useTranslation()
   return (
-    <StyledLink external href="https://taalswap.gitbook.io/taalswap-docs-v-2-0/">
+    <StyledLink external href="https://docs.taalswap.finance/taalswap-docs/">
       <Button
         px={['14px', null, null, null, '20px']}
         scale="sm"
