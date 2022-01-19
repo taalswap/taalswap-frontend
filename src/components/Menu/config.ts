@@ -47,16 +47,16 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'LiquidityIcon',
     href: `/liquidity`,
   },
-  {
-    label: t('Farms'),
-    icon: 'FarmIcon',
-    href: `/farms`,
-  },
-  {
-    label: t('Staking'),
-    icon: 'PoolIcon',
-    href: `/staking`,
-  },
+  //   {
+  //     label: t('Farms'),
+  //     icon: 'FarmIcon',
+  //     href: `/farms`,
+  //   },
+  //   {
+  //     label: t('Staking'),
+  //     icon: 'PoolIcon',
+  //     href: `/staking`,
+  //   },
   {
     label: t('Info'),
     icon: 'InfoIcon',
