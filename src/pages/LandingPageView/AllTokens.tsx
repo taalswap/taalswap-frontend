@@ -262,7 +262,7 @@ const AllTokens = () => {
             height="24px"
             style={{ marginRight: '10px' }}
           />
-          <Txtcolor style={{ fontSize: '16px' }}>Ethereum All Tokens</Txtcolor>
+          <Txtcolor style={{ fontSize: '16px' }}>{t('All Tokens on Ethereum')}</Txtcolor>
         </Inline>
       </div>
 
