@@ -167,7 +167,7 @@ const Pools: React.FC = () => {
             borderBottom: '3px solid #00ab55',
           }}
         >
-          <Txtcolor className="section_tit">Staking Pools</Txtcolor>
+          <Txtcolor className="section_tit">{t('Staking Pools')}</Txtcolor>
           <div
             style={{
               display: 'flex',

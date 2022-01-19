@@ -26,7 +26,7 @@ import {
   useBurnedBalance,
   useDeployerBalance,
   useTotalAssets,
-  useTreasuryBalance
+  useTreasuryBalance,
 } from 'hooks/useTokenBalance'
 import { getTaalAddress } from 'utils/addressHelpers'
 import { Farm } from 'state/types'
@@ -547,7 +547,7 @@ const SectionTop: React.FC = () => {
         </div>
 
         {/* ----------------------------- 임시 ------------------------------ */}
-        {/* <div
+        <div
           className="input_wrap"
           style={{
             display: 'flex',
@@ -607,212 +607,212 @@ const SectionTop: React.FC = () => {
               </li>
             </Usewrap>
           </TempDiv>
-        </div> */}
+        </div>
 
         {/* ----------------------------- 임시 끝 ------------------------------ */}
 
         {/* ----------------------------- 원본 시작 ------------------------------ */}
-        <div className="input_wrap">
-          <div className="taal_info info01">
-            <Usewrap>
-              <li>
-                <img src={circleImg01} alt="circle_icon" />
-                <Titcolor className="info_title">{t('TAL Price')}</Titcolor>
-              </li>
-              <li>
-                <Txtcolor className="info_num">
-                  <CardValue fontSize="29" value={talPrice} />
-                </Txtcolor>
-                <Titcolor className="info_name">USD</Titcolor>
-              </li>
-            </Usewrap>
-          </div>
-          <div className="taal_info info02">
-            <Usewrap>
-              <li>
-                <div>
-                  <img src={info2Img01} alt="info_icon" />
-                  <Titcolor className="img_tit">{t('Maximum APR')}</Titcolor>
-                </div>
-                <Txtcolor className="info_num" style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                  <span>
-                    <CardValue fontSize="29" value={maxApr} />
-                  </span>
-                  %
-                </Txtcolor>
-              </li>
-              <li>
-                <div>
-                  <img src={info2Img02} alt="info_icon" />
-                  <Titcolor className="img_tit">{t('# of Transactions (24H)')}</Titcolor>
-                </div>
-                <Txtcolor className="info_num">
-                  <CardValue fontSize="29" value={transactions24} decimals={0} />
-                </Txtcolor>
-              </li>
-              <li>
-                <div>
-                  <img src={info2Img03} alt="info_icon" />
-                  <Titcolor className="img_tit">{t('# of Volume USD (24H)')}</Titcolor>
-                </div>
-                <div>
-                  <Txtcolor className="info_num">
-                    <CardValue fontSize="29" value={volumeUSD24} decimals={0} />
-                  </Txtcolor>
-                  <Titcolor className="info_name">USD</Titcolor>
-                </div>
-              </li>
-            </Usewrap>
-          </div>
+        {/* <div className="input_wrap"> */}
+        {/*   <div className="taal_info info01"> */}
+        {/*     <Usewrap> */}
+        {/*       <li> */}
+        {/*         <img src={circleImg01} alt="circle_icon" /> */}
+        {/*         <Titcolor className="info_title">{t('TAL Price')}</Titcolor> */}
+        {/*       </li> */}
+        {/*       <li> */}
+        {/*         <Txtcolor className="info_num"> */}
+        {/*           <CardValue fontSize="29" value={talPrice} /> */}
+        {/*         </Txtcolor> */}
+        {/*         <Titcolor className="info_name">USD</Titcolor> */}
+        {/*       </li> */}
+        {/*     </Usewrap> */}
+        {/*   </div> */}
+        {/*   <div className="taal_info info02"> */}
+        {/*     <Usewrap> */}
+        {/*       <li> */}
+        {/*         <div> */}
+        {/*           <img src={info2Img01} alt="info_icon" /> */}
+        {/*           <Titcolor className="img_tit">{t('Maximum APR')}</Titcolor> */}
+        {/*         </div> */}
+        {/*         <Txtcolor className="info_num" style={{ display: 'flex', justifyContent: 'flex-start' }}> */}
+        {/*           <span> */}
+        {/*             <CardValue fontSize="29" value={maxApr} /> */}
+        {/*           </span> */}
+        {/*           % */}
+        {/*         </Txtcolor> */}
+        {/*       </li> */}
+        {/*       <li> */}
+        {/*         <div> */}
+        {/*           <img src={info2Img02} alt="info_icon" /> */}
+        {/*           <Titcolor className="img_tit">{t('# of Transactions (24H)')}</Titcolor> */}
+        {/*         </div> */}
+        {/*         <Txtcolor className="info_num"> */}
+        {/*           <CardValue fontSize="29" value={transactions24} decimals={0} /> */}
+        {/*         </Txtcolor> */}
+        {/*       </li> */}
+        {/*       <li> */}
+        {/*         <div> */}
+        {/*           <img src={info2Img03} alt="info_icon" /> */}
+        {/*           <Titcolor className="img_tit">{t('# of Volume USD (24H)')}</Titcolor> */}
+        {/*         </div> */}
+        {/*         <div> */}
+        {/*           <Txtcolor className="info_num"> */}
+        {/*             <CardValue fontSize="29" value={volumeUSD24} decimals={0} /> */}
+        {/*           </Txtcolor> */}
+        {/*           <Titcolor className="info_name">USD</Titcolor> */}
+        {/*         </div> */}
+        {/*       </li> */}
+        {/*     </Usewrap> */}
+        {/*   </div> */}
 
-          <div className="taal_info info03">
-            <Usewrap>
-              <li style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                <img src={info2Img04} alt="info_icon" />
-                <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-                  <Titcolor style={{ marginRight: '0px', width: 'auto', color: 'red' }} className="info_title">
-                    {t('Rewards starting in')}
-                  </Titcolor>
-                </div>
-                <TimeCounter />
-              </li>
-              <li>
-                <div>
-                  <img src={circleImg03} alt="info_icon" />
-                  <Titcolor className="info_name">{t('TAL minted per block')}</Titcolor>
-                </div>
-                <Txtcolor className="info_num">
-                  <CardValue fontSize="16px" value={40} decimals={0} />
-                </Txtcolor>
-              </li>
-              <li>
-                <div>
-                  <img src={info2Img01} alt="info_icon" />
-                  <Titcolor className="info_name">{t('Auto TAL Bounty')}</Titcolor>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <div className="Tal_num">
-                    {hasFetchedCakeBounty ? (
-                      <Balance fontSize="16px" bold value={cakeBountyToDisplay} decimals={3} />
-                    ) : (
-                      <Skeleton height={20} width={96} mb="5px" />
-                    )}
-                  </div>
-                  <div>
-                    <Button
-                      disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
-                      onClick={onPresentBountyModal}
-                      scale="sm"
-                      marginLeft="10px"
-                      style={{ fontSize: '14px', padding: '0 10px' }}
-                    >
-                      {t('Claim')}
-                    </Button>
-                  </div>
-                </div>
-              </li>
-            </Usewrap>
-          </div>
-          <div className="taal_info info04">
-            <Usewrap>
-              <li>
-                <div>
-                  <img src={circleImg02} alt="circle_icon" />
-                  <Titcolor className="info_title">{t('TAL Market Cap.')}</Titcolor>
-                </div>
-                <div>
-                  <Txtcolor className="info_num">
-                    <CardValue fontSize="29" value={talPrice * cakeSupply} />
-                  </Txtcolor>
-                  <Titcolor className="info_name">USD</Titcolor>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src={circleImg03} alt="circle_icon" />
-                  <Titcolor className="info_title">{t('TAL Burnt')}</Titcolor>
-                </div>
-                <div>
-                  <Txtcolor className="info_num">
-                    <CardValue fontSize="29" value={treasuryBalance} decimals={0} />
-                  </Txtcolor>
-                  <Titcolor className="info_name">TAL</Titcolor>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src={circleImg04} alt="circle_icon" />
-                  <Titcolor className="info_title">{t('TAL Circulating Supply')}</Titcolor>
-                </div>
-                <div>
-                  <Txtcolor className="info_num">
-                    <CardValue fontSize="29" value={cakeSupply} decimals={0} />
-                  </Txtcolor>
-                  <Titcolor className="info_name">TAL</Titcolor>
-                </div>
-              </li>
-            </Usewrap>
-          </div>
-          <div className="taal_info info_portfolio">
-            <Usewrap>
-              <li>
-                <Txtcolor className="info_title">{t('My Portfolio')}</Txtcolor>
+        {/*   <div className="taal_info info03"> */}
+        {/*     <Usewrap> */}
+        {/*       <li style={{ display: 'flex', justifyContent: 'flex-start' }}> */}
+        {/*         <img src={info2Img04} alt="info_icon" /> */}
+        {/*         <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}> */}
+        {/*           <Titcolor style={{ marginRight: '0px', width: 'auto', color: 'red' }} className="info_title"> */}
+        {/*             {t('Rewards starting in')} */}
+        {/*           </Titcolor> */}
+        {/*         </div> */}
+        {/*         <TimeCounter /> */}
+        {/*       </li> */}
+        {/*       <li> */}
+        {/*         <div> */}
+        {/*           <img src={circleImg03} alt="info_icon" /> */}
+        {/*           <Titcolor className="info_name">{t('TAL minted per block')}</Titcolor> */}
+        {/*         </div> */}
+        {/*         <Txtcolor className="info_num"> */}
+        {/*           <CardValue fontSize="16px" value={40} decimals={0} /> */}
+        {/*         </Txtcolor> */}
+        {/*       </li> */}
+        {/*       <li> */}
+        {/*         <div> */}
+        {/*           <img src={info2Img01} alt="info_icon" /> */}
+        {/*           <Titcolor className="info_name">{t('Auto TAL Bounty')}</Titcolor> */}
+        {/*         </div> */}
+        {/*         <div style={{ display: 'flex', justifyContent: 'flex-end' }}> */}
+        {/*           <div className="Tal_num"> */}
+        {/*             {hasFetchedCakeBounty ? ( */}
+        {/*               <Balance fontSize="16px" bold value={cakeBountyToDisplay} decimals={3} /> */}
+        {/*             ) : ( */}
+        {/*               <Skeleton height={20} width={96} mb="5px" /> */}
+        {/*             )} */}
+        {/*           </div> */}
+        {/*           <div> */}
+        {/*             <Button */}
+        {/*               disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee} */}
+        {/*               onClick={onPresentBountyModal} */}
+        {/*               scale="sm" */}
+        {/*               marginLeft="10px" */}
+        {/*               style={{ fontSize: '14px', padding: '0 10px' }} */}
+        {/*             > */}
+        {/*               {t('Claim')} */}
+        {/*             </Button> */}
+        {/*           </div> */}
+        {/*         </div> */}
+        {/*       </li> */}
+        {/*     </Usewrap> */}
+        {/*   </div> */}
+        {/*   <div className="taal_info info04"> */}
+        {/*     <Usewrap> */}
+        {/*       <li> */}
+        {/*         <div> */}
+        {/*           <img src={circleImg02} alt="circle_icon" /> */}
+        {/*           <Titcolor className="info_title">{t('TAL Market Cap.')}</Titcolor> */}
+        {/*         </div> */}
+        {/*         <div> */}
+        {/*           <Txtcolor className="info_num"> */}
+        {/*             <CardValue fontSize="29" value={talPrice * cakeSupply} /> */}
+        {/*           </Txtcolor> */}
+        {/*           <Titcolor className="info_name">USD</Titcolor> */}
+        {/*         </div> */}
+        {/*       </li> */}
+        {/*       <li> */}
+        {/*         <div> */}
+        {/*           <img src={circleImg03} alt="circle_icon" /> */}
+        {/*           <Titcolor className="info_title">{t('TAL in Treasury/SAFU')}</Titcolor> */}
+        {/*         </div> */}
+        {/*         <div> */}
+        {/*           <Txtcolor className="info_num"> */}
+        {/*             <CardValue fontSize="29" value={treasuryBalance} decimals={0} /> */}
+        {/*           </Txtcolor> */}
+        {/*           <Titcolor className="info_name">TAL</Titcolor> */}
+        {/*         </div> */}
+        {/*       </li> */}
+        {/*       <li> */}
+        {/*         <div> */}
+        {/*           <img src={circleImg04} alt="circle_icon" /> */}
+        {/*           <Titcolor className="info_title">{t('TAL Circulating Supply')}</Titcolor> */}
+        {/*         </div> */}
+        {/*         <div> */}
+        {/*           <Txtcolor className="info_num"> */}
+        {/*             <CardValue fontSize="29" value={cakeSupply} decimals={0} /> */}
+        {/*           </Txtcolor> */}
+        {/*           <Titcolor className="info_name">TAL</Titcolor> */}
+        {/*         </div> */}
+        {/*       </li> */}
+        {/*     </Usewrap> */}
+        {/*   </div> */}
+        {/*   <div className="taal_info info_portfolio"> */}
+        {/*     <Usewrap> */}
+        {/*       <li> */}
+        {/*         <Txtcolor className="info_title">{t('My Portfolio')}</Txtcolor> */}
 
-                {account ? (
-                  <Button
-                    disabled={balancesWithValue.length <= 0 || pendingTx}
-                    onClick={harvestAllFarms}
-                    scale="sm"
-                    style={{ fontSize: '14px', padding: '0 10px' }}
-                  >
-                    {pendingTx
-                      ? t('Collecting TAL')
-                      : t('Harvest all (%count%)', {
-                          count: balancesWithValue.length,
-                        })}
-                  </Button>
-                ) : null}
-              </li>
-              <li className="list_progressbar">
-                <div>
-                  <Titcolor className="progressbar_title">{t('My Average APR')}</Titcolor>
-                  <div>
-                    <Txtcolor3 className="info_num" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <CardValue fontSize="18" value={getTotalApr()} />
-                      <p>%</p>
-                    </Txtcolor3>
-                  </div>
-                </div>
-              </li>
-              <li className="list_date">
-                <ul>
-                  <li>
-                    <div>
-                      <Titcolor className="date_title">{t('My Total Assets')}</Titcolor>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-                      <Txtcolor className="date_num">
-                        <CardValue fontSize="18" value={getTotalAssets()} />
-                      </Txtcolor>
-                      <Titcolor className="date_name">USD</Titcolor>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <Titcolor className="date_title">{t('TAL Earned')}</Titcolor>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-                      <Txtcolor className="date_num">
-                        <CardValue fontSize="18" value={getTotalEarned()} />
-                      </Txtcolor>
-                      <Titcolor className="date_name">TAL</Titcolor>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-            </Usewrap>
-          </div>
-        </div>
+        {/*         {account ? ( */}
+        {/*           <Button */}
+        {/*             disabled={balancesWithValue.length <= 0 || pendingTx} */}
+        {/*             onClick={harvestAllFarms} */}
+        {/*             scale="sm" */}
+        {/*             style={{ fontSize: '14px', padding: '0 10px' }} */}
+        {/*           > */}
+        {/*             {pendingTx */}
+        {/*               ? t('Collecting TAL') */}
+        {/*               : t('Harvest all (%count%)', { */}
+        {/*                   count: balancesWithValue.length, */}
+        {/*                 })} */}
+        {/*           </Button> */}
+        {/*         ) : null} */}
+        {/*       </li> */}
+        {/*       <li className="list_progressbar"> */}
+        {/*         <div> */}
+        {/*           <Titcolor className="progressbar_title">{t('My Average APR')}</Titcolor> */}
+        {/*           <div> */}
+        {/*             <Txtcolor3 className="info_num" style={{ display: 'flex', justifyContent: 'space-between' }}> */}
+        {/*               <CardValue fontSize="18" value={getTotalApr()} /> */}
+        {/*               <p>%</p> */}
+        {/*             </Txtcolor3> */}
+        {/*           </div> */}
+        {/*         </div> */}
+        {/*       </li> */}
+        {/*       <li className="list_date"> */}
+        {/*         <ul> */}
+        {/*           <li> */}
+        {/*             <div> */}
+        {/*               <Titcolor className="date_title">{t('My Total Assets')}</Titcolor> */}
+        {/*             </div> */}
+        {/*             <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}> */}
+        {/*               <Txtcolor className="date_num"> */}
+        {/*                 <CardValue fontSize="18" value={getTotalAssets()} /> */}
+        {/*               </Txtcolor> */}
+        {/*               <Titcolor className="date_name">USD</Titcolor> */}
+        {/*             </div> */}
+        {/*           </li> */}
+        {/*           <li> */}
+        {/*             <div> */}
+        {/*               <Titcolor className="date_title">{t('TAL Earned')}</Titcolor> */}
+        {/*             </div> */}
+        {/*             <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}> */}
+        {/*               <Txtcolor className="date_num"> */}
+        {/*                 <CardValue fontSize="18" value={getTotalEarned()} /> */}
+        {/*               </Txtcolor> */}
+        {/*               <Titcolor className="date_name">TAL</Titcolor> */}
+        {/*             </div> */}
+        {/*           </li> */}
+        {/*         </ul> */}
+        {/*       </li> */}
+        {/*     </Usewrap> */}
+        {/*   </div> */}
+        {/* </div> */}
       </div>
     </div>
   )

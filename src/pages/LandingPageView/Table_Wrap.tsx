@@ -254,7 +254,7 @@ const TableWrap: React.FC = () => {
             borderBottom: '3px solid #00ab55',
           }}
         >
-          <Txtcolor className="section_tit">Farms</Txtcolor>
+          <Txtcolor className="section_tit"> {t('Farms')}</Txtcolor>
           <div
             style={{
               display: 'flex',
