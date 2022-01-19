@@ -21,7 +21,13 @@ import Balance from 'components/Balance'
 import BountyModal from 'views/Pools/components/BountyModal'
 import { useMasterchef } from 'hooks/useContract'
 import { harvest } from 'utils/callHelpers'
-import { useTotalSupply, useBurnedBalance, useDeployerBalance, useTotalAssets } from 'hooks/useTokenBalance'
+import {
+  useTotalSupply,
+  useBurnedBalance,
+  useDeployerBalance,
+  useTotalAssets,
+  useTreasuryBalance
+} from 'hooks/useTokenBalance'
 import { getTaalAddress } from 'utils/addressHelpers'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -167,6 +173,7 @@ const SectionTop: React.FC = () => {
 
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getTaalAddress()))
+  const treasuryBalance = getBalanceNumber(useTreasuryBalance(getTaalAddress()))
   const deployerBalance = getBalanceNumber(useDeployerBalance(getTaalAddress()))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
@@ -727,7 +734,7 @@ const SectionTop: React.FC = () => {
                 </div>
                 <div>
                   <Txtcolor className="info_num">
-                    <CardValue fontSize="29" value={burnedBalance} decimals={0} />
+                    <CardValue fontSize="29" value={treasuryBalance} decimals={0} />
                   </Txtcolor>
                   <Titcolor className="info_name">TAL</Titcolor>
                 </div>
