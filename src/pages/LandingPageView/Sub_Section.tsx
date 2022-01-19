@@ -16,6 +16,7 @@ const Usewrap = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 155px;
 `
 
 const Txtcolor = styled.p`
