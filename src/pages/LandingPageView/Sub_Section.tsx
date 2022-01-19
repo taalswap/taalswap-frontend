@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import AgencyLogo01 from './images/Agency_logo01.png'
 import AgencyLogo02 from './images/Agency_logo02.png'
+import AgencyLogo03 from './images/Agency_logo03.png'
 
 const SectionWrapper = styled.div`
   height: 100%;
@@ -45,6 +46,18 @@ const LandingPageView = () => {
               style={{ width: '100%', display: 'block' }}
             >
               <img src={AgencyLogo02} alt="LogoImg" style={{ width: '100%', maxWidth: '146px' }} />
+            </a>
+          </Usewrap>
+        </ul>
+        <ul style={{ marginTop: '40px' }}>
+          <Usewrap>
+            <a
+              href="https://taalswap.gitbook.io/taalswap-docs-v-2-0/taalswap-security/audit"
+              target="_blank"
+              rel="noreferrer"
+              style={{ width: '100%', display: 'block' }}
+            >
+              <img src={AgencyLogo03} alt="LogoImg" style={{ width: '100%', maxWidth: '188px' }} />
             </a>
           </Usewrap>
         </ul>
