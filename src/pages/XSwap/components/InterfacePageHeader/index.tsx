@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Flex, IconButton, Text, useModal } from 'taalswap-uikit'
+import { Flex, IconButton, Text, useModal, NetworkButtons } from 'taalswap-uikit'
+import {useWeb3React} from "@web3-react/core";
 import OptionIcon from 'views/Swap/images/option_icon.svg'
 import Disclosure from 'views/Swap/images/disclosure.svg'
 import Bridge from 'views/XSwap/images/bridge.svg'
@@ -8,6 +9,9 @@ import RecentXSwapTransactionsModal from 'components/InterfacePageHeader/RecentX
 import SettingsModal from './SettingsModal'
 import RecentTransactionsModal from './RecentTransactionsModal'
 import { useTranslation } from '../../../../contexts/Localization'
+
+
+import useAuth from "../../../../hooks/useAuth";
 
 interface PageHeaderProps {
   title: ReactNode
@@ -44,6 +48,9 @@ const Heading = styled.h2`
 
 const PageHeader = ({ title, description, children }: PageHeaderProps) => {
   const { t } = useTranslation()
+  const { account } = useWeb3React()
+  const { login, logout } = useAuth()
+
   const [onPresentSettings] = useModal(<SettingsModal />)
   const [onPresentRecentTransactions] = useModal(<RecentTransactionsModal />)
   const [onPresentRecentXSwapTransactions] = useModal(<RecentXSwapTransactionsModal />)
@@ -60,7 +67,9 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
           )}
         </Details>
 
-        <IconButton variant="text" onClick={onPresentSettings} title={t('Settings')}>
+        <NetworkButtons login={login} logout={logout} account={account} blockchain={process.env.REACT_APP_CHAIN_ID}
+                        klaytn={process.env.REACT_APP_KLAYTN_ID}/>
+        <IconButton style={{marginLeft:'10px'}} variant="text" onClick={onPresentSettings} title={t('Settings')}>
           {/* <TuneIcon width='24px' color='#00ab55' /> */}
           <img src={OptionIcon} alt="option_icon" className="" />
         </IconButton>
