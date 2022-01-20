@@ -3,6 +3,8 @@ import { ChainId } from 'taalswap-sdk'
 import styled from 'styled-components'
 import { useSwapState } from 'state/swap/hooks'
 import { useActiveWeb3React } from 'hooks'
+import { HelpIcon, useTooltip } from 'taalswap-uikit'
+import { useTranslation } from '../../contexts/Localization'
 
 const NetworkSelectBox = styled.select`
   width: 180px;
@@ -20,9 +22,22 @@ const NetworkSelectBox = styled.select`
   }
 `
 
+const ReferenceElement = styled.div`
+  display: flex;
+  margin-left: 0.3rem;
+  margin-right: auto;
+`
+
 const NetworkSelector = ({ onSetCrossChain, id }) => {
+  const { t } = useTranslation()
   const { crossChain } = useSwapState()
   const { chainId } = useActiveWeb3React()
+
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+    // t('When you add liquidity, you will receive LP tokens to be registered as your share in this liquidity pool.'),
+    t('Cross-chain swap service will start soon through TaalSwap’s in-house bridge system.'),
+    { placement: 'top-end', tooltipOffset: [20, 10] },
+  )
 
   if (window.localStorage.getItem('chainId') === null && chainId !== undefined)
     window.localStorage.setItem('chainId', chainId?.toString())
@@ -108,7 +123,7 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
   // }, []);
 
   return (
-    <>
+    <div style={{ display: 'flex' }}>
       <NetworkSelectBox
         onChange={handleSelect}
         disabled
@@ -120,7 +135,15 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
           <option key={network.id} value={network.chainId} label={network.name} />
         ))}
       </NetworkSelectBox>
-    </>
+      {id === 'swap-currency-output' && (
+        <>
+          <ReferenceElement ref={targetRef}>
+            <HelpIcon color="textSubtle" />
+          </ReferenceElement>
+          {tooltipVisible && tooltip}
+        </>
+      )}
+    </div>
   )
 }
 
