@@ -9,6 +9,7 @@ import XSwap from 'views/XSwap'
 import Pool from 'views/Pool'
 import AddLiquidity from 'views/AddLiquidity'
 import RemoveLiquidity from 'views/RemoveLiquidity'
+import PoolFinder from 'views/PoolFinder'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import { RedirectPathToXSwapOnly, RedirectXSwapTokenIds } from './views/XSwap/redirects'
@@ -56,6 +57,7 @@ const App: React.FC = () => {
               <Route exact strict path="/xswap" component={XSwap} />
               <Route exact strict path="/liquidity" component={Pool} />
               <Route exact path="/add" component={AddLiquidity} />
+              <Route exact strict path="/find" component={PoolFinder} />
               {/* Redirection: These old routes are still used in the code base */}
               <Route exact path="/xswap/:chainId/:currencyIdA/:currencyIdB" component={RedirectXSwapTokenIds} />
               <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
