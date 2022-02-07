@@ -913,5 +913,6 @@
   "Pool found!": "풀 발견!",
   "You don’t have liquidity in this pool yet.": "아직 이 풀에 유동성이 없습니다.",
   "Doing Add Liquidity": "유동성을 제공해 주세요.",
-  "Select a Token": "토큰 선택"
+  "Select a Token": "토큰 선택",
+  "You are on the wrong network.": "잘못된 네트워크가 선택되었습니다."
 }

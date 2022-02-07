@@ -80,7 +80,7 @@ export const useInactiveListenerNew = (suppress = false) => {
           })
         } else {
           // TODO: 잘못된 네트워크가 선택되었다는 에러 메시지 창 띄우기
-          toastError(t('Error'), t('잘못된 네트워크가 선택되었습니다.'))
+          toastError(t('Error'), t('You are on the wrong network.'))
           const changeNet = await setupNetwork(ethChainId)
 
         }
