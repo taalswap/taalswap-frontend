@@ -42,8 +42,8 @@ const LandingPageView = () => {
       />
       <SectionTop />
       <XSwap />
-      <TableWrap />
-      <StakingWrap />
+      {/* <TableWrap /> */}
+      {/* <StakingWrap /> */}
       <div className="areafarms">
         <AllTokens />
         <AllPairs />
