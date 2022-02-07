@@ -190,7 +190,8 @@ function XSwap({
   const currencyA = useCurrency(currencyIdA)
   const currencyB = useCurrencyXswap(currencyIdB)
   const [currencyAFlag, setCurrencyAFlag] = useState(currencyA !== undefined)
-  const [currencyBFlag, setCurrencyBFlag] = useState(currencyB !== undefined)
+  const tempCurrentBFlag = currencyB !== undefined
+  const [currencyBFlag, setCurrencyBFlag] = useState(tempCurrentBFlag)
   const [currencyAPrice, setCurrencyAPrice] = useState('0')
   const [currencyBPrice, setCurrencyBPrice] = useState('0')
   const { t } = useTranslation()
@@ -611,6 +612,7 @@ function XSwap({
 
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
+
       setCurrencyBFlag(false)
       setHasPoppedModal(false)
       setInterruptRedirectCountdown(false)
