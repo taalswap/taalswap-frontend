@@ -10,6 +10,9 @@ import BRIDGE_ABI from 'constants/abis/bridge.json';
 import { BRIDGE_ADDRESS, ROUTER_ADDRESS } from '../constants';
 import { TokenAddressMap } from '../state/lists/hooks';
 
+const ethChainId = process.env.REACT_APP_CHAIN_ID ?? '1';
+const klayChainId = process.env.REACT_APP_KLAYTN_ID ?? '8217';
+
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
   try {
@@ -108,7 +111,13 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
       const crossChainProvider = new ethers.providers.JsonRpcProvider(RPC_URL[chainId]);
       contract = new Contract(address, ABI, crossChainProvider);
     } else {
-      const crossChainProvider = new ethers.providers.InfuraProvider('ropsten', 'adb9c847d7114ee7bf83995e8f22e098')
+      let crossChainProvider
+      if (ethChainId === '1') {
+        crossChainProvider = new ethers.providers.InfuraProvider('mainnet', 'adb9c847d7114ee7bf83995e8f22e098')
+      }
+      if (ethChainId === '3') {
+        crossChainProvider = new ethers.providers.InfuraProvider('ropsten', 'adb9c847d7114ee7bf83995e8f22e098')
+      }
       contract = new Contract(address, ABI, crossChainProvider);
     }
   } else {
