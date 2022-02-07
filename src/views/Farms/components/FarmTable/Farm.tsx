@@ -90,7 +90,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
       // } else {
       //   url = `${process.env.REACT_APP_FRONTEND}/images/coins/${symbol.toLowerCase()}.svg`
       // }
-      // url = `https://swap.taalswap.finance/images/coins/${symbol.toLowerCase()}.png`
+      // url = `https://taalswap.finance/images/coins/${symbol.toLowerCase()}.png`
       url = `${frontendBaseUrl}/images/coins/${symbol.toLowerCase()}.png`
       return url
     })

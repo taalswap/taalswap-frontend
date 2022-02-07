@@ -80,8 +80,8 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const stakingTokenIconPath = `${interfaceBaseUrl}/images/coins/${stakingToken.symbol.toLowerCase()}.png`
   const earningTokenIconPath = `${interfaceBaseUrl}/images/coins/${earningToken.symbol.toLowerCase()}.png`
 
-  // const stakingTokenIconPath = `https://swap.taalswap.finance/images/coins/${stakingToken.symbol.toLowerCase()}.png`
-  // const earningTokenIconPath = `https://swap.taalswap.finance/images/coins/${earningToken.symbol.toLowerCase()}.png`
+  // const stakingTokenIconPath = `https://taalswap.finance/images/coins/${stakingToken.symbol.toLowerCase()}.png`
+  // const earningTokenIconPath = `https://taalswap.finance/images/coins/${earningToken.symbol.toLowerCase()}.png`
 
   const iconFile = `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
 
