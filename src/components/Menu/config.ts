@@ -32,11 +32,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   //   ],
   // },
 
-  {
-    label: t('Swap'),
-    icon: 'TradeIcon',
-    href: `/swap`,
-  },
+  // {
+  //   label: t('Swap'),
+  //   icon: 'TradeIcon',
+  //   href: `/swap`,
+  // },
   {
     label: t('X-Swap'),
     icon: 'TradeIcon',
