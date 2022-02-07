@@ -5,6 +5,8 @@ import { useWeb3React } from '@web3-react/core'
 import { injected } from 'utils/web3React'
 import getChainId from '../utils/getChainId'
 import {setupNetwork} from "../utils/wallet";
+import useToast from "./useToast";
+import {useTranslation} from "../contexts/Localization";
 
 const ethChainId = parseInt(process.env.REACT_APP_CHAIN_ID ?? '1', 10);
 const klayChainId = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '8217', 10);
@@ -26,6 +28,7 @@ const _binanceChainListener = async () =>
 export const useEagerConnect = () => {
   const { login } = useAuth()
   const { chainId } = useWeb3React()
+
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem(connectorLocalStorageKey) as ConnectorNames
@@ -52,6 +55,8 @@ export const useEagerConnect = () => {
 
 export const useInactiveListenerNew = (suppress = false) => {
   const { active, error, activate } = useWeb3React() // specifically using useWeb3React because of what this hook does
+  const { toastSuccess, toastError } = useToast()
+  const { t } = useTranslation()
 
   useEffect(() => {
     const { ethereum } = window as WindowChain
@@ -75,7 +80,9 @@ export const useInactiveListenerNew = (suppress = false) => {
           })
         } else {
           // TODO: 잘못된 네트워크가 선택되었다는 에러 메시지 창 띄우기
+          toastError(t('Error'), t('잘못된 네트워크가 선택되었습니다.'))
           const changeNet = await setupNetwork(ethChainId)
+
         }
       }
 
@@ -99,7 +106,7 @@ export const useInactiveListenerNew = (suppress = false) => {
       }
     }
     return undefined
-  }, [active, error, suppress, activate])
+  }, [active, error, suppress, activate, toastError,t])
 }
 
 // export default useEagerConnect
