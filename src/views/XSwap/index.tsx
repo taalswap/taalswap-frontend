@@ -15,7 +15,6 @@ import {
   Flex,
   useMatchBreakpoints,
   ConnectorNames,
-  useWalletModal,
 } from 'taalswap-uikit'
 import useAuth from 'hooks/useAuth'
 import { RouteComponentProps } from 'react-router-dom'
@@ -24,8 +23,6 @@ import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
 import ConfirmSwapModal from 'components/swap/ConfirmSwapModal'
-import CurrencyInputPanel from 'components/CurrencyInputPanel'
-import CardNav from 'components/CardNav'
 import { AutoRow, RowBetween } from 'components/Row'
 import AdvancedXSwapDetailsDropdown from 'components/swap/AdvancedXSwapDetailsDropdown'
 import confirmPriceImpactWithoutFee from 'components/swap/confirmPriceImpactWithoutFee'
@@ -57,19 +54,14 @@ import { LinkStyledButton } from 'components/Shared'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { computeTradePriceBreakdown, computeTradeXPriceBreakdown, warningSeverity } from 'utils/prices'
 import Loader from 'components/Loader'
-import useI18n from 'hooks/useI18n'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import V2ExchangeRedirectModal from 'components/V2ExchangeRedirectModal'
 import getAPIUrl from 'utils/getAPIUrl'
 import CurrencyXSwapInputPanel from 'components/CurrencyXSwapInputPanel'
-import AppBody from '../AppBody'
-// import Teaser from '../LandingPageView/Teaser_page'
 import TOKEN_LIST from '../../constants/token/taalswap.json'
 import { setupNetwork } from '../../utils/wallet'
 
 const { ethereum } = window as WindowChain
-
-// const CACHE_KEY = 'pancakeswap_language';
 const CACHE_KEY = 'taalswap_language'
 
 const StyledLink = styled(Link)`
@@ -97,7 +89,6 @@ const InputPanelBody = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
   }
-  // width: 10%;
 `
 
 const CardPanelBody = styled(Card)`
@@ -118,15 +109,9 @@ const CardPanelBody = styled(Card)`
 
 const RowBetweenSub = styled(RowBetween)`
   @media screen and (max-width: 500px) {
-    //display:block;
-
     ${Text} {
-      // display:block;
     }
     ${Text}:nth-child(2) {
-      // display:block;
-      //width:100% !important;
-      //justify-content:flex-end !important;
       text-align: right !important;
     }
   }
@@ -177,7 +162,6 @@ const PriceInlineColumn = styled.div`
   }
 `
 
-// const Swap = () => {
 function XSwap({
   match: {
     params: { currencyIdA, currencyIdB },
@@ -429,24 +413,16 @@ function XSwap({
   )
 
   useEffect(() => {
-    if (currencyAFlag && currencyA !== undefined && currencyA !== null) {
-      setCurrencyAFlag(false)
+    if ( currencyA !== undefined && currencyA !== null) {
+      if(currencyAFlag === true)   setCurrencyAFlag(false)
       onCurrencySelection(Field.INPUT, currencyA)
     }
 
-    if (currencyBFlag && currencyB !== undefined && currencyB !== null) {
-      setCurrencyBFlag(false)
+    if ( currencyB !== undefined && currencyB !== null) {
+      if(currencyBFlag === true)  setCurrencyBFlag(false)
       onCurrencySelection(Field.OUTPUT, currencyB)
     }
-    // console.log(currencyB?.symbol);
   }, [currencyAFlag, currencyBFlag, currencyA, currencyB, onCurrencySelection])
-  // if (currencyA !== null && currencyA !== undefined) {
-  //   onCurrencySelection(Field.INPUT, currencyA);
-  // }
-
-  // if (currencyB !== null && currencyB !== undefined) {
-  //   onCurrencySelection(Field.OUTPUT, currencyA);
-  // }
 
   // modal and loading
   const [{ showConfirm, tradeToConfirm, swapErrorMessage, attemptingTxn, txHash }, setSwapState] = useState<{
