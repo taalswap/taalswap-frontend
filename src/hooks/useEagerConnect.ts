@@ -4,6 +4,10 @@ import useAuth from 'hooks/useAuth'
 import { useWeb3React } from '@web3-react/core'
 import { injected } from 'utils/web3React'
 import getChainId from '../utils/getChainId'
+import {setupNetwork} from "../utils/wallet";
+
+const ethChainId = parseInt(process.env.REACT_APP_CHAIN_ID ?? '1', 10);
+const klayChainId = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '8217', 10);
 
 const _binanceChainListener = async () =>
   new Promise<void>((resolve) =>
@@ -54,19 +58,25 @@ export const useInactiveListenerNew = (suppress = false) => {
 
     // if (ethereum && ethereum.on && !active && !error && !suppress) {
     if (ethereum && ethereum.on) {
-      const handleChainChanged = (chainId) => {
-        // eat errors
-        const curChainId = parseInt(chainId, 16).toString()
-        const prevChainId = window.localStorage.getItem('chainId')
-        window.localStorage.setItem('chainId', curChainId)
-        window.localStorage.setItem('prevChainId', prevChainId ?? curChainId)
-        // window.localStorage.setItem('refresh', 'true')
-        // Todo page reload
-        // window.location.reload()
+      const handleChainChanged = async (chainId) => {
+        // TODO: Handle wrong network injected
+        if (parseInt(chainId, 16) === ethChainId || parseInt(chainId, 16) === klayChainId) {
+          // eat errors
+          const curChainId = parseInt(chainId, 16).toString()
+          const prevChainId = window.localStorage.getItem('chainId')
+          window.localStorage.setItem('chainId', curChainId)
+          window.localStorage.setItem('prevChainId', prevChainId ?? curChainId)
+          // window.localStorage.setItem('refresh', 'true')
+          // Todo page reload
+          // window.location.reload()
 
-        activate(injected, undefined, true).catch((e) => {
-          console.error('Failed to activate after chain changed', e)
-        })
+          activate(injected, undefined, true).catch((e) => {
+            console.error('Failed to activate after chain changed', e)
+          })
+        } else {
+          // TODO: 잘못된 네트워크가 선택되었다는 에러 메시지 창 띄우기
+          const changeNet = await setupNetwork(ethChainId)
+        }
       }
 
       const handleAccountsChanged = (accounts: string[]) => {
