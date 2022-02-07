@@ -70,7 +70,7 @@ import { getSettings, getGasPriceInWei } from './settings'
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   const signerOrProvider = signer ?? getSimpleRpcProvider()
   // TODO: check when address is undefined...
-  if (address === undefined) return null
+  if (address === undefined || address.length === 0) return null
   return new ethers.Contract(address, abi, signerOrProvider)
 }
 
