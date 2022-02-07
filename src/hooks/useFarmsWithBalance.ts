@@ -26,9 +26,11 @@ const useFarmsWithBalance = () => {
       }))
 
       const rawResults = await multicall(masterChefABI, calls)
-      const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+      if (rawResults !== null) {
+        const results = farmsConfig.map((farm, index) => ({...farm, balance: new BigNumber(rawResults[index])}))
 
-      setFarmsWithBalances(results)
+        setFarmsWithBalances(results)
+      }
     }
 
     if (account) {
