@@ -39,6 +39,7 @@ import { PoolPriceBar } from './PoolPriceBar'
 import { ROUTER_ADDRESS } from '../../constants'
 import { useTranslation } from '../../contexts/Localization'
 import getRouterAddress from '../../utils/getRouterAddress'
+import getGasPrice from "../../utils/getGasPrice";
 
 // const CACHE_KEY = 'pancakeswap_language';
 const CACHE_KEY = 'taalswap_language'
@@ -282,11 +283,13 @@ export default function AddLiquidity({
 
     setAttemptingTxn(true)
     // const aa = await estimate(...args, value ? { value } : {})
-    console.log(args, value)
+    const gasPrice = getGasPrice()
+    console.log(args, value, gasPrice)
     await estimate(...args, value ? { value } : {})
       .then((estimatedGasLimit) =>
         method(...args, {
           ...(value ? { value } : {}),
+          gasPrice,
           gasLimit: calculateGasMargin(estimatedGasLimit),
         }).then((response) => {
           setAttemptingTxn(false)

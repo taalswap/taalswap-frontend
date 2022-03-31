@@ -42,6 +42,7 @@ import { Field } from '../../state/burn/actions'
 import { useUserDeadline, useUserSlippageTolerance } from '../../state/user/hooks'
 import { useTranslation } from '../../contexts/Localization'
 import getRouterAddress from '../../utils/getRouterAddress'
+import getGasPrice from "../../utils/getGasPrice";
 
 const OutlineCard = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.disabled};
@@ -305,9 +306,11 @@ export default function RemoveLiquidity({
     } else {
       const methodName = methodNames[indexOfSuccessfulEstimation]
       const safeGasEstimate = safeGasEstimates[indexOfSuccessfulEstimation]
+      const gasPrice = getGasPrice()
 
       setAttemptingTxn(true)
       await router[methodName](...args, {
+        gasPrice,
         gasLimit: safeGasEstimate,
       })
         .then((response: TransactionResponse) => {

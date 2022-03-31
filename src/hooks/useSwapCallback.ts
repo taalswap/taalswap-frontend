@@ -9,6 +9,7 @@ import isZero from '../utils/isZero'
 import { useActiveWeb3React } from './index'
 import useENS from './useENS'
 import { useTranslation } from '../contexts/Localization'
+import getGasPrice from "../utils/getGasPrice";
 
 enum SwapCallbackState {
   INVALID,
@@ -248,9 +249,12 @@ export function useSwapCallback(
           gasEstimate,
         } = successfulEstimation
 
+        const gasPrice = getGasPrice()
+
         return contract[methodName](...args, {
-          gasLimit: calculateGasMargin(gasEstimate),
-          ...(value && !isZero(value) ? { value, from: account } : { from: account }),
+            gasPrice,
+            gasLimit: calculateGasMargin(gasEstimate),
+            ...(value && !isZero(value) ? { value, from: account } : { from: account }),
         })
           .then((response: any) => {
             const inputSymbol = trade.inputAmount.currency.symbol

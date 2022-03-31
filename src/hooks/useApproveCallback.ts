@@ -12,6 +12,7 @@ import { useTokenContract } from './useContract2'
 import { useActiveWeb3React } from './index'
 import getRouterAddress from '../utils/getRouterAddress'
 import getBridgeAddress from '../utils/getBridgeAddress'
+import getGasPrice from "../utils/getGasPrice";
 
 export enum ApprovalState {
   UNKNOWN,
@@ -80,11 +81,13 @@ export function useApproveCallback(
       return tokenContract.estimateGas.approve(spender, amountToApprove.raw.toString())
     })
 
+    const gasPrice = getGasPrice()
     // eslint-disable-next-line consistent-return
     return tokenContract
       .approve(spender, useExact ? amountToApprove.raw.toString() : MaxUint256, {
         // @ts-ignore
         // Todo
+        gasPrice,
         gasLimit: calculateGasMargin(estimatedGas),
       })
       .then((response: TransactionResponse) => {
