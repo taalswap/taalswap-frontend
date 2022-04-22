@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import useSWR from 'swr'
+import { ChainId } from 'taalswap-sdk'
+import { ethers } from 'ethers'
 import { useTranslation } from '../../contexts/Localization'
+import TAL_ADDRESS from '../../config/constants/taal'
 
 const Txtcolor = styled.p`
   color: ${({ theme }) => theme.colors.logoColor};
@@ -21,26 +24,6 @@ const TitleStyle = styled.th`
   padding: 24px 6px 24px 6px;
   text-align: left;
   font-size: 12px;
-
-  //&:nth-child(1) {
-  //  width: 10% !important;
-  //}
-  //&:nth-child(2) {
-  //  width: 22% !important;
-  //  text-align: right;
-  //}
-  //&:nth-child(3) {
-  //  width: 22% !important;
-  //  text-align: right;
-  //}
-  //&:nth-child(4) {
-  //  width: 22% !important;
-  //  text-align: right;
-  //}
-  //&:nth-child(5) {
-  //  width: 24% !important;
-  //  text-align: right;
-  //}
   &:nth-child(1) {
     width: 15% !important;
     text-align: center;
@@ -71,19 +54,19 @@ const TitleStyle = styled.th`
       text-align: center;
     }
     &:nth-child(2) {
-      width: 22% !important;
+      width: 15% !important;
       text-align: center;
     }
     &:nth-child(3) {
-      width: 22% !important;
+      width: 15% !important;
       text-align: center;
     }
     &:nth-child(4) {
-      width: 22% !important;
+      width: 25% !important;
       text-align: center;
     }
     &:nth-child(5) {
-      width: 19% !important;
+      width: 30% !important;
       text-align: center;
     }
   }
@@ -145,16 +128,65 @@ const Image = styled.img`
     display: block;
   }
 `
+const LogoIcon = styled.img`
+  width: 19px;
+  height: 19px;
+  max-width: none;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid #e3e1e1;
+  z-index: 2;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 24px;
+    height: 24px;
+  }
+`
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const RecentTransactionETH = () => {
   const { t } = useTranslation()
-
   const { data, error } = useSWR('https://taalswap-info-api-black.vercel.app/api/transactions', fetcher)
 
-  const splitAddress = (str = '') => {
-    return str !== null ? `${str.substr(0, 4)}...${str.substr(str.length - 4, str.length)}` : '-'
+  const isAddress = (value: string) => {
+    try {
+      return ethers.utils.getAddress(value.toLowerCase())
+    } catch {
+      return false
+    }
+  }
+
+  const getTokenIconPath = (address: string) => {
+    let path
+    const tokenIcon = address.toLowerCase()
+    if (
+      tokenIcon === TAL_ADDRESS[ChainId.MAINNET] ||
+      tokenIcon === TAL_ADDRESS[ChainId.ROPSTEN] ||
+      tokenIcon === TAL_ADDRESS[ChainId.RINKEBY] ||
+      tokenIcon === '0x086b00cf35e8873636384cd2b424c39ae875a8a9'
+    ) {
+      path = `https://taalswap.info/images/coins/${address.toLowerCase()}.png`
+    } else {
+      path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
+        address,
+      )}/logo.png`
+    }
+
+    return path
+  }
+
+  const convetTimestamp = (time_stamp: string) => {
+    const a = new Date(parseInt(time_stamp) * 1000)
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const year = a.getFullYear()
+    const month = months[a.getMonth()]
+    const date = a.getDate()
+    const hour = a.getHours()
+    const min = a.getMinutes()
+    const sec = a.getSeconds()
+    const time = `${date} ${month} ${year} ${hour}:${min}:${sec}`
+    return time
   }
 
   return (
@@ -183,30 +215,30 @@ const RecentTransactionETH = () => {
         <tbody>
           <tr>
             <TitleStyle style={{ textAlign: 'center', maxWidth: '80px' }}>{t('Type')} </TitleStyle>
-            <TitleStyle style={{ textAlign: 'center' }}>{t('Sender')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('From')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('To')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('Amount USD')}</TitleStyle>
+            <TitleStyle style={{ textAlign: 'center' }}>{t('Date')}</TitleStyle>
           </tr>
           {!error &&
             data &&
-            data.data.tvl &&
-            data.data.tvl.map((transaction) => (
+            data.data.transactions &&
+            data.data.transactions.map((transaction) => (
               <tr key={transaction.id}>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle', maxWidth: '80px' }}>
                   {transaction.__typename}
                 </TextStyle>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  {splitAddress(transaction.sender)}
+                  <LogoIcon src={getTokenIconPath(transaction.pair.token0.id)} alt={transaction.pair.token0.symbol} />
                 </TextStyle>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  {splitAddress(transaction.from)}
+                  <LogoIcon src={getTokenIconPath(transaction.pair.token1.id)} alt={transaction.pair.token1.symbol} />
                 </TextStyle>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  {splitAddress(transaction.to)}
+                  {parseFloat(transaction.amountUSD).toFixed(4)}
                 </TextStyle>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  {parseFloat(transaction.amountUSD).toFixed(5)}
+                  {convetTimestamp(transaction.transaction.timestamp)}
                 </TextStyle>
               </tr>
             ))}
