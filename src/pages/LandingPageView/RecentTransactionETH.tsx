@@ -177,7 +177,7 @@ const RecentTransactionETH = () => {
     return path
   }
 
-  const convetTimestamp = (time_stamp: string) => {
+  const convertTimestamp = (time_stamp: string) => {
     const a = new Date(parseInt(time_stamp) * 1000)
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     const year = a.getFullYear()
@@ -259,7 +259,7 @@ const RecentTransactionETH = () => {
                   {parseFloat(transaction.amountUSD).toFixed(2)}
                 </TextStyle>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  {convetTimestamp(transaction.transaction.timestamp)}
+                  {convertTimestamp(transaction.transaction.timestamp)}
                 </TextStyle>
               </tr>
             ))}
