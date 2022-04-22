@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
-import { Text, Link, Button, IconButton, SyncAltIcon, AddIcon, ChevronUpIcon } from 'taalswap-uikit'
+import { Button, IconButton, SyncAltIcon, AddIcon, ChevronUpIcon } from 'taalswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import CardValue from 'views/Home/components/CardValue'
 import { ChainId } from 'taalswap-sdk'
@@ -96,7 +96,7 @@ const TextStyle = styled.td`
     }
   }
   > a {
-    font-size: auto;
+    font-size: initial;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 24px 8px 24px 20px;
@@ -106,23 +106,6 @@ const TextStyle = styled.td`
     font-size: 12px;
   }
   ${({ theme }) => theme.mediaQueries.sm} {
-  }
-`
-
-const TextIconStyle = styled.td`
-  color: ${({ theme }) => theme.colors.logoColor};
-  text-align: center;
-  border-bottom: 2px solid rgba(133, 133, 133, 0.1);
-  font-size: 12px;
-
-  > a {
-    font-size: 13px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 13px;
-  }
-  > a {
-    font-size: 12px;
   }
 `
 
@@ -154,8 +137,6 @@ const ScrollButtonContainer = styled.div`
 const AllTokens = () => {
   const { t } = useTranslation()
   const [tokens, setTokens] = useState([])
-  const chainId =
-    localStorage.getItem('chainId') === undefined ? process.env.EACT_APP_CHAIN_ID : localStorage.getItem('chainId')
   const linkToURL = (url: string) => {
     window.location.href = url
   }

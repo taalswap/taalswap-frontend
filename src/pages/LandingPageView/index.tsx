@@ -1,5 +1,4 @@
 import React from 'react'
-// import TopBar from './TopBar'
 import useAuth from 'hooks/useAuth'
 import { useWeb3React } from '@web3-react/core'
 import { languageList } from 'config/localization/languages'
@@ -8,17 +7,16 @@ import useTheme from 'hooks/useTheme'
 import { TopBar } from 'taalswap-uikit'
 import XSwap from 'pages/XSwap'
 import SectionTop from './Section_Top'
-import TableWrap from './Table_Wrap'
 import SectionBottom from './Section_Bottom'
 import Footer from './Footer'
-import Teaser from './Teaser_page'
-import StakingWrap from './Staking_wrap'
 import SubSection from './Sub_Section'
 import AllPairs from './AllPairs'
 import './App.css'
 import AllTokens from './AllTokens'
 import KlayAllTokens from './KlayAllTokens'
 import KlayAllPairs from './KlayAllPairs'
+import RecentTransactionETH from './RecentTransactionETH'
+import RecentTransactionKlay from './RecentTransactionKlay'
 
 const LandingPageView = () => {
   const { account } = useWeb3React()
@@ -42,8 +40,10 @@ const LandingPageView = () => {
       />
       <SectionTop />
       <XSwap />
-      {/* <TableWrap /> */}
-      {/* <StakingWrap /> */}
+      <div className="areafarms">
+        <RecentTransactionETH />
+        <RecentTransactionKlay />
+      </div>
       <div className="areafarms">
         <AllTokens />
         <AllPairs />
