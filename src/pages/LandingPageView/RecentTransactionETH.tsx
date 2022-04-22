@@ -241,7 +241,9 @@ const RecentTransactionETH = () => {
                     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
                   >
                     <LogoIcon src={getTokenIconPath(transaction.pair.token0.id)} alt={transaction.pair.token0.symbol} />
-                    <span style={{ fontSize: '8px', marginTop: '5px' }}>{transaction.pair.token0.symbol}</span>
+                    <span style={{ fontSize: '8px', marginTop: '5px' }}>
+                      {transaction.pair.token0.symbol === 'WETH' ? 'ETH' : transaction.pair.token0.symbol}
+                    </span>
                   </Box>
                 </TextStyle>
                 <TextStyle
@@ -252,7 +254,9 @@ const RecentTransactionETH = () => {
                     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
                   >
                     <LogoIcon src={getTokenIconPath(transaction.pair.token1.id)} alt={transaction.pair.token1.symbol} />
-                    <span style={{ fontSize: '8px', marginTop: '5px' }}>{transaction.pair.token1.symbol}</span>
+                    <span style={{ fontSize: '8px', marginTop: '5px' }}>
+                      {transaction.pair.token1.symbol === 'WETH' ? 'ETH' : transaction.pair.token1.symbol}
+                    </span>
                   </Box>
                 </TextStyle>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
