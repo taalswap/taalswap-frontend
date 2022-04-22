@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import useSWR from 'swr'
 import { ChainId } from 'taalswap-sdk'
 import { ethers } from 'ethers'
+import { Box } from 'taalswap-uikit'
 import { useTranslation } from '../../contexts/Localization'
 import TAL_ADDRESS from '../../config/constants/taal'
 
@@ -54,15 +55,15 @@ const TitleStyle = styled.th`
       text-align: center;
     }
     &:nth-child(2) {
-      width: 15% !important;
+      width: 17.5% !important;
       text-align: center;
     }
     &:nth-child(3) {
-      width: 15% !important;
+      width: 17.5% !important;
       text-align: center;
     }
     &:nth-child(4) {
-      width: 25% !important;
+      width: 20% !important;
       text-align: center;
     }
     &:nth-child(5) {
@@ -74,7 +75,7 @@ const TitleStyle = styled.th`
 
 const TextStyle = styled.td`
   color: ${({ theme }) => theme.colors.logoColor};
-  padding: 24px 6px 24px 6px;
+  padding: 12px 6px 12px 6px;
   text-align: left;
   border-bottom: 2px solid rgba(133, 133, 133, 0.1);
   font-size: 11px;
@@ -101,7 +102,7 @@ const TextStyle = styled.td`
     font-size: initial;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding: 24px 8px 24px 20px;
+    padding: 12px 8px 12px 20px;
     font-size: 13px;
   }
   > a {
@@ -185,8 +186,12 @@ const RecentTransactionETH = () => {
     const hour = a.getHours()
     const min = a.getMinutes()
     const sec = a.getSeconds()
-    const time = `${date} ${month} ${year} ${hour}:${min}:${sec}`
-    return time
+    return `${date} ${month} ${year} ${hour}:${min}:${sec}`
+  }
+
+  const linkToURL = (tx_hash: string) => {
+    // window.location.href = `https://etherscan.io/tx/${tx_hash}`
+    window.open(`https://etherscan.io/tx/${tx_hash}`)
   }
 
   return (
@@ -228,14 +233,30 @@ const RecentTransactionETH = () => {
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle', maxWidth: '80px' }}>
                   {transaction.__typename}
                 </TextStyle>
-                <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  <LogoIcon src={getTokenIconPath(transaction.pair.token0.id)} alt={transaction.pair.token0.symbol} />
+                <TextStyle
+                  style={{ textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer' }}
+                  onClick={() => linkToURL(transaction.transaction.id)}
+                >
+                  <Box
+                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
+                  >
+                    <LogoIcon src={getTokenIconPath(transaction.pair.token0.id)} alt={transaction.pair.token0.symbol} />
+                    <span style={{ fontSize: '8px', marginTop: '5px' }}>{transaction.pair.token0.symbol}</span>
+                  </Box>
+                </TextStyle>
+                <TextStyle
+                  style={{ textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer' }}
+                  onClick={() => linkToURL(transaction.transaction.id)}
+                >
+                  <Box
+                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
+                  >
+                    <LogoIcon src={getTokenIconPath(transaction.pair.token1.id)} alt={transaction.pair.token1.symbol} />
+                    <span style={{ fontSize: '8px', marginTop: '5px' }}>{transaction.pair.token1.symbol}</span>
+                  </Box>
                 </TextStyle>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  <LogoIcon src={getTokenIconPath(transaction.pair.token1.id)} alt={transaction.pair.token1.symbol} />
-                </TextStyle>
-                <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  {parseFloat(transaction.amountUSD).toFixed(4)}
+                  {parseFloat(transaction.amountUSD).toFixed(2)}
                 </TextStyle>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle' }}>
                   {convetTimestamp(transaction.transaction.timestamp)}
