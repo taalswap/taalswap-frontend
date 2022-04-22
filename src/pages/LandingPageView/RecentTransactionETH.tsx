@@ -175,7 +175,7 @@ const RecentTransactionETH = () => {
             height="24px"
             style={{ marginRight: '10px' }}
           />
-          <Txtcolor style={{ fontSize: '16px' }}>{t('Recent Transaction on Ethereum')}</Txtcolor>
+          <Txtcolor style={{ fontSize: '16px' }}>{t('Recent Transactions on Ethereum')}</Txtcolor>
         </Inline>
       </div>
 

@@ -155,7 +155,7 @@ const RecentTransactionKlay = () => {
             height="24px"
             style={{ marginRight: '10px' }}
           />
-          <Txtcolor style={{ fontSize: '16px' }}>{t('Recent Transaction on Klaytn')}</Txtcolor>
+          <Txtcolor style={{ fontSize: '16px' }}>{t('Recent Transactions on Klaytn')}</Txtcolor>
         </Inline>
       </div>
 
