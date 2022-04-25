@@ -231,7 +231,11 @@ const RecentTransactionETH = () => {
             data.data.transactions.map((transaction) => (
               <tr key={transaction.id}>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle', maxWidth: '80px' }}>
-                  {transaction.__typename}
+                  {transaction.__typename.toLowerCase() === 'mint'
+                    ? 'Add'
+                    : transaction.__typename.toLowerCase() === 'burn'
+                    ? 'Remove'
+                    : transaction.__typename}
                 </TextStyle>
                 <TextStyle
                   style={{ textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer' }}

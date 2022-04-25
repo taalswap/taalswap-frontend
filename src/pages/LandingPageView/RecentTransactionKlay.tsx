@@ -217,7 +217,11 @@ const RecentTransactionKlay = () => {
             data.data.transactions.map((transaction) => (
               <tr key={transaction.id}>
                 <TextStyle style={{ textAlign: 'center', verticalAlign: 'middle', maxWidth: '80px' }}>
-                  {transaction.typename}
+                  {transaction.typename.toLowerCase() === 'mint'
+                    ? 'Add'
+                    : transaction.typename.toLowerCase() === 'burn'
+                    ? 'Remove'
+                    : transaction.typename}
                 </TextStyle>
                 <TextStyle
                   style={{ textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer' }}
