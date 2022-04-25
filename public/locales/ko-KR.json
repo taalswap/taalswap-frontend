@@ -914,5 +914,10 @@
   "You don’t have liquidity in this pool yet.": "아직 이 풀에 유동성이 없습니다.",
   "Doing Add Liquidity": "유동성을 제공해 주세요.",
   "Select a Token": "토큰 선택",
-  "You are on the wrong network.": "잘못된 네트워크가 선택되었습니다."
+  "You are on the wrong network.": "잘못된 네트워크가 선택되었습니다.",
+  "Amount USD": "거래금액 (USD)",
+  "Type": "거래내용",
+  "Date & Time": "거래일시",
+  "Recent Transactions on Ethereum": "최근 거래 (이더리움)",
+  "Recent Transactions on Klaytn": "최근 거래 (클레이튼)"
 }

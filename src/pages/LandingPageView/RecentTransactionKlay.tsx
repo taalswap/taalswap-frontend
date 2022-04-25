@@ -54,11 +54,11 @@ const TitleStyle = styled.th`
       text-align: center;
     }
     &:nth-child(2) {
-      width: 17.5% !important;
+      width: 19% !important;
       text-align: center;
     }
     &:nth-child(3) {
-      width: 17.5% !important;
+      width: 19% !important;
       text-align: center;
     }
     &:nth-child(4) {
@@ -66,7 +66,7 @@ const TitleStyle = styled.th`
       text-align: center;
     }
     &:nth-child(5) {
-      width: 30% !important;
+      width: 27% !important;
       text-align: center;
     }
   }
@@ -209,7 +209,7 @@ const RecentTransactionKlay = () => {
             <TitleStyle style={{ textAlign: 'center' }}>{t('From')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('To')}</TitleStyle>
             <TitleStyle style={{ textAlign: 'center' }}>{t('Amount USD')}</TitleStyle>
-            <TitleStyle style={{ textAlign: 'center' }}>{t('Date')}</TitleStyle>
+            <TitleStyle style={{ textAlign: 'center' }}>{t('Date & Time')}</TitleStyle>
           </tr>
           {!error &&
             data &&
