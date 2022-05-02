@@ -135,7 +135,7 @@
     },
     {
       "name": "Orbit Bridge Klaytn USD Tether",
-      "symbol": "KUSDT",
+      "symbol": "oUSDT",
       "address": "0x06cb1c92cc93d617aed37811783708ac6370cca5",
       "chainId": 1001,
       "decimals": 6,
@@ -167,7 +167,7 @@
     },
     {
       "name": "Orbit Bridge Klaytn USD Tether",
-      "symbol": "KUSDT",
+      "symbol": "oUSDT",
       "address": "0xcee8faf64bb97a73bb51e115aa89c17ffa8dd167",
       "chainId": 8217,
       "decimals": 6,
@@ -175,11 +175,11 @@
     },
     {
       "name": "Orbit Bridge Klaytn Talken",
-      "symbol": "KTALK",
+      "symbol": "oTALK",
       "address": "0xa6e559f2954c7e2c017bbbea85d8513f34d03d75",
       "chainId": 8217,
       "decimals": 18,
-      "logoURI": "https://taalswap.finance/images/coins/ktalk.png"
+      "logoURI": "https://taalswap.finance/images/coins/otalk.svg"
     }
   ]
 }

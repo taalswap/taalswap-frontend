@@ -89,10 +89,10 @@ export const USDT = {
     ChainId.KLAYTN,
     '0xcee8faf64bb97a73bb51e115aa89c17ffa8dd167',
     6,
-    'KUSDT',
+    'oUSDT',
     'Orbit Bridge Klaytn USD Tether',
   ),
-  [ChainId.BAOBAB]: new Token(ChainId.BAOBAB, '0xc63f4d520544913daecc535fef2d78885db9a850', 18, 'KUSDT', 'Tether USD'),
+  [ChainId.BAOBAB]: new Token(ChainId.BAOBAB, '0xc63f4d520544913daecc535fef2d78885db9a850', 18, 'oUSDT', 'Tether USD'),
 }
 
 // export const USDC = new Token(ChainId.MAINNET, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 6, 'USDC', 'USD Coin');

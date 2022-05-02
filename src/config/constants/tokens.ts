@@ -121,8 +121,8 @@ const tokens = {
     decimals: 6,
     projectLink: 'https://tether.to/',
   },
-  kusdt: {
-    symbol: 'KUSDT',
+  ousdt: {
+    symbol: 'oUSDT',
     address: {
       1: '',
       3: '',

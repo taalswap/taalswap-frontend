@@ -245,8 +245,8 @@ const KlayAllPairs = () => {
     const tokenIcon = symbol.toLowerCase()
     if (
       tokenIcon === TAL_ADDRESS[ChainId.KLAYTN] ||
-      tokenIcon === TAL_ADDRESS[ChainId.BAOBAB] ||
-      symbol.toLowerCase() === 'ktalk'
+      tokenIcon === TAL_ADDRESS[ChainId.BAOBAB] // ||
+      // symbol.toLowerCase() === 'otalk'
     ) {
       path = `${process.env.REACT_APP_FRONTEND}/images/coins/${symbol.toLowerCase()}.png`
     } else {

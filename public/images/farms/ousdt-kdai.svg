@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="145" height="140" viewBox="0 0 145 140">
+  <defs>
+    <radialGradient id="radial-gradient" cx="1" cy="1" r="1.414" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#00ae87"/>
+      <stop offset="1" stop-color="#0767b2"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient" x2="1.02" y2="1.01" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ec79ff"/>
+      <stop offset="1" stop-color="#6b99ff"/>
+    </linearGradient>
+  </defs>
+  <g id="그룹_999" data-name="그룹 999" transform="translate(-1463.786 -53)">
+    <g id="ic_ousdt" transform="translate(1463.786 53)">
+      <path id="패스_528" data-name="패스 528" d="M0,0H65.932V66.626H0Z" transform="translate(2.095 4.858)" fill="none"/>
+      <g id="그룹_986" data-name="그룹 986" transform="translate(0 0)">
+        <rect id="Rectangle" width="71" height="74" rx="35.5" fill="#fff"/>
+        <g id="usdt_icon" transform="translate(13.147 16.688)">
+          <path id="Fill-1" d="M21.642,21.78c-11.186,0-20.254-1.634-20.254-3.651,0-1.74,6.758-3.2,15.8-3.561v6.621c1.427.058,2.93.089,4.453.089s3-.032,4.418-.089V14.566c9.06.364,15.836,1.82,15.836,3.563,0,2.017-9.068,3.651-20.254,3.651m21.642-3.444c0-2.013-7.385-3.692-17.212-4.086V8.587H39.1V0H4.183V8.587H17.212V14.25C7.385,14.644,0,16.324,0,18.337s7.385,3.692,17.212,4.086V40.509h8.86V22.423c9.827-.394,17.212-2.074,17.212-4.086" fill="#4fae95"/>
+          <g id="ORC" transform="translate(23.853 23.312)">
+            <circle id="Oval" cx="13.5" cy="13.5" r="13.5" fill="url(#radial-gradient)"/>
+            <path id="Combined-Shape" d="M6.252,13.583a.748.748,0,0,1,.745.75v.006H7v0a6.929,6.929,0,0,0,6.93,6.972h.034a.75.75,0,0,1,0,1.5h-.03a8.425,8.425,0,0,1-8.428-8.35v-.131A.748.748,0,0,1,6.252,13.583Zm7.884-4.615A5.192,5.192,0,1,1,8.958,14.16,5.185,5.185,0,0,1,14.136,8.968Zm0,2.2a3,3,0,1,0,2.989,3A2.993,2.993,0,0,0,14.136,11.163Zm7.479,4.343a.769.769,0,1,1-.767.769A.768.768,0,0,1,21.614,15.506Zm-7.274-10a8.448,8.448,0,0,1,8.424,8.33v.14s0,.007,0,.011a.745.745,0,1,1-1.491,0v-.011a6.955,6.955,0,0,0-6.819-6.97h-.149a.75.75,0,0,1,0-1.5h.034ZM6.657,11.276a.769.769,0,1,1-.767.769A.768.768,0,0,1,6.657,11.276Z" transform="translate(-0.894 -1.739)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g id="Page-1" transform="translate(1503.786 87)">
+      <g id="crypto">
+        <g id="kdai_icon">
+          <rect id="Rectangle-2" data-name="Rectangle" width="105" height="106" rx="52.5" fill="url(#linear-gradient)"/>
+          <path id="Fill-1-2" data-name="Fill-1" d="M64.047,44.513a17.956,17.956,0,0,1-.23,2.736H31.355V41.84H63.826a17.955,17.955,0,0,1,.221,2.673Zm-17.5,17.318H31.355V52.894H61.7a17.365,17.365,0,0,1-15.15,8.937ZM31.12,27.023H46.408A17.515,17.515,0,0,1,61.7,35.96H31.12ZM72.749,35.93H68.188A23.306,23.306,0,0,0,46.5,21.143H25.4V35.93H17.714v5.857H25.4v5.341H17.714v5.859H25.4V67.711H46.5A23.312,23.312,0,0,0,68.167,52.987h4.582V47.129H69.644a21.543,21.543,0,0,0,.009-5.341h3.1Z" transform="translate(7.414 8.219)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

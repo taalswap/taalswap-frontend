@@ -170,12 +170,12 @@ const farmsConfigKlaytn: FarmConfig[] = [
   },
   {
     pid: 3,
-    lpSymbol: 'KLAY-KUSDT LP',
+    lpSymbol: 'KLAY-oUSDT LP',
     lpAddresses: {
       8217: '0x9c0e78bee9639396c85142a95a7569372f649c9a',
       1001: '0x282664424406814715E2D4AED9b8FB4a90102265',
     },
-    token: tokens.kusdt,
+    token: tokens.ousdt,
     quoteToken: tokens.wklay,
   },
   {
@@ -190,22 +190,22 @@ const farmsConfigKlaytn: FarmConfig[] = [
   },
   {
     pid: 5,
-    lpSymbol: 'TAL-KUSDT LP',
+    lpSymbol: 'TAL-oUSDT LP',
     lpAddresses: {
       8217: '0x6965e1e6d4f107c311264e5f1906daeda0311473',
       1001: '0xB12474BE2b21114f9578F01032A8a650Ab0E1022',
     },
     token: tokens.ktaal,
-    quoteToken: tokens.kusdt,
+    quoteToken: tokens.ousdt,
   },
   {
     pid: 6,
-    lpSymbol: 'KUSDT-KDAI LP',
+    lpSymbol: 'oUSDT-KDAI LP',
     lpAddresses: {
       8217: '0xedb390f35d162272239e6b2c40e1320412eeff93',
       1001: '0x506876e566637789BF88716230F0502CA5af5F88',
     },
-    token: tokens.kusdt,
+    token: tokens.ousdt,
     quoteToken: tokens.kdai,
   },
 ]
