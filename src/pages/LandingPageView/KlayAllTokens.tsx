@@ -187,8 +187,8 @@ const KlayAllTokens = () => {
         ) {
           // path = `https://taalswap.info/images/coins/${token.address.toLowerCase()}.png`
           path = `${process.env.REACT_APP_FRONTEND}/images/coins/${token.symbol.toLowerCase()}.png`
-        } else if (token.symbol.toLowerCase() === 'otalk') {
-          path = `${process.env.REACT_APP_FRONTEND}/images/coins/${token.symbol.toLowerCase()}.svg`
+        } else if (token.symbol.toLowerCase() === 'ktalk') {
+          path = `${process.env.REACT_APP_FRONTEND}/images/coins/${token.symbol.toLowerCase()}.png`
         } else {
           // path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
           //   token.address,
