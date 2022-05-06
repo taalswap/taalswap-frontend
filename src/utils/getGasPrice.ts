@@ -8,7 +8,7 @@ export enum GAS_PRICE {
   fast = '6',
   instant = '7',
   testnet = '10',
-  klaytn = '750'    // change 25 -> 750
+  klaytn = '250'    // change 25 -> 750 -> 250
 }
 
 export const GAS_PRICE_GWEI = {
