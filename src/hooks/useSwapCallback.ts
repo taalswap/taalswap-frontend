@@ -249,7 +249,7 @@ export function useSwapCallback(
           gasEstimate,
         } = successfulEstimation
 
-        const gasPrice = getGasPrice()
+        const gasPrice = await getGasPrice()
 
         return contract[methodName](...args, {
             gasPrice,

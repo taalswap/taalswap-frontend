@@ -1,8 +1,9 @@
+import axios from 'axios'
 import { ChainId } from 'taalswap-sdk'
 import store from 'state'
 import { parseUnits } from 'ethers/lib/utils'
 import getChainId from './getChainId'
-import axios from 'axios'
+import {DataResponse} from "./getLotteryRoundData";
 
 export enum GAS_PRICE {
   default = '5',
@@ -20,20 +21,21 @@ export const GAS_PRICE_GWEI = {
   klaytn: parseUnits(GAS_PRICE.klaytn, 'gwei').toString(),
 }
 
-const getFastGasPrice = (): string => {
+const getFastGasPrice = async () => {
   const result = await axios.get('https://ethgasstation.info/json/ethgasAPI.json');
   console.log('====>', result);
-  return parseUnits(Math.floor(result.data.data.fastest / 10).toString(), 'gwei').toString();
+  return parseUnits(Math.floor(result.data.fastest / 10).toString(), 'gwei').toString();
 }
 
 /**
  * Function to return gasPrice outwith a react component
  */
-const getGasPrice = (): string => {
+const getGasPrice = async () => {
   const chainId = process.env.REACT_APP_CHAIN_ID
   const state = store.getState()
   // const userGas = GAS_PRICE_GWEI.default
-  const userGas = getFastGasPrice();
+  const userGas = await getFastGasPrice();
+  console.log(userGas)
   const currentChainId = getChainId()
   if (currentChainId > 1000) {
     return GAS_PRICE_GWEI.klaytn

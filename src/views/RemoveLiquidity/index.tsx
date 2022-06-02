@@ -306,7 +306,7 @@ export default function RemoveLiquidity({
     } else {
       const methodName = methodNames[indexOfSuccessfulEstimation]
       const safeGasEstimate = safeGasEstimates[indexOfSuccessfulEstimation]
-      const gasPrice = getGasPrice()
+      const gasPrice = await getGasPrice()
 
       setAttemptingTxn(true)
       await router[methodName](...args, {

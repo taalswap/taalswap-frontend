@@ -82,7 +82,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
     const isWithdrawingAll = sharesRemaining.lte(triggerWithdrawAllThreshold)
 
     if (isWithdrawingAll) {
-      const gasPrice = getGasPrice()
+      const gasPrice = await getGasPrice()
       try {
         const gasLimit = await cakeVaultContract.estimateGas
           .withdrawAll()
@@ -103,7 +103,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         setPendingTx(false)
       }
     } else {
-      const gasPrice = getGasPrice()
+      const gasPrice = await getGasPrice()
       try {
         const gasLimit = await cakeVaultContract.estimateGas
           .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toFixed(0))
@@ -130,7 +130,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
 
   const handleDeposit = async (convertedStakeAmount: BigNumber) => {
     try {
-      const gasPrice = getGasPrice()
+      const gasPrice = await getGasPrice()
       const gasLimit = await cakeVaultContract.estimateGas
         .deposit(convertedStakeAmount.toString())
       const tx = await cakeVaultContract
