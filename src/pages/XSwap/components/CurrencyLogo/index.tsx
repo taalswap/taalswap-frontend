@@ -9,7 +9,8 @@ import CoinLogo from '../pancake/CoinLogo'
 const getTokenLogoURL = (address: string) => {
   if (
     address.toLowerCase() === '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d' ||
-    address.toLowerCase() === '0xebd87e7c13b3aca572665140b6b12349112f0ce0'
+    address.toLowerCase() === '0xebd87e7c13b3aca572665140b6b12349112f0ce0' ||
+    address.toLowerCase() === '0xcaabcaa4ca42e1d86de1a201c818639def0ba7a7' // TALK
   ) {
     return `https://taalswap.finance/images/coins/${address}.png`
   }
