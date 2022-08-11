@@ -168,10 +168,11 @@ const AllTokens = () => {
           tokenIcon === TAL_ADDRESS[ChainId.ROPSTEN] ||
           tokenIcon === TAL_ADDRESS[ChainId.RINKEBY] ||
           // tokenIcon === '0x7e6bd46f4ddc58370c0435d496ef7fcc5fe1751d' ||
-          tokenIcon === '0x086b00cf35e8873636384cd2b424c39ae875a8a9' ||
-          tokenIcon === '0xcaabcaa4ca42e1d86de1a201c818639def0ba7a7'
+          tokenIcon === '0x086b00cf35e8873636384cd2b424c39ae875a8a9'
         ) {
           path = `https://taalswap.info/images/coins/${token.address.toLowerCase()}.png`
+        } else if (tokenIcon === '0xcaabcaa4ca42e1d86de1a201c818639def0ba7a7') {
+          path = 'https://taalswap.finance/images/coins/talk.png'
         } else {
           path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
             token.address,
