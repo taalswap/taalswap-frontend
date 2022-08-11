@@ -78,6 +78,14 @@
       "logoURI": "https://taalswap.finance/images/coins/0x8e30ea2329d95802fd804f4291220b0e2f579812.png"
     },
     {
+      "name": "TALK",
+      "symbol": "TALK",
+      "address": "0xcaabcaa4ca42e1d86de1a201c818639def0ba7a7",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://taalswap.finance/images/coins/talk.png"
+    },
+    {
       "name": "WETH Token",
       "symbol": "WETH",
       "address": "0x46884d7849223e057226a69e5f8215d6ff1b8bd6",
