@@ -24,6 +24,7 @@ export default function TradePrice({ price, showInverted, setShowInverted }: Tra
   }
   if (price?.baseCurrency?.symbol === 'ETH') {
     if (chainId > 1000) BASE = 'KLAY'
+    else if (chainId < 1000 && chainId > 55) BASE = 'BNB'
   } else {
     BASE = price ? (price.baseCurrency ? (price.baseCurrency.symbol ? price.baseCurrency.symbol : '') : '') : ''
   }

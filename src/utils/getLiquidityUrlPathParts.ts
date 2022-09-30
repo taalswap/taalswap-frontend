@@ -11,6 +11,8 @@ const getLiquidityUrlPathParts = ({ quoteTokenAddress, tokenAddress }) => {
   let CURRENCY
   if (chainId > 1000) {
     CURRENCY = 'KLAY'
+  } else if (chainId < 1000 && chainId > 55) {
+    CURRENCY = 'BNB'
   } else {
     CURRENCY = 'ETH'
   }

@@ -39,7 +39,12 @@ export function useETHBalances(
     () =>
       addresses.reduce<{ [address: string]: CurrencyAmount }>((memo, address, i) => {
         const value = results?.[i]?.result?.[0]
-        if (value) memo[address] = chainId ?? ChainId.ROPSTEN > 1000 ? CurrencyAmount.klaytn(JSBI.BigInt(value.toString())) : CurrencyAmount.ether(JSBI.BigInt(value.toString()))
+        if (value) memo[address] =
+            (chainId ?? ChainId.ROPSTEN) > 1000
+            ? CurrencyAmount.klaytn(JSBI.BigInt(value.toString()))
+            : (chainId ?? ChainId.ROPSTEN) < 1000 && (chainId ?? ChainId.ROPSTEN) > 55
+            ? CurrencyAmount.binance(JSBI.BigInt(value.toString()))
+            : CurrencyAmount.ether(JSBI.BigInt(value.toString()))
         return memo
       }, {}),
     [addresses, results, chainId]

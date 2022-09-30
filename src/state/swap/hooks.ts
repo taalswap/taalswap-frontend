@@ -127,8 +127,10 @@ export function tryParseAmount(
       return currency instanceof Token
         ? new TokenAmount(currency, JSBI.BigInt(typedValueParsed))
         : chainId > 1000
-        ? CurrencyAmount.klaytn(JSBI.BigInt(typedValueParsed))
-        : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
+          ? CurrencyAmount.klaytn(JSBI.BigInt(typedValueParsed))
+          : chainId < 1000 && chainId > 55
+            ? CurrencyAmount.binance(JSBI.BigInt(typedValueParsed))
+            : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
     }
   } catch (error) {
     // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?)
@@ -154,7 +156,9 @@ export function tryParseAmountXswap(
         ? new TokenAmount(currency, JSBI.BigInt(typedValueParsed))
         : chainId > 1000
           ? CurrencyAmount.klaytn(JSBI.BigInt(typedValueParsed))
-          : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
+          : chainId < 1000 && chainId > 55
+            ? CurrencyAmount.binance(JSBI.BigInt(typedValueParsed))
+            : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
     }
   } catch (error) {
     // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?)

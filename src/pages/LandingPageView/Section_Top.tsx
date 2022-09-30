@@ -534,8 +534,10 @@ const SectionTop: React.FC = () => {
               <Button
                 value={t('Buy TAL')}
                 onClick={() =>
-                  parseInt(curChainId) < 1000
+                  parseInt(curChainId) < 55
                     ? linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/ETH/0x00`)
+                    : parseInt(curChainId) < 1000 && parseInt(curChainId) > 55
+                    ? linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/BNB/0x00`)
                     : linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/KLAY/0x00`)
                 }
                 className="buy_Btn"

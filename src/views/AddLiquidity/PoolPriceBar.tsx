@@ -35,6 +35,8 @@ export function PoolPriceBar({
     if (str !== undefined) {
       if (str === 'ETH' && chainId > 1000) {
         symbol = 'KALY';
+      } else if (str === 'ETH' && chainId < 1000 && chainId > 55) {
+        symbol = 'BNB';
       } else if (str === 'ETH' && chainId === 3) {
         symbol = 'ETH';
       } else symbol = str;
