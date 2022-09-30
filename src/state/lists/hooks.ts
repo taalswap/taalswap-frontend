@@ -39,7 +39,9 @@ const EMPTY_LIST: TokenAddressMap = {
   [ChainId.ROPSTEN]: {},
   [ChainId.RINKEBY]: {},
   [ChainId.KLAYTN]: {},
-  [ChainId.BAOBAB]: {}
+  [ChainId.BAOBAB]: {},
+  [ChainId.BSCMAIN]: {},
+  [ChainId.BSCTEST]: {}
 };
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -48,7 +50,6 @@ const listCache: WeakMap<TokenList, TokenAddressMap> | null =
 export function listToTokenMap(list: TokenList): TokenAddressMap {
   const result = listCache?.get(list);
   if (result) return result;
-
   const map = list.tokens.reduce<TokenAddressMap>(
     (tokenMap, tokenInfo) => {
       const tags: TagInfo[] =
@@ -59,7 +60,10 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
           })
           ?.filter((x): x is TagInfo => Boolean(x)) ?? [];
       const token = new WrappedTokenInfo(tokenInfo, tags);
-      if (tokenMap[token.chainId][token.address] !== undefined) throw Error('Duplicate tokens.');
+      // console.log('-------->', token.chainId, token.symbol, token.address)
+      if (tokenMap[token.chainId][token.address] !== undefined) {
+        throw Error('Duplicate tokens.');
+      }
       return {
         ...tokenMap,
         [token.chainId]: {

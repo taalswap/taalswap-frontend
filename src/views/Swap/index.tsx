@@ -250,6 +250,7 @@ function Swap({
       let curSymbol
       if (symbol === 'ETH') curSymbol = 'WETH'
       else if (symbol === 'KLAY') curSymbol = 'WKLAY'
+      else if (symbol === 'BNB') curSymbol = 'WBNB'
       else curSymbol = symbol
 
       const curToken =

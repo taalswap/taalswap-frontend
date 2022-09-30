@@ -1,9 +1,11 @@
+import {chain} from "lodash";
 import { parseUnits } from '@ethersproject/units';
 import {
   Currency,
   CurrencyAmount,
   ETHER,
   KLAYTN,
+  BINANCE,
   JSBI,
   Token,
   TokenAmount,
@@ -67,6 +69,8 @@ export function useSwapActionHandlers(): {
               ? 'ETH'
               : currency === KLAYTN
               ? 'KLAY'
+              : currency === BINANCE
+              ? 'BNB'
               : '',
         })
       );
@@ -287,6 +291,7 @@ export function useDerivedSwapInfo(
     let SYMBOL = 'ETH'
     if (amountIn.currency.symbol === 'ETH') {
       if (chainId > 1000) SYMBOL = 'KLAY'
+      else if (chainId < 1000 && chainId > 55) SYMBOL = 'BNB'
     } else {
       SYMBOL = amountIn.currency.symbol ?? ''
     }
@@ -484,6 +489,7 @@ export function useDerivedXswapInfo(
     let SYMBOL = 'ETH'
     if (amountIn.currency.symbol === 'ETH') {
       if (chainId > 1000) SYMBOL = 'KLAY'
+      else if (chainId < 1000 && chainId > 55) SYMBOL = 'BNB'
     } else {
       SYMBOL = amountIn.currency.symbol ?? ''
     }
@@ -509,6 +515,7 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
     if (valid) return valid;
     if (urlParam.toUpperCase() === 'ETH') return 'ETH';
     if (urlParam.toUpperCase() === 'KLAY') return 'KLAY';
+    if (urlParam.toUpperCase() === 'BNB') return 'BNB';
     if (valid === false) return 'ETH';
   }
   return '';
@@ -546,7 +553,9 @@ function validatedCrossChain(crossChain: any): number {
     crossChain === 1 ||        // Ethereum Mainnet
     crossChain === 3 ||        // Ethereum Testnet Ropsten
     crossChain === 8217 ||     // Klaytn Mainnet Cypress
-    crossChain === 1001        // Klaytn Testnet Baobab
+    crossChain === 1001 ||       // Klaytn Testnet Baobab
+    crossChain === 56 ||
+    crossChain === 97
   ) {
     return crossChain
   }

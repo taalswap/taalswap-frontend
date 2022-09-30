@@ -3,6 +3,7 @@ import {
   CurrencyAmount,
   ETHER,
   KLAYTN,
+  BINANCE,
   JSBI,
   Pair,
   Percent,
@@ -116,7 +117,9 @@ export function useDerivedMintInfo(
         return dependentCurrency === ETHER
           ? CurrencyAmount.ether(dependentTokenAmount.raw)
           : dependentCurrency === KLAYTN
-          ? CurrencyAmount.ether(dependentTokenAmount.raw)
+          ? CurrencyAmount.klaytn(dependentTokenAmount.raw)
+          : dependentCurrency === BINANCE
+          ? CurrencyAmount.binance(dependentTokenAmount.raw)
           : dependentTokenAmount;
       }
       return undefined;

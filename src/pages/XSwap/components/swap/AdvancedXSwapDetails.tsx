@@ -143,6 +143,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   let FEE = 'ETH'
   if (trade.inputAmount.currency.symbol === 'ETH') {
     if (chainId > 1000) FEE = 'KLAY'
+    else if (chainId < 1000 && chainId > 55) FEE = 'BNB'
   } else {
     FEE = trade.inputAmount.currency.symbol ?? ''
   }

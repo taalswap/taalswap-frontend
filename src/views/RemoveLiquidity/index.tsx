@@ -3,7 +3,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, Percent, WETH } from 'taalswap-sdk'
+import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, BINANCE, Percent, WETH } from 'taalswap-sdk'
 import { Button, Flex, Text } from 'taalswap-uikit'
 import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
@@ -209,8 +209,8 @@ export default function RemoveLiquidity({
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
     if (!liquidityAmount) throw new Error('missing liquidity amount')
 
-    const currencyBIsETH = currencyB === ETHER || currencyB === KLAYTN
-    const oneCurrencyIsETH = currencyA === ETHER || currencyA === KLAYTN || currencyBIsETH
+    const currencyBIsETH = currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE
+    const oneCurrencyIsETH = currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyBIsETH
     const deadlineFromNow = Math.ceil(Date.now() / 1000) + deadline
 
     if (!tokenA || !tokenB) throw new Error('could not wrap')
@@ -410,7 +410,7 @@ export default function RemoveLiquidity({
     [onUserInput],
   )
 
-  const oneCurrencyIsETH = currencyA === ETHER || currencyA === KLAYTN || currencyB === ETHER || currencyB === KLAYTN
+  const oneCurrencyIsETH = currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE
   const oneCurrencyIsWETH = Boolean(
     chainId &&
       ((currencyA && currencyEquals(WETH[chainId], currencyA)) ||
@@ -469,6 +469,12 @@ export default function RemoveLiquidity({
       ethStr = 'KLAY'
       receivedEthStr = 'Receive KLAY'
       receivedWethStr = 'Receive WKLAY'
+      break
+    case ChainId.BSCMAIN:
+    case ChainId.BSCTEST:
+      ethStr = 'BNB'
+      receivedEthStr = 'Receive BNB'
+      receivedWethStr = 'Receive WBNB'
       break
     default:
       ethStr = 'ETH'
@@ -585,8 +591,8 @@ export default function RemoveLiquidity({
                           {oneCurrencyIsETH ? (
                             <StyledInternalLink
                               to={`/remove/${
-                                currencyA === ETHER || currencyA === KLAYTN ? WETH[chainId].address : currencyIdA
-                              }/${currencyB === ETHER || currencyB === KLAYTN ? WETH[chainId].address : currencyIdB}`}
+                                currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE ? WETH[chainId].address : currencyIdA
+                              }/${currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE ? WETH[chainId].address : currencyIdB}`}
                             >
                               {t(receivedWethStr)}
                             </StyledInternalLink>

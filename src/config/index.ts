@@ -43,6 +43,8 @@ export const SCAN_URL = {
   [ChainId.RINKEBY]: 'https://rinkeby.etherscan.io',
   [ChainId.KLAYTN]: 'https://scope.klaytn.com',
   [ChainId.BAOBAB]: 'https://baobab.scope.klaytn.com',
+  [ChainId.BSCMAIN]: 'https://bscscan.com',
+  [ChainId.BSCTEST]: 'https://testnet.bscscan.com',
 }
 export const NETWORK_NAME = {
   [ChainId.MAINNET]: 'Ethereum Mainnet',
@@ -50,4 +52,6 @@ export const NETWORK_NAME = {
   [ChainId.RINKEBY]: 'Ethereum Rinkeby',
   [ChainId.KLAYTN]: 'Klaytn Cypress',
   [ChainId.BAOBAB]: 'Klaytn Baobab',
+  [ChainId.BSCMAIN]: 'Binance Mainnet',
+  [ChainId.BSCTEST]: 'Binance Testnet',
 }

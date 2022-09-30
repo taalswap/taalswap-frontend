@@ -7,6 +7,10 @@ const tokens = {
     symbol: 'KLAY',
     projectLink: 'https://www.klaytn.com/',
   },
+  bnb: {
+    symbol: 'BNB',
+    projectLink: 'https://www.binance.com/',
+  },
   // cake: {
   //   symbol: 'TAL',
   //   address: {
@@ -33,6 +37,8 @@ const tokens = {
       4: '0xe18e460d38441027b6672363d68c9088f3d773bf',
       8217: '0x90a4a420732907b3c38b11058f9aa02b3f4121df',
       1001: '0x6C27d9F6C4067212797794CD931596C2917F7Bf7',   // getTaalAddress()에서 사용
+      56: '',
+      97: '0x8318ea1dbba627731ac55bf47e57a22952bd537d'
     },
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
@@ -57,6 +63,8 @@ const tokens = {
       4: '0x92ecacfc94588aa99fba837be1a98738290e3252',
       8217: '0x5819b6af194a78511c79c85ea68d2377a7e9335f',
       1001: '0xf223e26b018ae1917e84dd73b515620e36a75596',   // getWethAddress()에서 사용 ?
+      56: '',
+      97: '0x094616f0bdfb0b526bd735bf66eca0ad254ca81f'
     },
     decimals: 18,
     projectLink: 'https://weth.io/',
@@ -73,6 +81,20 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://www.klaytn.com/',
   },
+  wbnb: {
+    symbol: 'WBNB',
+    address: {
+      1: '',
+      3: '',
+      4: '',
+      8217: '',
+      1001: '',   // getWethAddress()에서 사용 ?
+      56: '',
+      97: '0x094616f0bdfb0b526bd735bf66eca0ad254ca81f'
+    },
+    decimals: 18,
+    projectLink: 'https://weth.io/',
+  },
   usdc: {
     symbol: 'USDC',
     address: {
@@ -81,6 +103,8 @@ const tokens = {
       4: '0xd16431da4eafe953b4f34923cdb8d833fb1b2e7c',
       8217: '',
       1001: '',
+      56: '',
+      97: '0x64544969ed7ebf5f083679233325356ebe738930'
     },
     decimals: 6,
     projectLink: 'https://www.centre.io/usdc/',
@@ -97,6 +121,20 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://makerdao.com/en/',
   },
+  busd: {
+    symbol: 'BUSD',
+    address: {
+      1: '',
+      3: '',
+      4: '',
+      8217: '',
+      1001: '',
+      56: '',
+      97: ''
+    },
+    decimals: 18,
+    projectLink: 'https://makerdao.com/en/',
+  },
   syrup: {
     symbol: 'SYRUP',
     address: {
@@ -105,6 +143,8 @@ const tokens = {
       4: '0x124bdb941df9fc548d99e21f727357e9c287772e',
       8217: '0xc1dc53378f06331ce3f98701b0b9a0ecbd9230e7',
       1001: '0xDc3eB77A4BCdb4603E4b2fd4BF30BDa67442C3d4',
+      56: '',
+      97: '0x68d2a9b6a5374a411df4e35c066b36a3e42c9dcc'
     },
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
@@ -116,7 +156,9 @@ const tokens = {
       3: '0x66b007ea82040320eff7d37bf31a2f7086c27d11',
       4: '0xc958c2ace36870471238319bc29018cc549c126d',
       8217: '',
-      1001: ''
+      1001: '',
+      56: '',
+      97: ''
     },
     decimals: 6,
     projectLink: 'https://tether.to/',

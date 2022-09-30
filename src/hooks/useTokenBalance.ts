@@ -13,8 +13,10 @@ import erc20ABI from '../config/abi/erc20.json'
 import lpTokenABI from '../config/abi/lpToken.json'
 import getChainId from '../utils/getChainId'
 import getKlaytnApiUrl from '../utils/getKlaytnApiUrl'
+import getBinanceApiUrl from '../utils/getBinanceApiUrl'
 import multicallEth from '../utils/multicallEth'
 import multicallKlaytn from '../utils/multicallKlaytn'
+import multicallBinance from '../utils/multicallBinance'
 import useActiveWeb3React from './useActiveWeb3React'
 
 
@@ -116,6 +118,23 @@ export const useTotalAssets = () => {
             data.push(response.data[key])
           })
         })
+      return data
+    }
+
+    async function fetchBnbPairs() {
+      const data = []
+      await fetch(`${getBinanceApiUrl()}/pairs`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+          .then((response) => response.json())
+          .then((response) => {
+            Object.keys(response.data).forEach((key) => {
+              data.push(response.data[key])
+            })
+          })
       return data
     }
 
@@ -240,10 +259,71 @@ export const useTotalAssets = () => {
       return 0
     }
 
+    async function fetchBinanceTotalAssets() {
+      try {
+        const pairs = await fetchBnbPairs()
+        const calls = await pairs.map((vt) => {
+          const lpContractAddress = vt.pair_address
+          return { address: lpContractAddress, name: 'balanceOf', params: [account] }
+        })
+        const rawLpBalances = await multicallBinance(lpTokenABI, calls)
+        rawLpBalances.map((tokenBalance, idx) => {
+          pairs[idx].balance = new BigNumber(tokenBalance).toJSON()
+          return new BigNumber(tokenBalance).toJSON()
+        })
+        const filterdPairs = pairs.filter((pair) => pair.balance > 0)
+        const calls2 = filterdPairs.map((vt) => {
+          const lpContractAddress = vt.pair_address
+          return { address: lpContractAddress, name: 'totalSupply' }
+        })
+        const rawLpSupply = await multicallBinance(erc20ABI, calls2)
+        rawLpSupply.map((supply, idx) => {
+          filterdPairs[idx].total_supply = new BigNumber(supply).toJSON()
+          return new BigNumber(supply).toJSON()
+        })
+        const calls3 = filterdPairs.map((vt) => {
+          const lpContractAddress = vt.pair_address
+          return { address: lpContractAddress, name: 'getReserves' }
+        })
+        const rawLpReserves = await multicallBinance(lpTokenABI, calls3)
+        rawLpReserves.map((reserves, idx) => {
+          filterdPairs[idx].reserve0 = reserves._reserve0
+          filterdPairs[idx].reserve1 = reserves._reserve1
+          return reserves
+        })
+        let assets = 0
+        await filterdPairs.forEach((pair, idx) => {
+          const token0 = new Token(parseInt(process.env.REACT_APP_BINANCE_ID, 10), pair.base_address, pair.base_decimals)
+          const token1 = new Token(parseInt(process.env.REACT_APP_BINANCE_ID, 10), pair.quote_address, pair.quote_decimals)
+          const lpPair: Pair = new Pair(
+              new TokenAmount(token0, pair.reserve0.toString()),
+              new TokenAmount(token1, pair.reserve1.toString()),
+          )
+
+          const lpToken = new Token(parseInt(process.env.REACT_APP_BINANCE_ID, 10), pair.pair_address, 18)
+          const totalSupply = new TokenAmount(lpToken, JSBI.BigInt(pair.total_supply))
+          const liquidity = new TokenAmount(lpToken, JSBI.BigInt(pair.balance))
+
+          const token0value = lpPair.getLiquidityValue(token0, totalSupply, liquidity, false)
+          const token1value = lpPair.getLiquidityValue(token1, totalSupply, liquidity, false)
+
+          const value =
+              parseFloat(token0value.toSignificant(6)) * pair.base_price +
+              parseFloat(token1value.toSignificant(6)) * pair.quote_price
+          assets += value
+        })
+        return assets
+      } catch (e) {
+        console.log(e)
+      }
+      return 0
+    }
+
     async function fetchTotalAssets() {
       const ethAssets = await fetchEthTotalAssets()
       const klaytnAssets = await fetchKlaytnTotalAssets()
-      setTotalAssets(Number(ethAssets + klaytnAssets))
+      const binanceAssets = await fetchBinanceTotalAssets()
+      setTotalAssets(Number(ethAssets + klaytnAssets + binanceAssets))
     }
 
     if (account !== undefined) fetchTotalAssets()

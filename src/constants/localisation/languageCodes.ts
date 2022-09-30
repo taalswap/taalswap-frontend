@@ -1,4 +1,4 @@
-export const EN = { code: 'en', language: 'English', locale: 'en' };
+ export const EN = { code: 'en', language: 'English', locale: 'en' };
 // export const AR = { code: 'ar', language: 'العربية', locale: 'ar' };
 // export const BN = { code: 'bn', language: 'বাংলা', locale: 'bn' };
 // export const ZHCN = { code: 'zh-CN', language: '简体中文', locale: 'zh-CN' };

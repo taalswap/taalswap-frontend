@@ -7,6 +7,8 @@ export const ROUTER_ADDRESS = {
   [ChainId.RINKEBY]: '0x43807616f5C7d51a9c83F63e6740f76349669800',
   [ChainId.KLAYTN]: '0x913cf96b805221e1631de21cd22b7a93099c00b7',
   [ChainId.BAOBAB]: '0xf532e0589d477db6d36591612b0ee42d038019c2',
+  [ChainId.BSCTEST]: '0x91559fec263307afe6afb917ce6d530a16222a0e',
+  [ChainId.BSCMAIN]: ''
 }
 
 export const BRIDGE_ADDRESS = {
@@ -15,6 +17,8 @@ export const BRIDGE_ADDRESS = {
   [ChainId.RINKEBY]: '0x1010aacf0afb069297085571a161b911fe6f0f55',
   [ChainId.KLAYTN]: '0xd5849636c092a1ad3a852750d84868a2ad18d85b',
   [ChainId.BAOBAB]: '0xc7783434a22e6ee06404e0ea73b032f414523c81',
+  [ChainId.BSCTEST]: '0x909b1752d3421000db82ebff9da43642a5bc080e',
+  [ChainId.BSCMAIN]: ''
 }
 
 // a list of tokens by chain
@@ -60,10 +64,24 @@ export const TAL = {
   ),
   [ChainId.BAOBAB]: new Token(
     ChainId.BAOBAB,
-    '0x6C27d9F6C4067212797794CD931596C2917F7Bf7',
+    '0x6c27d9f6c4067212797794cd931596c2917f7bf7',
     18,
     'TAL',
     'TaalSwap Token',
+  ),
+  [ChainId.BSCTEST]: new Token(
+      ChainId.BSCTEST,
+      '0x8318ea1dbba627731ac55bf47e57a22952bd537d',
+      18,
+      'TAL',
+      'TaalSwap Token',
+  ),
+  [ChainId.BSCMAIN]: new Token(
+      ChainId.BSCMAIN,
+      '0x8318ea1dbba627731ac55bf47e57a22952bd537d',
+      18,
+      'TAL',
+      'TaalSwap Token',
   ),
 }
 
@@ -72,7 +90,9 @@ export const TAL_ADDRESS = {
   [ChainId.ROPSTEN]: '0xebd87e7c13b3aca572665140b6b12349112f0ce0',
   [ChainId.RINKEBY]: '0x92ecacfc94588aa99fba837be1a98738290e3252',
   [ChainId.KLAYTN]: '0x90a4a420732907b3c38b11058f9aa02b3f4121df',
-  [ChainId.BAOBAB]: '0x6C27d9F6C4067212797794CD931596C2917F7Bf7',
+  [ChainId.BAOBAB]: '0x6c27d9f6c4067212797794cd931596c2917f7bf7',
+  [ChainId.BSCTEST]: '0x8318ea1dbba627731ac55bf47e57a22952bd537d',
+  [ChainId.BSCMAIN]: '0x8318ea1dbba627731ac55bf47e57a22952bd537d',
 }
 
 // export const WETH = new Token(ChainId.RINKEBY, '0x92EcACFC94588aa99fba837Be1a98738290E3252', 18, 'WETH', 'Wrapped ETH');
@@ -93,6 +113,8 @@ export const USDT = {
     'Orbit Bridge Klaytn USD Tether',
   ),
   [ChainId.BAOBAB]: new Token(ChainId.BAOBAB, '0xc63f4d520544913daecc535fef2d78885db9a850', 18, 'oUSDT', 'Tether USD'),
+  // [ChainId.BSCMAIN]: new Token(ChainId.BSCMAIN, '', 18, 'USDT', 'Tether USD'),
+  // [ChainId.BSCTEST]: new Token(ChainId.BSCTEST, '', 18, 'USDT', 'Tether USD'),
 }
 
 // export const USDC = new Token(ChainId.MAINNET, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 6, 'USDC', 'USD Coin');
@@ -100,12 +122,16 @@ export const USDC = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 6, 'USDC', 'USD Coin'),
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x2e3aa7718a95a48424c086e6f594c04624a798de', 6, 'USDC', 'USD Coin'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0x92ecacfc94588aa99fba837be1a98738290e3252', 18, 'USDC', 'USD Coin'),
+  [ChainId.BSCMAIN]: new Token(ChainId.BSCMAIN, '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', 18, 'USDC', 'USD Coin'),
+  [ChainId.BSCTEST]: new Token(ChainId.BSCTEST, '0x64544969ed7ebf5f083679233325356ebe738930', 18, 'USDC', 'USD Coin'),
 }
 
 export const USDC_ADDRESS = {
   [ChainId.MAINNET]: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
   [ChainId.ROPSTEN]: '0x9c8fa1ee532f8afe9f2e27f06fd836f3c9572f71',
   [ChainId.RINKEBY]: '0x92ecacfc94588aa99fba837be1a98738290e3252',
+  [ChainId.BSCMAIN]: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',
+  [ChainId.BSCTEST]: '0x64544969ed7ebf5f083679233325356ebe738930',
 }
 
 export const KDAI = {
@@ -116,6 +142,16 @@ export const KDAI = {
 export const KDAI_ADDRESS = {
   [ChainId.KLAYTN]: '0x5c74070fdea071359b86082bd9f9b3deaafbe32b',
   [ChainId.BAOBAB]: '0xa76639d69cfdbff27abf1d0abc22d5e30e73a07f',
+}
+
+export const BUSD = {
+  [ChainId.BSCMAIN]: new Token(ChainId.BSCMAIN, '0xe9e7cea3dedca5984780bafc599bd69add087d56', 18, 'BUSD', 'Binance USD'),
+  [ChainId.BSCTEST]: new Token(ChainId.BSCTEST, '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee', 18, 'BUSD', 'Binance USD'),
+}
+
+export const BUSD_ADDRESS = {
+  [ChainId.BSCMAIN]: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+  [ChainId.BSCTEST]: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
 }
 
 // export const UST = new Token(
@@ -139,6 +175,8 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
   [ChainId.KLAYTN]: [WETH[ChainId.KLAYTN]],
   [ChainId.BAOBAB]: [WETH[ChainId.BAOBAB]],
+  [ChainId.BSCMAIN]: [WETH[ChainId.BSCMAIN]],
+  [ChainId.BSCTEST]: [WETH[ChainId.BSCTEST]],
 }
 
 // used to construct intermediary pairs for trading
@@ -150,6 +188,8 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.RINKEBY]: [...WETH_ONLY[ChainId.RINKEBY], USDC[ChainId.RINKEBY], USDT[ChainId.RINKEBY]],
   [ChainId.KLAYTN]: [...WETH_ONLY[ChainId.KLAYTN], KDAI[ChainId.KLAYTN], USDT[ChainId.KLAYTN]],
   [ChainId.BAOBAB]: [...WETH_ONLY[ChainId.BAOBAB], KDAI[ChainId.BAOBAB], USDT[ChainId.BAOBAB]],
+  [ChainId.BSCMAIN]: [...WETH_ONLY[ChainId.BSCMAIN], USDC[ChainId.BSCMAIN], BUSD[ChainId.BSCMAIN]],
+  [ChainId.BSCTEST]: [...WETH_ONLY[ChainId.BSCTEST], USDC[ChainId.BSCTEST], BUSD[ChainId.BSCTEST]],
 }
 
 /**
@@ -162,6 +202,8 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
   [ChainId.RINKEBY]: {},
   [ChainId.KLAYTN]: {},
   [ChainId.BAOBAB]: {},
+  [ChainId.BSCMAIN]: {},
+  [ChainId.BSCTEST]: {},
 }
 
 // used for display in the default list when adding liquidity
@@ -173,6 +215,8 @@ export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.RINKEBY]: [...WETH_ONLY[ChainId.RINKEBY], USDC[ChainId.RINKEBY], USDT[ChainId.RINKEBY]],
   [ChainId.KLAYTN]: [...WETH_ONLY[ChainId.KLAYTN], KDAI[ChainId.KLAYTN], USDT[ChainId.KLAYTN]],
   [ChainId.BAOBAB]: [...WETH_ONLY[ChainId.BAOBAB], KDAI[ChainId.BAOBAB], USDT[ChainId.BAOBAB]],
+  [ChainId.BSCMAIN]: [...WETH_ONLY[ChainId.BSCMAIN], USDC[ChainId.BSCMAIN], BUSD[ChainId.BSCMAIN]],
+  [ChainId.BSCTEST]: [...WETH_ONLY[ChainId.BSCTEST], USDC[ChainId.BSCTEST], BUSD[ChainId.BSCTEST]],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
@@ -184,6 +228,8 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.RINKEBY]: [...WETH_ONLY[ChainId.RINKEBY], USDC[ChainId.RINKEBY], USDT[ChainId.RINKEBY]],
   [ChainId.KLAYTN]: [...WETH_ONLY[ChainId.KLAYTN], KDAI[ChainId.KLAYTN], USDT[ChainId.KLAYTN]],
   [ChainId.BAOBAB]: [...WETH_ONLY[ChainId.BAOBAB], KDAI[ChainId.BAOBAB], USDT[ChainId.BAOBAB]],
+  [ChainId.BSCMAIN]: [...WETH_ONLY[ChainId.BSCMAIN], USDC[ChainId.BSCMAIN], BUSD[ChainId.BSCMAIN]],
+  [ChainId.BSCTEST]: [...WETH_ONLY[ChainId.BSCTEST], USDC[ChainId.BSCTEST], BUSD[ChainId.BSCTEST]],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -209,6 +255,14 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
   [ChainId.BAOBAB]: [
     [TAL[ChainId.BAOBAB], WETH[ChainId.BAOBAB]],
     [KDAI[ChainId.BAOBAB], USDT[ChainId.BAOBAB]],
+  ],
+  [ChainId.BSCMAIN]: [
+    [TAL[ChainId.BSCMAIN], WETH[ChainId.BSCMAIN]],
+    [USDC[ChainId.BSCMAIN], BUSD[ChainId.BSCMAIN]],
+  ],
+  [ChainId.BSCTEST]: [
+    [TAL[ChainId.BSCTEST], WETH[ChainId.BSCTEST]],
+    [USDC[ChainId.BSCTEST], BUSD[ChainId.BSCTEST]],
   ],
 }
 

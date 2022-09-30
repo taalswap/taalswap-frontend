@@ -31,6 +31,7 @@ const useAuth = () => {
     const connector = connectorsByName[connectorID]
     let changeNet
 
+    console.log('------------->', connectorID, chainId)
     if (connector) {
       if (refresh === 'true') {
         changeNet = await setupNetwork(chainId)

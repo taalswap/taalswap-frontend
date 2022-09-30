@@ -309,6 +309,7 @@ function XSwap() {
     let curSymbol
     if (symbol === 'ETH') curSymbol = 'WETH'
     else if (symbol === 'KLAY') curSymbol = 'WKLAY'
+    else if (symbol === 'BNB') curSymbol = 'WBNB'
     else curSymbol = symbol
 
     const curToken =
@@ -945,7 +946,7 @@ function XSwap() {
                   }
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   width="100%"
-                  
+
                 >
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode

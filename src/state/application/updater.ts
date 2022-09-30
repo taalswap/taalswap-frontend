@@ -13,6 +13,7 @@ export default function Updater(): null {
   // const crossChain = parseInt(window.localStorage.getItem('crossChain') ?? '', 10) as ChainId
   const ethChainId = process.env.REACT_APP_CHAIN_ID ?? '1';
   const klayChainId = process.env.REACT_APP_KLAYTN_ID ?? '8217';
+  const bnbChainId = process.env.REACT_APP_BINANCE_ID ?? '56';
   const xSwapCurrency = window.localStorage.getItem('xSwapCurrency')
   const dispatch = useDispatch()
 
@@ -36,7 +37,7 @@ export default function Updater(): null {
     [chainId, setState]
   )
 
-  const blockNumberCallbackOther = useCallback(
+  const blockNumberCallbackKlaytn = useCallback(
     (blockNumber: number) => {
       // let xChainId = ChainId.BAOBAB
       let xChainId = parseInt(klayChainId);
@@ -47,6 +48,19 @@ export default function Updater(): null {
       dispatch(updateBlockNumber({ chainId: xChainId, blockNumber }))
     },
     [dispatch, chainId, ethChainId, klayChainId]
+  )
+
+  const blockNumberCallbackBinance = useCallback(
+      (blockNumber: number) => {
+        // let xChainId = ChainId.BAOBAB
+        let xChainId = parseInt(bnbChainId);
+        // if (chainId === ChainId.BAOBAB) {
+        if (chainId !== undefined && chainId.toString() === bnbChainId) {
+          xChainId = parseInt(ethChainId);
+        }
+        dispatch(updateBlockNumber({ chainId: xChainId, blockNumber }))
+      },
+      [dispatch, chainId, ethChainId, bnbChainId]
   )
 
   // attach/detach listeners
@@ -74,8 +88,21 @@ export default function Updater(): null {
         crossChainProvider = new ethers.providers.InfuraProvider('ropsten', 'adb9c847d7114ee7bf83995e8f22e098')
       }
       crossChainProvider.getBlockNumber()
-        .then(blockNumberCallbackOther)
+        .then(blockNumberCallback)
         .catch((error) => console.error(`Failed to get block number for chainId: ${ethChainId}`, error))
+    } else if (chainId < 1000 && chainId > 55) {
+      let crossChainProvider
+      if (bnbChainId === '56') {
+        // crossChainProvider = new ethers.providers.JsonRpcProvider('https://bsc-dataseed.binance.org');
+        crossChainProvider = new ethers.providers.InfuraProvider('mainnet', 'adb9c847d7114ee7bf83995e8f22e098')
+      }
+      if (bnbChainId === '97') {
+        // crossChainProvider = new ethers.providers.JsonRpcProvider('https://data-seed-prebsc-1-s1.binance.org:8545');
+        crossChainProvider = new ethers.providers.InfuraProvider('ropsten', 'adb9c847d7114ee7bf83995e8f22e098')
+      }
+      crossChainProvider.getBlockNumber()
+          .then(blockNumberCallbackBinance)
+          .catch((error) => console.error(`Failed to get block number for chainId: ${bnbChainId}`, error))
     } else {
       let crossChainProvider
       if (klayChainId === '8217') {
@@ -85,7 +112,7 @@ export default function Updater(): null {
         crossChainProvider = new ethers.providers.JsonRpcProvider('https://api.baobab.klaytn.net:8651');
       }
       crossChainProvider.getBlockNumber()
-        .then(blockNumberCallbackOther)
+        .then(blockNumberCallbackKlaytn)
         .catch((error) => console.error(`Failed to get block number for chainId: ${klayChainId}`, error))
     }
 
@@ -93,7 +120,7 @@ export default function Updater(): null {
     return () => {
       library.removeListener('block', blockNumberCallback)
     }
-  }, [dispatch, chainId, library, blockNumberCallback, blockNumberCallbackOther, windowVisible, ethChainId, klayChainId, xSwapCurrency])
+  }, [dispatch, chainId, library, blockNumberCallback, blockNumberCallbackKlaytn, blockNumberCallbackBinance, windowVisible, ethChainId, klayChainId, bnbChainId, xSwapCurrency])
 
   const debouncedState = useDebounce(state, 100)
 

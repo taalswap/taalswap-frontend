@@ -6,7 +6,7 @@ import { useAppDispatch } from 'state'
 import { isUndefined, orderBy, parseInt } from 'lodash'
 import { Team } from 'config/constants/types'
 import Nfts from 'config/constants/nfts'
-import { farmsConfig, farmsConfigKlaytn } from 'config/constants'
+import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance } from 'config/constants'
 import { getWeb3NoAccount } from 'utils/web3'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -44,6 +44,8 @@ export const usePollFarmsData = (includeArchive = false) => {
     let farmsToFetch
     if (chainId > 1000) {
       farmsToFetch = includeArchive ? farmsConfigKlaytn : nonArchivedFarms
+    } else if (chainId < 1000 && chainId > 55) {
+      farmsToFetch = includeArchive ? farmsConfigBinance : nonArchivedFarms
     } else {
       farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
     }

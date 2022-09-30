@@ -18,6 +18,7 @@ export default function TradePrice({ price, showInverted, setShowInverted }: Tra
   let BASE = 'ETH'
   if (price?.quoteCurrency?.symbol === 'ETH') {
     if (chainId > 1000) QUOTE = 'KLAY'
+    else if (chainId < 1000 && chainId > 55) QUOTE = 'BNB'
   } else {
     QUOTE = price ? (price.quoteCurrency ? (price.quoteCurrency.symbol ? price.quoteCurrency.symbol : '') : '') : ''
   }

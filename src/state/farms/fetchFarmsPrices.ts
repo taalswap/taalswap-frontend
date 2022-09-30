@@ -16,7 +16,7 @@ const getFarmBaseTokenPrice = (farm: Farm, quoteTokenFarm: Farm, bnbPriceBusd: B
     return hasTokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
-  if (farm.quoteToken.symbol === 'WETH' || farm.quoteToken.symbol === 'WKLAY') {
+  if (farm.quoteToken.symbol === 'WETH' || farm.quoteToken.symbol === 'WKLAY' || farm.quoteToken.symbol === 'WBNB') {
     return hasTokenPriceVsQuote ? bnbPriceBusd.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
@@ -30,7 +30,7 @@ const getFarmBaseTokenPrice = (farm: Farm, quoteTokenFarm: Farm, bnbPriceBusd: B
   // If the farm's quote token isn't USDC or wBNB, we then use the quote token, of the original farm's quote token
   // i.e. for farm PNT - pBTC we use the pBTC farm's quote token - ETH, (pBTC - ETH)
   // from the ETH - pBTC price, we can calculate the PNT - USDC price
-  if (quoteTokenFarm.quoteToken.symbol === 'WETH' || quoteTokenFarm.quoteToken.symbol === 'WKLAY') {
+  if (quoteTokenFarm.quoteToken.symbol === 'WETH' || quoteTokenFarm.quoteToken.symbol === 'WKLAY' || quoteTokenFarm.quoteToken.symbol === 'WBNB') {
     const quoteTokenInBusd = bnbPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote)
     return hasTokenPriceVsQuote && quoteTokenInBusd
       ? new BigNumber(farm.tokenPriceVsQuote).times(quoteTokenInBusd)
@@ -53,7 +53,7 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, bnbPriceBusd: 
     return BIG_ONE
   }
 
-  if (farm.quoteToken.symbol === 'WETH' || farm.quoteToken.symbol === 'WKLAY') {
+  if (farm.quoteToken.symbol === 'WETH' || farm.quoteToken.symbol === 'WKLAY' || farm.quoteToken.symbol === 'WBNB') {
     return bnbPriceBusd
   }
 
@@ -61,7 +61,7 @@ const getFarmQuoteTokenPrice = (farm: Farm, quoteTokenFarm: Farm, bnbPriceBusd: 
     return BIG_ZERO
   }
 
-  if (quoteTokenFarm.quoteToken.symbol === 'WETH' || quoteTokenFarm.quoteToken.symbol === 'WKLAY') {
+  if (quoteTokenFarm.quoteToken.symbol === 'WETH' || quoteTokenFarm.quoteToken.symbol === 'WKLAY' || quoteTokenFarm.quoteToken.symbol === 'WBNB') {
     return quoteTokenFarm.tokenPriceVsQuote ? bnbPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote) : BIG_ZERO
   }
 

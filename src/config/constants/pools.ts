@@ -12,6 +12,8 @@ const pools: PoolConfig[] = [
       4: '0x37d9a669338aD2f9e5ae553017CD03d423b03b59',
       8217: '',     // MasterChef
       1001: '0xD49a8fF2D69Bb6e564603c2F759094a74BEe1B57',
+      56: '',
+      97: '0x9caf226a0427e09cd2f5cc8a620450ffd8a9cca5'
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,

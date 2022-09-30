@@ -1,4 +1,4 @@
-import { ChainId, Currency, CurrencyAmount, currencyEquals, ETHER, KLAYTN, Token } from 'taalswap-sdk'
+import { ChainId, Currency, CurrencyAmount, currencyEquals, ETHER, KLAYTN, BINANCE, Token } from 'taalswap-sdk'
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { FixedSizeList } from 'react-window'
 import styled from 'styled-components'
@@ -25,6 +25,8 @@ function currencyKey(currency: Currency): string {
     ? 'ETHER'
     : currency === KLAYTN
     ? 'KLAYTN'
+    : currency === BINANCE
+    ? 'BINANCE'
     : ''
 }
 
@@ -186,6 +188,7 @@ export default function CurrencyList({
   }
   let CURRENCY = Currency.ETHER
   if (chainId && chainId > 1000) CURRENCY = Currency.KLAYTN
+  else if (chainId && chainId > 55 && chainId < 1000) CURRENCY = Currency.BINANCE
   const itemData = useMemo(
     () => (showETH ? [CURRENCY, ...currencies] : [...currencies]),
     [currencies, showETH, CURRENCY],

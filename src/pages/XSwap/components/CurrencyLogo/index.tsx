@@ -1,4 +1,4 @@
-import { Currency, ETHER, KLAYTN, Token } from 'taalswap-sdk'
+import { Currency, ETHER, KLAYTN, BINANCE, Token } from 'taalswap-sdk'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from 'hooks/useHttpLocations'
@@ -41,7 +41,7 @@ export default function CurrencyLogo({
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
   const srcs: string[] = useMemo(() => {
-    if (currency === ETHER || currency === KLAYTN) return []
+    if (currency === ETHER || currency === KLAYTN || currency === BINANCE) return []
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
@@ -62,6 +62,9 @@ export default function CurrencyLogo({
   }
   if (currency === KLAYTN) {
     return <StyledBnbLogo src="/images/coins/klay.png" size={size} style={style} />
+  }
+  if (currency === BINANCE) {
+    return <StyledBnbLogo src="/images/coins/bnb.png" size={size} style={style} />
   }
 
   return (currency as any)?.symbol ? (

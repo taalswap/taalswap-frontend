@@ -1,4 +1,4 @@
-import { ChainId, Currency, ETHER, KLAYTN, Token } from 'taalswap-sdk';
+import { ChainId, Currency, ETHER, KLAYTN, BINANCE, Token } from 'taalswap-sdk';
 import React, {
   KeyboardEvent,
   RefObject,
@@ -150,7 +150,7 @@ export function CurrencySearchXSwap({
       if (e.key === 'Enter') {
         const s = searchQuery.toLowerCase().trim();
         if (s === 'bnb') {
-          handleCurrencySelect(ETHER);
+          handleCurrencySelect(BINANCE);
         } else if (s === 'eth') {
           handleCurrencySelect(ETHER);
         } else if (s === 'klay') {

@@ -91,6 +91,7 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
               account={account}
               blockchain={process.env.REACT_APP_CHAIN_ID}
               klaytn={process.env.REACT_APP_KLAYTN_ID}
+              binance={process.env.REACT_APP_BINANCE_ID}
             />
           </div>
           <IconButtonsWrapper>

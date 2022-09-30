@@ -1,4 +1,4 @@
-import { ChainId, Currency, CurrencyAmount, ETHER, JSBI, KLAYTN, Token, TokenAmount } from 'taalswap-sdk';
+import { ChainId, Currency, CurrencyAmount, ETHER, JSBI, KLAYTN, BINANCE, Token, TokenAmount } from 'taalswap-sdk';
 import { useMemo } from 'react';
 import { parseInt } from 'lodash';
 import ERC20_INTERFACE from '../../constants/abis/erc20';
@@ -115,9 +115,10 @@ export function useCurrencyBalances(
 
   const tokenBalances = useTokenBalances(account, tokens)
 
-  const containsETH: boolean = useMemo(() => currencies?.some(currency => (currency === ETHER || currency === KLAYTN)) ?? false, [currencies])
+  const containsETH: boolean = useMemo(() => currencies?.some(currency => (currency === ETHER || currency === KLAYTN || currency === BINANCE)) ?? false, [currencies])
   const ethChainId = parseInt(process.env.REACT_APP_CHAIN_ID ?? '', 10) as ChainId;
   const klayChainId = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '', 10) as ChainId;
+  const bnbChainId = parseInt(process.env.REACT_APP_BINANCE_ID ?? '', 10) as ChainId;
   let balanceChainId = ethChainId
   if (containsETH) {
     if (currencies && currencies[0] === ETHER) {
@@ -126,6 +127,9 @@ export function useCurrencyBalances(
     if (currencies && currencies[0] === KLAYTN) {
       balanceChainId = klayChainId
     }
+    if (currencies && currencies[0] === BINANCE) {
+      balanceChainId = bnbChainId
+  }
   }
   const ethBalance = useETHBalances(containsETH ? [account] : [], balanceChainId)
 
@@ -134,7 +138,7 @@ export function useCurrencyBalances(
       currencies?.map(currency => {
         if (!account || !currency) return undefined
         if (currency instanceof Token) return tokenBalances[currency.address]
-        if (currency === ETHER || currency === KLAYTN) return ethBalance[account]
+        if (currency === ETHER || currency === KLAYTN || currency === BINANCE) return ethBalance[account]
         return undefined
       }) ?? [],
     [account, currencies, ethBalance, tokenBalances]

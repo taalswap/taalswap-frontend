@@ -1,4 +1,4 @@
-import { Currency, ETHER, KLAYTN, JSBI, TokenAmount } from 'taalswap-sdk';
+import { Currency, ETHER, KLAYTN, BINANCE, JSBI, TokenAmount } from 'taalswap-sdk';
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
@@ -73,6 +73,7 @@ export default function PoolFinder() {
   // const [currency0, setCurrency0] = useState<Currency | null>(ETHER);
   let CURRENCY = ETHER;
   if (chainId && chainId > 1000) CURRENCY = KLAYTN;
+  else if (chainId && chainId > 55 && chainId < 1000) CURRENCY = BINANCE;
   const curChainId = localStorage.getItem('chainId');
   const [currency0, setCurrency0] = useState<Currency | null>(CURRENCY);
   const [currency1, setCurrency1] = useState<Currency | null>(null);

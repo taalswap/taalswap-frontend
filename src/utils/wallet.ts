@@ -2,6 +2,7 @@
 import { ChainId } from 'taalswap-sdk'
 import { BASE_BSC_SCAN_URL, SCAN_URL, NETWORK_NAME } from 'config'
 import { UserRejectedRequestError } from '@web3-react/injected-connector'
+import {chain} from "lodash";
 
 const recoverChainId = () => {
   const prevChainId = window.localStorage.getItem('prevChainId')
@@ -60,6 +61,40 @@ export const addNetwork = async (chainId: number) => {
               },
               rpcUrls: ['https://klaytn.taalswap.info:8651'],
               blockExplorerUrls: ['https://scope.klaytn.com/']
+            },
+          ],
+        });
+      } else if (chainId === ChainId.BSCMAIN) {
+        await provider.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: `0x${chainId.toString(16)}`,
+              chainName: 'Binance Mainnet',
+              nativeCurrency: {
+                name: 'BNB',
+                symbol: 'BNB',
+                decimals: 18,
+              },
+              rpcUrls: ['https://bsc-dataseed.binance.org'],
+              blockExplorerUrls: ['https://bscscan.com/']
+            },
+          ],
+        });
+      } else if (chainId === ChainId.BSCTEST) {
+        await provider.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: `0x${chainId.toString(16)}`,
+              chainName: 'Binance Testnet',
+              nativeCurrency: {
+                name: 'BNB',
+                symbol: 'BNB',
+                decimals: 18,
+              },
+              rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545'],
+              blockExplorerUrls: ['https://testnet.bscscan.com/']
             },
           ],
         });

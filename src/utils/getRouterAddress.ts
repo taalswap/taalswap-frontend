@@ -20,6 +20,12 @@ export default function getRouterAddress(chain: any): string {
     case ChainId.BAOBAB:
       routerAddress = ROUTER_ADDRESS[ChainId.BAOBAB]
       break;
+    case ChainId.BSCMAIN:
+      routerAddress = ROUTER_ADDRESS[ChainId.BSCMAIN]
+      break;
+    case ChainId.BSCTEST:
+      routerAddress = ROUTER_ADDRESS[ChainId.BSCTEST]
+      break;
     default:
       routerAddress = ROUTER_ADDRESS[ChainId.MAINNET]
       break;

@@ -4,7 +4,9 @@ export default {
     3: '0x0994abd73141cac0768f61cd7b01e4f010d81aa2',
     4: '0x37d9a669338aD2f9e5ae553017CD03d423b03b59',
     8217: '',
-    1001: '0xD49a8fF2D69Bb6e564603c2F759094a74BEe1B57'
+    1001: '0xD49a8fF2D69Bb6e564603c2F759094a74BEe1B57',
+    56: '',
+    97: '0x9caf226a0427e09cd2f5cc8a620450ffd8a9cca5',
   },
   sousChef: {
     1: '0x8eaf1a122fadee20bd6c7fc5a6a8bc610d2368e9',
@@ -39,7 +41,9 @@ export default {
     3: '0xe81bff6533419dca61cabcd26252eafec782ac00',
     4: '0x9b1265e5a12ded869cbe1934828ace8388fa1362',
     8217: '0x5ba315e48b40f8512b86e1795781f312d330c5fc',
-    1001: '0x6943fa156da5a68c74696837666ae49c95712431'
+    1001: '0x6943fa156da5a68c74696837666ae49c95712431',
+    56: '',
+    97: '0x6392f03e10917a9eec0786198bd4beb29ca199a9'
   },
   multiCall2: {
     1: '',

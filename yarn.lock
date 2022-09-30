@@ -15270,6 +15270,11 @@ swiper@^6.6.1:
     dom7 "^3.0.0"
     ssr-window "^3.0.0"
 
+swr@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-1.3.0.tgz#c6531866a35b4db37b38b72c45a63171faf9f4e8"
+  integrity sha512-dkghQrOl2ORX9HYrMDtPa7LTVHJjCTeZoB1dqTbnnEDlSvN8JEKpYIYurDfvbQFUUS8Cg8PceFVZNkW0KNNYPw==
+
 symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
@@ -15341,10 +15346,10 @@ taalswap-providers@5.5.7:
     bech32 "1.1.4"
     ws "7.4.6"
 
-taalswap-sdk@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/taalswap-sdk/-/taalswap-sdk-2.4.0.tgz#0bd7883b61e53c816634544b331cec61f2de73da"
-  integrity sha512-FczLsSqYVclsgONrdV1MSywn0uC0jeITWmBFwXmO9TuFzEfp5QUN2CAHLxgejMuJNCpClYdVAR5/jJOliF2nDw==
+taalswap-sdk@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/taalswap-sdk/-/taalswap-sdk-2.4.3.tgz#8096429ad26ebedf9046f1aec4cc69051b38aa6e"
+  integrity sha512-kpoYdAr5HyAZoKm2o6JcZ1DJYEApQFh/ja2DnJlWnqUZAEY78BIZxPqpSH+7apkhs4m3gYWGdvqyKqGwz3JmNw==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
@@ -15353,10 +15358,8 @@ taalswap-sdk@^2.4.0:
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-taalswap-uikit@^0.37.2:
-  version "0.37.2"
-  resolved "https://registry.yarnpkg.com/taalswap-uikit/-/taalswap-uikit-0.37.2.tgz#6c7206e276855d89176e5bfc8fd5953d8717f1c5"
-  integrity sha512-SyfyzldM288DVGcxYavd4hkNxPosv6WszmhshUt3ozQsCKJ9ghZbmw0o1MCxgbfDL3HB0D6Rk8WU4mHz+/pvbw==
+taalswap-uikit@../taalswap-toolkit/packages/taalswap-uikit:
+  version "0.37.4"
   dependencies:
     "@emotion/cache" "^11.1.3"
     "@emotion/react" "^11.1.5"

@@ -1,4 +1,4 @@
-import { CurrencyAmount, ETHER, KLAYTN, JSBI } from 'taalswap-sdk'
+import { CurrencyAmount, ETHER, KLAYTN, BINANCE, JSBI } from 'taalswap-sdk'
 import { MIN_ETH } from '../constants'
 import getChainId from "./getChainId";
 
@@ -9,7 +9,7 @@ import getChainId from "./getChainId";
 export function maxAmountSpend(currencyAmount?: CurrencyAmount): CurrencyAmount | undefined {
   const chainId = getChainId()
   if (!currencyAmount) return undefined
-  if (currencyAmount.currency === ETHER || currencyAmount.currency === KLAYTN) {
+  if (currencyAmount.currency === ETHER || currencyAmount.currency === KLAYTN || currencyAmount.currency === BINANCE) {
     if (JSBI.greaterThan(currencyAmount.raw, MIN_ETH)) {
       if (chainId > 1000) return CurrencyAmount.klaytn(JSBI.subtract(currencyAmount.raw, MIN_ETH))
       return CurrencyAmount.ether(JSBI.subtract(currencyAmount.raw, MIN_ETH))

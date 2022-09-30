@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from 'taalswap-uikit'
-import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, Token } from 'taalswap-sdk'
+import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, BINANCE, Token } from 'taalswap-sdk'
 import styled from 'styled-components'
 
 import { SUGGESTED_BASES } from '../../constants'
@@ -39,6 +39,7 @@ export default function CommonBases({
   const { t } = useTranslation()
   let CURRENCY = ETHER
   if (chainId && chainId > 1000) CURRENCY = KLAYTN
+  else if (chainId && chainId > 55 && chainId < 1000) CURRENCY = BINANCE
 
   return (
     <AutoColumn gap="md">
@@ -52,7 +53,8 @@ export default function CommonBases({
             if (
               !selectedCurrency ||
               !currencyEquals(selectedCurrency, ETHER) ||
-              !currencyEquals(selectedCurrency, KLAYTN)
+              !currencyEquals(selectedCurrency, KLAYTN) ||
+              !currencyEquals(selectedCurrency, BINANCE)
             ) {
               switch (chainId) {
                 case ChainId.MAINNET:
@@ -64,13 +66,17 @@ export default function CommonBases({
                 case ChainId.BAOBAB:
                   onSelect(KLAYTN)
                   break
+                case ChainId.BSCMAIN:
+                case ChainId.BSCTEST:
+                  onSelect(BINANCE)
+                  break
                 default:
                   onSelect(ETHER)
                   break
               }
             }
           }}
-          disable={selectedCurrency === ETHER || selectedCurrency === KLAYTN}
+          disable={selectedCurrency === ETHER || selectedCurrency === KLAYTN || selectedCurrency === BINANCE}
         >
           <CurrencyLogo currency={CURRENCY} style={{ marginRight: 8 }} />
           <Text>ETH</Text>

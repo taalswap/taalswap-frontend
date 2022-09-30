@@ -17,13 +17,15 @@ const rpcUrl = getNodeUrl()
 //       all related codes should be modified at first (taalswap-sdk contract addresses, etc.)
 //       supportedChainIds: [1] = metamask wallet_switchEthereumChain API works to all others except mainnet
 // const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4] })
-export const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 8217, 1001] })
+export const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 8217, 1001, 56, 97] })
 
 const walletconnect = new WalletConnectConnector({
   rpc: {
     [ChainId.MAINNET]: rpcUrl,
     [ChainId.KLAYTN]: 'https://klaytn.taalswap.info:8651',
-    [ChainId.BAOBAB]: 'https://api.baobab.klaytn.net:8651'
+    [ChainId.BAOBAB]: 'https://api.baobab.klaytn.net:8651',
+    [ChainId.BSCMAIN]: 'https://bsc-dataseed.binance.org',
+    [ChainId.BSCTEST]: 'https://data-seed-prebsc-1-s1.binance.org:8545'
   },
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,

@@ -20,6 +20,12 @@ export default function getBridgeAddress(chain: any): string {
     case ChainId.BAOBAB:
       bridgeAddress = BRIDGE_ADDRESS[ChainId.BAOBAB]
       break;
+    case ChainId.BSCMAIN:
+      bridgeAddress = BRIDGE_ADDRESS[ChainId.BSCMAIN]
+      break;
+    case ChainId.BSCTEST:
+      bridgeAddress = BRIDGE_ADDRESS[ChainId.BSCTEST]
+      break;
     default:
       bridgeAddress = BRIDGE_ADDRESS[ChainId.MAINNET]
       break;

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { useWeb3React } from '@web3-react/core'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { farmsConfig, farmsConfigKlaytn } from 'config/constants/farms'
+import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance } from 'config/constants/farms'
 import isArchivedPid from 'utils/farmHelpers'
 import priceHelperLpsConfig from 'config/constants/priceHelperLps'
 import { chain, isUndefined, parseInt } from 'lodash'
@@ -33,7 +33,17 @@ if (getChainId() > 1000) {
       earnings: '0',
     },
   }))
-} else {
+} else if (getChainId() < 1000 && getChainId() > 55) {
+    noAccountFarmConfig = farmsConfigBinance.map((farm) => ({
+        ...farm,
+        userData: {
+            allowance: '0',
+            tokenBalance: '0',
+            stakedBalance: '0',
+            earnings: '0',
+        },
+    }))
+}else {
   noAccountFarmConfig = farmsConfig.map((farm) => ({
     ...farm,
     userData: {
@@ -54,6 +64,8 @@ const initialState: FarmsState = {
 let nonArchivedFarmsChainId
 if (getChainId() > 1000) {
   nonArchivedFarmsChainId = farmsConfigKlaytn.filter(({ pid }) => !isArchivedPid(pid))
+} else if (getChainId() < 1000 && getChainId() > 55) {
+    nonArchivedFarmsChainId = farmsConfigBinance.filter(({ pid }) => !isArchivedPid(pid))
 } else {
   nonArchivedFarmsChainId = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
 }
@@ -69,6 +81,8 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
     let farmsToFetch
     if (getChainId() > 1000) {
       farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
+    } else if (getChainId() < 1000 && getChainId() > 55) {
+      farmsToFetch = farmsConfigBinance.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else {
       farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
     }
@@ -100,6 +114,8 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
     let farmsToFetch
     if (getChainId() > 1000) {
       farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
+    } else if (getChainId() < 1000 && getChainId() > 55) {
+      farmsToFetch = farmsConfigBinance.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else {
       farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
     }

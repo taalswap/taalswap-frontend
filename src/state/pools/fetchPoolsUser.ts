@@ -10,18 +10,19 @@ import BigNumber from 'bignumber.js'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // ETH pools use the native ETH token (wrapping ? unwrapping is done at the contract level)
-const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'ETH' && p.stakingToken.symbol !== 'KLAY')
-const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'ETH' || p.stakingToken.symbol === 'KLAY')
+const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'ETH' && p.stakingToken.symbol !== 'KLAY' && p.stakingToken.symbol !== 'BNB')
+const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'ETH' || p.stakingToken.symbol === 'KLAY' || p.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 
 export const fetchPoolsAllowance = async (account) => {
+  console.log('=== nonBnbPools ===', nonBnbPools)
   const calls = nonBnbPools.map((p) => ({
     address: getAddress(p.stakingToken.address),
     name: 'allowance',
     params: [account, getAddress(p.contractAddress)],
   }))
-
   const allowances = await multicall(erc20ABI, calls)
+  console.log('=== nonBnbPools ===', calls, allowances)
   return nonBnbPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),
     {},

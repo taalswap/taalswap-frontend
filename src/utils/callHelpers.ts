@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import Caver from 'caver-js'
 import { Pair, TokenAmount, Token } from 'taalswap-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
-import { farmsConfig, farmsConfigKlaytn } from 'config/constants/farms'
+import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance } from 'config/constants/farms'
 import { getAddress, getTaalAddress } from 'utils/addressHelpers'
 import tokens from 'config/constants/tokens'
 import pools from 'config/constants/pools'
@@ -208,6 +208,8 @@ const cakeBnbPid = 1  // 251 -> 1
 let cakeBnbFarm
 if (chainId > 1000) {
   cakeBnbFarm = farmsConfigKlaytn.find((farm) => farm.pid === cakeBnbPid)
+} else if (chainId < 1000 && chainId > 55) {
+  cakeBnbFarm = farmsConfigBinance.find((farm) => farm.pid === cakeBnbPid)
 } else {
   cakeBnbFarm = farmsConfig.find((farm) => farm.pid === cakeBnbPid)
 }

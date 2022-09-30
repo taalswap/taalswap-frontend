@@ -1,9 +1,9 @@
 {
   "name": "TaalSwap Default List",
-  "timestamp": "2021-03-17T09:56:23Z",
+  "timestamp": "2022-09-30T10:22:00Z",
   "version": {
-    "major": 2,
-    "minor": 16,
+    "major": 3,
+    "minor": 3,
     "patch": 0
   },
   "tags": {},
@@ -188,6 +188,54 @@
       "chainId": 8217,
       "decimals": 18,
       "logoURI": "https://taalswap.finance/images/coins/otalk.svg"
+    },
+    {
+      "name": "WBNB Token",
+      "symbol": "WBNB",
+      "address": "0x094616f0bdfb0b526bd735bf66eca0ad254ca81f",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "https://taalswap.finance/images/coins/weth.png"
+    },
+    {
+      "name": "USDC Token",
+      "symbol": "USDC",
+      "address": "0x64544969ed7ebf5f083679233325356ebe738930",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "https://taalswap.finance/images/coins/usdc.png"
+    },
+    {
+      "name": "TaalSwap Token",
+      "symbol": "TAL",
+      "address": "0x8318ea1dbba627731ac55bf47e57a22952bd537d",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "https://taalswap.finance/images/coins/tal.png"
+    },
+    {
+      "name": "Binance USD",
+      "symbol": "BUSD",
+      "address": "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"
+    },
+    {
+      "name": "Nuritopia NBLU",
+      "symbol": "NBLU",
+      "address": "0x0efdd5d69b4e065c6e0b70d86c70e3fe265d4039",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "http://localhost:3001/images/coins/NBLU.png"
+    },
+    {
+      "name": "Nuritopia NRED",
+      "symbol": "NRED",
+      "address": "0xc51bd6516710f3f9a07b2b646851cbabb5b14a45",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "http://localhost:3001/images/coins/NRED.png"
     }
   ]
 }

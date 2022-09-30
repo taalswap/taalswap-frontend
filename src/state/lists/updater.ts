@@ -56,6 +56,7 @@ export default function Updater(): null {
           case VersionUpgrade.MINOR: {
             const min = minVersionBump(list.current.tokens, list.pendingUpdate.tokens)
             // automatically update minor/patch as long as bump matches the min update
+            console.log('==========>', bump, min)
             if (bump >= min) {
               dispatch(acceptListUpdate(listUrl))
               dispatch(
@@ -80,6 +81,7 @@ export default function Updater(): null {
           }
 
           case VersionUpgrade.MAJOR:
+            dispatch(acceptListUpdate(listUrl))
             dispatch(
               addPopup({
                 key: listUrl,

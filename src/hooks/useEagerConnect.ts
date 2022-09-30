@@ -10,6 +10,7 @@ import {useTranslation} from "../contexts/Localization";
 
 const ethChainId = parseInt(process.env.REACT_APP_CHAIN_ID ?? '1', 10);
 const klayChainId = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '8217', 10);
+const bnbChainId = parseInt(process.env.REACT_APP_BINANCE_ID ?? '97', 10);
 
 const _binanceChainListener = async () =>
   new Promise<void>((resolve) =>
@@ -57,7 +58,7 @@ export const useInactiveListenerNew = (suppress = false) => {
   const { active, error, activate } = useWeb3React() // specifically using useWeb3React because of what this hook does
   const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
-
+  
   useEffect(() => {
     const { ethereum } = window as WindowChain
 
@@ -65,7 +66,7 @@ export const useInactiveListenerNew = (suppress = false) => {
     if (ethereum && ethereum.on) {
       const handleChainChanged = async (chainId) => {
         // TODO: Handle wrong network injected
-        if (parseInt(chainId, 16) === ethChainId || parseInt(chainId, 16) === klayChainId) {
+        if (parseInt(chainId, 16) === ethChainId || parseInt(chainId, 16) === klayChainId || parseInt(chainId, 16) === bnbChainId) {
           // eat errors
           const curChainId = parseInt(chainId, 16).toString()
           const prevChainId = window.localStorage.getItem('chainId')

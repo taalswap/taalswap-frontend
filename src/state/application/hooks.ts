@@ -8,7 +8,6 @@ import { AppState } from '../index'
 export function useBlockNumber(selectedChainId?: ChainId): number | undefined {
   let { chainId } = useActiveWeb3React()
   if (selectedChainId) chainId = selectedChainId
-
   return useSelector((state: AppState) => state.application.blockNumber[chainId ?? -1])
 }
 
