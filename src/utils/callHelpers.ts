@@ -26,7 +26,7 @@ export const approve = async (lpContract, masterChefContract, account) => {
 }
 
 export const stake = async (masterChefContract, pid, amount, account) => {
-  const gasPrice = getGasPrice()
+  const gasPrice = await getGasPrice()
   let receipt
   if (pid === 0) {
     const gasLimit = await masterChefContract.estimateGas.enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
@@ -52,7 +52,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
 }
 
 export const sousStake = async (sousChefContract, amount, decimals = 18, account) => {
-  const gasPrice = getGasPrice()
+  const gasPrice = await getGasPrice()
 
   let receipt
   const gasLimit = await sousChefContract.estimateGas
@@ -68,7 +68,7 @@ export const sousStake = async (sousChefContract, amount, decimals = 18, account
 }
 
 export const sousStakeBnb = async (sousChefContract, amount, account) => {
-  const gasPrice = getGasPrice()
+  const gasPrice = await getGasPrice()
   let receipt
   const gasLimit = await sousChefContract.estimateGas.deposit()
   const tx = await sousChefContract
@@ -87,7 +87,7 @@ export const sousStakeBnb = async (sousChefContract, amount, account) => {
 }
 
 export const unstake = async (masterChefContract, pid, amount, account) => {
-  const gasPrice = getGasPrice()
+  const gasPrice = await getGasPrice()
   if (pid === 0) {
     let receipt
     const gasLimit = await masterChefContract.estimateGas
@@ -116,7 +116,7 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
 }
 
 export const sousUnstake = async (sousChefContract, amount, decimals, account) => {
-  const gasPrice = getGasPrice()
+  const gasPrice = await getGasPrice()
   let receipt
   const gasLimit = await sousChefContract.estimateGas
     .withdraw(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString())
@@ -131,7 +131,7 @@ export const sousUnstake = async (sousChefContract, amount, decimals, account) =
 }
 
 export const sousEmergencyUnstake = async (sousChefContract, account) => {
-  const gasPrice = getGasPrice()
+  const gasPrice = await getGasPrice()
   let receipt
   const gasLimit = await sousChefContract.estimateGas.emergencyWithdraw()
   const tx = await sousChefContract
@@ -145,7 +145,7 @@ export const sousEmergencyUnstake = async (sousChefContract, account) => {
 }
 
 export const harvest = async (masterChefContract, pid, account) => {
-  const gasPrice = getGasPrice()
+  const gasPrice = await getGasPrice()
   if (pid === 0) {
     let receipt
     const gasLimit = await masterChefContract.estimateGas.leaveStaking('0')
@@ -172,7 +172,7 @@ export const harvest = async (masterChefContract, pid, account) => {
 }
 
 export const soushHarvest = async (sousChefContract, account) => {
-  const gasPrice = getGasPrice()
+  const gasPrice = await getGasPrice()
 
   let receipt
   const gasLimit = await sousChefContract.estimateGas.deposit('0')
@@ -187,7 +187,7 @@ export const soushHarvest = async (sousChefContract, account) => {
 }
 
 export const soushHarvestBnb = async (sousChefContract, account) => {
-  const gasPrice = getGasPrice()
+  const gasPrice = await getGasPrice()
   let receipt
   const gasLimit = await sousChefContract.estimateGas.deposit()
   const tx = await sousChefContract

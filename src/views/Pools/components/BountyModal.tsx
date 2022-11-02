@@ -55,7 +55,7 @@ const BountyModal: React.FC<BountyModalProps> = ({
   const btnColor = theme.isDark ? "#fff" : "#212b36";
 
   const handleConfirmClick = async () => {
-    const gasPrice = getGasPrice()
+    const gasPrice = await getGasPrice()
     try {
       const gasLimit = await cakeVaultContract.estimateGas
         .harvest()
