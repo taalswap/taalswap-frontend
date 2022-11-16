@@ -22,7 +22,7 @@ export const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 821
 const walletconnect = new WalletConnectConnector({
   rpc: {
     [ChainId.MAINNET]: rpcUrl,
-    [ChainId.KLAYTN]: 'https://public-en.kaikas.io/v1/cypress',
+    [ChainId.KLAYTN]: 'https://public-node-api.klaytnapi.com/v1/cypress',
     [ChainId.BAOBAB]: 'https://api.baobab.klaytn.net:8651'
   },
   bridge: 'https://bridge.walletconnect.org',

@@ -58,7 +58,7 @@ export const addNetwork = async (chainId: number) => {
                 symbol: 'KLAY',
                 decimals: 18,
               },
-              rpcUrls: ['https://public-en.kaikas.io/v1/cypress'],
+              rpcUrls: ['https://public-node-api.klaytnapi.com/v1/cypress'],
               blockExplorerUrls: ['https://scope.klaytn.com/']
             },
           ],
