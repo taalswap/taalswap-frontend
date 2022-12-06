@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import { HttpProviderOptions } from 'web3-core-helpers'
 
-const nodesCypress = 'https://klaytn.taalswap.info:8651'
+const nodesCypress = 'https://public-en.kaikas.io/v1/cypress'
 const nodesBaobab = 'https://api.baobab.klaytn.net:8651'
 
 const RPC_URL = process.env.REACT_APP_KLAYTN_ID === '1001' ? nodesBaobab : nodesCypress

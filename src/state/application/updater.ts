@@ -106,7 +106,7 @@ export default function Updater(): null {
     } else {
       let crossChainProvider
       if (klayChainId === '8217') {
-        crossChainProvider = new ethers.providers.JsonRpcProvider('https://klaytn.taalswap.info:8651');
+        crossChainProvider = new ethers.providers.JsonRpcProvider('https://public-en.kaikas.io/v1/cypress');
       }
       if (klayChainId === '1001') {
         crossChainProvider = new ethers.providers.JsonRpcProvider('https://api.baobab.klaytn.net:8651');

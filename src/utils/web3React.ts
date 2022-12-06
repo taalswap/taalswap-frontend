@@ -22,7 +22,7 @@ export const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 821
 const walletconnect = new WalletConnectConnector({
   rpc: {
     [ChainId.MAINNET]: rpcUrl,
-    [ChainId.KLAYTN]: 'https://klaytn.taalswap.info:8651',
+    [ChainId.KLAYTN]: 'https://public-en.kaikas.io/v1/cypress',
     [ChainId.BAOBAB]: 'https://api.baobab.klaytn.net:8651',
     [ChainId.BSCMAIN]: 'https://bsc-dataseed.binance.org',
     [ChainId.BSCTEST]: 'https://data-seed-prebsc-1-s1.binance.org:8545'

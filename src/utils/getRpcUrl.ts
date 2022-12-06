@@ -4,7 +4,7 @@ import getChainId from './getChainId'
 
 // Array of available nodes to connect to
 export const nodes = [process.env.REACT_APP_NODE_1, process.env.REACT_APP_NODE_2, process.env.REACT_APP_NODE_3]
-export const nodesCypress = 'https://klaytn.taalswap.info:8651'
+export const nodesCypress = 'https://public-en.kaikas.io/v1/cypress'
 export const nodesBaobab = 'https://api.baobab.klaytn.net:8651'
 export const nodesBscmain = 'https://bsc-dataseed.binance.org'
 export const nodesBsctest = 'https://data-seed-prebsc-1-s1.binance.org:8545'
