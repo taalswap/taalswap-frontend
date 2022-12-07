@@ -10,8 +10,8 @@ import BigNumber from 'bignumber.js'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // ETH pools use the native ETH token (wrapping ? unwrapping is done at the contract level)
-const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'ETH' && p.stakingToken.symbol !== 'KLAY' && p.stakingToken.symbol !== 'BNB')
-const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'ETH' || p.stakingToken.symbol === 'KLAY' || p.stakingToken.symbol === 'BNB')
+const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'ETH' && p.stakingToken.symbol !== 'KLAY' && p.stakingToken.symbol !== 'BNB' && p.stakingToken.symbol !== 'MATIC')
+const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'ETH' || p.stakingToken.symbol === 'KLAY' || p.stakingToken.symbol === 'BNB' || p.stakingToken.symbol === 'MATIC')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 
 export const fetchPoolsAllowance = async (account) => {

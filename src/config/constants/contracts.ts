@@ -7,6 +7,8 @@ export default {
     1001: '0xD49a8fF2D69Bb6e564603c2F759094a74BEe1B57',
     56: '',
     97: '0x9caf226a0427e09cd2f5cc8a620450ffd8a9cca5',
+    137: '',
+    80001: '0x927c3c16b82d381fd1fe8c592330ad05cad994a6'
   },
   sousChef: {
     1: '0x8eaf1a122fadee20bd6c7fc5a6a8bc610d2368e9',
@@ -43,7 +45,9 @@ export default {
     8217: '0x5ba315e48b40f8512b86e1795781f312d330c5fc',
     1001: '0x6943fa156da5a68c74696837666ae49c95712431',
     56: '',
-    97: '0x6392f03e10917a9eec0786198bd4beb29ca199a9'
+    97: '0x6392f03e10917a9eec0786198bd4beb29ca199a9',
+    137: '',
+    80001: '0x32be9c162735ea6dca6f3c86341b4ff69521ba23'
   },
   multiCall2: {
     1: '',

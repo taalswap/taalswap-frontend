@@ -107,6 +107,9 @@ const RecentXSwapTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTr
         case 'BINANCE':
           url = `${SCAN_URL[urlChainId]}/tx/${txHash}`
           break
+        case 'POLYGON':
+          url = `${SCAN_URL[urlChainId]}/tx/${txHash}`
+          break
         default:
           url = `${SCAN_URL[urlChainId]}/tx/${txHash}`
           break

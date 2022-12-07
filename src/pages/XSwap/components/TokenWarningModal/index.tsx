@@ -1,4 +1,4 @@
-import { Token } from 'taalswap-sdk'
+import {ChainId, Token} from 'taalswap-sdk'
 import { transparentize } from 'polished'
 import { Button, Text } from 'taalswap-uikit'
 import React, { useCallback, useMemo, useState } from 'react'
@@ -75,7 +75,7 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
           {chainId && (
             <ExternalLink style={{ fontWeight: 400 }} href={getBscScanLink(chainId, token.address, 'token')}>
               <Text title={token.address}>
-                {shortenAddress(token.address)} {chainId > 1000 ? t('View on Klaytnscope') : chainId < 1000 && chainId > 55 ? t('View on Bscscan') : t('View on Etherscan')}
+                {shortenAddress(token.address)} {chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI ? t('View on Polygonscan') : chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB ? t('View on Klaytnscope') : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST ? t('View on Bscscan') : t('View on Etherscan')}
               </Text>
             </ExternalLink>
           )}

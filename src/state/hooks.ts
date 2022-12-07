@@ -1,12 +1,13 @@
 import { useEffect, useMemo } from 'react'
 import BigNumber from 'bignumber.js'
+import { ChainId } from "taalswap-sdk";
 import { useWeb3React } from '@web3-react/core'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { isUndefined, orderBy, parseInt } from 'lodash'
 import { Team } from 'config/constants/types'
 import Nfts from 'config/constants/nfts'
-import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance } from 'config/constants'
+import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon } from 'config/constants'
 import { getWeb3NoAccount } from 'utils/web3'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -42,9 +43,11 @@ export const usePollFarmsData = (includeArchive = false) => {
     // const chainId = getChainId()
     // const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
     let farmsToFetch
-    if (chainId > 1000) {
+    if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) {
+      farmsToFetch = includeArchive ? farmsConfigPolygon : nonArchivedFarms
+    } else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) {
       farmsToFetch = includeArchive ? farmsConfigKlaytn : nonArchivedFarms
-    } else if (chainId < 1000 && chainId > 55) {
+    } else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) {
       farmsToFetch = includeArchive ? farmsConfigBinance : nonArchivedFarms
     } else {
       farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms

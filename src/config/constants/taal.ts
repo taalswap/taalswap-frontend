@@ -7,7 +7,9 @@ const TAL_ADDRESS = {
   [ChainId.KLAYTN]: '0x90a4a420732907b3c38b11058f9aa02b3f4121df',
   [ChainId.BAOBAB]: '0x6c27d9f6c4067212797794cd931596c2917f7bf7',
   [ChainId.BSCMAIN]: '',
-  [ChainId.BSCTEST]: '0x8318ea1dbba627731ac55bf47e57a22952bd537d'
+  [ChainId.BSCTEST]: '0x8318ea1dbba627731ac55bf47e57a22952bd537d',
+  [ChainId.POLYGON]: '',
+  [ChainId.MUMBAI]: '0x42a0931b5623bbb7db7f3115b1dd168cbff8c6ee'
 }
 
 export default TAL_ADDRESS

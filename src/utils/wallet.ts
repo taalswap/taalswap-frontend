@@ -98,6 +98,40 @@ export const addNetwork = async (chainId: number) => {
             },
           ],
         });
+      } else if (chainId === ChainId.POLYGON) {
+        await provider.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: `0x${chainId.toString(16)}`,
+              chainName: 'Polygon Mainnet',
+              nativeCurrency: {
+                name: 'MATIC',
+                symbol: 'MATIC',
+                decimals: 18,
+              },
+              rpcUrls: ['https://polygon-rpc.com'],
+              blockExplorerUrls: ['https://polygonscan.com/']
+            },
+          ],
+        });
+      } else if (chainId === ChainId.MUMBAI) {
+        await provider.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: `0x${chainId.toString(16)}`,
+              chainName: 'Polygon Testnet',
+              nativeCurrency: {
+                name: 'MATIC',
+                symbol: 'MATIC',
+                decimals: 18,
+              },
+              rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
+              blockExplorerUrls: ['https://mumbai.polygonscan.com/']
+            },
+          ],
+        });
       }
     } catch (addError) {
       // handle "add" error

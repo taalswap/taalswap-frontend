@@ -1,15 +1,14 @@
 import React from 'react'
-import { Text } from 'taalswap-uikit'
-import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, BINANCE, Token } from 'taalswap-sdk'
+import {Text} from 'taalswap-uikit'
+import {BINANCE, ChainId, Currency, currencyEquals, ETHER, KLAYTN, POLYGON, Token} from 'taalswap-sdk'
 import styled from 'styled-components'
 
-import { SUGGESTED_BASES } from '../../constants'
-import { AutoColumn } from '../Column'
+import {SUGGESTED_BASES} from '../../constants'
+import {AutoColumn} from '../Column'
 import QuestionHelper from '../QuestionHelper'
-import { AutoRow } from '../Row'
+import {AutoRow} from '../Row'
 import CurrencyLogo from '../CurrencyLogo'
-import { useTranslation } from '../../contexts/Localization'
-import { useActiveWeb3React } from '../../hooks'
+import {useTranslation} from '../../contexts/Localization'
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
   border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.tertiary)};
@@ -38,8 +37,9 @@ export default function CommonBases({
 }) {
   const { t } = useTranslation()
   let CURRENCY = ETHER
-  if (chainId && chainId > 1000) CURRENCY = KLAYTN
-  else if (chainId && chainId > 55 && chainId < 1000) CURRENCY = BINANCE
+  if (chainId && (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI)) CURRENCY = POLYGON
+  else if (chainId && (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB)) CURRENCY = KLAYTN
+  else if (chainId && (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST)) CURRENCY = BINANCE
 
   return (
     <AutoColumn gap="md">
@@ -54,7 +54,8 @@ export default function CommonBases({
               !selectedCurrency ||
               !currencyEquals(selectedCurrency, ETHER) ||
               !currencyEquals(selectedCurrency, KLAYTN) ||
-              !currencyEquals(selectedCurrency, BINANCE)
+              !currencyEquals(selectedCurrency, BINANCE) ||
+              !currencyEquals(selectedCurrency, POLYGON)
             ) {
               switch (chainId) {
                 case ChainId.MAINNET:
@@ -70,13 +71,17 @@ export default function CommonBases({
                 case ChainId.BSCTEST:
                   onSelect(BINANCE)
                   break
+                case ChainId.POLYGON:
+                case ChainId.MUMBAI:
+                  onSelect(POLYGON)
+                  break
                 default:
                   onSelect(ETHER)
                   break
               }
             }
           }}
-          disable={selectedCurrency === ETHER || selectedCurrency === KLAYTN || selectedCurrency === BINANCE}
+          disable={selectedCurrency === ETHER || selectedCurrency === KLAYTN || selectedCurrency === BINANCE || selectedCurrency === POLYGON}
         >
           <CurrencyLogo currency={CURRENCY} style={{ marginRight: 8 }} />
           <Text>ETH</Text>

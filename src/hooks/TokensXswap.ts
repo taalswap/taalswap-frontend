@@ -1,5 +1,5 @@
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHER, Token, currencyEquals, KLAYTN, BINANCE, ChainId } from 'taalswap-sdk'
+import { Currency, ETHER, Token, currencyEquals, KLAYTN, BINANCE, POLYGON, ChainId } from 'taalswap-sdk'
 import { useMemo } from 'react'
 import { useSelectedTokenList } from '../state/lists/hooks'
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
@@ -108,7 +108,7 @@ export function useTokenXswap(tokenAddress?: string): Token | undefined | null {
 }
 
 export function useCurrencyXswap(currencyId: string | undefined): Currency | null | undefined {
-  const isBNB = currencyId?.toUpperCase() === 'ETH' || currencyId?.toUpperCase() === 'KLAY' || currencyId?.toUpperCase() === 'BNB'
+  const isBNB = currencyId?.toUpperCase() === 'ETH' || currencyId?.toUpperCase() === 'KLAY' || currencyId?.toUpperCase() === 'BNB' || currencyId?.toUpperCase() === 'MATIC'
   const token = useTokenXswap(isBNB ? undefined : currencyId)
-  return isBNB ? currencyId?.toUpperCase() === 'ETH' ? ETHER : currencyId?.toUpperCase() === 'KLAY' ? KLAYTN : BINANCE : token
+  return isBNB ? currencyId?.toUpperCase() === 'ETH' ? ETHER : currencyId?.toUpperCase() === 'KLAY' ? KLAYTN : currencyId?.toUpperCase() === 'BNB' ? BINANCE : POLYGON : token
 }

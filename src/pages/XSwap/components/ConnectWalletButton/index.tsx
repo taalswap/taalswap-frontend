@@ -12,7 +12,8 @@ const UnlockButton: React.FC<ButtonProps> = (props) => {
     undefined,
     process.env.REACT_APP_CHAIN_ID,
     process.env.REACT_APP_KLAYTN_ID,
-    process.env.REACT_APP_BINANCE_ID
+    process.env.REACT_APP_BINANCE_ID,
+    process.env.REACT_APP_POLYGON_ID
   )
 
   return (

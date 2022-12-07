@@ -15346,10 +15346,8 @@ taalswap-providers@5.5.7:
     bech32 "1.1.4"
     ws "7.4.6"
 
-taalswap-sdk@^2.4.3:
+taalswap-sdk@../taalswap-sdk:
   version "2.4.3"
-  resolved "https://registry.yarnpkg.com/taalswap-sdk/-/taalswap-sdk-2.4.3.tgz#8096429ad26ebedf9046f1aec4cc69051b38aa6e"
-  integrity sha512-kpoYdAr5HyAZoKm2o6JcZ1DJYEApQFh/ja2DnJlWnqUZAEY78BIZxPqpSH+7apkhs4m3gYWGdvqyKqGwz3JmNw==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"

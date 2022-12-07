@@ -69,6 +69,7 @@ const BattleCta: React.FC<CompetitionProps> = ({
     process.env.REACT_APP_CHAIN_ID,
     process.env.REACT_APP_KLAYTN_ID,
     process.env.REACT_APP_BINANCE_ID,
+    process.env.REACT_APP_POLYGON_ID,
   )
   const [onPresentRegisterModal] = useModal(
     <RegisterModal profile={profile} onRegisterSuccess={onRegisterSuccess} />,

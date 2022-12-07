@@ -54,6 +54,8 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
           SYMBOL = 'ETH'
         } else if (token.symbol === 'WBNB') {
           SYMBOL = 'BNB'
+        } else if (token.symbol === 'WMATIC') {
+          SYMBOL = 'MATIC'
         } else {
           SYMBOL = token.symbol
         }

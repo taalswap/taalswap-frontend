@@ -1,49 +1,45 @@
-import {chain} from "lodash";
-import { parseUnits } from '@ethersproject/units';
+import {parseUnits} from '@ethersproject/units';
 import {
+  BINANCE,
+  ChainId,
   Currency,
   CurrencyAmount,
   ETHER,
-  KLAYTN,
-  BINANCE,
   JSBI,
+  KLAYTN,
+  POLYGON,
   Token,
   TokenAmount,
-  Trade, ChainId
+  Trade
 } from 'taalswap-sdk';
-import { ParsedQs } from 'qs';
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {ParsedQs} from 'qs';
+import {useCallback, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import useENS from '../../hooks/useENS';
-import { useActiveWeb3React } from '../../hooks';
-import { useCurrency } from '../../hooks/Tokens';
-import {
-  useTradeExactIn,
-  useTradeExactInXswap,
-  useTradeExactOut,
-  useTradeExactOutXswap
-} from '../../hooks/Trades';
+import {useActiveWeb3React} from '../../hooks';
+import {useCurrency} from '../../hooks/Tokens';
+import {useTradeExactIn, useTradeExactInXswap, useTradeExactOut, useTradeExactOutXswap} from '../../hooks/Trades';
 import useParsedQueryString from '../../hooks/useParsedQueryString';
-import { isAddress } from '../../utils';
-import { AppDispatch, AppState } from '../index';
-import { useCurrencyBalances } from '../wallet/hooks';
+import {isAddress} from '../../utils';
+import {AppDispatch, AppState} from '../index';
+import {useCurrencyBalances} from '../wallet/hooks';
 import {
   Field,
   replaceSwapState,
   selectCurrency,
+  setCrossChain,
   setRecipient,
   switchCurrencies,
   typeInput,
-  setCrossChain,
 } from './actions';
-import { SwapState } from './reducer';
+import {SwapState} from './reducer';
 
-import { useUserSlippageTolerance } from '../user/hooks';
-import { computeSlippageAdjustedAmounts } from '../../utils/prices';
-import { useTranslation } from '../../contexts/Localization';
+import {useUserSlippageTolerance} from '../user/hooks';
+import {computeSlippageAdjustedAmounts} from '../../utils/prices';
+import {useTranslation} from '../../contexts/Localization';
 import getChainId from "../../utils/getChainId";
-import { useCurrencyXswap } from '../../hooks/TokensXswap';
-import { TAL_ADDRESS } from '../../constants';
+import {useCurrencyXswap} from '../../hooks/TokensXswap';
+import {TAL_ADDRESS} from '../../constants';
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap);
@@ -71,6 +67,8 @@ export function useSwapActionHandlers(): {
               ? 'KLAY'
               : currency === BINANCE
               ? 'BNB'
+              : currency === POLYGON
+              ? 'MATIC'
               : '',
         })
       );
@@ -126,11 +124,13 @@ export function tryParseAmount(
     if (typedValueParsed !== '0') {
       return currency instanceof Token
         ? new TokenAmount(currency, JSBI.BigInt(typedValueParsed))
-        : chainId > 1000
-          ? CurrencyAmount.klaytn(JSBI.BigInt(typedValueParsed))
-          : chainId < 1000 && chainId > 55
-            ? CurrencyAmount.binance(JSBI.BigInt(typedValueParsed))
-            : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
+        : chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI
+          ? CurrencyAmount.polygon(JSBI.BigInt(typedValueParsed))
+          : chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB
+            ? CurrencyAmount.klaytn(JSBI.BigInt(typedValueParsed))
+            : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
+              ? CurrencyAmount.binance(JSBI.BigInt(typedValueParsed))
+              : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
     }
   } catch (error) {
     // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?)
@@ -154,11 +154,13 @@ export function tryParseAmountXswap(
     if (typedValueParsed !== '0') {
       return currency instanceof Token
         ? new TokenAmount(currency, JSBI.BigInt(typedValueParsed))
-        : chainId > 1000
-          ? CurrencyAmount.klaytn(JSBI.BigInt(typedValueParsed))
-          : chainId < 1000 && chainId > 55
-            ? CurrencyAmount.binance(JSBI.BigInt(typedValueParsed))
-            : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
+        : chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI
+          ? CurrencyAmount.polygon(JSBI.BigInt(typedValueParsed))
+          : chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB
+            ? CurrencyAmount.klaytn(JSBI.BigInt(typedValueParsed))
+            : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
+              ? CurrencyAmount.binance(JSBI.BigInt(typedValueParsed))
+              : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
     }
   } catch (error) {
     // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?)
@@ -294,8 +296,9 @@ export function useDerivedSwapInfo(
     const chainId = parseInt(window.localStorage.getItem("chainId") ?? "1")
     let SYMBOL = 'ETH'
     if (amountIn.currency.symbol === 'ETH') {
-      if (chainId > 1000) SYMBOL = 'KLAY'
-      else if (chainId < 1000 && chainId > 55) SYMBOL = 'BNB'
+      if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) SYMBOL = 'MATIC'
+      else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) SYMBOL = 'KLAY'
+      else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) SYMBOL = 'BNB'
     } else {
       SYMBOL = amountIn.currency.symbol ?? ''
     }
@@ -520,6 +523,7 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
     if (urlParam.toUpperCase() === 'ETH') return 'ETH';
     if (urlParam.toUpperCase() === 'KLAY') return 'KLAY';
     if (urlParam.toUpperCase() === 'BNB') return 'BNB';
+    if (urlParam.toUpperCase() === 'MATIC') return 'MATIC';
     if (valid === false) return 'ETH';
   }
   return '';
@@ -559,7 +563,9 @@ function validatedCrossChain(crossChain: any): number {
     crossChain === 8217 ||     // Klaytn Mainnet Cypress
     crossChain === 1001 ||       // Klaytn Testnet Baobab
     crossChain === 56 ||
-    crossChain === 97
+    crossChain === 97 ||
+    crossChain === 137 ||
+    crossChain === 80001
   ) {
     return crossChain
   }

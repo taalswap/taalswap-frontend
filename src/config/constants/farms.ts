@@ -246,5 +246,41 @@ const farmsConfigBinance: FarmConfig[] = [
   },
 ]
 
+const farmsConfigPolygon: FarmConfig[] = [
+  /**
+   * These 3 farms (PID 0, 251, 252) should always be at the top of the file.
+   */
+  {
+    pid: 0,
+    lpSymbol: 'TAL',
+    lpAddresses: {
+      137: '',   // TaalToken
+      80001: '0x42a0931b5623bbb7db7f3115b1dd168cbff8c6ee',
+    },
+    token: tokens.syrup,
+    quoteToken: tokens.wmatic,
+  },
+  {
+    pid: 1,
+    lpSymbol: 'TAL-MATIC LP',
+    lpAddresses: {
+      137: '',
+      80001: '0xf1e50b6c95acd0347ee6a5e3ea6b9476572a1455',
+    },
+    token: tokens.taal,
+    quoteToken: tokens.wmatic,
+  },
+  {
+    pid: 2,
+    lpSymbol: 'USDC-MATIC LP',
+    lpAddresses: {
+      137: '',
+      80001: '0x76f11e974f1bc2fcdeeb6c749bd252898d88a9b1'
+    },
+    token: tokens.usdc,
+    quoteToken: tokens.wmatic,
+  },
+]
+
 // export default farms
-export { farmsConfig, farmsConfigKlaytn, farmsConfigBinance }
+export { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon }

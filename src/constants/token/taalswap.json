@@ -1,9 +1,9 @@
 {
   "name": "TaalSwap Default List",
-  "timestamp": "2022-09-30T10:22:00Z",
+  "timestamp": "2022-12-06T17:14:00Z",
   "version": {
     "major": 3,
-    "minor": 3,
+    "minor": 4,
     "patch": 0
   },
   "tags": {},
@@ -236,6 +236,38 @@
       "chainId": 97,
       "decimals": 18,
       "logoURI": "http://localhost:3001/images/coins/NRED.png"
+    },
+    {
+      "name": "WMATIC Token",
+      "symbol": "WMATIC",
+      "address": "0xa83aac0bdceb3c9d4265f0c21a852777605f491a",
+      "chainId": 80001,
+      "decimals": 18,
+      "logoURI": "https://taalswap.finance/images/coins/weth.png"
+    },
+    {
+      "name": "USDC Token",
+      "symbol": "USDC",
+      "address": "0xaf07ac23189718a3b570c73ccd9cd9c82b16b867",
+      "chainId": 80001,
+      "decimals": 6,
+      "logoURI": "https://taalswap.finance/images/coins/usdc.png"
+    },
+    {
+      "name": "TaalSwap Token",
+      "symbol": "TAL",
+      "address": "0x42a0931b5623bbb7db7f3115b1dd168cbff8c6ee",
+      "chainId": 80001,
+      "decimals": 18,
+      "logoURI": "https://taalswap.finance/images/coins/tal.png"
+    },
+    {
+      "name": "USDT Token",
+      "symbol": "USDT",
+      "address": "0xae16dd27539a255a43596481d0f0824ced8170e1",
+      "chainId": 80001,
+      "decimals": 6,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"
     }
   ]
 }

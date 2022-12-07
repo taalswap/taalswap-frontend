@@ -8,6 +8,8 @@ export const nodesCypress = 'https://public-en.kaikas.io/v1/cypress'
 export const nodesBaobab = 'https://api.baobab.klaytn.net:8651'
 export const nodesBscmain = 'https://bsc-dataseed.binance.org'
 export const nodesBsctest = 'https://data-seed-prebsc-1-s1.binance.org:8545'
+export const nodesMumbai = 'https://rpc-mumbai.maticvigil.com'
+export const nodesPolygon = 'https://polygon-rpc.com'
 
 const getNodeUrl = () => {
   const randomIndex = random(0, nodes.length - 1)
@@ -27,6 +29,12 @@ const getNodeUrl = () => {
       break
     case ChainId.BSCTEST:
       return nodesBsctest
+      break
+    case ChainId.POLYGON:
+      return nodesPolygon
+      break
+    case ChainId.MUMBAI:
+      return nodesMumbai
       break
     default:
       return nodes[randomIndex]
@@ -52,6 +60,12 @@ export const getSelectedNodeUrl = (chainId) => {
       break
     case ChainId.BSCTEST:
       return nodesBsctest
+      break
+    case ChainId.POLYGON:
+      return nodesPolygon
+      break
+    case ChainId.MUMBAI:
+      return nodesMumbai
       break
     default:
       return nodes[randomIndex]

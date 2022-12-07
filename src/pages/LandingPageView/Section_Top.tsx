@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
-
+import { ChainId } from "taalswap-sdk";
 import styled from 'styled-components'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
@@ -534,10 +534,12 @@ const SectionTop: React.FC = () => {
               <Button
                 value={t('Buy TAL')}
                 onClick={() =>
-                  parseInt(curChainId) < 55
+                  parseInt(curChainId) === ChainId.MAINNET || parseInt(curChainId) === ChainId.ROPSTEN
                     ? linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/ETH/0x00`)
-                    : parseInt(curChainId) < 1000 && parseInt(curChainId) > 55
+                    : parseInt(curChainId) === ChainId.BSCMAIN || parseInt(curChainId) === ChainId.BSCTEST
                     ? linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/BNB/0x00`)
+                    : parseInt(curChainId) === ChainId.POLYGON || parseInt(curChainId) === ChainId.MUMBAI
+                    ? linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/MATIC/0x00`)
                     : linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/KLAY/0x00`)
                 }
                 className="buy_Btn"

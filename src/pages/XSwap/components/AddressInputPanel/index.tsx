@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { ChainId } from "taalswap-sdk";
 import styled from 'styled-components'
 import { Text } from 'taalswap-uikit'
 import useENS from 'hooks/useENS'
@@ -107,7 +108,7 @@ export default function AddressInputPanel({
               </Text>
               {address && chainId && (
                 <ExternalLink href={getBscScanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
-                  {chainId > 1000 ? t('View on Klaytnscope') : chainId < 1000 && chainId > 55 ? t('View on Bscscan') : t('View on Etherscan')}
+                  {chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI ? t('View on Polygonscan') : chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB ? t('View on Klaytnscope') : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST ? t('View on Bscscan') : t('View on Etherscan')}
                 </ExternalLink>
               )}
             </RowBetween>

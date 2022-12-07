@@ -1,12 +1,23 @@
-import { ChainId, Currency, CurrencyAmount, ETHER, JSBI, KLAYTN, BINANCE, Token, TokenAmount } from 'taalswap-sdk';
-import { useMemo } from 'react';
-import { parseInt } from 'lodash';
+import {
+  BINANCE,
+  ChainId,
+  Currency,
+  CurrencyAmount,
+  ETHER,
+  JSBI,
+  KLAYTN,
+  POLYGON,
+  Token,
+  TokenAmount
+} from 'taalswap-sdk';
+import {useMemo} from 'react';
+import {parseInt} from 'lodash';
 import ERC20_INTERFACE from '../../constants/abis/erc20';
-import { useAllTokens } from '../../hooks/Tokens';
-import { useActiveWeb3React } from '../../hooks';
-import { useMulticallContract } from '../../hooks/useContract2';
-import { isAddress } from '../../utils';
-import { useMultipleContractSingleData, useSingleContractMultipleData } from '../multicall/hooks';
+import {useAllTokens} from '../../hooks/Tokens';
+import {useActiveWeb3React} from '../../hooks';
+import {useMulticallContract} from '../../hooks/useContract2';
+import {isAddress} from '../../utils';
+import {useMultipleContractSingleData, useSingleContractMultipleData} from '../multicall/hooks';
 
 /**
  * Returns a map of the given addresses to their eventually consistent ETH balances.
@@ -40,9 +51,11 @@ export function useETHBalances(
       addresses.reduce<{ [address: string]: CurrencyAmount }>((memo, address, i) => {
         const value = results?.[i]?.result?.[0]
         if (value) memo[address] =
-            (chainId ?? ChainId.ROPSTEN) > 1000
+            chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI
+            ? CurrencyAmount.polygon(JSBI.BigInt(value.toString()))
+            : chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB
             ? CurrencyAmount.klaytn(JSBI.BigInt(value.toString()))
-            : (chainId ?? ChainId.ROPSTEN) < 1000 && (chainId ?? ChainId.ROPSTEN) > 55
+            : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
             ? CurrencyAmount.binance(JSBI.BigInt(value.toString()))
             : CurrencyAmount.ether(JSBI.BigInt(value.toString()))
         return memo
@@ -120,10 +133,11 @@ export function useCurrencyBalances(
 
   const tokenBalances = useTokenBalances(account, tokens)
 
-  const containsETH: boolean = useMemo(() => currencies?.some(currency => (currency === ETHER || currency === KLAYTN || currency === BINANCE)) ?? false, [currencies])
-  const ethChainId = parseInt(process.env.REACT_APP_CHAIN_ID ?? '', 10) as ChainId;
-  const klayChainId = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '', 10) as ChainId;
-  const bnbChainId = parseInt(process.env.REACT_APP_BINANCE_ID ?? '', 10) as ChainId;
+  const containsETH: boolean = useMemo(() => currencies?.some(currency => (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON)) ?? false, [currencies])
+  const ethChainId = parseInt(process.env.REACT_APP_CHAIN_ID ?? '1', 10) as ChainId;
+  const klayChainId = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '8217', 10) as ChainId;
+  const bnbChainId = parseInt(process.env.REACT_APP_BINANCE_ID ?? '56', 10) as ChainId;
+  const maticChainId = parseInt(process.env.REACT_APP_POLYGON_ID ?? '137', 10) as ChainId;
   let balanceChainId = ethChainId
   if (containsETH) {
     if (currencies && currencies[0] === ETHER) {
@@ -134,7 +148,10 @@ export function useCurrencyBalances(
     }
     if (currencies && currencies[0] === BINANCE) {
       balanceChainId = bnbChainId
-  }
+    }
+    if (currencies && currencies[0] === POLYGON) {
+      balanceChainId = maticChainId
+    }
   }
   const ethBalance = useETHBalances(containsETH ? [account] : [], balanceChainId)
 
@@ -143,7 +160,7 @@ export function useCurrencyBalances(
       currencies?.map(currency => {
         if (!account || !currency) return undefined
         if (currency instanceof Token) return tokenBalances[currency.address]
-        if (currency === ETHER || currency === KLAYTN || currency === BINANCE) return ethBalance[account]
+        if (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON) return ethBalance[account]
         return undefined
       }) ?? [],
     [account, currencies, ethBalance, tokenBalances]

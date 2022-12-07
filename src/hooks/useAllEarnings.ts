@@ -3,8 +3,9 @@ import { useWeb3React } from '@web3-react/core'
 import multicall from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import masterChefABI from 'config/abi/masterchef.json'
-import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance } from 'config/constants'
+import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon } from 'config/constants'
 import useRefresh from './useRefresh'
+import {ChainId} from "taalswap-sdk";
 
 const useAllEarnings = () => {
   const [balances, setBalance] = useState([])
@@ -14,13 +15,19 @@ const useAllEarnings = () => {
   useEffect(() => {
     let calls
     const fetchAllBalances = async () => {
-      if (chainId > 1000) {
+      if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) {
+        calls = farmsConfigPolygon.map((farm) => ({
+          address: getMasterChefAddress(),
+          name: 'pendingTaal',
+          params: [farm.pid, account],
+        }))
+      } else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) {
         calls = farmsConfigKlaytn.map((farm) => ({
           address: getMasterChefAddress(),
           name: 'pendingTaal',
           params: [farm.pid, account],
         }))
-      } else if (chainId < 1000 && chainId > 55) {
+      } else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) {
         calls = farmsConfigBinance.map((farm) => ({
           address: getMasterChefAddress(),
           name: 'pendingTaal',

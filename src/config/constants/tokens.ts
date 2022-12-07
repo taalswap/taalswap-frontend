@@ -11,6 +11,10 @@ const tokens = {
     symbol: 'BNB',
     projectLink: 'https://www.binance.com/',
   },
+  matic: {
+    symbol: 'MATIC',
+    projectLink: 'https://www.polygon.io/',
+  },
   // cake: {
   //   symbol: 'TAL',
   //   address: {
@@ -38,7 +42,9 @@ const tokens = {
       8217: '0x90a4a420732907b3c38b11058f9aa02b3f4121df',
       1001: '0x6C27d9F6C4067212797794CD931596C2917F7Bf7',   // getTaalAddress()에서 사용
       56: '',
-      97: '0x8318ea1dbba627731ac55bf47e57a22952bd537d'
+      97: '0x8318ea1dbba627731ac55bf47e57a22952bd537d',
+      137: '',
+      80001: '0x42a0931b5623bbb7db7f3115b1dd168cbff8c6ee'
     },
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
@@ -64,7 +70,9 @@ const tokens = {
       8217: '0x5819b6af194a78511c79c85ea68d2377a7e9335f',
       1001: '0xf223e26b018ae1917e84dd73b515620e36a75596',   // getWethAddress()에서 사용 ?
       56: '',
-      97: '0x094616f0bdfb0b526bd735bf66eca0ad254ca81f'
+      97: '0x094616f0bdfb0b526bd735bf66eca0ad254ca81f',
+      137: '',
+      80001: '0xa83aac0bdceb3c9d4265f0c21a852777605f491a'
     },
     decimals: 18,
     projectLink: 'https://weth.io/',
@@ -95,6 +103,20 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://weth.io/',
   },
+  wmatic: {
+    symbol: 'WMATIC',
+    address: {
+      1: '',
+      3: '',
+      4: '',
+      8217: '',
+      1001: '',   // getWethAddress()에서 사용 ?
+      137: '',
+      80001: '0xa83aac0bdceb3c9d4265f0c21a852777605f491a'
+    },
+    decimals: 18,
+    projectLink: 'https://weth.io/',
+  },
   usdc: {
     symbol: 'USDC',
     address: {
@@ -104,7 +126,9 @@ const tokens = {
       8217: '',
       1001: '',
       56: '',
-      97: '0x64544969ed7ebf5f083679233325356ebe738930'
+      97: '0x64544969ed7ebf5f083679233325356ebe738930', // TODO : change deciaml 18 -> 6
+      137: '',
+      80001: '0xaf07ac23189718a3b570c73ccd9cd9c82b16b867'
     },
     decimals: 6,
     projectLink: 'https://www.centre.io/usdc/',
@@ -130,7 +154,7 @@ const tokens = {
       8217: '',
       1001: '',
       56: '',
-      97: ''
+      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee'
     },
     decimals: 18,
     projectLink: 'https://makerdao.com/en/',
@@ -144,7 +168,9 @@ const tokens = {
       8217: '0xc1dc53378f06331ce3f98701b0b9a0ecbd9230e7',
       1001: '0xDc3eB77A4BCdb4603E4b2fd4BF30BDa67442C3d4',
       56: '',
-      97: '0x68d2a9b6a5374a411df4e35c066b36a3e42c9dcc'
+      97: '0x68d2a9b6a5374a411df4e35c066b36a3e42c9dcc',
+      137: '',
+      80001: '0xFa4d7E075e60E6C759e35473d5a330899d880aFc '
     },
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
@@ -158,7 +184,9 @@ const tokens = {
       8217: '',
       1001: '',
       56: '',
-      97: ''
+      97: '',
+      137: '',
+      80001: '0xae16dd27539a255a43596481d0f0824ced8170e1\t'
     },
     decimals: 6,
     projectLink: 'https://tether.to/',

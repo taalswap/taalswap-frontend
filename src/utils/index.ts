@@ -1,17 +1,19 @@
-import { ethers } from 'ethers';
-import { Contract } from '@ethersproject/contracts';
-import { getAddress } from '@ethersproject/address';
-import { AddressZero } from '@ethersproject/constants';
-import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers';
-import { BigNumber } from '@ethersproject/bignumber';
-import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json';
-import { ChainId, Currency, CurrencyAmount, ETHER, JSBI, KLAYTN, BINANCE, Percent, Token } from 'taalswap-sdk';
+import {ethers} from 'ethers';
+import {Contract} from '@ethersproject/contracts';
+import {getAddress} from '@ethersproject/address';
+import {AddressZero} from '@ethersproject/constants';
+import {JsonRpcSigner, Web3Provider} from '@ethersproject/providers';
+import {BigNumber} from '@ethersproject/bignumber';
+import {abi as IUniswapV2Router02ABI} from '@uniswap/v2-periphery/build/IUniswapV2Router02.json';
+import {BINANCE, ChainId, Currency, CurrencyAmount, ETHER, JSBI, KLAYTN, Percent, POLYGON, Token} from 'taalswap-sdk';
 import BRIDGE_ABI from 'constants/abis/bridge.json';
-import { BRIDGE_ADDRESS, ROUTER_ADDRESS } from '../constants';
-import { TokenAddressMap } from '../state/lists/hooks';
+import {BRIDGE_ADDRESS, ROUTER_ADDRESS} from '../constants';
+import {TokenAddressMap} from '../state/lists/hooks';
 
 const ethChainId = process.env.REACT_APP_CHAIN_ID ?? '1';
 const klayChainId = process.env.REACT_APP_KLAYTN_ID ?? '8217';
+const bnbChainId = process.env.REACT_APP_BINANCE_ID ?? '56';
+const maticChainId = process.env.REACT_APP_POLYGON_ID ?? '137';
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -29,7 +31,9 @@ const ETH_PREFIXES: { [chainId in ChainId]: string } = {
   8217: 'scope.klaytn.com',
   1001: 'baobab.scope.klaytn.com',
   56: 'bscscan.com',
-  97: 'testnet.bscscan.com'
+  97: 'testnet.bscscan.com',
+  137: 'polygonscan.com',
+  80001: 'mumbai.polygonscan.com'
 };
 
 const RPC_URL: { [chainId in ChainId]: string } = {
@@ -39,7 +43,9 @@ const RPC_URL: { [chainId in ChainId]: string } = {
   8217: 'https://public-en.kaikas.io/v1/cypress',
   1001: 'https://api.baobab.klaytn.net:8651',
   56: 'https://bsc-dataseed.binance.org',
-  97: 'https://data-seed-prebsc-1-s1.binance.org:8545'
+  97: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+  137: 'https://polygon-rpc.com',
+  80001: 'https://rpc-mumbai.maticvigil.com'
 };
 
 export function getBscScanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
@@ -111,20 +117,17 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
   const crossChain = window.localStorage.getItem('crossChain')
   // if (xSwapCurrency === 'output' || crossChain !== null) {     // xSwap 메뉴에서 다른 메뉴로 이동 시 crossChain 값을 삭제함. 타 메뉴에서 getContract 호출 시 사용 갸능...
   if (xSwapCurrency === 'output' || xFlag) {
-    if (chainId > 1000) {
-      const crossChainProvider = new ethers.providers.JsonRpcProvider(RPC_URL[chainId]);
-      contract = new Contract(address, ABI, crossChainProvider);
-    } else if (chainId < 1000 && chainId > 55) {
-      const crossChainProvider = new ethers.providers.JsonRpcProvider(RPC_URL[chainId]);
-      contract = new Contract(address, ABI, crossChainProvider);
-    } else {
+    if (chainId === ChainId.MAINNET || chainId === ChainId.ROPSTEN) {
       let crossChainProvider
-      if (ethChainId === '1') {
+      if (ethChainId === ChainId.MAINNET.toString()) {
         crossChainProvider = new ethers.providers.InfuraProvider('mainnet', 'adb9c847d7114ee7bf83995e8f22e098')
       }
-      if (ethChainId === '3') {
+      if (ethChainId === ChainId.ROPSTEN.toString()) {
         crossChainProvider = new ethers.providers.InfuraProvider('ropsten', 'adb9c847d7114ee7bf83995e8f22e098')
       }
+      contract = new Contract(address, ABI, crossChainProvider);
+    } else {
+      const crossChainProvider = new ethers.providers.JsonRpcProvider(RPC_URL[chainId]);
       contract = new Contract(address, ABI, crossChainProvider);
     }
   } else {
@@ -150,6 +153,6 @@ export function escapeRegExp(string: string): string {
 }
 
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
-  if (currency === ETHER || currency === KLAYTN || currency === BINANCE) return true;
+  if (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON) return true;
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address]);
 }

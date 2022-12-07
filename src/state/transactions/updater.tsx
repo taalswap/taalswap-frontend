@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { ChainId } from "taalswap-sdk";
 import Caver from 'caver-js';
 import { useActiveWeb3React } from '../../hooks'
 import { useAddPopup, useBlockNumber } from '../application/hooks'
@@ -51,7 +52,7 @@ export default function Updater(): null {
   useEffect(() => {
     if (!chainId || !library || !lastBlockNumber) return
 
-    if (chainId < 55) {
+    if (chainId === ChainId.MAINNET || chainId === ChainId.ROPSTEN) {
       Object.keys(transactions)
         .filter((hash) => shouldCheck(lastBlockNumber, transactions[hash]))
         .forEach((hash) => {
@@ -95,7 +96,7 @@ export default function Updater(): null {
               console.error(`failed to check transaction hash: ${hash}`, error)
             })
         })
-    } else if (chainId > 55 && chainId < 1000) {
+    } else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) {
       Object.keys(transactions)
         .filter((hash) => shouldCheck(lastBlockNumber, transactions[hash]))
         .forEach((hash) => {
@@ -139,7 +140,51 @@ export default function Updater(): null {
                   console.error(`failed to check transaction hash: ${hash}`, error)
               })
         })
-    } else {
+    } else if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) {
+        Object.keys(transactions)
+            .filter((hash) => shouldCheck(lastBlockNumber, transactions[hash]))
+            .forEach((hash) => {
+                library
+                    .getTransactionReceipt(hash)
+                    .then((receipt) => {
+                        if (receipt) {
+                            // console.log(receipt)
+                            dispatch(
+                                finalizeTransaction({
+                                    chainId,
+                                    hash,
+                                    receipt: {
+                                        blockHash: receipt.blockHash,
+                                        blockNumber: receipt.blockNumber,
+                                        contractAddress: receipt.contractAddress,
+                                        from: receipt.from,
+                                        status: receipt.status,
+                                        to: receipt.to,
+                                        transactionHash: receipt.transactionHash,
+                                        transactionIndex: receipt.transactionIndex,
+                                    },
+                                })
+                            )
+
+                            addPopup(
+                                {
+                                    txn: {
+                                        hash,
+                                        success: receipt.status === 1,
+                                        summary: transactions[hash]?.summary,
+                                    },
+                                },
+                                hash
+                            )
+                        } else {
+                            dispatch(checkedTransaction({ chainId, hash, blockNumber: lastBlockNumber }))
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(`failed to check transaction hash: ${hash}`, error)
+                    })
+            })
+    } else {    // KLAYTN & BAOBAB
         Object.keys(transactions)
         .filter((hash) => shouldCheck(lastBlockNumber, transactions[hash]))
         .forEach((hash) => {

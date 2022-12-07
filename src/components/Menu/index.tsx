@@ -38,6 +38,7 @@ const Menu = (props) => {
       blockchain={process.env.REACT_APP_CHAIN_ID}
       klaytn={process.env.REACT_APP_KLAYTN_ID}
       binance={process.env.REACT_APP_BINANCE_ID}
+      polygon={process.env.REACT_APP_POLYGON_ID}
       {...props}
     />
   )

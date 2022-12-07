@@ -1,5 +1,5 @@
 import React from 'react';
-import { Currency, Percent, Price } from 'taalswap-sdk';
+import {ChainId, Currency, Percent, Price} from 'taalswap-sdk';
 import { Text } from 'taalswap-uikit';
 import { useTranslation } from 'contexts/Localization';
 import styled from 'styled-components'
@@ -33,9 +33,11 @@ export function PoolPriceBar({
   const getSymbol = (str: string | undefined) => {
     let symbol = '';
     if (str !== undefined) {
-      if (str === 'ETH' && chainId > 1000) {
+      if (str === 'ETH' && (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI)) {
+        symbol = 'MATIC';
+      } else if (str === 'ETH' && (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB)) {
         symbol = 'KALY';
-      } else if (str === 'ETH' && chainId < 1000 && chainId > 55) {
+      } else if (str === 'ETH' && (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST)) {
         symbol = 'BNB';
       } else if (str === 'ETH' && chainId === 3) {
         symbol = 'ETH';

@@ -1,4 +1,4 @@
-import { Trade, TradeType } from 'taalswap-sdk'
+import {ChainId, Trade, TradeType} from 'taalswap-sdk'
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Button, HelpIcon, Text, useTooltip } from 'taalswap-uikit'
@@ -114,8 +114,9 @@ export default function SwapModalFooter({
 
   let FEE = 'ETH'
   if (trade.inputAmount.currency.symbol === 'ETH') {
-    if (chainId > 1000) FEE = 'KLAY'
-    else if (chainId < 1000 && chainId > 55) FEE = 'BNB'
+    if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) FEE = 'MATIC'
+    else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) FEE = 'KLAY'
+    else if (chainId === ChainId.BSCMAIN|| chainId === ChainId.BSCTEST) FEE = 'BNB'
   } else {
     FEE = trade.inputAmount.currency.symbol ?? ''
   }

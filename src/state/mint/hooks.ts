@@ -4,6 +4,7 @@ import {
   ETHER,
   KLAYTN,
   BINANCE,
+  POLYGON,
   JSBI,
   Pair,
   Percent,
@@ -120,6 +121,8 @@ export function useDerivedMintInfo(
           ? CurrencyAmount.klaytn(dependentTokenAmount.raw)
           : dependentCurrency === BINANCE
           ? CurrencyAmount.binance(dependentTokenAmount.raw)
+          : dependentCurrency === POLYGON
+          ? CurrencyAmount.polygon(dependentTokenAmount.raw)
           : dependentTokenAmount;
       }
       return undefined;

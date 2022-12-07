@@ -44,9 +44,10 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
 
   const currentChainId = window.localStorage.getItem('chainId')
   const crossChainId = window.localStorage.getItem('crossChain') ?? chainId
-  const chainConf = parseInt(process.env.REACT_APP_CHAIN_ID ?? '', 10) as ChainId
-  const klayChainConf = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '', 10) as ChainId
-  const bnbChainConf = parseInt(process.env.REACT_APP_BINANCE_ID ?? '', 10) as ChainId
+  const chainConf = parseInt(process.env.REACT_APP_CHAIN_ID ?? '1', 10) as ChainId
+  const klayChainConf = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '8217', 10) as ChainId
+  const bnbChainConf = parseInt(process.env.REACT_APP_BINANCE_ID ?? '56', 10) as ChainId
+  const maticChainConf = parseInt(process.env.REACT_APP_MATIC_ID ?? '137', 10) as ChainId
 
   // ------------------------------
   // support only swap
@@ -78,6 +79,11 @@ const NetworkSelector = ({ onSetCrossChain, id }) => {
       id: 3,
       name: 'Binance',
       chainId: bnbChainConf,
+    },
+    {
+      id: 4,
+      name: 'Polygon',
+      chainId: maticChainConf,
     },
   ]
 

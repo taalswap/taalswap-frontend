@@ -1,5 +1,5 @@
 import React from 'react'
-import { Price } from 'taalswap-sdk'
+import {ChainId, Price} from 'taalswap-sdk'
 import { SyncAltIcon, Text } from 'taalswap-uikit'
 import { StyledBalanceMaxMini } from './styleds'
 
@@ -17,14 +17,16 @@ export default function TradePrice({ price, showInverted, setShowInverted }: Tra
   let QUOTE = 'ETH'
   let BASE = 'ETH'
   if (price?.quoteCurrency?.symbol === 'ETH') {
-    if (chainId > 1000) QUOTE = 'KLAY'
-    else if (chainId < 1000 && chainId > 55) QUOTE = 'BNB'
+    if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) QUOTE = 'MATIC'
+    else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) QUOTE = 'KLAY'
+    else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) QUOTE = 'BNB'
   } else {
     QUOTE = price ? (price.quoteCurrency ? (price.quoteCurrency.symbol ? price.quoteCurrency.symbol : '') : '') : ''
   }
   if (price?.baseCurrency?.symbol === 'ETH') {
-    if (chainId > 1000) BASE = 'KLAY'
-    else if (chainId < 1000 && chainId > 55) BASE = 'BNB'
+    if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) QUOTE = 'MATIC'
+    else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) BASE = 'KLAY'
+    else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) BASE = 'BNB'
   } else {
     BASE = price ? (price.baseCurrency ? (price.baseCurrency.symbol ? price.baseCurrency.symbol : '') : '') : ''
   }

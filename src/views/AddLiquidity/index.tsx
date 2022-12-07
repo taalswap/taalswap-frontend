@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, BINANCE, TokenAmount, WETH } from 'taalswap-sdk'
+import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, BINANCE, POLYGON, TokenAmount, WETH } from 'taalswap-sdk'
 import styled from 'styled-components'
 import { AddIcon, Button, CardBody, Text as UIKitText, Card as UICard } from 'taalswap-uikit'
 import { RouteComponentProps } from 'react-router-dom'
@@ -168,6 +168,10 @@ export default function AddLiquidity({
     case ChainId.BSCTEST:
       ethStr = 'BNB'
       break
+    case ChainId.POLYGON:
+    case ChainId.MUMBAI:
+      ethStr = 'MATIC'
+      break
     default:
       ethStr = 'ETH'
   }
@@ -256,8 +260,8 @@ export default function AddLiquidity({
     let method: (...args: any) => Promise<TransactionResponse>
     let args: Array<string | string[] | number>
     let value: BigNumber | null
-    if (currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE) {
-      const tokenBIsBNB = currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE
+    if (currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyA === POLYGON || currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE || currencyB === POLYGON) {
+      const tokenBIsBNB = currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE || currencyB === POLYGON
       estimate = router.estimateGas.addLiquidityETH
       method = router.addLiquidityETH
       args = [

@@ -3,9 +3,9 @@ import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { parseUnits } from '@ethersproject/units'
 import { ethers } from 'ethers'
 import Caver from 'caver-js'
-import { Pair, TokenAmount, Token } from 'taalswap-sdk'
+import {Pair, TokenAmount, Token, ChainId} from 'taalswap-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
-import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance } from 'config/constants/farms'
+import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon } from 'config/constants/farms'
 import { getAddress, getTaalAddress } from 'utils/addressHelpers'
 import tokens from 'config/constants/tokens'
 import pools from 'config/constants/pools'
@@ -206,9 +206,11 @@ const chainId = getChainId()
 
 const cakeBnbPid = 1  // 251 -> 1
 let cakeBnbFarm
-if (chainId > 1000) {
+if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) {
+  cakeBnbFarm = farmsConfigPolygon.find((farm) => farm.pid === cakeBnbPid)
+} else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) {
   cakeBnbFarm = farmsConfigKlaytn.find((farm) => farm.pid === cakeBnbPid)
-} else if (chainId < 1000 && chainId > 55) {
+} else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) {
   cakeBnbFarm = farmsConfigBinance.find((farm) => farm.pid === cakeBnbPid)
 } else {
   cakeBnbFarm = farmsConfig.find((farm) => farm.pid === cakeBnbPid)

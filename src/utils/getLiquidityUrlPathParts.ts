@@ -1,6 +1,7 @@
 // Constructing the two forward-slash-separated parts of the 'Add Liquidity' URL
 // Each part of the url represents a different side of the LP pair.
 import { isUndefined, parseInt } from 'lodash'
+import { ChainId } from "taalswap-sdk";
 import { getWethAddress } from './addressHelpers'
 import getChainId from './getChainId'
 
@@ -9,9 +10,11 @@ const getLiquidityUrlPathParts = ({ quoteTokenAddress, tokenAddress }) => {
   const chainIdStr = window.localStorage.getItem('chainId')
   const chainId = getChainId()
   let CURRENCY
-  if (chainId > 1000) {
+  if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) {
+    CURRENCY = 'MATIC'
+  } else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) {
     CURRENCY = 'KLAY'
-  } else if (chainId < 1000 && chainId > 55) {
+  } else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) {
     CURRENCY = 'BNB'
   } else {
     CURRENCY = 'ETH'

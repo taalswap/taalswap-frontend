@@ -46,11 +46,13 @@ export function computeTradePriceBreakdown(
     trade &&
     (trade.inputAmount instanceof TokenAmount
       ? new TokenAmount(trade.inputAmount.token, realizedLPFee.multiply(trade.inputAmount.raw).quotient)
-      : chainId > 1000
-        ? CurrencyAmount.klaytn(realizedLPFee.multiply(trade.inputAmount.raw).quotient)
-        : chainId > 55 && chainId < 1000
-          ? CurrencyAmount.binance(realizedLPFee.multiply(trade.inputAmount.raw).quotient)
-          : CurrencyAmount.ether(realizedLPFee.multiply(trade.inputAmount.raw).quotient))
+      : chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI
+        ? CurrencyAmount.polygon(realizedLPFee.multiply(trade.inputAmount.raw).quotient)
+        : chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB
+          ? CurrencyAmount.klaytn(realizedLPFee.multiply(trade.inputAmount.raw).quotient)
+          : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
+            ? CurrencyAmount.binance(realizedLPFee.multiply(trade.inputAmount.raw).quotient)
+            : CurrencyAmount.ether(realizedLPFee.multiply(trade.inputAmount.raw).quotient))
 
   return { priceImpactWithoutFee: priceImpactWithoutFeePercent, realizedLPFee: realizedLPFeeAmount }
 }
@@ -88,11 +90,13 @@ export function computeTradeXPriceBreakdown(
     tradeX &&
     (tradeX.inputAmount instanceof TokenAmount
       ? new TokenAmount(tradeX.inputAmount.token, xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient)
-      : chainId > 1000
-        ? CurrencyAmount.klaytn(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient)
-        : chainId < 1000 && chainId > 55
-          ? CurrencyAmount.binance(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient)
-          : CurrencyAmount.ether(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient))
+      : chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI
+        ? CurrencyAmount.polygon(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient)
+        : chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB
+          ? CurrencyAmount.klaytn(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient)
+          : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
+            ? CurrencyAmount.binance(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient)
+            : CurrencyAmount.ether(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient))
 
   return { xpriceImpactWithoutFee: xpriceImpactWithoutFeePercent, xrealizedLPFee: xrealizedLPFeeAmount }
 }

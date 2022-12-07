@@ -17,7 +17,7 @@ const rpcUrl = getNodeUrl()
 //       all related codes should be modified at first (taalswap-sdk contract addresses, etc.)
 //       supportedChainIds: [1] = metamask wallet_switchEthereumChain API works to all others except mainnet
 // const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4] })
-export const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 8217, 1001, 56, 97] })
+export const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 8217, 1001, 56, 97, 137, 80001] })
 
 const walletconnect = new WalletConnectConnector({
   rpc: {
@@ -25,7 +25,9 @@ const walletconnect = new WalletConnectConnector({
     [ChainId.KLAYTN]: 'https://public-en.kaikas.io/v1/cypress',
     [ChainId.BAOBAB]: 'https://api.baobab.klaytn.net:8651',
     [ChainId.BSCMAIN]: 'https://bsc-dataseed.binance.org',
-    [ChainId.BSCTEST]: 'https://data-seed-prebsc-1-s1.binance.org:8545'
+    [ChainId.BSCTEST]: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+    [ChainId.POLYGON]: 'https://polygon-rpc.com',
+    [ChainId.MUMBAI]: 'https://rpc-mumbai.maticvigil.com'
   },
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,

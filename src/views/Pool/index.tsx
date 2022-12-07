@@ -101,8 +101,13 @@ export default function Pool() {
       break
     case ChainId.BSCMAIN:
     case ChainId.BSCTEST:
-      // CURRENCY = '/add/1001/KLAY/0x00';
+      // CURRENCY = '/add/97/BNB/0x00';
       CURRENCY = `/add/${curChainId}/BNB/0x00`
+      break
+    case ChainId.POLYGON:
+    case ChainId.MUMBAI:
+      // CURRENCY = '/add/80001/MATIC/0x00';
+      CURRENCY = `/add/${curChainId}/MATIC/0x00`
       break
     default:
       CURRENCY = `/add/${curChainId}/ETH/0x00`

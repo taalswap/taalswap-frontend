@@ -8,6 +8,8 @@ export interface Address {
   1001?: string
   56?: string
   97?: string
+  137?: string
+  80001?: string
 }
 
 export interface Token {

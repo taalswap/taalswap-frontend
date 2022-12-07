@@ -1,8 +1,19 @@
-import { ChainId, Currency, CurrencyAmount, ETHER, KLAYTN, BINANCE, Token, TokenAmount, WETH } from 'taalswap-sdk'
+import {
+  BINANCE,
+  ChainId,
+  Currency,
+  CurrencyAmount,
+  ETHER,
+  KLAYTN,
+  POLYGON,
+  Token,
+  TokenAmount,
+  WETH
+} from 'taalswap-sdk'
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   // eslint-disable-next-line no-nested-ternary
-  return chainId && (currency === ETHER || currency === KLAYTN || currency === BINANCE) ? WETH[chainId] : currency instanceof Token ? currency : undefined
+  return chainId && (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON) ? WETH[chainId] : currency instanceof Token ? currency : undefined
 }
 
 export function wrappedCurrencyAmount(
@@ -15,8 +26,9 @@ export function wrappedCurrencyAmount(
 
 export function unwrappedToken(token: Token): Currency {
   if (token.equals(WETH[token.chainId])) {
-    if (token.chainId > 1000) return KLAYTN;
-    if (token.chainId > 55 && token.chainId < 1000) return BINANCE;
+    if (token.chainId === ChainId.POLYGON || token.chainId === ChainId.MUMBAI) return POLYGON;
+    if (token.chainId === ChainId.KLAYTN || token.chainId === ChainId.BAOBAB) return KLAYTN;
+    if (token.chainId === ChainId.BSCMAIN || token.chainId === ChainId.BSCTEST) return BINANCE;
     return ETHER;
   }
   return token

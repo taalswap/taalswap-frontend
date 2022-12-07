@@ -1,7 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { useWeb3React } from '@web3-react/core'
+import { ChainId } from "taalswap-sdk";
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance } from 'config/constants/farms'
+import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon } from 'config/constants/farms'
 import isArchivedPid from 'utils/farmHelpers'
 import priceHelperLpsConfig from 'config/constants/priceHelperLps'
 import { chain, isUndefined, parseInt } from 'lodash'
@@ -23,7 +24,17 @@ import getChainId from '../../utils/getChainId'
 // export const changeChainId = () => {}
 
 let noAccountFarmConfig
-if (getChainId() > 1000) {
+if (getChainId() === ChainId.POLYGON || getChainId() === ChainId.MUMBAI) {
+    noAccountFarmConfig = farmsConfigPolygon.map((farm) => ({
+        ...farm,
+        userData: {
+            allowance: '0',
+            tokenBalance: '0',
+            stakedBalance: '0',
+            earnings: '0',
+        },
+    }))
+} else if (getChainId() === ChainId.KLAYTN || getChainId() === ChainId.BAOBAB) {
   noAccountFarmConfig = farmsConfigKlaytn.map((farm) => ({
     ...farm,
     userData: {
@@ -33,7 +44,7 @@ if (getChainId() > 1000) {
       earnings: '0',
     },
   }))
-} else if (getChainId() < 1000 && getChainId() > 55) {
+} else if (getChainId() === ChainId.BSCMAIN || getChainId() === ChainId.BSCTEST) {
     noAccountFarmConfig = farmsConfigBinance.map((farm) => ({
         ...farm,
         userData: {
@@ -43,7 +54,7 @@ if (getChainId() > 1000) {
             earnings: '0',
         },
     }))
-}else {
+} else {
   noAccountFarmConfig = farmsConfig.map((farm) => ({
     ...farm,
     userData: {
@@ -62,9 +73,11 @@ const initialState: FarmsState = {
 }
 // export const nonArchivedFarms = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
 let nonArchivedFarmsChainId
-if (getChainId() > 1000) {
+if (getChainId() === ChainId.POLYGON || getChainId() === ChainId.MUMBAI) {
+    nonArchivedFarmsChainId = farmsConfigPolygon.filter(({pid}) => !isArchivedPid(pid))
+} else if (getChainId() === ChainId.KLAYTN || getChainId() === ChainId.BAOBAB) {
   nonArchivedFarmsChainId = farmsConfigKlaytn.filter(({ pid }) => !isArchivedPid(pid))
-} else if (getChainId() < 1000 && getChainId() > 55) {
+} else if (getChainId() === ChainId.BSCMAIN || getChainId() === ChainId.BSCTEST) {
     nonArchivedFarmsChainId = farmsConfigBinance.filter(({ pid }) => !isArchivedPid(pid))
 } else {
   nonArchivedFarmsChainId = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
@@ -79,9 +92,11 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
     // const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
 
     let farmsToFetch
-    if (getChainId() > 1000) {
+    if (getChainId() === ChainId.POLYGON || getChainId() === ChainId.MUMBAI) {
+        farmsToFetch = farmsConfigPolygon.filter((farmConfig) => pids.includes(farmConfig.pid))
+    } else if (getChainId() === ChainId.KLAYTN || getChainId() === ChainId.BAOBAB) {
       farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
-    } else if (getChainId() < 1000 && getChainId() > 55) {
+    } else if (getChainId() === ChainId.BSCMAIN || getChainId() === ChainId.BSCTEST) {
       farmsToFetch = farmsConfigBinance.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else {
       farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
@@ -112,9 +127,11 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
   async ({ account, pids }) => {
     // const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
     let farmsToFetch
-    if (getChainId() > 1000) {
+    if (getChainId() === ChainId.POLYGON || getChainId() === ChainId.MUMBAI) {
+        farmsToFetch = farmsConfigPolygon.filter((farmConfig) => pids.includes(farmConfig.pid))
+    } else if (getChainId() === ChainId.KLAYTN || getChainId() === ChainId.BAOBAB) {
       farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
-    } else if (getChainId() < 1000 && getChainId() > 55) {
+    } else if (getChainId() === ChainId.BSCMAIN || getChainId() === ChainId.BSCTEST) {
       farmsToFetch = farmsConfigBinance.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else {
       farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))

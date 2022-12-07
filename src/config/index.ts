@@ -45,6 +45,8 @@ export const SCAN_URL = {
   [ChainId.BAOBAB]: 'https://baobab.scope.klaytn.com',
   [ChainId.BSCMAIN]: 'https://bscscan.com',
   [ChainId.BSCTEST]: 'https://testnet.bscscan.com',
+  [ChainId.MUMBAI]: 'https://mumbai.polygonscan.com',
+  [ChainId.POLYGON]: 'https://polygonscan.com',
 }
 export const NETWORK_NAME = {
   [ChainId.MAINNET]: 'Ethereum Mainnet',
@@ -54,4 +56,6 @@ export const NETWORK_NAME = {
   [ChainId.BAOBAB]: 'Klaytn Baobab',
   [ChainId.BSCMAIN]: 'Binance Mainnet',
   [ChainId.BSCTEST]: 'Binance Testnet',
+  [ChainId.MUMBAI]: 'Polygon Testnet',
+  [ChainId.POLYGON]: 'Polygon Mainnet',
 }

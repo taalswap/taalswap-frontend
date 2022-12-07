@@ -1,22 +1,21 @@
-import { ChainId, Currency, CurrencyAmount, currencyEquals, ETHER, KLAYTN, BINANCE, Token } from 'taalswap-sdk'
-import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
-import { FixedSizeList } from 'react-window'
+import {BINANCE, ChainId, Currency, CurrencyAmount, currencyEquals, ETHER, KLAYTN, POLYGON, Token} from 'taalswap-sdk'
+import React, {CSSProperties, MutableRefObject, useCallback, useMemo} from 'react'
+import {FixedSizeList} from 'react-window'
 import styled from 'styled-components'
-import { Text } from 'taalswap-uikit'
-import { useActiveWeb3React } from '../../hooks'
-import { useSelectedTokenList, WrappedTokenInfo } from '../../state/lists/hooks'
-import { useAddUserToken, useRemoveUserAddedToken } from '../../state/user/hooks'
-import { useCurrencyBalance } from '../../state/wallet/hooks'
-import { LinkStyledButton } from '../Shared'
-import { useIsUserAddedToken } from '../../hooks/Tokens'
+import {Text} from 'taalswap-uikit'
+import {useActiveWeb3React} from '../../hooks'
+import {useSelectedTokenList, WrappedTokenInfo} from '../../state/lists/hooks'
+import {useAddUserToken, useRemoveUserAddedToken} from '../../state/user/hooks'
+import {useCurrencyBalance} from '../../state/wallet/hooks'
+import {LinkStyledButton} from '../Shared'
+import {useIsUserAddedToken} from '../../hooks/Tokens'
 import Column from '../Column'
-import { RowFixed } from '../Row'
+import {RowFixed} from '../Row'
 import CurrencyLogo from '../CurrencyLogo'
-import { MouseoverTooltip } from '../Tooltip'
-import { FadedSpan, MenuItem } from './styleds'
+import {MouseoverTooltip} from '../Tooltip'
+import {FadedSpan, MenuItem} from './styleds'
 import Loader from '../Loader'
-import { isTokenOnList } from '../../utils'
-import { useSwapState } from '../../state/swap/hooks'
+import {isTokenOnList} from '../../utils'
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token
@@ -27,6 +26,8 @@ function currencyKey(currency: Currency): string {
     ? 'KLAYTN'
     : currency === BINANCE
     ? 'BINANCE'
+    : currency === POLYGON
+    ? 'POLYGON'
     : ''
 }
 
@@ -187,8 +188,9 @@ export default function CurrencyList({
     chainId = selectedChain
   }
   let CURRENCY = Currency.ETHER
-  if (chainId && chainId > 1000) CURRENCY = Currency.KLAYTN
-  else if (chainId && chainId > 55 && chainId < 1000) CURRENCY = Currency.BINANCE
+  if (chainId && (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI)) CURRENCY = Currency.POLYGON
+  else if (chainId && (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB)) CURRENCY = Currency.KLAYTN
+  else if (chainId && (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST)) CURRENCY = Currency.BINANCE
   const itemData = useMemo(
     () => (showETH ? [CURRENCY, ...currencies] : [...currencies]),
     [currencies, showETH, CURRENCY],

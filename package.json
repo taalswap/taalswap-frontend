@@ -76,7 +76,7 @@
     "swiper": "^6.6.1",
     "swr": "^1.3.0",
     "taalswap-ethers": "^5.5.7",
-    "taalswap-sdk": "^2.4.3",
+    "taalswap-sdk": "../taalswap-sdk",
     "taalswap-uikit": "../taalswap-toolkit/packages/taalswap-uikit",
     "typescript": "^4.3.2",
     "web3": "^1.3.6"
