@@ -3,7 +3,7 @@
   "timestamp": "2022-12-19T17:14:00Z",
   "version": {
     "major": 3,
-    "minor": 6,
+    "minor": 7,
     "patch": 0
   },
   "tags": {},
@@ -307,7 +307,7 @@
       "address": "0x470772ACaD63e7284f618d3d726E1B808a1F1f37",
       "chainId": 1313161555,
       "decimals": 18,
-      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"
+      "logoURI": "https://localhost:3001/images/coins/vlt.png"
     }
   ]
 }
