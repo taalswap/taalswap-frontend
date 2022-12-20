@@ -10,7 +10,8 @@ export enum GAS_PRICE {
   fast = '6',
   instant = '7',
   testnet = '10',
-  klaytn = '250'    // change 25 -> 750 -> 250
+  klaytn = '250',    // change 25 -> 750 -> 250
+  aurora = '0.07'
 }
 
 export const GAS_PRICE_GWEI = {
@@ -19,6 +20,7 @@ export const GAS_PRICE_GWEI = {
   instant: parseUnits(GAS_PRICE.instant, 'gwei').toString(),
   testnet: parseUnits(GAS_PRICE.testnet, 'gwei').toString(),
   klaytn: parseUnits(GAS_PRICE.klaytn, 'gwei').toString(),
+  aurora: parseUnits(GAS_PRICE.aurora, 'gwei').toString(),
 }
 
 const getFastGasPrice = async () => {
@@ -37,8 +39,11 @@ const getGasPrice = async () => {
   const userGas = await getFastGasPrice();
   console.log(userGas)
   const currentChainId = getChainId()
-  if (currentChainId > 1000) {
+  if (currentChainId === ChainId.KLAYTN || currentChainId === ChainId.BAOBAB) {
     return GAS_PRICE_GWEI.klaytn
+  }
+  if (currentChainId === ChainId.AURORAMAIN || currentChainId === ChainId.AURORATEST) {
+    return GAS_PRICE_GWEI.aurora
   }
 
   return chainId === ChainId.MAINNET.toString() ? userGas : GAS_PRICE_GWEI.testnet
