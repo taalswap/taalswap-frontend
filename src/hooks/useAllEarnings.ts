@@ -10,8 +10,8 @@ import {
   farmsConfigPolygon,
   farmsConfigAurora
 } from 'config/constants'
+import { ChainId } from "taalswap-sdk";
 import useRefresh from './useRefresh'
-import {ChainId} from "taalswap-sdk";
 
 const useAllEarnings = () => {
   const [balances, setBalance] = useState([])
