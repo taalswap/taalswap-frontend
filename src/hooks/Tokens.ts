@@ -1,5 +1,5 @@
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHER, Token, currencyEquals, KLAYTN, BINANCE, POLYGON } from 'taalswap-sdk';
+import {Currency, ETHER, Token, currencyEquals, KLAYTN, BINANCE, POLYGON, AURORA, ChainId} from 'taalswap-sdk';
 import { useMemo } from 'react'
 import { useSelectedTokenList } from '../state/lists/hooks'
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
@@ -103,7 +103,12 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 }
 
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
+  // TODO : 일반화 할 수 있을 지... 테스트 필요함.
+  const chainId = parseInt(window.localStorage.getItem("chainId") ?? "1")
+  console.log('1============>', chainId, currencyId)
+
   const isBNB = currencyId?.toUpperCase() === 'ETH' || currencyId?.toUpperCase() === 'KLAY' || currencyId?.toUpperCase() === 'BNB' || currencyId?.toUpperCase() === 'MATIC'
   const token = useToken(isBNB ? undefined : currencyId)
+  // return isBNB ? currencyId?.toUpperCase() === 'ETH' ? (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) ? AURORA : ETHER : currencyId?.toUpperCase() === 'KLAY' ? KLAYTN : currencyId?.toUpperCase() === 'BNB' ? BINANCE : POLYGON : token
   return isBNB ? currencyId?.toUpperCase() === 'ETH' ? ETHER : currencyId?.toUpperCase() === 'KLAY' ? KLAYTN : currencyId?.toUpperCase() === 'BNB' ? BINANCE : POLYGON : token
 }

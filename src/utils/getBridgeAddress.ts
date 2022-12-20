@@ -32,6 +32,12 @@ export default function getBridgeAddress(chain: any): string {
     case ChainId.MUMBAI:
       bridgeAddress = BRIDGE_ADDRESS[ChainId.MUMBAI]
       break;
+    case ChainId.AURORAMAIN:
+      bridgeAddress = BRIDGE_ADDRESS[ChainId.AURORAMAIN]
+      break;
+    case ChainId.AURORATEST:
+      bridgeAddress = BRIDGE_ADDRESS[ChainId.AURORATEST]
+      break;
     default:
       bridgeAddress = BRIDGE_ADDRESS[ChainId.MAINNET]
       break;

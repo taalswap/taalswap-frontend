@@ -1,4 +1,4 @@
-import {BINANCE, ChainId, Currency, CurrencyAmount, currencyEquals, ETHER, KLAYTN, POLYGON, Token} from 'taalswap-sdk'
+import {BINANCE, ChainId, Currency, CurrencyAmount, currencyEquals, ETHER, KLAYTN, POLYGON, AURORA, Token} from 'taalswap-sdk'
 import React, {CSSProperties, MutableRefObject, useCallback, useMemo} from 'react'
 import {FixedSizeList} from 'react-window'
 import styled from 'styled-components'
@@ -28,6 +28,8 @@ function currencyKey(currency: Currency): string {
     ? 'BINANCE'
     : currency === POLYGON
     ? 'POLYGON'
+    : currency === AURORA
+    ? 'AURORA'
     : ''
 }
 
@@ -191,6 +193,7 @@ export default function CurrencyList({
   if (chainId && (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI)) CURRENCY = Currency.POLYGON
   else if (chainId && (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB)) CURRENCY = Currency.KLAYTN
   else if (chainId && (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST)) CURRENCY = Currency.BINANCE
+  else if (chainId && (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST)) CURRENCY = Currency.AURORA
   const itemData = useMemo(
     () => (showETH ? [CURRENCY, ...currencies] : [...currencies]),
     [currencies, showETH, CURRENCY],

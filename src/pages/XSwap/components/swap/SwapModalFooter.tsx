@@ -116,7 +116,8 @@ export default function SwapModalFooter({
   if (trade.inputAmount.currency.symbol === 'ETH') {
     if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) FEE = 'MATIC'
     else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) FEE = 'KLAY'
-    else if (chainId === ChainId.BSCMAIN|| chainId === ChainId.BSCTEST) FEE = 'BNB'
+    else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) FEE = 'BNB'
+    else if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) FEE = 'ETH'
   } else {
     FEE = trade.inputAmount.currency.symbol ?? ''
   }

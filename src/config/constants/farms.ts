@@ -282,5 +282,41 @@ const farmsConfigPolygon: FarmConfig[] = [
   },
 ]
 
+const farmsConfigAurora: FarmConfig[] = [
+  /**
+   * These 3 farms (PID 0, 251, 252) should always be at the top of the file.
+   */
+  {
+    pid: 0,
+    lpSymbol: 'TAL',
+    lpAddresses: {
+      1313161554: '',   // TaalToken
+      1313161555: '0x67fd18cc70a7f8c26508c59c906b39b2a079866d',
+    },
+    token: tokens.syrup,
+    quoteToken: tokens.weth,
+  },
+  {
+    pid: 1,
+    lpSymbol: 'TAL-ETH LP',
+    lpAddresses: {
+      1313161554: '',
+      1313161555: '0x24eb1E067775a80217fF8fD3078636E6B35cA3b3',
+    },
+    token: tokens.taal,
+    quoteToken: tokens.weth,
+  },
+  {
+    pid: 2,
+    lpSymbol: 'USDC-ETH LP',
+    lpAddresses: {
+      1313161554: '',
+      1313161555: '0x0B2Ea893326f4F3B9d638071D63205Bd4932da51'
+    },
+    token: tokens.usdc,
+    quoteToken: tokens.weth,
+  },
+]
+
 // export default farms
-export { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon }
+export { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon, farmsConfigAurora }

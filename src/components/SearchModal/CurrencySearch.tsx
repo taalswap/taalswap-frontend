@@ -1,28 +1,28 @@
-import { Currency, ETHER, KLAYTN, BINANCE, POLYGON, Token } from 'taalswap-sdk'
-import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { Text, CloseIcon, useTooltip, HelpIcon } from 'taalswap-uikit'
-import { useSelector } from 'react-redux'
+import {BINANCE, ChainId, Currency, ETHER, KLAYTN, POLYGON, AURORA, Token} from 'taalswap-sdk'
+import React, {KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState} from 'react'
+import {CloseIcon, HelpIcon, Text, useTooltip} from 'taalswap-uikit'
+import {useSelector} from 'react-redux'
 // import { useTranslation } from 'react-i18next'
-import { FixedSizeList } from 'react-window'
-import styled, { ThemeContext } from 'styled-components'
+import {FixedSizeList} from 'react-window'
+import styled, {ThemeContext} from 'styled-components'
 import AutoSizer from 'react-virtualized-auto-sizer'
-import { useActiveWeb3React } from '../../hooks'
-import { AppState } from '../../state'
-import { useAllTokens, useToken } from '../../hooks/Tokens'
-import { useSelectedListInfo } from '../../state/lists/hooks'
-import { LinkStyledButton } from '../Shared'
-import { isAddress } from '../../utils'
+import {useActiveWeb3React} from '../../hooks'
+import {AppState} from '../../state'
+import {useAllTokens, useToken} from '../../hooks/Tokens'
+import {useSelectedListInfo} from '../../state/lists/hooks'
+import {LinkStyledButton} from '../Shared'
+import {isAddress} from '../../utils'
 import Card from '../Card'
 import Column from '../Column'
 import ListLogo from '../ListLogo'
-import Row, { RowBetween } from '../Row'
+import Row, {RowBetween} from '../Row'
 import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
-import { filterTokens } from './filtering'
+import {filterTokens} from './filtering'
 import SortButton from './SortButton'
-import { useTokenComparator } from './sorting'
-import { PaddedColumn, SearchInput, Separator } from './styleds'
-import { useTranslation } from '../../contexts/Localization'
+import {useTokenComparator} from './sorting'
+import {PaddedColumn, SearchInput, Separator} from './styleds'
+import {useTranslation} from '../../contexts/Localization'
 
 interface CurrencySearchProps {
   isOpen: boolean
@@ -129,7 +129,10 @@ export function CurrencySearch({
         } else if (s === 'bnb') {
           handleCurrencySelect(BINANCE)
         } else if (s === 'eth') {
-          handleCurrencySelect(ETHER)
+          if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST)
+            handleCurrencySelect(AURORA)
+          else
+            handleCurrencySelect(ETHER)
         } else if (s === 'klay') {
           handleCurrencySelect(KLAYTN)
         } else if (filteredSortedTokens.length > 0) {
@@ -142,7 +145,7 @@ export function CurrencySearch({
         }
       }
     },
-    [filteredSortedTokens, handleCurrencySelect, searchQuery],
+    [filteredSortedTokens, handleCurrencySelect, searchQuery, chainId],
   )
 
   const TipToken = () => {

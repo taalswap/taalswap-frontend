@@ -5,6 +5,7 @@ import {
   KLAYTN,
   BINANCE,
   POLYGON,
+  AURORA,
   JSBI,
   Pair,
   Percent,
@@ -123,6 +124,8 @@ export function useDerivedMintInfo(
           ? CurrencyAmount.binance(dependentTokenAmount.raw)
           : dependentCurrency === POLYGON
           ? CurrencyAmount.polygon(dependentTokenAmount.raw)
+          : dependentCurrency === AURORA
+          ? CurrencyAmount.aurora(dependentTokenAmount.raw)
           : dependentTokenAmount;
       }
       return undefined;

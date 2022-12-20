@@ -109,6 +109,11 @@ export default function Pool() {
       // CURRENCY = '/add/80001/MATIC/0x00';
       CURRENCY = `/add/${curChainId}/MATIC/0x00`
       break
+    case ChainId.AURORAMAIN:
+    case ChainId.AURORATEST:
+      // CURRENCY = '/add/1313161555/ETH/0x00';
+      CURRENCY = `/add/${curChainId}/ETH/0x00`
+      break
     default:
       CURRENCY = `/add/${curChainId}/ETH/0x00`
       break

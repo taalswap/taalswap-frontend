@@ -15,6 +15,7 @@ export default function Updater(): null {
   const klayChainId = process.env.REACT_APP_KLAYTN_ID ?? '8217';
   const bnbChainId = process.env.REACT_APP_BINANCE_ID ?? '56';
   const maticChainId = process.env.REACT_APP_POLYGON_ID ?? '137';
+  const auroraChainId = process.env.REACT_APP_AURORA_ID ?? '1313161554';
   const xSwapCurrency = window.localStorage.getItem('xSwapCurrency')
   const dispatch = useDispatch()
 
@@ -77,6 +78,19 @@ export default function Updater(): null {
       [dispatch, chainId, ethChainId, maticChainId]
   )
 
+  const blockNumberCallbackAurora = useCallback(
+      (blockNumber: number) => {
+        // let xChainId = ChainId.AURORATEST
+        let xChainId = parseInt(auroraChainId);
+        // if (chainId === ChainId.AURORATEST) {
+        if (chainId !== undefined && chainId.toString() === auroraChainId) {
+          xChainId = parseInt(ethChainId);
+        }
+        dispatch(updateBlockNumber({ chainId: xChainId, blockNumber }))
+      },
+      [dispatch, chainId, ethChainId, auroraChainId]
+  )
+
   // attach/detach listeners
   useEffect(() => {
     if (!library || !chainId || !windowVisible) return undefined
@@ -130,6 +144,19 @@ export default function Updater(): null {
       crossChainProvider.getBlockNumber()
           .then(blockNumberCallbackBinance)
           .catch((error) => console.error(`Failed to get block number for chainId: ${bnbChainId}`, error))
+    } else if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) {
+      let crossChainProvider
+      if (auroraChainId === '1313161554') {
+        // crossChainProvider = new ethers.providers.JsonRpcProvider('https://mainnet.aurora.dev');
+        crossChainProvider = new ethers.providers.InfuraProvider('mainnet', 'adb9c847d7114ee7bf83995e8f22e098')
+      }
+      if (auroraChainId === '1313161555') {
+        // crossChainProvider = new ethers.providers.JsonRpcProvider('https://testnet.aurora.dev');
+        crossChainProvider = new ethers.providers.InfuraProvider('goerli', 'adb9c847d7114ee7bf83995e8f22e098')
+      }
+      crossChainProvider.getBlockNumber()
+          .then(blockNumberCallbackBinance)
+          .catch((error) => console.error(`Failed to get block number for chainId: ${auroraChainId}`, error))
     } else {
       let crossChainProvider
       if (klayChainId === '8217') {
@@ -148,7 +175,7 @@ export default function Updater(): null {
     return () => {
       library.removeListener('block', blockNumberCallback)
     }
-  }, [dispatch, chainId, library, blockNumberCallback, blockNumberCallbackKlaytn, blockNumberCallbackBinance, blockNumberCallbackPolygon, windowVisible, ethChainId, klayChainId, bnbChainId, maticChainId, xSwapCurrency])
+  }, [dispatch, chainId, library, blockNumberCallback, blockNumberCallbackKlaytn, blockNumberCallbackBinance, blockNumberCallbackPolygon, windowVisible, ethChainId, klayChainId, bnbChainId, maticChainId, auroraChainId, xSwapCurrency])
 
   const debouncedState = useDebounce(state, 100)
 

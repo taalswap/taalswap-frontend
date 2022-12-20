@@ -9,7 +9,9 @@ const TAL_ADDRESS = {
   [ChainId.BSCMAIN]: '',
   [ChainId.BSCTEST]: '0x8318ea1dbba627731ac55bf47e57a22952bd537d',
   [ChainId.POLYGON]: '',
-  [ChainId.MUMBAI]: '0x42a0931b5623bbb7db7f3115b1dd168cbff8c6ee'
+  [ChainId.MUMBAI]: '0x42a0931b5623bbb7db7f3115b1dd168cbff8c6ee',
+  [ChainId.AURORAMAIN]: '',
+  [ChainId.AURORATEST]: '0x67fd18cc70a7f8c26508c59c906b39b2a079866d'
 }
 
 export default TAL_ADDRESS

@@ -7,6 +7,7 @@ import {
   JSBI,
   KLAYTN,
   POLYGON,
+  AURORA,
   Token,
   TokenAmount
 } from 'taalswap-sdk';
@@ -57,6 +58,8 @@ export function useETHBalances(
             ? CurrencyAmount.klaytn(JSBI.BigInt(value.toString()))
             : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
             ? CurrencyAmount.binance(JSBI.BigInt(value.toString()))
+            : chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST
+            ? CurrencyAmount.aurora(JSBI.BigInt(value.toString()))
             : CurrencyAmount.ether(JSBI.BigInt(value.toString()))
         return memo
       }, {}),
@@ -133,11 +136,12 @@ export function useCurrencyBalances(
 
   const tokenBalances = useTokenBalances(account, tokens)
 
-  const containsETH: boolean = useMemo(() => currencies?.some(currency => (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON)) ?? false, [currencies])
+  const containsETH: boolean = useMemo(() => currencies?.some(currency => (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON || currency === AURORA)) ?? false, [currencies])
   const ethChainId = parseInt(process.env.REACT_APP_CHAIN_ID ?? '1', 10) as ChainId;
   const klayChainId = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '8217', 10) as ChainId;
   const bnbChainId = parseInt(process.env.REACT_APP_BINANCE_ID ?? '56', 10) as ChainId;
   const maticChainId = parseInt(process.env.REACT_APP_POLYGON_ID ?? '137', 10) as ChainId;
+  const auroraChainId = parseInt(process.env.REACT_APP_AURORA_ID ?? '1313161554', 10) as ChainId;
   let balanceChainId = ethChainId
   if (containsETH) {
     if (currencies && currencies[0] === ETHER) {
@@ -152,6 +156,9 @@ export function useCurrencyBalances(
     if (currencies && currencies[0] === POLYGON) {
       balanceChainId = maticChainId
     }
+    if (currencies && currencies[0] === AURORA) {
+      balanceChainId = auroraChainId
+    }
   }
   const ethBalance = useETHBalances(containsETH ? [account] : [], balanceChainId)
 
@@ -160,7 +167,7 @@ export function useCurrencyBalances(
       currencies?.map(currency => {
         if (!account || !currency) return undefined
         if (currency instanceof Token) return tokenBalances[currency.address]
-        if (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON) return ethBalance[account]
+        if (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON || currency === AURORA) return ethBalance[account]
         return undefined
       }) ?? [],
     [account, currencies, ethBalance, tokenBalances]

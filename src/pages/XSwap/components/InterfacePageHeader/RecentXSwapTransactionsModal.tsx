@@ -68,6 +68,7 @@ const RecentXSwapTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTr
 
   useEffect(() => {
     const getXSWapTransactions = async () => {
+      // TODO : 체인이 너무 많아서... 이걸 어떻게 처리할 수 있을까?
       const url = `${getKlaytnApiUrl()}/${account}`
 
       await axios.get(url).then((response) => {
@@ -108,6 +109,9 @@ const RecentXSwapTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTr
           url = `${SCAN_URL[urlChainId]}/tx/${txHash}`
           break
         case 'POLYGON':
+          url = `${SCAN_URL[urlChainId]}/tx/${txHash}`
+          break
+        case 'AURORA':
           url = `${SCAN_URL[urlChainId]}/tx/${txHash}`
           break
         default:

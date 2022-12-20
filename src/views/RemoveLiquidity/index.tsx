@@ -3,7 +3,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, BINANCE, POLYGON, Percent, WETH } from 'taalswap-sdk'
+import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, BINANCE, POLYGON, AURORA, Percent, WETH } from 'taalswap-sdk'
 import { Button, Flex, Text } from 'taalswap-uikit'
 import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
@@ -209,8 +209,8 @@ export default function RemoveLiquidity({
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
     if (!liquidityAmount) throw new Error('missing liquidity amount')
 
-    const currencyBIsETH = currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE || currencyB === POLYGON
-    const oneCurrencyIsETH = currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyA === POLYGON || currencyBIsETH
+    const currencyBIsETH = currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE || currencyB === POLYGON || currencyB === AURORA
+    const oneCurrencyIsETH = currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyA === POLYGON || currencyA === AURORA || currencyBIsETH
     const deadlineFromNow = Math.ceil(Date.now() / 1000) + deadline
 
     if (!tokenA || !tokenB) throw new Error('could not wrap')
@@ -410,7 +410,7 @@ export default function RemoveLiquidity({
     [onUserInput],
   )
 
-  const oneCurrencyIsETH = currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyA === POLYGON || currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE || currencyB === POLYGON
+  const oneCurrencyIsETH = currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyA === POLYGON || currencyA === AURORA || currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE || currencyB === POLYGON || currencyB === AURORA
   const oneCurrencyIsWETH = Boolean(
     chainId &&
       ((currencyA && currencyEquals(WETH[chainId], currencyA)) ||
@@ -481,6 +481,12 @@ export default function RemoveLiquidity({
       ethStr = 'MATIC'
       receivedEthStr = 'Receive MATIC'
       receivedWethStr = 'Receive WMATIC'
+      break
+    case ChainId.AURORAMAIN:
+    case ChainId.AURORATEST:
+      ethStr = 'ETH'
+      receivedEthStr = 'Receive ETH'
+      receivedWethStr = 'Receive WETH'
       break
     default:
       ethStr = 'ETH'
@@ -597,8 +603,8 @@ export default function RemoveLiquidity({
                           {oneCurrencyIsETH ? (
                             <StyledInternalLink
                               to={`/remove/${
-                                currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyA === POLYGON ? WETH[chainId].address : currencyIdA
-                              }/${currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE || currencyB === POLYGON ? WETH[chainId].address : currencyIdB}`}
+                                currencyA === ETHER || currencyA === KLAYTN || currencyA === BINANCE || currencyA === POLYGON || currencyA === AURORA ? WETH[chainId].address : currencyIdA
+                              }/${currencyB === ETHER || currencyB === KLAYTN || currencyB === BINANCE || currencyB === POLYGON || currencyB === AURORA ? WETH[chainId].address : currencyIdB}`}
                             >
                               {t(receivedWethStr)}
                             </StyledInternalLink>

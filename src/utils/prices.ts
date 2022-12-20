@@ -52,7 +52,9 @@ export function computeTradePriceBreakdown(
           ? CurrencyAmount.klaytn(realizedLPFee.multiply(trade.inputAmount.raw).quotient)
           : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
             ? CurrencyAmount.binance(realizedLPFee.multiply(trade.inputAmount.raw).quotient)
-            : CurrencyAmount.ether(realizedLPFee.multiply(trade.inputAmount.raw).quotient))
+            : chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST
+              ? CurrencyAmount.aurora(realizedLPFee.multiply(trade.inputAmount.raw).quotient)
+              : CurrencyAmount.ether(realizedLPFee.multiply(trade.inputAmount.raw).quotient))
 
   return { priceImpactWithoutFee: priceImpactWithoutFeePercent, realizedLPFee: realizedLPFeeAmount }
 }
@@ -96,7 +98,9 @@ export function computeTradeXPriceBreakdown(
           ? CurrencyAmount.klaytn(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient)
           : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
             ? CurrencyAmount.binance(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient)
-            : CurrencyAmount.ether(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient))
+            : chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST
+              ? CurrencyAmount.aurora(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient)
+              : CurrencyAmount.ether(xrealizedLPFee.multiply(tradeX.inputAmount.raw).quotient))
 
   return { xpriceImpactWithoutFee: xpriceImpactWithoutFeePercent, xrealizedLPFee: xrealizedLPFeeAmount }
 }

@@ -12,6 +12,7 @@ const ethChainId = parseInt(process.env.REACT_APP_CHAIN_ID ?? '1', 10);
 const klayChainId = parseInt(process.env.REACT_APP_KLAYTN_ID ?? '8217', 10);
 const bnbChainId = parseInt(process.env.REACT_APP_BINANCE_ID ?? '97', 10);
 const maticChainId = parseInt(process.env.REACT_APP_POLYGON_ID ?? '137', 10);
+const auroraChainId = parseInt(process.env.REACT_APP_AURORA_ID ?? '1313161554', 10);
 
 const _binanceChainListener = async () =>
   new Promise<void>((resolve) =>
@@ -67,7 +68,7 @@ export const useInactiveListenerNew = (suppress = false) => {
     if (ethereum && ethereum.on) {
       const handleChainChanged = async (chainId) => {
         // TODO: Handle wrong network injected
-        if (parseInt(chainId, 16) === ethChainId || parseInt(chainId, 16) === klayChainId || parseInt(chainId, 16) === bnbChainId || parseInt(chainId, 16) === maticChainId) {
+        if (parseInt(chainId, 16) === ethChainId || parseInt(chainId, 16) === klayChainId || parseInt(chainId, 16) === bnbChainId || parseInt(chainId, 16) === maticChainId || parseInt(chainId, 16) === auroraChainId) {
           // eat errors
           const curChainId = parseInt(chainId, 16).toString()
           const prevChainId = window.localStorage.getItem('chainId')

@@ -1,9 +1,9 @@
 import { AbiItem } from 'web3-utils'
 import { Interface } from '@ethersproject/abi'
-import { getWeb3PolygonNoAccount } from 'utils/web3Polygon'
 import MultiCallAbi from 'config/abi/Multicall.json'
 import addresses from 'config/constants/contracts'
 import { parseInt } from 'lodash'
+import { getWeb3AuroraNoAccount } from './web3Aurora'
 
 interface Call {
     address: string // Address of the contract
@@ -11,9 +11,9 @@ interface Call {
     params?: any[] // Function params
 }
 
-const multicallPolygon = async (abi: any[], calls: Call[]) => {
-    const web3 = getWeb3PolygonNoAccount()
-    const multi = new web3.eth.Contract(MultiCallAbi as unknown as AbiItem, addresses.multiCall[parseInt(process.env.REACT_APP_POLYGON_ID, 10)])
+const multicallAurora = async (abi: any[], calls: Call[]) => {
+    const web3 = getWeb3AuroraNoAccount()
+    const multi = new web3.eth.Contract(MultiCallAbi as unknown as AbiItem, addresses.multiCall[parseInt(process.env.REACT_APP_AURORA_ID, 10)])
     const itf = new Interface(abi)
 
     const calldata = calls.map((call) => [call.address.toLowerCase(), itf.encodeFunctionData(call.name, call.params)])
@@ -24,4 +24,4 @@ const multicallPolygon = async (abi: any[], calls: Call[]) => {
     return res
 }
 
-export default multicallPolygon
+export default multicallAurora

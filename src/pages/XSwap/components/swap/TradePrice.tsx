@@ -20,6 +20,7 @@ export default function TradePrice({ price, showInverted, setShowInverted }: Tra
     if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) QUOTE = 'MATIC'
     else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) QUOTE = 'KLAY'
     else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) QUOTE = 'BNB'
+    else if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) QUOTE = 'ETH'
   } else {
     QUOTE = price ? (price.quoteCurrency ? (price.quoteCurrency.symbol ? price.quoteCurrency.symbol : '') : '') : ''
   }
@@ -27,6 +28,7 @@ export default function TradePrice({ price, showInverted, setShowInverted }: Tra
     if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) QUOTE = 'MATIC'
     else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) BASE = 'KLAY'
     else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) BASE = 'BNB'
+    else if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) BASE = 'ETH'
   } else {
     BASE = price ? (price.baseCurrency ? (price.baseCurrency.symbol ? price.baseCurrency.symbol : '') : '') : ''
   }

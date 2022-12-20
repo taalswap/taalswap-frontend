@@ -47,6 +47,8 @@ export const SCAN_URL = {
   [ChainId.BSCTEST]: 'https://testnet.bscscan.com',
   [ChainId.MUMBAI]: 'https://mumbai.polygonscan.com',
   [ChainId.POLYGON]: 'https://polygonscan.com',
+  [ChainId.AURORATEST]: 'https://testnet.aurorascan.dev',
+  [ChainId.AURORAMAIN]: 'https://aurorascan.dev',
 }
 export const NETWORK_NAME = {
   [ChainId.MAINNET]: 'Ethereum Mainnet',
@@ -58,4 +60,6 @@ export const NETWORK_NAME = {
   [ChainId.BSCTEST]: 'Binance Testnet',
   [ChainId.MUMBAI]: 'Polygon Testnet',
   [ChainId.POLYGON]: 'Polygon Mainnet',
+  [ChainId.AURORATEST]: 'Aurora Testnet',
+  [ChainId.AURORAMAIN]: 'Aurora Mainnet',
 }

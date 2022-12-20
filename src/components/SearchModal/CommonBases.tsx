@@ -1,6 +1,6 @@
 import React from 'react'
 import {Text} from 'taalswap-uikit'
-import {BINANCE, ChainId, Currency, currencyEquals, ETHER, KLAYTN, POLYGON, Token} from 'taalswap-sdk'
+import {BINANCE, ChainId, Currency, currencyEquals, ETHER, KLAYTN, POLYGON, AURORA, Token} from 'taalswap-sdk'
 import styled from 'styled-components'
 
 import {SUGGESTED_BASES} from '../../constants'
@@ -40,6 +40,7 @@ export default function CommonBases({
   if (chainId && (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI)) CURRENCY = POLYGON
   else if (chainId && (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB)) CURRENCY = KLAYTN
   else if (chainId && (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST)) CURRENCY = BINANCE
+  else if (chainId && (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST)) CURRENCY = AURORA
 
   return (
     <AutoColumn gap="md">
@@ -55,7 +56,8 @@ export default function CommonBases({
               !currencyEquals(selectedCurrency, ETHER) ||
               !currencyEquals(selectedCurrency, KLAYTN) ||
               !currencyEquals(selectedCurrency, BINANCE) ||
-              !currencyEquals(selectedCurrency, POLYGON)
+              !currencyEquals(selectedCurrency, POLYGON) ||
+              !currencyEquals(selectedCurrency, AURORA)
             ) {
               switch (chainId) {
                 case ChainId.MAINNET:
@@ -75,13 +77,17 @@ export default function CommonBases({
                 case ChainId.MUMBAI:
                   onSelect(POLYGON)
                   break
+                case ChainId.AURORAMAIN:
+                case ChainId.AURORATEST:
+                  onSelect(AURORA)
+                  break
                 default:
                   onSelect(ETHER)
                   break
               }
             }
           }}
-          disable={selectedCurrency === ETHER || selectedCurrency === KLAYTN || selectedCurrency === BINANCE || selectedCurrency === POLYGON}
+          disable={selectedCurrency === ETHER || selectedCurrency === KLAYTN || selectedCurrency === BINANCE || selectedCurrency === POLYGON || selectedCurrency === AURORA}
         >
           <CurrencyLogo currency={CURRENCY} style={{ marginRight: 8 }} />
           <Text>ETH</Text>

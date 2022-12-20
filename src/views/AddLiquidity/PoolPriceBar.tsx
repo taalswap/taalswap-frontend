@@ -39,7 +39,9 @@ export function PoolPriceBar({
         symbol = 'KALY';
       } else if (str === 'ETH' && (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST)) {
         symbol = 'BNB';
-      } else if (str === 'ETH' && chainId === 3) {
+      } else if (str === 'ETH' && (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST)) {
+        symbol = 'ETH';
+      } else if (str === 'ETH' && (chainId === ChainId.MAINNET || chainId === ChainId.ROPSTEN)) {
         symbol = 'ETH';
       } else symbol = str;
     }

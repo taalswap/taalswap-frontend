@@ -11,6 +11,8 @@ const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.BSCTEST]: '0x6392f03e10917a9eec0786198bd4beb29ca199a9',
   [ChainId.POLYGON]: '',
   [ChainId.MUMBAI]: '0x32be9c162735ea6dca6f3c86341b4ff69521ba23',
+  [ChainId.AURORAMAIN]: '',
+  [ChainId.AURORATEST]: '0x553d68b23635893166f4ee5cc185d0cf99aa811f',
 };
 
 export { MULTICALL_ABI, MULTICALL_NETWORKS };

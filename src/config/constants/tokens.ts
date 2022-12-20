@@ -44,7 +44,9 @@ const tokens = {
       56: '',
       97: '0x8318ea1dbba627731ac55bf47e57a22952bd537d',
       137: '',
-      80001: '0x42a0931b5623bbb7db7f3115b1dd168cbff8c6ee'
+      80001: '0x42a0931b5623bbb7db7f3115b1dd168cbff8c6ee',
+      1313161554: '',
+      1313161555: '0x67fd18cc70a7f8c26508c59c906b39b2a079866d',
     },
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
@@ -72,7 +74,9 @@ const tokens = {
       56: '',
       97: '0x094616f0bdfb0b526bd735bf66eca0ad254ca81f',
       137: '',
-      80001: '0xa83aac0bdceb3c9d4265f0c21a852777605f491a'
+      80001: '0xa83aac0bdceb3c9d4265f0c21a852777605f491a',
+      1313161554: '',
+      1313161555: '0x16a7768399c240b549ee0754cf3132cbbdb4fed0',
     },
     decimals: 18,
     projectLink: 'https://weth.io/',
@@ -128,7 +132,9 @@ const tokens = {
       56: '',
       97: '0x64544969ed7ebf5f083679233325356ebe738930', // TODO : change deciaml 18 -> 6
       137: '',
-      80001: '0xaf07ac23189718a3b570c73ccd9cd9c82b16b867'
+      80001: '0xaf07ac23189718a3b570c73ccd9cd9c82b16b867',
+      1313161554: '',
+      1313161555: '0xab482a006d312d6796277d539fe87609065a2b93',
     },
     decimals: 6,
     projectLink: 'https://www.centre.io/usdc/',
@@ -170,7 +176,9 @@ const tokens = {
       56: '',
       97: '0x68d2a9b6a5374a411df4e35c066b36a3e42c9dcc',
       137: '',
-      80001: '0xFa4d7E075e60E6C759e35473d5a330899d880aFc '
+      80001: '0xFa4d7E075e60E6C759e35473d5a330899d880aFc',
+      1313161554: '',
+      1313161555: '0x7a86e1440fe7c67c7701a89d61eeb13f474432d9',
     },
     decimals: 18,
     projectLink: 'https://taalswap.finance/',
@@ -186,7 +194,9 @@ const tokens = {
       56: '',
       97: '',
       137: '',
-      80001: '0xae16dd27539a255a43596481d0f0824ced8170e1\t'
+      80001: '0xae16dd27539a255a43596481d0f0824ced8170e1',
+      1313161554: '',
+      1313161555: '0x50be8d6fb61aaf153e27148e8d1ccd5cf768fc93',
     },
     decimals: 6,
     projectLink: 'https://tether.to/',

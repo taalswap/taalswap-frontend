@@ -5,7 +5,7 @@ import {AddressZero} from '@ethersproject/constants';
 import {JsonRpcSigner, Web3Provider} from '@ethersproject/providers';
 import {BigNumber} from '@ethersproject/bignumber';
 import {abi as IUniswapV2Router02ABI} from '@uniswap/v2-periphery/build/IUniswapV2Router02.json';
-import {BINANCE, ChainId, Currency, CurrencyAmount, ETHER, JSBI, KLAYTN, Percent, POLYGON, Token} from 'taalswap-sdk';
+import {BINANCE, ChainId, Currency, CurrencyAmount, ETHER, JSBI, KLAYTN, Percent, POLYGON, AURORA, Token} from 'taalswap-sdk';
 import BRIDGE_ABI from 'constants/abis/bridge.json';
 import {BRIDGE_ADDRESS, ROUTER_ADDRESS} from '../constants';
 import {TokenAddressMap} from '../state/lists/hooks';
@@ -14,6 +14,7 @@ const ethChainId = process.env.REACT_APP_CHAIN_ID ?? '1';
 const klayChainId = process.env.REACT_APP_KLAYTN_ID ?? '8217';
 const bnbChainId = process.env.REACT_APP_BINANCE_ID ?? '56';
 const maticChainId = process.env.REACT_APP_POLYGON_ID ?? '137';
+const auroraChainId = process.env.REACT_APP_AURORA_ID ?? '1313161554';
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -33,7 +34,9 @@ const ETH_PREFIXES: { [chainId in ChainId]: string } = {
   56: 'bscscan.com',
   97: 'testnet.bscscan.com',
   137: 'polygonscan.com',
-  80001: 'mumbai.polygonscan.com'
+  80001: 'mumbai.polygonscan.com',
+  1313161554: 'aurorascan.dev',
+  1313161555: 'testnet.aurorascan.dev'
 };
 
 const RPC_URL: { [chainId in ChainId]: string } = {
@@ -45,7 +48,9 @@ const RPC_URL: { [chainId in ChainId]: string } = {
   56: 'https://bsc-dataseed.binance.org',
   97: 'https://data-seed-prebsc-1-s1.binance.org:8545',
   137: 'https://polygon-rpc.com',
-  80001: 'https://rpc-mumbai.maticvigil.com'
+  80001: 'https://rpc-mumbai.maticvigil.com',
+  1313161554: 'https://mainnet.aurora.dev',
+  1313161555: 'https://testnet.aurora.dev'
 };
 
 export function getBscScanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
@@ -127,6 +132,7 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
       }
       contract = new Contract(address, ABI, crossChainProvider);
     } else {
+      // TODO : Aurora는 infura 지원함...
       const crossChainProvider = new ethers.providers.JsonRpcProvider(RPC_URL[chainId]);
       contract = new Contract(address, ABI, crossChainProvider);
     }
@@ -153,6 +159,6 @@ export function escapeRegExp(string: string): string {
 }
 
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
-  if (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON) return true;
+  if (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON || currency === AURORA) return true;
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address]);
 }

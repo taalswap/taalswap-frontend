@@ -32,6 +32,12 @@ export default function getRouterAddress(chain: any): string {
     case ChainId.MUMBAI:
       routerAddress = ROUTER_ADDRESS[ChainId.MUMBAI]
       break;
+    case ChainId.AURORAMAIN:
+      routerAddress = ROUTER_ADDRESS[ChainId.AURORAMAIN]
+      break;
+    case ChainId.AURORATEST:
+      routerAddress = ROUTER_ADDRESS[ChainId.AURORATEST]
+      break;
     default:
       routerAddress = ROUTER_ADDRESS[ChainId.MAINNET]
       break;

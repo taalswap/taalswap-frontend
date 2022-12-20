@@ -132,6 +132,40 @@ export const addNetwork = async (chainId: number) => {
             },
           ],
         });
+      } else if (chainId === ChainId.AURORAMAIN) {
+        await provider.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: `0x${chainId.toString(16)}`,
+              chainName: 'Aurora Mainnet',
+              nativeCurrency: {
+                name: 'ETH',
+                symbol: 'ETH',
+                decimals: 18,
+              },
+              rpcUrls: ['https://mainnet.aurora.dev'],
+              blockExplorerUrls: ['https://aurorascan.dev/']
+            },
+          ],
+        });
+      } else if (chainId === ChainId.AURORATEST) {
+        await provider.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: `0x${chainId.toString(16)}`,
+              chainName: 'Aurora Testnet',
+              nativeCurrency: {
+                name: 'ETH',
+                symbol: 'ETH',
+                decimals: 18,
+              },
+              rpcUrls: ['https://testnet.aurora.dev'],
+              blockExplorerUrls: ['https://testnet.aurorascan.dev/']
+            },
+          ],
+        });
       }
     } catch (addError) {
       // handle "add" error

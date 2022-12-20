@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trade, TradeType } from 'taalswap-sdk';
+import {ChainId, Trade, TradeType} from 'taalswap-sdk';
 import styled from 'styled-components';
 import { Card, CardBody, HelpIcon, Text, useTooltip } from 'taalswap-uikit';
 import { Field } from '../../state/swap/actions';
@@ -160,7 +160,10 @@ function TradeSummary({
   const chainId = parseInt(window.localStorage.getItem('chainId') ?? '1');
   let FEE = 'ETH';
   if (trade.inputAmount.currency.symbol === 'ETH') {
-    if (chainId > 1000) FEE = 'KLAY';
+    if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) FEE = 'KLAY';
+    if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) FEE = 'BNB';
+    if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) FEE = 'MATIC';
+    if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) FEE = 'ETH';
   } else {
     FEE = trade.inputAmount.currency.symbol ?? '';
   }

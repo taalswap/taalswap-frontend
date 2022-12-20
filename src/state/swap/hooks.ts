@@ -8,6 +8,7 @@ import {
   JSBI,
   KLAYTN,
   POLYGON,
+  AURORA,
   Token,
   TokenAmount,
   Trade
@@ -69,6 +70,8 @@ export function useSwapActionHandlers(): {
               ? 'BNB'
               : currency === POLYGON
               ? 'MATIC'
+              : currency === AURORA
+              ? 'ETH'
               : '',
         })
       );
@@ -130,7 +133,9 @@ export function tryParseAmount(
             ? CurrencyAmount.klaytn(JSBI.BigInt(typedValueParsed))
             : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
               ? CurrencyAmount.binance(JSBI.BigInt(typedValueParsed))
-              : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
+              : chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST
+                ? CurrencyAmount.aurora(JSBI.BigInt(typedValueParsed))
+                : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
     }
   } catch (error) {
     // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?)
@@ -160,7 +165,9 @@ export function tryParseAmountXswap(
             ? CurrencyAmount.klaytn(JSBI.BigInt(typedValueParsed))
             : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST
               ? CurrencyAmount.binance(JSBI.BigInt(typedValueParsed))
-              : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
+              : chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST
+                ? CurrencyAmount.aurora(JSBI.BigInt(typedValueParsed))
+                : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed));
     }
   } catch (error) {
     // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?)
@@ -299,6 +306,7 @@ export function useDerivedSwapInfo(
       if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) SYMBOL = 'MATIC'
       else if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) SYMBOL = 'KLAY'
       else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) SYMBOL = 'BNB'
+      else if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) SYMBOL = 'ETH'
     } else {
       SYMBOL = amountIn.currency.symbol ?? ''
     }
@@ -565,7 +573,9 @@ function validatedCrossChain(crossChain: any): number {
     crossChain === 56 ||
     crossChain === 97 ||
     crossChain === 137 ||
-    crossChain === 80001
+    crossChain === 80001 ||
+    crossChain === 1313161554 ||
+    crossChain === 1313161555
   ) {
     return crossChain
   }

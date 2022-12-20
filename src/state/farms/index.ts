@@ -2,7 +2,7 @@
 import { useWeb3React } from '@web3-react/core'
 import { ChainId } from "taalswap-sdk";
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon } from 'config/constants/farms'
+import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon, farmsConfigAurora } from 'config/constants/farms'
 import isArchivedPid from 'utils/farmHelpers'
 import priceHelperLpsConfig from 'config/constants/priceHelperLps'
 import { chain, isUndefined, parseInt } from 'lodash'
@@ -54,6 +54,16 @@ if (getChainId() === ChainId.POLYGON || getChainId() === ChainId.MUMBAI) {
             earnings: '0',
         },
     }))
+} else if (getChainId() === ChainId.AURORAMAIN || getChainId() === ChainId.AURORATEST) {
+    noAccountFarmConfig = farmsConfigAurora.map((farm) => ({
+        ...farm,
+        userData: {
+            allowance: '0',
+            tokenBalance: '0',
+            stakedBalance: '0',
+            earnings: '0',
+        },
+    }))
 } else {
   noAccountFarmConfig = farmsConfig.map((farm) => ({
     ...farm,
@@ -79,6 +89,8 @@ if (getChainId() === ChainId.POLYGON || getChainId() === ChainId.MUMBAI) {
   nonArchivedFarmsChainId = farmsConfigKlaytn.filter(({ pid }) => !isArchivedPid(pid))
 } else if (getChainId() === ChainId.BSCMAIN || getChainId() === ChainId.BSCTEST) {
     nonArchivedFarmsChainId = farmsConfigBinance.filter(({ pid }) => !isArchivedPid(pid))
+} else if (getChainId() === ChainId.AURORAMAIN || getChainId() === ChainId.AURORATEST) {
+    nonArchivedFarmsChainId = farmsConfigAurora.filter(({ pid }) => !isArchivedPid(pid))
 } else {
   nonArchivedFarmsChainId = farmsConfig.filter(({ pid }) => !isArchivedPid(pid))
 }
@@ -98,12 +110,15 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
       farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else if (getChainId() === ChainId.BSCMAIN || getChainId() === ChainId.BSCTEST) {
       farmsToFetch = farmsConfigBinance.filter((farmConfig) => pids.includes(farmConfig.pid))
+    } else if (getChainId() === ChainId.AURORAMAIN || getChainId() === ChainId.AURORATEST) {
+        farmsToFetch = farmsConfigAurora.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else {
       farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
     }
 
     // Add price helper farms
     const farmsWithPriceHelpers = farmsToFetch.concat(priceHelperLpsConfig)
+      console.log('===>', farmsWithPriceHelpers);
     const farms = await fetchFarms(farmsWithPriceHelpers)
     const farmsWithPrices = await fetchFarmsPrices(farms)
     // Filter out price helper LP config farms
@@ -133,6 +148,8 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
       farmsToFetch = farmsConfigKlaytn.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else if (getChainId() === ChainId.BSCMAIN || getChainId() === ChainId.BSCTEST) {
       farmsToFetch = farmsConfigBinance.filter((farmConfig) => pids.includes(farmConfig.pid))
+    } else if (getChainId() === ChainId.AURORAMAIN || getChainId() === ChainId.AURORAMAIN) {
+        farmsToFetch = farmsConfigAurora.filter((farmConfig) => pids.includes(farmConfig.pid))
     } else {
       farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
     }

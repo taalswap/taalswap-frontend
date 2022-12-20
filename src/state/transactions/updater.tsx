@@ -184,6 +184,50 @@ export default function Updater(): null {
                         console.error(`failed to check transaction hash: ${hash}`, error)
                     })
             })
+    } else if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) {
+        Object.keys(transactions)
+            .filter((hash) => shouldCheck(lastBlockNumber, transactions[hash]))
+            .forEach((hash) => {
+                library
+                    .getTransactionReceipt(hash)
+                    .then((receipt) => {
+                        if (receipt) {
+                            // console.log(receipt)
+                            dispatch(
+                                finalizeTransaction({
+                                    chainId,
+                                    hash,
+                                    receipt: {
+                                        blockHash: receipt.blockHash,
+                                        blockNumber: receipt.blockNumber,
+                                        contractAddress: receipt.contractAddress,
+                                        from: receipt.from,
+                                        status: receipt.status,
+                                        to: receipt.to,
+                                        transactionHash: receipt.transactionHash,
+                                        transactionIndex: receipt.transactionIndex,
+                                    },
+                                })
+                            )
+
+                            addPopup(
+                                {
+                                    txn: {
+                                        hash,
+                                        success: receipt.status === 1,
+                                        summary: transactions[hash]?.summary,
+                                    },
+                                },
+                                hash
+                            )
+                        } else {
+                            dispatch(checkedTransaction({ chainId, hash, blockNumber: lastBlockNumber }))
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(`failed to check transaction hash: ${hash}`, error)
+                    })
+            })
     } else {    // KLAYTN & BAOBAB
         Object.keys(transactions)
         .filter((hash) => shouldCheck(lastBlockNumber, transactions[hash]))

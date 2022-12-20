@@ -75,7 +75,7 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
           {chainId && (
             <ExternalLink style={{ fontWeight: 400 }} href={getBscScanLink(chainId, token.address, 'token')}>
               <Text title={token.address}>
-                {shortenAddress(token.address)} {chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI ? t('View on Polygonscan') : chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB ? t('View on Klaytnscope') : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST ? t('View on Bscscan') : t('View on Etherscan')}
+                {shortenAddress(token.address)} {chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI ? t('View on Polygonscan') : chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB ? t('View on Klaytnscope') : chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST ? t('View on Bscscan') : chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST ? t('View on Aurorascan') : t('View on Etherscan')}
               </Text>
             </ExternalLink>
           )}

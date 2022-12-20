@@ -1,4 +1,4 @@
-import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, BINANCE, POLYGON, WETH } from 'taalswap-sdk'
+import { ChainId, Currency, currencyEquals, ETHER, KLAYTN, BINANCE, POLYGON, AURORA, WETH } from 'taalswap-sdk'
 import { useMemo } from 'react'
 import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'
@@ -71,6 +71,13 @@ export default function useWrapCallback(
       ethStr = 'MATIC'
       wethStr = 'WMATIC'
       break
+    case ChainId.AURORAMAIN:
+    case ChainId.AURORATEST:
+      wrapStr = 'ETH to WETH'
+      unWrapStr = 'WETH to ETH'
+      ethStr = 'ETH'
+      wethStr = 'WETH'
+      break
     default:
       wrapStr = 'ETH to WETH'
       unWrapStr = 'WETH to ETH'
@@ -84,7 +91,7 @@ export default function useWrapCallback(
 
     const sufficientBalance = inputAmount && balance && !balance.lessThan(inputAmount)
 
-    if ((inputCurrency === ETHER || inputCurrency === KLAYTN || inputCurrency === BINANCE || inputCurrency === POLYGON) && currencyEquals(WETH[chainId], outputCurrency)) {
+    if ((inputCurrency === ETHER || inputCurrency === KLAYTN || inputCurrency === BINANCE || inputCurrency === POLYGON || inputCurrency === AURORA) && currencyEquals(WETH[chainId], outputCurrency)) {
       return {
         wrapType: WrapType.WRAP,
         execute:
@@ -105,7 +112,7 @@ export default function useWrapCallback(
         inputError: sufficientBalance ? undefined : t('Insufficient %symbol% balance', ethStr),
       }
     }
-    if (currencyEquals(WETH[chainId], inputCurrency) && (outputCurrency === ETHER || outputCurrency === KLAYTN || outputCurrency === BINANCE || outputCurrency === POLYGON)) {
+    if (currencyEquals(WETH[chainId], inputCurrency) && (outputCurrency === ETHER || outputCurrency === KLAYTN || outputCurrency === BINANCE || outputCurrency === POLYGON || outputCurrency === AURORA)) {
       return {
         wrapType: WrapType.UNWRAP,
         execute:

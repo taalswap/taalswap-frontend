@@ -3,7 +3,13 @@ import { useWeb3React } from '@web3-react/core'
 import multicall from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import masterChefABI from 'config/abi/masterchef.json'
-import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon } from 'config/constants'
+import {
+  farmsConfig,
+  farmsConfigKlaytn,
+  farmsConfigBinance,
+  farmsConfigPolygon,
+  farmsConfigAurora
+} from 'config/constants'
 import useRefresh from './useRefresh'
 import {ChainId} from "taalswap-sdk";
 
@@ -29,6 +35,12 @@ const useAllEarnings = () => {
         }))
       } else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) {
         calls = farmsConfigBinance.map((farm) => ({
+          address: getMasterChefAddress(),
+          name: 'pendingTaal',
+          params: [farm.pid, account],
+        }))
+      } else if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) {
+        calls = farmsConfigAurora.map((farm) => ({
           address: getMasterChefAddress(),
           name: 'pendingTaal',
           params: [farm.pid, account],

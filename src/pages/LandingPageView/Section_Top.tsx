@@ -540,6 +540,8 @@ const SectionTop: React.FC = () => {
                     ? linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/BNB/0x00`)
                     : parseInt(curChainId) === ChainId.POLYGON || parseInt(curChainId) === ChainId.MUMBAI
                     ? linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/MATIC/0x00`)
+                    : parseInt(curChainId) === ChainId.AURORAMAIN || parseInt(curChainId) === ChainId.AURORATEST
+                    ? linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/ETH/0x00`)
                     : linkToURL(`${frontendBaseUrl}/xswap/${curChainId}/KLAY/0x00`)
                 }
                 className="buy_Btn"

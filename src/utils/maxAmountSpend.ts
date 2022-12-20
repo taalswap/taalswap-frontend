@@ -15,11 +15,13 @@ export function maxAmountSpend(currencyAmount?: CurrencyAmount): CurrencyAmount 
       if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) return CurrencyAmount.polygon(JSBI.subtract(currencyAmount.raw, MIN_ETH))
       if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) return CurrencyAmount.klaytn(JSBI.subtract(currencyAmount.raw, MIN_ETH))
       if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) return CurrencyAmount.binance(JSBI.subtract(currencyAmount.raw, MIN_ETH))
+      if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) return CurrencyAmount.aurora(JSBI.subtract(currencyAmount.raw, MIN_ETH))
       return CurrencyAmount.ether(JSBI.subtract(currencyAmount.raw, MIN_ETH))
     }
     if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) return CurrencyAmount.polygon(JSBI.BigInt(0))
     if (chainId === ChainId.KLAYTN || chainId === ChainId.BAOBAB) return CurrencyAmount.klaytn(JSBI.BigInt(0))
     if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) return CurrencyAmount.binance(JSBI.BigInt(0))
+    if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) return CurrencyAmount.aurora(JSBI.BigInt(0))
     return CurrencyAmount.ether(JSBI.BigInt(0))
   }
   return currencyAmount

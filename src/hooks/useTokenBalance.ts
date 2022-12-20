@@ -15,10 +15,12 @@ import getChainId from '../utils/getChainId'
 import getKlaytnApiUrl from '../utils/getKlaytnApiUrl'
 import getBinanceApiUrl from '../utils/getBinanceApiUrl'
 import getPolygonApiUrl from '../utils/getPolygonApiUrl'
+import getAuroraApiUrl from '../utils/getAuroraApiUrl'
 import multicallEth from '../utils/multicallEth'
 import multicallKlaytn from '../utils/multicallKlaytn'
 import multicallBinance from '../utils/multicallBinance'
 import multicallPolygon from '../utils/multicallPolygon'
+import multicallAurora from '../utils/multicallAurora'
 import useActiveWeb3React from './useActiveWeb3React'
 
 
@@ -143,6 +145,23 @@ export const useTotalAssets = () => {
     async function fetchMaticPairs() {
       const data = []
       await fetch(`${getPolygonApiUrl()}/pairs`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+          .then((response) => response.json())
+          .then((response) => {
+            Object.keys(response.data).forEach((key) => {
+              data.push(response.data[key])
+            })
+          })
+      return data
+    }
+
+    async function fetchAuroraPairs() {
+      const data = []
+      await fetch(`${getAuroraApiUrl()}/pairs`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -345,7 +364,7 @@ export const useTotalAssets = () => {
           const lpContractAddress = vt.pair_address
           return { address: lpContractAddress, name: 'balanceOf', params: [account] }
         })
-        const rawLpBalances = await multicallBinance(lpTokenABI, calls)
+        const rawLpBalances = await multicallPolygon(lpTokenABI, calls)
         rawLpBalances.map((tokenBalance, idx) => {
           pairs[idx].balance = new BigNumber(tokenBalance).toJSON()
           return new BigNumber(tokenBalance).toJSON()
@@ -398,12 +417,73 @@ export const useTotalAssets = () => {
       return 0
     }
 
+    async function fetchAuroraTotalAssets() {
+      try {
+        const pairs = await fetchAuroraPairs()
+        const calls = await pairs.map((vt) => {
+          const lpContractAddress = vt.pair_address
+          return { address: lpContractAddress, name: 'balanceOf', params: [account] }
+        })
+        const rawLpBalances = await multicallAurora(lpTokenABI, calls)
+        rawLpBalances.map((tokenBalance, idx) => {
+          pairs[idx].balance = new BigNumber(tokenBalance).toJSON()
+          return new BigNumber(tokenBalance).toJSON()
+        })
+        const filterdPairs = pairs.filter((pair) => pair.balance > 0)
+        const calls2 = filterdPairs.map((vt) => {
+          const lpContractAddress = vt.pair_address
+          return { address: lpContractAddress, name: 'totalSupply' }
+        })
+        const rawLpSupply = await multicallAurora(erc20ABI, calls2)
+        rawLpSupply.map((supply, idx) => {
+          filterdPairs[idx].total_supply = new BigNumber(supply).toJSON()
+          return new BigNumber(supply).toJSON()
+        })
+        const calls3 = filterdPairs.map((vt) => {
+          const lpContractAddress = vt.pair_address
+          return { address: lpContractAddress, name: 'getReserves' }
+        })
+        const rawLpReserves = await multicallAurora(lpTokenABI, calls3)
+        rawLpReserves.map((reserves, idx) => {
+          filterdPairs[idx].reserve0 = reserves._reserve0
+          filterdPairs[idx].reserve1 = reserves._reserve1
+          return reserves
+        })
+        let assets = 0
+        await filterdPairs.forEach((pair, idx) => {
+          const token0 = new Token(parseInt(process.env.REACT_APP_AURORA_ID, 10), pair.base_address, pair.base_decimals)
+          const token1 = new Token(parseInt(process.env.REACT_APP_AURORA_ID, 10), pair.quote_address, pair.quote_decimals)
+          const lpPair: Pair = new Pair(
+              new TokenAmount(token0, pair.reserve0.toString()),
+              new TokenAmount(token1, pair.reserve1.toString()),
+          )
+
+          const lpToken = new Token(parseInt(process.env.REACT_APP_AURORA_ID, 10), pair.pair_address, 18)
+          const totalSupply = new TokenAmount(lpToken, JSBI.BigInt(pair.total_supply))
+          const liquidity = new TokenAmount(lpToken, JSBI.BigInt(pair.balance))
+
+          const token0value = lpPair.getLiquidityValue(token0, totalSupply, liquidity, false)
+          const token1value = lpPair.getLiquidityValue(token1, totalSupply, liquidity, false)
+
+          const value =
+              parseFloat(token0value.toSignificant(6)) * pair.base_price +
+              parseFloat(token1value.toSignificant(6)) * pair.quote_price
+          assets += value
+        })
+        return assets
+      } catch (e) {
+        console.log(e)
+      }
+      return 0
+    }
+
     async function fetchTotalAssets() {
       const ethAssets = await fetchEthTotalAssets()
       const klaytnAssets = await fetchKlaytnTotalAssets()
       const binanceAssets = await fetchBinanceTotalAssets()
       const polygonAssets = await fetchPolygonTotalAssets()
-      setTotalAssets(Number(ethAssets + klaytnAssets + binanceAssets + polygonAssets))
+      const auroraAssets = await fetchAuroraTotalAssets()
+      setTotalAssets(Number(ethAssets + klaytnAssets + binanceAssets + polygonAssets + auroraAssets))
     }
 
     if (account !== undefined) fetchTotalAssets()

@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import Caver from 'caver-js'
 import {Pair, TokenAmount, Token, ChainId} from 'taalswap-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
-import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon } from 'config/constants/farms'
+import { farmsConfig, farmsConfigKlaytn, farmsConfigBinance, farmsConfigPolygon, farmsConfigAurora } from 'config/constants/farms'
 import { getAddress, getTaalAddress } from 'utils/addressHelpers'
 import tokens from 'config/constants/tokens'
 import pools from 'config/constants/pools'
@@ -212,6 +212,8 @@ if (chainId === ChainId.POLYGON || chainId === ChainId.MUMBAI) {
   cakeBnbFarm = farmsConfigKlaytn.find((farm) => farm.pid === cakeBnbPid)
 } else if (chainId === ChainId.BSCMAIN || chainId === ChainId.BSCTEST) {
   cakeBnbFarm = farmsConfigBinance.find((farm) => farm.pid === cakeBnbPid)
+} else if (chainId === ChainId.AURORAMAIN || chainId === ChainId.AURORATEST) {
+  cakeBnbFarm = farmsConfigAurora.find((farm) => farm.pid === cakeBnbPid)
 } else {
   cakeBnbFarm = farmsConfig.find((farm) => farm.pid === cakeBnbPid)
 }

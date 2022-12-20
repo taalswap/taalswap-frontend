@@ -10,6 +10,8 @@ export const nodesBscmain = 'https://bsc-dataseed.binance.org'
 export const nodesBsctest = 'https://data-seed-prebsc-1-s1.binance.org:8545'
 export const nodesMumbai = 'https://rpc-mumbai.maticvigil.com'
 export const nodesPolygon = 'https://polygon-rpc.com'
+export const nodesAuroraTest = 'https://testnet.aurora.dev'
+export const nodesAuroraMain = 'https://mainnet.aurora.dev'
 
 const getNodeUrl = () => {
   const randomIndex = random(0, nodes.length - 1)
@@ -35,6 +37,12 @@ const getNodeUrl = () => {
       break
     case ChainId.MUMBAI:
       return nodesMumbai
+      break
+    case ChainId.AURORAMAIN:
+      return nodesAuroraMain
+      break
+    case ChainId.AURORATEST:
+      return nodesAuroraTest
       break
     default:
       return nodes[randomIndex]
@@ -66,6 +74,12 @@ export const getSelectedNodeUrl = (chainId) => {
       break
     case ChainId.MUMBAI:
       return nodesMumbai
+      break
+    case ChainId.AURORAMAIN:
+      return nodesAuroraMain
+      break
+    case ChainId.AURORATEST:
+      return nodesAuroraTest
       break
     default:
       return nodes[randomIndex]

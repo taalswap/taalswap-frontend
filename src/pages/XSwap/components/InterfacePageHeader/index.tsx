@@ -93,6 +93,7 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
               klaytn={process.env.REACT_APP_KLAYTN_ID}
               binance={process.env.REACT_APP_BINANCE_ID}
               polygon={process.env.REACT_APP_POLYGON_ID}
+              aurora={process.env.REACT_APP_AURORA_ID}
             />
           </div>
           <IconButtonsWrapper>

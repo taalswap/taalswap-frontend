@@ -6,6 +6,7 @@ import {
   ETHER,
   KLAYTN,
   POLYGON,
+  AURORA,
   Token,
   TokenAmount,
   WETH
@@ -13,7 +14,7 @@ import {
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   // eslint-disable-next-line no-nested-ternary
-  return chainId && (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON) ? WETH[chainId] : currency instanceof Token ? currency : undefined
+  return chainId && (currency === ETHER || currency === KLAYTN || currency === BINANCE || currency === POLYGON || currency === AURORA) ? WETH[chainId] : currency instanceof Token ? currency : undefined
 }
 
 export function wrappedCurrencyAmount(
@@ -29,6 +30,7 @@ export function unwrappedToken(token: Token): Currency {
     if (token.chainId === ChainId.POLYGON || token.chainId === ChainId.MUMBAI) return POLYGON;
     if (token.chainId === ChainId.KLAYTN || token.chainId === ChainId.BAOBAB) return KLAYTN;
     if (token.chainId === ChainId.BSCMAIN || token.chainId === ChainId.BSCTEST) return BINANCE;
+    if (token.chainId === ChainId.AURORAMAIN || token.chainId === ChainId.AURORATEST) return AURORA;
     return ETHER;
   }
   return token
