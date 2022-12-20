@@ -3,7 +3,7 @@
   "timestamp": "2022-12-19T17:14:00Z",
   "version": {
     "major": 3,
-    "minor": 5,
+    "minor": 6,
     "patch": 0
   },
   "tags": {},
@@ -299,6 +299,14 @@
       "address": "0x50be8d6fb61aaf153e27148e8d1ccd5cf768fc93",
       "chainId": 1313161555,
       "decimals": 6,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"
+    },
+    {
+      "name": "Vloc Token",
+      "symbol": "VLT",
+      "address": "0x470772ACaD63e7284f618d3d726E1B808a1F1f37",
+      "chainId": 1313161555,
+      "decimals": 18,
       "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"
     }
   ]
