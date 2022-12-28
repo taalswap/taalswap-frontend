@@ -110,7 +110,6 @@ export function useTokenXswap(tokenAddress?: string): Token | undefined | null {
 export function useCurrencyXswap(currencyId: string | undefined): Currency | null | undefined {
   // TODO : 일반화 할 수 있을 지... 테스트 필요함.
   const chainId = parseInt(window.localStorage.getItem("crossChain") ?? "1")
-  console.log('2============>', chainId, currencyId)
 
   const isBNB = currencyId?.toUpperCase() === 'ETH' || currencyId?.toUpperCase() === 'KLAY' || currencyId?.toUpperCase() === 'BNB' || currencyId?.toUpperCase() === 'MATIC'
   const token = useTokenXswap(isBNB ? undefined : currencyId)

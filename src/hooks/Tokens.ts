@@ -105,7 +105,6 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
   // TODO : 일반화 할 수 있을 지... 테스트 필요함.
   const chainId = parseInt(window.localStorage.getItem("chainId") ?? "1")
-  console.log('1============>', chainId, currencyId)
 
   const isBNB = currencyId?.toUpperCase() === 'ETH' || currencyId?.toUpperCase() === 'KLAY' || currencyId?.toUpperCase() === 'BNB' || currencyId?.toUpperCase() === 'MATIC'
   const token = useToken(isBNB ? undefined : currencyId)
