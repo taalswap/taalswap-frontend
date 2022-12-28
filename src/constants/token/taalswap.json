@@ -2,9 +2,9 @@
   "name": "TaalSwap Default List",
   "timestamp": "2022-12-19T17:14:00Z",
   "version": {
-    "major": 3,
-    "minor": 7,
-    "patch": 0
+    "major": 4,
+    "minor": 0,
+    "patch": 1
   },
   "tags": {},
   "logoURI": "https://taalswap.finance/static/symbol/taalswap_coinsymbol.svg",
@@ -304,11 +304,10 @@
     {
       "name": "Vloc Token",
       "symbol": "VLT",
-      "address": "0x470772ACaD63e7284f618d3d726E1B808a1F1f37",
+      "address": "0x80946d2edf6dcf8e95e9862054e38e8b4b439183",
       "chainId": 1313161555,
       "decimals": 18,
       "logoURI": "https://localhost:3001/images/coins/vlt.png"
     }
   ]
 }
-
