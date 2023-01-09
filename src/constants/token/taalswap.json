@@ -1,9 +1,9 @@
 {
   "name": "TaalSwap Default List",
-  "timestamp": "2022-12-19T17:14:00Z",
+  "timestamp": "2023-01-09T17:14:00Z",
   "version": {
     "major": 4,
-    "minor": 0,
+    "minor": 2,
     "patch": 1
   },
   "tags": {},
@@ -280,7 +280,7 @@
     {
       "name": "USDC Token",
       "symbol": "USDC",
-      "address": "0xab482a006d312d6796277d539fe87609065a2b93",
+      "address": "0x05436246d637f56e543479b12d0c60c7a077f1c1",
       "chainId": 1313161555,
       "decimals": 6,
       "logoURI": "https://taalswap.finance/images/coins/usdc.png"
@@ -296,7 +296,7 @@
     {
       "name": "USDT Token",
       "symbol": "USDT",
-      "address": "0x50be8d6fb61aaf153e27148e8d1ccd5cf768fc93",
+      "address": "0x17337154fe49b8b0871a004de387dfeb506c5b73",
       "chainId": 1313161555,
       "decimals": 6,
       "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png"
@@ -304,7 +304,7 @@
     {
       "name": "Vloc Token",
       "symbol": "VLT",
-      "address": "0x80946d2edf6dcf8e95e9862054e38e8b4b439183",
+      "address": "0x33998df0c9f3615bdf30ad293ab3af53719ae05a",
       "chainId": 1313161555,
       "decimals": 18,
       "logoURI": "https://localhost:3001/images/coins/vlt.png"

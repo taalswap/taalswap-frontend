@@ -10,7 +10,7 @@ export default {
     137: '',
     80001: '0x927c3c16b82d381fd1fe8c592330ad05cad994a6',
     1313161554: '',
-    1313161555: '0xca6e89be8c0033ebac09826d4c632af86f379cda'
+    1313161555: '0x5c92e87ac4badd6e3a885d37a417aad3009cb974'
   },
   sousChef: {
     1: '0x8eaf1a122fadee20bd6c7fc5a6a8bc610d2368e9',

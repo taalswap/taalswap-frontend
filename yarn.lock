@@ -15346,10 +15346,10 @@ taalswap-providers@5.5.7:
     bech32 "1.1.4"
     ws "7.4.6"
 
-taalswap-sdk@^2.4.5:
-  version "2.4.5"
-  resolved "https://registry.yarnpkg.com/taalswap-sdk/-/taalswap-sdk-2.4.5.tgz#e18ef69febe9f623d60073bcff0f89d27060fcec"
-  integrity sha512-8eC/xvyPh/QrhsMIeREgXJEwwbBRp0y01IOY6Ha4BK2AJycXX3BFkbsTq+QwJkpKpyVW6r9QIM06vrnBx/u95g==
+taalswap-sdk@^2.4.6:
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/taalswap-sdk/-/taalswap-sdk-2.4.6.tgz#d87996e4bd7af18a1c17ddd54c5fc204a35e5b49"
+  integrity sha512-+b6Ak/7wbu3RQYp1ZTQdE7AJkNbFX99VxOo/axzpOtEssrPt/kq86YG9WnWBiv576/mtenbgJKl0m02Le/cy8A==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"

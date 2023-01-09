@@ -11,7 +11,7 @@ export const ROUTER_ADDRESS = {
   [ChainId.BSCMAIN]: '',
   [ChainId.MUMBAI]: '0x4b3ca2c094b69b350e14223c3d66861a8be94910',
   [ChainId.POLYGON]: '',
-  [ChainId.AURORATEST]: '0xe8e2f5117297f3a330fd06fac88928b63bb84b09',
+  [ChainId.AURORATEST]: '0x6a05753889799f253565a35f5cdd6dc014694d4a',
   [ChainId.AURORAMAIN]: ''
 }
 
@@ -25,7 +25,7 @@ export const BRIDGE_ADDRESS = {
   [ChainId.BSCMAIN]: '',
   [ChainId.MUMBAI]: '0x7874ec641821108b628b4ecb2df2be7a856aa85d',
   [ChainId.POLYGON]: '',
-  [ChainId.AURORATEST]: '0x9e5daec08ad770a52e2ca740ea19788fef85ea32',
+  [ChainId.AURORATEST]: '0xa74caf50aefc9290f25fc0a680885eac3cc9831f',
   [ChainId.AURORAMAIN]: ''
 }
 
@@ -157,7 +157,7 @@ export const USDT = {
   // [ChainId.BSCTEST]: new Token(ChainId.BSCTEST, '', 18, 'USDT', 'Tether USD'),
   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xae16dd27539a255a43596481d0f0824ced8170e1', 6, 'USDT', 'Tether USD'),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0xc2132d05d31c914a87c6611c10748aeb04b58e8f', 6, 'USDT', 'Tether USD'),
-  [ChainId.AURORATEST]: new Token(ChainId.AURORATEST, '0x50be8d6fb61aaf153e27148e8d1ccd5cf768fc93', 6, 'USDT', 'Tether USD'),
+  [ChainId.AURORATEST]: new Token(ChainId.AURORATEST, '0x17337154fe49b8b0871a004de387dfeb506c5b73', 6, 'USDT', 'Tether USD'),
   [ChainId.AURORAMAIN]: new Token(ChainId.AURORAMAIN, '0x4988a896b1227218e4A686fdE5EabdcAbd91571f', 6, 'USDT', 'Tether USD'),
 }
 
@@ -169,7 +169,7 @@ export const USDT_ADDRESS = {
   [ChainId.BSCTEST]: '0xc63f4d520544913daecc535fef2d78885db9a850',
   [ChainId.MUMBAI]: '0xae16dd27539a255a43596481d0f0824ced8170e1',
   [ChainId.POLYGON]: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
-  [ChainId.AURORATEST]: '0x50be8d6fb61aaf153e27148e8d1ccd5cf768fc93',
+  [ChainId.AURORATEST]: '0x17337154fe49b8b0871a004de387dfeb506c5b73',
   [ChainId.AURORAMAIN]: '0x4988a896b1227218e4A686fdE5EabdcAbd91571f',
 }
 
@@ -182,7 +182,7 @@ export const USDC = {
   [ChainId.BSCTEST]: new Token(ChainId.BSCTEST, '0x64544969ed7ebf5f083679233325356ebe738930', 18, 'USDC', 'USD Coin'),
   [ChainId.MUMBAI]: new Token(ChainId.MUMBAI, '0xaf07ac23189718a3b570c73ccd9cd9c82b16b867', 6, 'USDC', 'USD Coin'),
   [ChainId.POLYGON]: new Token(ChainId.POLYGON, '0x2791bca1f2de4661ed88a30c99a7a9449aa84174', 6, 'USDC', 'USD Coin'),
-  [ChainId.AURORATEST]: new Token(ChainId.AURORATEST, '0xab482a006d312d6796277d539fe87609065a2b93', 6, 'USDC', 'USD Coin'),
+  [ChainId.AURORATEST]: new Token(ChainId.AURORATEST, '0x05436246d637f56e543479b12d0c60c7a077f1c1', 6, 'USDC', 'USD Coin'),
   [ChainId.AURORAMAIN]: new Token(ChainId.AURORAMAIN, '0xB12BFcA5A55806AaF64E99521918A4bf0fC40802', 6, 'USDC', 'USD Coin'),
 }
 
@@ -194,7 +194,7 @@ export const USDC_ADDRESS = {
   [ChainId.BSCTEST]: '0x64544969ed7ebf5f083679233325356ebe738930',
   [ChainId.MUMBAI]: '0xaf07ac23189718a3b570c73ccd9cd9c82b16b867',
   [ChainId.POLYGON]: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
-  [ChainId.AURORATEST]: '0xab482a006d312d6796277d539fe87609065a2b93',
+  [ChainId.AURORATEST]: '0x05436246d637f56e543479b12d0c60c7a077f1c1',
   [ChainId.AURORAMAIN]: '0xB12BFcA5A55806AaF64E99521918A4bf0fC40802',
 }
 

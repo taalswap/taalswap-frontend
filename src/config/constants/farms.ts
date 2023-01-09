@@ -301,7 +301,7 @@ const farmsConfigAurora: FarmConfig[] = [
     lpSymbol: 'TAL-ETH LP',
     lpAddresses: {
       1313161554: '',
-      1313161555: '0x24eb1E067775a80217fF8fD3078636E6B35cA3b3',
+      1313161555: '0xCf6eD6C177141C522B4735E7810f3265cBE71787',
     },
     token: tokens.taal,
     quoteToken: tokens.weth,
@@ -311,7 +311,7 @@ const farmsConfigAurora: FarmConfig[] = [
     lpSymbol: 'USDC-ETH LP',
     lpAddresses: {
       1313161554: '',
-      1313161555: '0x0B2Ea893326f4F3B9d638071D63205Bd4932da51'
+      1313161555: '0x72a284Bf000F83D778Dbee36F998C33826b1Dd37'
     },
     token: tokens.usdc,
     quoteToken: tokens.weth,
