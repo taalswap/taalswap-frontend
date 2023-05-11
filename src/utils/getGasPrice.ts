@@ -22,9 +22,14 @@ export const GAS_PRICE_GWEI = {
 }
 
 const getFastGasPrice = async () => {
-  const result = await axios.get('https://ethgasstation.info/json/ethgasAPI.json');
-  console.log('====>', result);
-  return parseUnits(Math.floor(result.data.fastest / 10).toString(), 'gwei').toString();
+  // const result = await axios.get('https://ethgasstation.info/json/ethgasAPI.json');
+  // console.log('====>', result);
+  // return parseUnits(Math.floor(result.data.fastest / 10).toString(), 'gwei').toString();
+  const data = await axios.get(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.REACT_APP_ETHERSCAN_KEY}`);
+  console.log('====>', data);
+  // @ts-ignore
+  const fast = data && data?.data && data?.data?.result ? data.data.result.FastGasPrice : 80;
+  return parseUnits(fast.toString(), 'gwei').toString();
 }
 
 /**
