@@ -30,7 +30,7 @@ const getFastGasPrice = async () => {
   const data = await axios.get(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.REACT_APP_ETHERSCAN_KEY}`);
   console.log('====>', data);
   // @ts-ignore
-  const fast = data && data?.result ? data.result.FastGasPrice : 80;
+  const fast = data && data?.data && data?.data?.result ? data.data.result.FastGasPrice : 80;
   return parseUnits(fast.toString(), 'gwei').toString();
 }
 
