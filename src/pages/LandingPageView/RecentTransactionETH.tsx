@@ -148,7 +148,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const RecentTransactionETH = () => {
   const { t } = useTranslation()
-  const { data, error } = useSWR('https://taalswap-info-api-black.vercel.app/api/transactions', fetcher)
+  const { data, error } = useSWR('https://taalswap-info-api-lvh8h4k8n-taalswap.vercel.app/api/transactions', fetcher)
 
   const isAddress = (value: string) => {
     try {
