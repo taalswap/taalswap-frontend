@@ -79,10 +79,10 @@ export default function Updater(): null {
     } else {
       let crossChainProvider
       if (klayChainId === '8217') {
-        crossChainProvider = new ethers.providers.JsonRpcProvider('https://public-node-api.klaytnapi.com/v1/cypress');
+        crossChainProvider = new ethers.providers.JsonRpcProvider('https://klaytn-en.kommunedao.xyz:8651');
       }
       if (klayChainId === '1001') {
-        crossChainProvider = new ethers.providers.JsonRpcProvider('https://api.baobab.klaytn.net:8651');
+        crossChainProvider = new ethers.providers.JsonRpcProvider('https://public-en-baobab.klaytn.net');
       }
       crossChainProvider.getBlockNumber()
         .then(blockNumberCallbackOther)

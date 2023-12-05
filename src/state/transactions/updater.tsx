@@ -33,9 +33,9 @@ export default function Updater(): null {
   const { chainId, library } = useActiveWeb3React()
 
   if (chainId === 1001) {
-    caver = new Caver('https://api.baobab.klaytn.net:8651')
+    caver = new Caver('https://public-en-baobab.klaytn.net')
   } else if (chainId === 8217) {
-    caver = new Caver('https://public-node-api.klaytnapi.com/v1/cypress')
+    caver = new Caver('https://klaytn-en.kommunedao.xyz:8651')
   }
 
   const lastBlockNumber = useBlockNumber()

@@ -41,7 +41,7 @@ export const addNetwork = async (chainId: number) => {
                 symbol: 'KLAY',
                 decimals: 18,
               },
-              rpcUrls: ['https://api.baobab.klaytn.net:8651'],
+              rpcUrls: ['https://public-en-baobab.klaytn.net'],
               blockExplorerUrls: ['https://baobab.scope.klaytn.com/']
             },
           ],
@@ -58,7 +58,7 @@ export const addNetwork = async (chainId: number) => {
                 symbol: 'KLAY',
                 decimals: 18,
               },
-              rpcUrls: ['https://public-node-api.klaytnapi.com/v1/cypress'],
+              rpcUrls: ['https://klaytn-en.kommunedao.xyz:8651'],
               blockExplorerUrls: ['https://scope.klaytn.com/']
             },
           ],

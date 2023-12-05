@@ -1,8 +1,8 @@
 import Web3 from 'web3'
 import { HttpProviderOptions } from 'web3-core-helpers'
 
-const nodesCypress = 'https://public-node-api.klaytnapi.com/v1/cypress'
-const nodesBaobab = 'https://api.baobab.klaytn.net:8651'
+const nodesCypress = 'https://klaytn-en.kommunedao.xyz:8651'
+const nodesBaobab = 'https://public-en-baobab.klaytn.net'
 
 const RPC_URL = process.env.REACT_APP_KLAYTN_ID === '1001' ? nodesBaobab : nodesCypress
 const httpProvider = new Web3.providers.HttpProvider(RPC_URL, { timeout: 10000 } as HttpProviderOptions)

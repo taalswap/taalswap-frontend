@@ -34,8 +34,8 @@ const RPC_URL: { [chainId in ChainId]: string } = {
   1: process.env.REACT_APP_NETWORK_URL ?? '',
   3: process.env.REACT_APP_NETWORK_URL ?? '',
   4: process.env.REACT_APP_NETWORK_URL ?? '',
-  8217: 'https://public-node-api.klaytnapi.com/v1/cypress',
-  1001: 'https://api.baobab.klaytn.net:8651'
+  8217: 'https://klaytn-en.kommunedao.xyz:8651',
+  1001: 'https://public-en-baobab.klaytn.net'
 };
 
 export function getBscScanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {

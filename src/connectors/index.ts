@@ -36,8 +36,8 @@ export const bscConnector = new BscConnector({ supportedChainIds: [] });
 // export const walletconnect = new WalletConnectConnector({
 //   rpc: {
 //     [NETWORK_CHAIN_ID]: NETWORK_URL,
-//     [ChainId.KLAYTN]: 'https://public-node-api.klaytnapi.com/v1/cypress',
-//     [ChainId.BAOBAB]: 'https://api.baobab.klaytn.net:8651'
+//     [ChainId.KLAYTN]: 'https://klaytn-en.kommunedao.xyz:8651',
+//     [ChainId.BAOBAB]: 'https://public-en-baobab.klaytn.net'
 //   },
 //   bridge: 'https://bridge.walletconnect.org',
 //   qrcode: true,
