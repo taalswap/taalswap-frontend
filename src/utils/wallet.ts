@@ -12,24 +12,25 @@ export const addNetwork = async (chainId: number) => {
   const provider = (window as WindowChain).ethereum
   if (provider && provider.request) {
     try {
-      if (chainId === ChainId.MAINNET || chainId === ChainId.ROPSTEN || chainId === ChainId.RINKEBY) {
-        await provider.request({
-          method: 'wallet_addEthereumChain',
-          params: [
-            {
-              chainId: `0x${chainId.toString(16)}`,
-              chainName: NETWORK_NAME[chainId],
-              nativeCurrency: {
-                name: 'ETH',
-                symbol: 'ETH',
-                decimals: 18,
-              },
-              rpcUrls: [`${process.env.REACT_APP_NETWORK_URL}`],
-              blockExplorerUrls: [`${SCAN_URL[chainId]}/`]
-            },
-          ],
-        })
-      } else if (chainId === ChainId.BAOBAB) {
+      // if (chainId === ChainId.MAINNET || chainId === ChainId.ROPSTEN || chainId === ChainId.RINKEBY) {
+      //   await provider.request({
+      //     method: 'wallet_addEthereumChain',
+      //     params: [
+      //       {
+      //         chainId: `0x${chainId.toString(16)}`,
+      //         chainName: NETWORK_NAME[chainId],
+      //         nativeCurrency: {
+      //           name: 'ETH',
+      //           symbol: 'ETH',
+      //           decimals: 18,
+      //         },
+      //         rpcUrls: [`${process.env.REACT_APP_NETWORK_URL}`],
+      //         blockExplorerUrls: [`${SCAN_URL[chainId]}/`]
+      //       },
+      //     ],
+      //   })
+      // } else
+      if (chainId === ChainId.BAOBAB) {
         await provider.request({
           method: 'wallet_addEthereumChain',
           params: [
@@ -89,9 +90,9 @@ export const addNetwork = async (chainId: number) => {
  */
 export const setupNetwork = async (chainId: number) => {
   const provider = (window as WindowChain).ethereum
-  let result
+  let result = true;
 
-  result = await addNetwork(chainId)   // Talken
+  // result = await addNetwork(chainId)   // Talken
 
   if (provider) {
     try {
