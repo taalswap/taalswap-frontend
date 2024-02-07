@@ -105,6 +105,7 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 
   const xSwapCurrency = window.localStorage.getItem('xSwapCurrency')
   const crossChain = window.localStorage.getItem('crossChain')
+  const infuraKey = process.env.REACT_APP_INFURA_KEY;
   // if (xSwapCurrency === 'output' || crossChain !== null) {     // xSwap 메뉴에서 다른 메뉴로 이동 시 crossChain 값을 삭제함. 타 메뉴에서 getContract 호출 시 사용 갸능...
   if (xSwapCurrency === 'output' || xFlag) {
     if (chainId > 1000) {
@@ -113,10 +114,10 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
     } else {
       let crossChainProvider
       if (ethChainId === '1') {
-        crossChainProvider = new ethers.providers.InfuraProvider('mainnet', 'adb9c847d7114ee7bf83995e8f22e098')
+        crossChainProvider = new ethers.providers.InfuraProvider('mainnet', infuraKey)
       }
       if (ethChainId === '3') {
-        crossChainProvider = new ethers.providers.InfuraProvider('ropsten', 'adb9c847d7114ee7bf83995e8f22e098')
+        crossChainProvider = new ethers.providers.InfuraProvider('ropsten', infuraKey)
       }
       contract = new Contract(address, ABI, crossChainProvider);
     }

@@ -65,13 +65,14 @@ export default function Updater(): null {
     //   .then(blockNumberCallback)
     //   .catch((error) => console.error(`Failed to get block number for chainId: ${chainId}`, error))
 
+    const infuraKey = process.env.REACT_APP_INFURA_KEY;
     if (chainId > 1000) {
       let crossChainProvider
       if (ethChainId === '1') {
-        crossChainProvider = new ethers.providers.InfuraProvider('mainnet', 'adb9c847d7114ee7bf83995e8f22e098')
+        crossChainProvider = new ethers.providers.InfuraProvider('mainnet', infuraKey)
       }
       if (ethChainId === '3') {
-        crossChainProvider = new ethers.providers.InfuraProvider('ropsten', 'adb9c847d7114ee7bf83995e8f22e098')
+        crossChainProvider = new ethers.providers.InfuraProvider('ropsten', infuraKey)
       }
       crossChainProvider.getBlockNumber()
         .then(blockNumberCallbackOther)
