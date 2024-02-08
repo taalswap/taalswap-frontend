@@ -231,7 +231,7 @@ const SectionTop: React.FC = () => {
     async function fetchEthTvlData() {
       let result = 0
       getTalStaked()
-      fetch('https://taalswap-info-api-lvh8h4k8n-taalswap.vercel.app/api/tvl', {
+      fetch('https://taalswap-info-api-black.vercel.app/api/tvl', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
@@ -281,7 +281,7 @@ const SectionTop: React.FC = () => {
 
   useEffect(() => {
     async function fetchData24h() {
-      await fetch('https://taalswap-info-api-lvh8h4k8n-taalswap.vercel.app/api/daily', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/daily', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',

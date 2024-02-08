@@ -87,7 +87,7 @@ export const useTotalAssets = () => {
   useEffect(() => {
     async function fetchPairs() {
       const data = []
-      await fetch('https://taalswap-info-api-lvh8h4k8n-taalswap.vercel.app/api/pairs', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/pairs', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',

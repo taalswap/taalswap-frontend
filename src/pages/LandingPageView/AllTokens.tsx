@@ -204,7 +204,7 @@ const AllTokens = () => {
     async function fetchData() {
       const data = []
 
-      await fetch('https://taalswap-info-api-lvh8h4k8n-taalswap.vercel.app/api/tokens', {
+      await fetch('https://taalswap-info-api-black.vercel.app/api/tokens', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json',
