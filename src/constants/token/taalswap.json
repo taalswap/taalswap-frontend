@@ -4,7 +4,7 @@
   "version": {
     "major": 3,
     "minor": 0,
-    "patch": 1
+    "patch": 2
   },
   "tags": {},
   "logoURI": "https://taalswap.finance/static/symbol/taalswap_coinsymbol.svg",
@@ -250,7 +250,7 @@
       "symbol": "wBONK",
       "address": "0x1f1b46167fb8d1c6edc31aabfbf789d6719a6b7e",
       "chainId": 8217,
-      "decimals": 18,
+      "decimals": 5,
       "logoURI": "https://taalswap.finance/images/coins/wbonk.png"
     }
   ]
