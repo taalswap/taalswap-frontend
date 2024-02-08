@@ -3,8 +3,8 @@
   "timestamp": "2024-02-08T10:00:00Z",
   "version": {
     "major": 3,
-    "minor": 0,
-    "patch": 2
+    "minor": 1,
+    "patch": 3
   },
   "tags": {},
   "logoURI": "https://taalswap.finance/static/symbol/taalswap_coinsymbol.svg",
@@ -151,7 +151,7 @@
     },
     {
       "name": "Wrapped Talken",
-      "symbol": "wTALK",
+      "symbol": "TALK",
       "address": "0x156e8d865301a68567ecf8fa7c30b83ab312c6cf",
       "chainId": 1001,
       "decimals": 18,
@@ -159,7 +159,7 @@
     },
     {
       "name": "Wrapped USDC",
-      "symbol": "wUSDC",
+      "symbol": "USDC",
       "address": "0x45c5a369f7cce12bca3df828dcde5f20755c984c",
       "chainId": 1001,
       "decimals": 6,
@@ -167,7 +167,7 @@
     },
     {
       "name": "Wrapped USDT",
-      "symbol": "wUSDT",
+      "symbol": "USDT",
       "address": "0x9aE3161B9ADb36C534881BE5510300F8c89003dA",
       "chainId": 1001,
       "decimals": 6,
@@ -175,7 +175,7 @@
     },
     {
       "name": "Wrapped BONK",
-      "symbol": "wBONK",
+      "symbol": "BONK",
       "address": "0x16e592850dccd97d99d0da74418826f20863f898",
       "chainId": 1001,
       "decimals": 5,
@@ -223,7 +223,7 @@
     },
     {
       "name": "Wrapped Talken",
-      "symbol": "wTALK",
+      "symbol": "TALK",
       "address": "0x55863cb9a7f92c134e9f8edb6c655b92d60493b5",
       "chainId": 8217,
       "decimals": 18,
@@ -231,7 +231,7 @@
     },
     {
       "name": "Wrapped USDC",
-      "symbol": "wUSDC",
+      "symbol": "USDC",
       "address": "0x608792deb376cce1c9fa4d0e6b7b44f507cffa6a",
       "chainId": 8217,
       "decimals": 6,
@@ -239,7 +239,7 @@
     },
     {
       "name": "Wrapped USDT",
-      "symbol": "wUSDT",
+      "symbol": "USDT",
       "address": "0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2",
       "chainId": 8217,
       "decimals": 6,
@@ -247,7 +247,7 @@
     },
     {
       "name": "Wrapped BONK",
-      "symbol": "wBONK",
+      "symbol": "BONK",
       "address": "0x1f1b46167fb8d1c6edc31aabfbf789d6719a6b7e",
       "chainId": 8217,
       "decimals": 5,
