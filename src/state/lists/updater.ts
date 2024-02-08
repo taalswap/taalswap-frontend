@@ -44,11 +44,14 @@ export default function Updater(): null {
   }, [dispatch, fetchList, library, lists])
 
   // automatically update lists if versions are minor/patch
+  // TODO : taalswap.json 업데이트
   useEffect(() => {
     Object.keys(lists).forEach((listUrl) => {
       const list = lists[listUrl]
       if (list.current && list.pendingUpdate) {
         const bump = getVersionUpgrade(list.current.version, list.pendingUpdate.version)
+        // TODO : Force Update taalswap.json
+        // const bump : VersionUpgrade = 3;
         switch (bump) {
           case VersionUpgrade.NONE:
             throw new Error('unexpected no version bump')
@@ -75,11 +78,13 @@ export default function Updater(): null {
               console.error(
                   `List at url ${listUrl} could not automatically update because the version bump was only PATCH/MINOR while the update had breaking changes and should have been MAJOR`
               )
+              console.log('!!!!! taalswap.json : change major version for apply !!!!!')
             }
             break
           }
 
           case VersionUpgrade.MAJOR:
+            dispatch(acceptListUpdate(listUrl))
             dispatch(
               addPopup({
                 key: listUrl,

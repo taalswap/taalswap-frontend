@@ -144,7 +144,55 @@ const tokens = {
   //   },
   //   decimals: 18,
   //   projectLink: 'https://chemix.io/home',
-  // }
+  // },
+  wtalk: {
+    symbol: 'wTALK',
+    address: {
+      1: '',
+      3: '',
+      4: '',
+      8217: '0x55863cb9a7f92c134e9f8edb6c655b92d60493b5',
+      1001: '0x156e8d865301a68567ecf8fa7c30b83ab312c6cf',
+    },
+    decimals: 18,
+    projectLink: 'https://talken.to/',
+  },
+  wbonk: {
+    symbol: 'wBONK',
+    address: {
+      1: '',
+      3: '',
+      4: '',
+      8217: '0x1f1b46167fb8d1c6edc31aabfbf789d6719a6b7e',
+      1001: '0xc7663b0543dD425aCC429B293CF8CE41665c9A65', // ERC20
+    },
+    decimals: 18,
+    projectLink: 'https://bonkcoin.com/',
+  },
+  wusdc: {
+    symbol: 'wUSDC',
+    address: {
+      1: '',
+      3: '',
+      4: '',
+      8217: '0x608792deb376cce1c9fa4d0e6b7b44f507cffa6a',
+      1001: '0x45c5a369f7cce12bca3df828dcde5f20755c984c',
+    },
+    decimals: 6,
+    projectLink: 'https://www.centre.io/usdc/',
+  },
+  wusdt: {
+    symbol: 'wUSDT',
+    address: {
+      1: '',
+      3: '',
+      4: '',
+      8217: '0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2',
+      1001: '0x9aE3161B9ADb36C534881BE5510300F8c89003dA',
+    },
+    decimals: 6,
+    projectLink: 'https://tether.to/',
+  },
 }
 
 export default tokens

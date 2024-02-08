@@ -62,9 +62,12 @@ export default createReducer(initialState, (builder) =>
       const current = state.byUrl[url]?.current;
       const loadingRequestId = state.byUrl[url]?.loadingRequestId;
 
+      // TODO : taalswap.json 업데이트
       // no-op if update does nothing
       if (current) {
         const upgradeType = getVersionUpgrade(current.version, tokenList.version);
+        // TODO : Force Update taalswap.json
+        // const upgradeType :VersionUpgrade = 3;
         if (upgradeType === VersionUpgrade.NONE) return;
         if (loadingRequestId === null || loadingRequestId === requestId) {
           state.byUrl[url] = {
