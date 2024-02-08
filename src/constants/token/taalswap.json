@@ -176,9 +176,9 @@
     {
       "name": "Wrapped BONK",
       "symbol": "wBONK",
-      "address": "0xc7663b0543dD425aCC429B293CF8CE41665c9A65",
+      "address": "0x16e592850dccd97d99d0da74418826f20863f898",
       "chainId": 1001,
-      "decimals": 18,
+      "decimals": 5,
       "logoURI": "https://taalswap.finance/images/coins/wbonk.png"
     },
     {
