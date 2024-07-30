@@ -267,7 +267,7 @@ function Swap({
       if (currencies[Field.INPUT]?.symbol !== undefined && currencies[Field.OUTPUT]?.symbol !== undefined) {
         await fetch(
           `${getAPIUrl()}/tokens/${getAddressBySymbol(currencies[Field.INPUT]?.symbol)}`,
-          // 'https://taalswap-info-api-black.vercel.app/api/tokens/0xdAC17F958D2ee523a2206206994597C13D831ec7',
+          // 'https://taalswap-info-api.vercel.app/api/tokens/0xdAC17F958D2ee523a2206206994597C13D831ec7',
           {
             method: 'GET',
             headers: {
@@ -282,7 +282,7 @@ function Swap({
 
         await fetch(
           `${getAPIUrl()}/tokens/${getAddressBySymbol(currencies[Field.OUTPUT]?.symbol)}`,
-          // 'https://taalswap-info-api-black.vercel.app/api/tokens/0xdAC17F958D2ee523a2206206994597C13D831ec7',
+          // 'https://taalswap-info-api.vercel.app/api/tokens/0xdAC17F958D2ee523a2206206994597C13D831ec7',
           {
             method: 'GET',
             headers: {

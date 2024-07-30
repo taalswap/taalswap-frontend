@@ -15,7 +15,7 @@ const getAPIUrl = (targetChainId?: string) => {
       apiUrl = 'https://api.taalswap.info/cypress/api';
       break;
     default:
-      apiUrl = 'https://taalswap-info-api-black.vercel.app/api';
+      apiUrl = 'https://taalswap-info-api.vercel.app/api';
   }
 
   return apiUrl;

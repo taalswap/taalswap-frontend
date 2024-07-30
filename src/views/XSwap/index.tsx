@@ -287,7 +287,7 @@ function XSwap({
         if (inputToken !== undefined) {
           await fetch(
             `${getAPIUrl(chainId)}/tokens/${getAddressBySymbol(currencies[Field.INPUT]?.symbol, chainId)}`,
-            // 'https://taalswap-info-api-black.vercel.app/api/tokens/0xdAC17F958D2ee523a2206206994597C13D831ec7',
+            // 'https://taalswap-info-api.vercel.app/api/tokens/0xdAC17F958D2ee523a2206206994597C13D831ec7',
             {
               method: 'GET',
               headers: {
@@ -305,7 +305,7 @@ function XSwap({
           await fetch(
             `${getAPIUrl(crossChain)}/tokens/${getAddressBySymbol(currencies[Field.OUTPUT]?.symbol, crossChain)}`,
 
-            // 'https://taalswap-info-api-black.vercel.app/api/tokens/0xdAC17F958D2ee523a2206206994597C13D831ec7',
+            // 'https://taalswap-info-api.vercel.app/api/tokens/0xdAC17F958D2ee523a2206206994597C13D831ec7',
             {
               method: 'GET',
               headers: {
